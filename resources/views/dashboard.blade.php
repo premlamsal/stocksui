@@ -17,7 +17,6 @@
   <!-- CSS Files -->
   <link href="{{asset('css/app.css')}}" rel="stylesheet" />
   <link href="{{asset('assets/css/paper-dashboard.css?v=2.0.0')}}" rel="stylesheet" />
-  <link href="{{asset('css/custom.css')}}" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 
   <!-- bootstrap select css -->
@@ -26,6 +25,7 @@
   <!-- loader -->
   <link href="https://unpkg.com/nprogress@0.2.0/nprogress.css" rel="stylesheet" />
 
+  <link href="{{asset('css/custom.css')}}" rel="stylesheet" />
 
 
 
@@ -39,19 +39,7 @@
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
-      <div class="logo">
-        <a href="#" class="simple-text logo-mini">
-          <div class="logo-image-small">
-            <img src="{{asset('img/a.svg')}}">
-          </div>
-        </a>
-        <a href="/" class="simple-text logo-normal">
-          {{ config('app.name', 'Laravel') }}
-          <!-- <div class="logo-image-big">
-            <img src="../assets/img/logo-big.png">
-          </div> -->
-        </a>
-      </div>
+   
       <div class="sidebar-wrapper">
         <ul class="nav">
 
@@ -64,7 +52,7 @@
           </li>
 
        
-          @can('hasPermission','view_transactions')
+          {{-- @can('hasPermission','view_transactions')
            <li>
             <router-link  to="/transactions" aria-expanded="false">
             <i class="nc-icon nc-chart-bar-32"></i>
@@ -72,15 +60,15 @@
             </router-link>
           </li>
           
-          @endcan
-          @can('hasPermission','view_accounts')
+          @endcan --}}
+          {{-- @can('hasPermission','view_accounts')
            <li>
             <router-link  to="/accounts" aria-expanded="false">
             <i class="nc-icon nc-credit-card"></i>
                 <span> Accounts</span>
             </router-link>
           </li>
-          @endcan
+          @endcan --}}
 
           @can('hasPermission','view_customers')
            <li>
@@ -136,14 +124,14 @@
           </li>
           @endcan
 
-          @can('hasPermission','view_returns')
+          {{-- @can('hasPermission','view_returns')
           <li>
             <router-link  to="/returns" aria-expanded="false">
               <i class="nc-icon nc-refresh-69"></i>
                 <span>Returns</span>
             </router-link>
           </li>
-          @endcan
+          @endcan --}}
 
           @can('hasPermission','view_stocks')
           <li>
@@ -182,10 +170,28 @@
             </router-link>
           </li>
           @endcan
+          <li>
+           
+          </li>
 
         </ul>
+        
+      </div>
+      <div class="logo">
+        <a href="#" class="simple-text logo-mini">
+          <div class="logo-image-small">
+            <img src="{{asset('img/a.svg')}}">
+          </div>
+        </a>
+        <a href="/" class="simple-text logo-normal">
+          {{ config('app.name', 'Laravel') }}
+          <!-- <div class="logo-image-big">
+            <img src="../assets/img/logo-big.png">
+          </div> -->
+        </a>
       </div>
     </div>
+     
     <div class="main-panel">
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
