@@ -27,6 +27,8 @@ class CreateProductsTable extends Migration
             $table->string('opening_stock');
 
             $table->string('low_stock_alert_quantity');
+
+            $table->boolean('low_stock_alert_active');
             
             $table->unsignedBigInteger('product_cat_id');
             

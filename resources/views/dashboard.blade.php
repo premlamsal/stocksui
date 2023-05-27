@@ -116,15 +116,7 @@
           </li>
           @endcan
 
-          @can('hasPermission','view_units')
-          <li>
-            <router-link  to="/units" aria-expanded="false">
-              <i class="nc-icon nc-ruler-pencil"></i>
-                <span>Units</span>
-            </router-link>
-          </li>
-          @endcan
-
+         
 
           @can('hasPermission','view_users')
            <li>

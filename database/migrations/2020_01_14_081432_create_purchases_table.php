@@ -25,8 +25,6 @@ class CreatePurchasesTable extends Migration
             $table->string('supplier_name');
             $table->string('sub_total');
             $table->string('purchase_reference_id');
-            $table->decimal('discount');
-            $table->decimal('tax_amount');
             $table->decimal('grand_total');
             $table->string('status');
 

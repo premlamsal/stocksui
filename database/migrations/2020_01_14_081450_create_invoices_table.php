@@ -24,8 +24,6 @@ class CreateInvoicesTable extends Migration
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->string('customer_name');
             $table->string('sub_total');
-            $table->decimal('discount');
-            $table->decimal('tax_amount');
             $table->decimal('grand_total');
             $table->string('status');
 

@@ -332,19 +332,6 @@ let routes = [
   
 
 
-  //units route
-  {
-    path: '/units/',
-    name: 'units', component: require('./components/unit/units.vue').default,
-   
-     beforeEnter(to, from, next) {
-        let hasAccess = store.getters.permissions
-        if (hasAccess.includes('view_units') || hasAccess.includes('all')) {
-          next()
-        }
-      }
-  },
-
   //categories route
   {
     path: '/categories/',

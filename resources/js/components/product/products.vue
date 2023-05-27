@@ -29,21 +29,19 @@
             <span v-if="errors.name" :class="['errorText']">{{ errors.name[0] }}</span>
           </div>
           <div class="form-group">
-            <label for="Name">Unit:</label>
-            <template>
-              <select class="form-control" v-model="product.unit_id">
-                <option selected="" v-for="unit in units" :value="unit.id">{{unit.short_name}}</option>
-              </select>
-              <span v-if="errors.unit_id" :class="['errorText']">{{ errors.unit_id[0] }}</span>
-            </template>
+            <label for="Unit">Unit:</label>
+            
+            <input type="text" v-model="product.unit" :class="['form-control']">
+            <span v-if="errors.unit" :class="['errorText']">{{ errors.unit[0] }}</span>
           </div>
-            <div class="form-group" v-if="modalForCode===0">
-            <label for="Opening Stock">Opening Stock:</label>
-            <input type="text" v-model="product.opening_stock" :class="['form-control']">
-            <span v-if="errors.opening_stock" :class="['errorText']">{{ errors.opening_stock[0] }}</span>
-          </div>
+
           <div class="form-group">
-            <label for="Opening Stock">Low Stock Alert Quantity(min quantity):</label>
+            <label for="Stock Alert Checkbox">I need Stock alert for this product:</label>
+            <input type="checkbox" v-model="product.low_stock_alert_active" :class="['form-control']">
+            <span v-if="errors.low_stock_alert_active" :class="['errorText']">{{ errors.low_stock_alert_active[0] }}</span>
+          </div>
+          <div class="form-group" v-if="product.low_stock_alert_active">
+            <label for="Stock Alert Quantity">Minimun Stock Alert for Product:</label>
             <input type="text" v-model="product.low_stock_alert_quantity" :class="['form-control']">
             <span v-if="errors.low_stock_alert_quantity" :class="['errorText']">{{ errors.low_stock_alert_quantity[0] }}</span>
           </div>
@@ -200,9 +198,9 @@ export default {
         name: '',
         opening_stock:'',
         description: '',
-        price: '',
+        low_stock_alert_active:false,
         low_stock_alert_quantity:'',
-
+        price: '',
         category: {},
         unit: {},
 

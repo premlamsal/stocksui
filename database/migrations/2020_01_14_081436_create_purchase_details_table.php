@@ -24,9 +24,8 @@ class CreatePurchaseDetailsTable extends Migration
             $table->string('product_name');
             $table->string('quantity');
             $table->string('price');
-            
-            $table->unsignedBigInteger('unit_id');
-            $table->foreign('unit_id')->references('id')->on('units')->onDelete('cascade');
+
+            $table->string('unit');
 
             $table->string('line_total');
 
