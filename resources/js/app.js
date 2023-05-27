@@ -313,19 +313,6 @@ let routes = [
   },
 
 
-  //customer routes
-  {
-    path: '/customers',
-    name: 'customers',
-    component: require('./components/customer/customers.vue').default,
-
-     beforeEnter(to, from, next) {
-        let hasAccess = store.getters.permissions
-        if (hasAccess.includes('view_customers') || hasAccess.includes('all')) {
-          next()
-        }
-      }
-  },
 
 
   //supplier routes
