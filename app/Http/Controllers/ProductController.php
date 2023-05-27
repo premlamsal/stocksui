@@ -42,8 +42,9 @@ class ProductController extends Controller
         $this->validate($request, [
             'name' => 'required|string|max:200',
             'description' => 'required|string|max:1000',
-            'cp' => 'required|numeric ',
-            'sp' => 'required|numeric ',
+            'price' => 'required|string|max:1000',
+            'low_stock_alert_quantity' => 'required|string|max:1000',
+
             'product_cat_id' => 'required|numeric ',
             'unit_id' => 'required|numeric ',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4048',
@@ -70,9 +71,9 @@ class ProductController extends Controller
         $product->product_cat_id = $request->input('product_cat_id');
         $product->unit_id = $request->input('unit_id');
         $product->description = $request->input('description');
-        $product->cp = $request->input('cp');
-        $product->sp = $request->input('sp');
         $product->opening_stock = $request->input('opening_stock');
+        $product->low_stock_alert_quantity = $request->input('low_stock_alert_quantity');
+
         $product->store_id = $store_id;
         $product->custom_product_id = $new_count_product_id; //asign new increase product custom id
 
@@ -97,7 +98,7 @@ class ProductController extends Controller
 
             $stock->store_id = $store_id;
 
-            $stock->price = $request->input('cp');
+            $stock->price = $request->input('price');
 
             if ($stock->save()) {
                 //set current product_id_count to store table
@@ -143,10 +144,12 @@ class ProductController extends Controller
         $this->validate($request, [
             'name' => 'required|string|max:200',
             'description' => 'required|string|max:1000',
-            'cp' => 'required|numeric ',
-            'sp' => 'required|numeric ',
             'product_cat_id' => 'required|numeric ',
             'unit_id' => 'required|numeric ',
+            'price' => 'required|string|max:1000',
+            'low_stock_alert_quantity' => 'required|string|max:1000',
+
+
             'id' => 'required|numeric ',
             // 'image'=> 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
 
@@ -158,8 +161,8 @@ class ProductController extends Controller
         $product->product_cat_id = $request->input('product_cat_id');
         $product->unit_id = $request->input('unit_id');
         $product->description = $request->input('description');
-        // $product->cp = $request->input('cp');
-        // $product->sp = $request->input('sp');
+        $product->low_stock_alert_quantity = $request->input('low_stock_alert_quantity');
+
 
         if ($request->hasFile('image')) {
 

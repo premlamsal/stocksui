@@ -1,0 +1,29 @@
+#app{
+  background-image: url('../img/wall.jpeg');
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+#app .card{
+  background:none;
+  border: 0;
+}
+.logo{display: flex;justify-content: center;margin-bottom: 30px;}
+.brand-logo{
+  
+}
+#app .card label{
+  color: white  !important;
+}
+.invalid-feedback{
+  color: yellow;
+}
+
+#app .card button{
+  background: #163373;
+  color: #FFD700 !important;
+  border: 0;
+}

@@ -24,11 +24,9 @@ class CreateProductsTable extends Migration
             
             $table->string('description');
 
-            $table->decimal('cp');
-
-            $table->decimal('sp');
-            
             $table->string('opening_stock');
+
+            $table->string('low_stock_alert_quantity');
             
             $table->unsignedBigInteger('product_cat_id');
             

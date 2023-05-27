@@ -44,13 +44,6 @@ class PagesController extends Controller
 
         $store->email = $request->input('email');
 
-        $store->url = $request->input('url');
-
-        $store->tax_number = $request->input('tax_number');
-
-        $store->tax_percentage = $request->input('tax_percentage');
-
-        $store->profit_percentage = $request->input('profit_percentage');
 
         $store->store_logo = null;
 

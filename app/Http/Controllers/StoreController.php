@@ -91,8 +91,6 @@ class StoreController extends Controller
             'url'            => 'required|string|max:200',
             'phone'          => 'required|digits:10',
             'detail'         => 'required|string|max:400',
-            'tax_percentage' => 'required|numeric ',
-            'tax_number'     => 'required|numeric ',
         ]);
 
         $id = $request->input('id');
@@ -109,8 +107,6 @@ class StoreController extends Controller
         $store->phone          = $request->input('phone');
         $store->mobile         = $request->input('mobile');
         $store->url            = $request->input('company_url');
-        $store->tax_percentage = $request->input('tax_percentage');
-        $store->tax_number     = $request->input('tax_number');
 
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->getClientOriginalExtension();

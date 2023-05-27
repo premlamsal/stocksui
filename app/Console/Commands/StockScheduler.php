@@ -2,7 +2,11 @@
 
 namespace App\Console\Commands;
 
+use App\Mail\LowStock as MailLowStock;
+use App\Notifications\LowStock;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
+use App\Stock;
 
 class StockScheduler extends Command
 {
@@ -37,6 +41,14 @@ class StockScheduler extends Command
      */
     public function handle()
     {
+        $stock = Stock::where('quantity', '<=', '100000')->get();
+        
+        $to_email = "premlamsal2@gmail.com";
+
+        Mail::to($to_email)->send(new MailLowStock($stock));
+
+
         $this->info('Daily report has been sent successfully!');
+        return 'Daily report has been sent successfully!';
     }
 }

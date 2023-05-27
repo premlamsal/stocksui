@@ -22,7 +22,6 @@ class CreateSettingsTable extends Migration
             $table->string('company_phone');
             $table->string('company_url');
             $table->string('company_logo');
-            $table->integer('tax');
             $table->timestamps();
         });
     }

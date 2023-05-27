@@ -188,19 +188,7 @@ let routes = [
       }
   },
 
-  {
-    path: '/:id/returnInvoice',
-    name: 'returnInvoice',
-    component: require('./components/invoice/returnInvoice.vue').default,
-
-    
-     beforeEnter(to, from, next) {
-        let hasAccess = store.getters.permissions
-        if (hasAccess.includes('return_invoice') || hasAccess.includes('all')) {
-          next()
-        }
-      }
-  },
+  
 
   {
     path: '/:id/showInvoice/',
@@ -310,18 +298,7 @@ let routes = [
       }
   },
 
-  {
-    path: '/:id/returnPurchase',
-    name: 'returnPurchase',
-    component: require('./components/purchase/returnPurchase.vue').default,
-
-     beforeEnter(to, from, next) {
-        let hasAccess = store.getters.permissions
-        if (hasAccess.includes('return_purchase') || hasAccess.includes('all')) {
-          next()
-        }
-      }
-  },
+  
 
   {
     path: '/:id/showPurchase/',
@@ -350,20 +327,6 @@ let routes = [
       }
   },
 
-//customer profile routes
-  {
-    path: '/:id/customer-profile',
-    name: 'customerProfile',
-    component: require('./components/customer/customerProfile.vue').default,
-
-     beforeEnter(to, from, next) {
-        let hasAccess = store.getters.permissions
-        if (hasAccess.includes('view_customer_profile') || hasAccess.includes('all')) {
-          next()
-        }
-      }
-  },
-
 
   //supplier routes
   {
@@ -380,19 +343,6 @@ let routes = [
 
   },
   
-//supplier profile routes
-{
-  path: '/:id/supplier-profile',
-  name: 'supplierProfile',
-  component: require('./components/supplier/supplierProfile.vue').default,
-
-   beforeEnter(to, from, next) {
-      let hasAccess = store.getters.permissions
-      if (hasAccess.includes('view_supplier_profile') || hasAccess.includes('all')) {
-        next()
-      }
-    }
-},
 
 
   //units route
@@ -547,159 +497,8 @@ let routes = [
     component: require('./components/dashboard/selectStore.vue').default,
 
   },
-  {
-    path: '/accounts',
-    name: 'accounts',
-    component: require('./components/account/accounts.vue').default,
-    beforeEnter(to, from, next) {
-      let hasAccess = store.getters.permissions
-      if (hasAccess.includes('view_accounts') || hasAccess.includes('all')) {
-        next()
-      }
-    }
-
-  },
-  {
-    path: '/transactions',
-    name: 'transactions',
-    component: require('./components/transaction/transactions.vue').default,
-    beforeEnter(to, from, next) {
-      let hasAccess = store.getters.permissions
-      if (hasAccess.includes('view_transactions') || hasAccess.includes('all')) {
-        next()
-      }
-    }
-
-  },
-
-  {
-    path: '/returns',
-    name: 'returns',
-    component: require('./components/return/returns.vue').default,
-    beforeEnter(to, from, next) {
-      let hasAccess = store.getters.permissions
-      if (hasAccess.includes('view_returns') || hasAccess.includes('all')) {
-        next()
-      }
-    }
-
-  },//returns
-  {
-    path: '/returnPurchases',
-    name: 'returnPurchases',
-    component: require('./components/return/purchase/returnPurchases.vue').default,
-    beforeEnter(to, from, next) {
-      let hasAccess = store.getters.permissions
-      if (hasAccess.includes('view_return_purchases') || hasAccess.includes('all')) {
-        next()
-      }
-    }
-  },//returnPurchases
-
-  {
-    path: '/newPurchaseReturn',
-    name: 'newPurchaseReturn',
-    component: require('./components/return/purchase/newPurchaseReturn.vue').default,
-    beforeEnter(to, from, next) {
-      let hasAccess = store.getters.permissions
-      if (hasAccess.includes('view_new_purchase_return') || hasAccess.includes('all')) {
-        next()
-      }
-    }
-
-  },//newPurchaseReturn
-  {
-    path: '/:id/showReturnPurchase/',
-    name: 'showReturnPurchase',
-    component: require('./components/return/purchase/showPurchaseReturn.vue').default,
-   
-     beforeEnter(to, from, next) {
-        let hasAccess = store.getters.permissions
-        if (hasAccess.includes('show_purchase_return') || hasAccess.includes('all')) {
-          next()
-        }
-      }
-  },
-  {
-    path: '/:id/editReturnPurchase',
-    name: 'editReturnPurchase',
-    component: require('./components/return/purchase/editPurchaseReturn.vue').default,
-
-     beforeEnter(to, from, next) {
-        let hasAccess = store.getters.permissions
-        if (hasAccess.includes('edit_purchase_return') || hasAccess.includes('all')) {
-          next()
-        }
-      }
-  },
-
-
-
-  {
-    path: '/returnInvoices',
-    name: 'returnInvoices',
-    component: require('./components/return/invoice/returnInvoices.vue').default,
-    beforeEnter(to, from, next) {
-      let hasAccess = store.getters.permissions
-      if (hasAccess.includes('view_return_invoices') || hasAccess.includes('all')) {
-        next()
-      }
-    }
-
-  },//returnInvoices
   
-  {
-    path: '/newInvoiceReturn',
-    name: 'newInvoiceReturn',
-    component: require('./components/return/invoice/newInvoiceReturn.vue').default,
-    beforeEnter(to, from, next) {
-      let hasAccess = store.getters.permissions
-      if (hasAccess.includes('view_new_invoice_return') || hasAccess.includes('all')) {
-        next()
-      }
-    }
 
-  },//newInvoice
-
-  {
-    path: '/:id/showReturnInvoice/',
-    name: 'showReturnInvoice',
-    component: require('./components/return/invoice/showInvoiceReturn.vue').default,
-   
-     beforeEnter(to, from, next) {
-        let hasAccess = store.getters.permissions
-        if (hasAccess.includes('show_invoice_return') || hasAccess.includes('all')) {
-          next()
-        }
-      }
-  },
-  {
-    path: '/:id/editReturnInvoice',
-    name: 'editReturnInvoice',
-    component: require('./components/return/invoice/editInvoiceReturn.vue').default,
-
-     beforeEnter(to, from, next) {
-        let hasAccess = store.getters.permissions
-        if (hasAccess.includes('edit_invoice_return') || hasAccess.includes('all')) {
-          next()
-        }
-      }
-  },
-  
-  
-//account profile routes
-{
-  path: '/:id/account-profile',
-  name: 'accountProfile',
-  component: require('./components/account/accountProfile.vue').default,
-
-   beforeEnter(to, from, next) {
-      let hasAccess = store.getters.permissions
-      if (hasAccess.includes('view_account_profile') || hasAccess.includes('all')) {
-        next()
-      }
-    }
-},
 
   {
     path: '/app/info',

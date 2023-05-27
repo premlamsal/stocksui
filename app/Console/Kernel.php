@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\StockScheduler::class,
     ];
 
     /**
@@ -24,8 +24,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        //  $schedule->call('daily:lowstock_report')->everyMinute();
+        $schedule->command('daily:lowstock_report')->cron('* * * * *'); 
+
     }
 
     /**

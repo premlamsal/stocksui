@@ -56,7 +56,6 @@ class SupplierController extends Controller
 
             'details' => 'required|string|max:400',
 
-            'opening_balance' => 'required|numeric',
 
         ]);
 
@@ -76,24 +75,11 @@ class SupplierController extends Controller
 
         if ($supplier->save()) {
 
-            $SupplierTransaction = new SupplierTransaction();
-            $SupplierTransaction->transaction_type = 'opening_balance';
-            $SupplierTransaction->refID = '0';
-            $SupplierTransaction->amount = $request->input('opening_balance');
-            $SupplierTransaction->supplier_id = $supplier->id;
-            $SupplierTransaction->store_id = $store_id;
-            if ($SupplierTransaction->save()) {
+       
                 return response()->json([
                     'msg' => 'Supplier added successfully',
                     'status' => 'success',
                 ]);
-
-            }else{
-                return response()->json([
-                    'msg' => 'Error while adding Supplier transaction',
-                    'status' => 'error',
-                ]); 
-            }
 
         } else {
             return response()->json([
@@ -145,20 +131,12 @@ class SupplierController extends Controller
 
         if ($supplier->save()) {
 
-            $SupplierTransaction = SupplierTransaction::where('supplier_id',$supplier->id)->where('transaction_type','opening_balance')->first();
-            $SupplierTransaction->amount = $request->input('opening_balance');
-            if ($SupplierTransaction->save()) {
                 return response()->json([
                     'msg' => 'Supplier updated successfully',
                     'status' => 'success',
                 ]);
 
-            }else{
-                return response()->json([
-                    'msg' => 'Error while updating Supplier transaction',
-                    'status' => 'error',
-                ]); 
-            }
+          
         } else {
 
             return response()->json([
@@ -169,17 +147,7 @@ class SupplierController extends Controller
         }
 
     }
-    public function getPayments($supplier_id){
-        
-        $user = User::findOrFail(Auth::user()->id);
-
-        $store_id = $user->stores[0]->id;
-
-        $SupplierPayments=SupplierPayment::where('store_id',$store_id)->where('supplier_id',$supplier_id)->get();
-       
-        return response()->json(['data'=>$SupplierPayments,'status'=>'success']);
-    }
-
+   
 
     public function destroy($id)
     {
@@ -225,15 +193,11 @@ class SupplierController extends Controller
         $supplier = Supplier::where('id', $id)->where('store_id', $store_id)->first();
 
         $purchase_amount=Purchase::where('store_id',$store_id)->where('supplier_id',$id)->sum('grand_total');
-        $paid_amount=SupplierPayment::where('store_id',$store_id)->where('supplier_id',$id)->sum('amount');
-        $balance_due=floatval($purchase_amount)-floatval($paid_amount)-floatval($supplier->opening_balance);
 
         if ($supplier->save()) {
             return response()->json([
                 'supplier' => $supplier,
                 'purchase_amount'=>$purchase_amount,
-                'paid_amount'=>$paid_amount,
-                'balance_due'=>$balance_due,
                 'status' => 'success',
             ]);
         } else {

@@ -43,20 +43,22 @@
             <span v-if="errors.opening_stock" :class="['errorText']">{{ errors.opening_stock[0] }}</span>
           </div>
           <div class="form-group">
-            <label for="Cost Price">Cost Price:</label>
-            <input type="text" v-model="product.cp" :class="['form-control']">
-            <span v-if="errors.cp" :class="['errorText']">{{ errors.cp[0] }}</span>
+            <label for="Opening Stock">Low Stock Alert Quantity(min quantity):</label>
+            <input type="text" v-model="product.low_stock_alert_quantity" :class="['form-control']">
+            <span v-if="errors.low_stock_alert_quantity" :class="['errorText']">{{ errors.low_stock_alert_quantity[0] }}</span>
           </div>
-           <div class="form-group">
-            <label for="Selling Price">Selling Price:</label>
-            <input type="text" v-model="product.sp" :class="['form-control']">
-            <span v-if="errors.sp" :class="['errorText']">{{ errors.sp[0] }}</span>
+          <div class="form-group">
+            <label for="Price">Price:</label>
+            <input type="text" v-model="product.price" :class="['form-control']">
+            <span v-if="errors.price" :class="['errorText']">{{ errors.price[0] }}</span>
           </div>
+        
           <div class="form-group">
             <label for="Description"> Description:</label>
             <textarea :class="['form-control']" v-model="product.description">{{product.description}}</textarea>
             <span v-if="errors.description" :class="['errorText']">{{ errors.description[0] }}</span>
           </div>
+          
           <div class="form-group">
             <label>Image</label>
             <br/>
@@ -121,9 +123,11 @@
                 <th>Product Name</th>
                 <th>Description</th>
                 <th>Open.Stock</th>
+                <th>Low Stock Alert Quantity</th>
+
                 <th>Unit</th>
-                <th>CP</th>
-                <th>SP</th>
+                <th>Price</th>
+
                 <th>Actions</th>
               </tr>
             </thead>
@@ -136,9 +140,10 @@
                 <td>{{product.name}}</td>
                 <td>{{product.description}}</td>
                 <td>{{product.opening_stock}}</td>
+                <td>{{product.low_stock_alert_quantity}}</td>
+
                 <td>{{product.unit.short_name}}</td>
-                <td>Rs. {{product.cp}}</td>
-                <td>Rs. {{product.sp}}</td>
+                <td>Rs. {{product.price}}</td>
                 <td>
                   <button class="btn btn-outline-success custom_btn_table" @click=editProduct(product.id) v-if="hasPermission('edit_product')">
                     <span class="fa fa-edit custom_icon_table"></span>
@@ -193,10 +198,11 @@ export default {
 
         custom_product_id: '',
         name: '',
-        cp: '',
-        sp: '',
         opening_stock:'',
         description: '',
+        price: '',
+        low_stock_alert_quantity:'',
+
         category: {},
         unit: {},
 
@@ -426,6 +432,7 @@ export default {
       this.product.description = '';
       this.opening_stock='';
       this.product.price = '';
+      this.low_stock_alert_quantity='';
 
       this.setAvtarUploadImage();
 
@@ -462,10 +469,13 @@ export default {
       formData.append('name', this.product.name);
       formData.append('product_cat_id', this.product.product_cat_id);
       formData.append('opening_stock', this.product.opening_stock);
+      formData.append('price', this.product.price);
+      formData.append('low_stock_alert_quantity', this.product.low_stock_alert_quantity);
+
+      
+
       formData.append('unit_id', this.product.unit_id);
       formData.append('description', this.product.description);
-      formData.append('cp', this.product.cp);
-      formData.append('sp', this.product.sp);
 
 
       // posting data //using post and sending form data as PUT to match the api route name setting
@@ -484,11 +494,11 @@ export default {
           currObj.product.product_cat_id = '';
           currObj.product.unit_id = '';
           currObj.product.address = '';
+          currObj.product.price = '';
+          currObj.product.low_stock_alert_quantity='',
           currObj.product.phone = '';
           currObj.opening_stock='';
           currObj.product.description = '';
-          currObj.product.cp = '';
-          currObj.product.sp = '';
 
           currObj.setAvtarUploadImage();
 
@@ -524,9 +534,11 @@ export default {
           Vue.set(this.product, 'name', response.data.product.name);
           Vue.set(this.product, 'description', response.data.product.description);
           Vue.set(this.product, 'unit_id', response.data.product.unit_id);
+          Vue.set(this.product, 'price', response.data.product.price);
+          Vue.set(this.product, 'price', response.data.product.low_stock_alert_quantity);
+
+
           // Vue.set(this.product, 'opening_stock', response.data.product.opening_stock);
-          Vue.set(this.product, 'cp', response.data.product.cp);
-          Vue.set(this.product, 'sp', response.data.product.sp);
           Vue.set(this.product, 'product_cat_id', response.data.product.product_cat_id);
 
 
@@ -560,12 +572,13 @@ export default {
       formData.append('_method', 'PUT'); //add this otherwise data won't pass to backend
       formData.append('id', this.product.id);
       formData.append('name', this.product.name);
+      formData.append('price', this.product.price);
       formData.append('product_cat_id', this.product.product_cat_id);
       formData.append('unit_id', this.product.unit_id);
       // formData.append('opening_stock',this.product.opening_stock);
       formData.append('description', this.product.description);
-      formData.append('cp', this.product.cp);
-      formData.append('sp', this.product.sp);
+      formData.append('low_stock_alert_quantity', this.product.low_stock_alert_quantity);
+
 
 
       // posting data //using post and sending form data as PUT to match the api route name setting
@@ -583,6 +596,9 @@ export default {
           currObj.product.unit_id = '';
           currObj.product.address = '';
           currObj.product.phone = '';
+          currObj.product.low_stock_alert_quantity = '';
+
+
           currObj.product.opening_stock = '';
           currObj.product.description = '';
           currObj.product.price = '';

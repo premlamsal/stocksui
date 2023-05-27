@@ -61,23 +61,12 @@ class CustomerController extends Controller
 
         if ($customer->save()) {
 
-            $customerTransaction = new CustomerTransaction();
-            $customerTransaction->transaction_type = 'opening_balance';
-            $customerTransaction->refID = '0';
-            $customerTransaction->amount = $request->input('opening_balance');
-            $customerTransaction->customer_id = $customer->id;
-            $customerTransaction->store_id = $store_id;
-            if ($customerTransaction->save()) {
+         
                 return response()->json([
                     'msg' => 'Customer added successfully',
                     'status' => 'success',
                 ]);
-            } else {
-                return response()->json([
-                    'msg' => 'Error while adding customer transaction',
-                    'status' => 'error',
-                ]);
-            }
+            
         } else {
             return response()->json([
                 'msg' => 'Error while adding customer',
@@ -85,17 +74,7 @@ class CustomerController extends Controller
             ]);
         }
     }
-    public function getPayments($customer_id)
-    {
-
-        $user = User::findOrFail(Auth::user()->id);
-
-        $store_id = $user->stores[0]->id;
-
-        $CustomerPayments = CustomerPayment::where('store_id', $store_id)->where('customer_id', $customer_id)->get();
-
-        return response()->json(['data' => $CustomerPayments, 'status' => 'success']);
-    }
+   
 
     public function update(Request $request)
     {
@@ -124,19 +103,11 @@ class CustomerController extends Controller
         $customer->store_id = $store_id;
 
         if ($customer->save()) {
-            $customerTransaction = CustomerTransaction::where('customer_id', $customer->id)->where('transaction_type', 'opening_balance')->first();
-            $customerTransaction->amount = $request->input('opening_balance');
-            if ($customerTransaction->save()) {
                 return response()->json([
                     'msg' => 'Customer updated successfully',
                     'status' => 'success',
                 ]);
-            } else {
-                return response()->json([
-                    'msg' => 'Error while updating customer transaction',
-                    'status' => 'error',
-                ]);
-            }
+           
         } else {
             return response()->json([
                 'msg' => 'Error while updating customer',
@@ -202,16 +173,12 @@ class CustomerController extends Controller
 
         $invoice_amount = Invoice::where('store_id', $store_id)->where('customer_id', $id)->sum('grand_total');
 
-        $paid_amount = CustomerPayment::where('store_id', $store_id)->where('customer_id', $id)->sum('amount');
 
-        $balance_due = $invoice_amount - $paid_amount + ($customer->opening_balance);
 
         if ($customer->save()) {
             return response()->json([
                 'customer' => $customer,
                 'invoice_amount' => $invoice_amount,
-                'paid_amount' => $paid_amount,
-                'balance_due' => $balance_due,
                 'status' => 'success',
             ]);
         } else {

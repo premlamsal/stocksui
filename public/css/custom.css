@@ -143,6 +143,7 @@ button.btn.custom_btn_table {
 .off-canvas-sidebar .logo {
     bottom: 80px !important; 
     background: #163373;
+    height: 100%;
 }
 
 .sidebar .sidebar-wrapper,
@@ -185,3 +186,8 @@ button.btn.custom_btn_table {
 .sidebar .logo:after, .off-canvas-sidebar .logo:after{
     background: none !important;
 }
+
+body{
+    font-size: 12px!important;
+    line-height: 1 !important;
+  }
