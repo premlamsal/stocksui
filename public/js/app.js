@@ -8268,19 +8268,165 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     var _ref;
 
     return _ref = {
       products: [{
-        custom_product_id: '',
-        name: '',
-        opening_stock: '',
-        description: '',
+        custom_product_id: "",
+        name: "",
+        opening_stock: "",
+        description: "",
         low_stock_alert_active: false,
-        low_stock_alert_quantity: '',
-        price: '',
+        low_stock_alert_quantity: "",
+        price: "",
         category: {},
         unit: {}
       }],
@@ -8289,14 +8435,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       //for form single unit data
       modalForName: "",
       modalForCode: 0,
-      searchTableKey: '',
+      searchTableKey: "",
       errors: [],
       pagination: {},
-      isLoading: '',
+      isLoading: "",
       units: [],
       //contains all the retrived units from the database
       categories: []
-    }, _defineProperty(_ref, "errors", []), _defineProperty(_ref, "pagination", {}), _defineProperty(_ref, "file", ''), _defineProperty(_ref, "selectedFile", ''), _defineProperty(_ref, "imagePreview", ''), _defineProperty(_ref, "products_export_fileds", ["custom_product_id", "name", "price", "cp", "sp", "description"]), _ref;
+    }, _defineProperty(_ref, "errors", []), _defineProperty(_ref, "pagination", {}), _defineProperty(_ref, "file", ""), _defineProperty(_ref, "selectedFile", ""), _defineProperty(_ref, "imagePreview", ""), _defineProperty(_ref, "products_export_fileds", ["custom_product_id", "name", "price", "cp", "sp", "description"]), _ref;
   },
   created: function created() {
     //this block will execute when component created
@@ -8310,7 +8456,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     fetchUnits: function fetchUnits(page_url) {
       this.$Progress.start();
       this.isLoading = "Loading all Data";
-      page_url = page_url || 'api/units';
+      page_url = page_url || "api/units";
       var vm = this; // current pointer instance while going inside the another functional instance
 
       axios.get(page_url).then(function (response) {
@@ -8320,7 +8466,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           vm.makePagination(response.data.meta, response.data.links);
         }
 
-        vm.isLoading = '';
+        vm.isLoading = "";
         vm.$Progress.finish();
       })["catch"](function (error) {
         // console.log();
@@ -8337,7 +8483,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     fetchCategories: function fetchCategories(page_url) {
       this.$Progress.start();
       this.isLoading = "Loading all Data";
-      page_url = page_url || 'api/categories';
+      page_url = page_url || "api/categories";
       var vm = this; // current pointer instance while going inside the another functional instance
 
       axios.get(page_url).then(function (response) {
@@ -8358,9 +8504,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.isLoading = "Loading all Data";
       var vm = this; // current pointer instance while going inside the another functional instance
 
-      page_url = page_url || 'api/products';
+      page_url = page_url || "api/products";
       axios.get(page_url).then(function (response) {
-        vm.isLoading = '';
+        vm.isLoading = "";
         vm.products = response.data.data;
 
         if (vm.products.length != null) {
@@ -8370,7 +8516,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       })["catch"](function (error) {
         // console.log();
         vm.$Progress.fail();
-      }); //above and below code provide same result but above code need current instance pointer for value assignmnent 
+      }); //above and below code provide same result but above code need current instance pointer for value assignmnent
       //below code donot need current pointer to be save becasue it execute in current block rather then another block that need previous pointer.
       // axios.get('/api/products')
       // .then(response=>{
@@ -8445,22 +8591,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     showAddModal: function showAddModal() {
       this.modalForName = "Add Product"; // Vue.set(this.modalForName,"Add Unit");
 
-      this.modalForCode = 0; //0 for add 
+      this.modalForCode = 0; //0 for add
 
-      this.product.name = '';
-      this.product.product_cat_id = '';
-      this.product.unit_id = '';
-      this.product.address = '';
-      this.product.phone = '';
-      this.product.description = '';
-      this.opening_stock = '';
-      this.product.price = '';
-      this.low_stock_alert_quantity = '';
+      this.product.name = "";
+      this.product.product_cat_id = "";
+      this.product.unit_id = "";
+      this.product.address = "";
+      this.product.phone = "";
+      this.product.description = "";
+      this.opening_stock = "";
+      this.product.price = "";
+      this.low_stock_alert_quantity = "";
       this.setAvtarUploadImage();
-      this.errors = ''; //clearing errors
+      this.errors = ""; //clearing errors
       // Vue.set(this.modalForCode,0);
 
-      this.$bvModal.show('bv-modal-add-product');
+      this.$bvModal.show("bv-modal-add-product");
     },
     callFunc: function callFunc() {
       if (this.modalForCode == 0) {
@@ -8474,37 +8620,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var currObj = this;
       var config = {
         headers: {
-          'content-type': 'multipart/form-data'
+          "content-type": "multipart/form-data"
         }
       };
       var formData = new FormData();
-      formData.append('image', this.file);
-      formData.append('_method', 'POST'); //add this otherwise data won't pass to backend
+      formData.append("image", this.file);
+      formData.append("_method", "POST"); //add this otherwise data won't pass to backend
       // formData.append('id',this.product.id);
 
-      formData.append('name', this.product.name);
-      formData.append('product_cat_id', this.product.product_cat_id);
-      formData.append('opening_stock', this.product.opening_stock);
-      formData.append('price', this.product.price);
-      formData.append('low_stock_alert_quantity', this.product.low_stock_alert_quantity);
-      formData.append('unit_id', this.product.unit_id);
-      formData.append('description', this.product.description); // posting data //using post and sending form data as PUT to match the api route name setting
+      formData.append("name", this.product.name);
+      formData.append("product_cat_id", this.product.product_cat_id);
+      formData.append("opening_stock", this.product.opening_stock);
+      formData.append("price", this.product.price);
+      formData.append("low_stock_alert_quantity", this.product.low_stock_alert_quantity);
+      formData.append("unit_id", this.product.unit_id);
+      formData.append("description", this.product.description); // posting data //using post and sending form data as PUT to match the api route name setting
 
-      axios.post('/api/product', formData, config).then(function (response) {
+      axios.post("/api/product", formData, config).then(function (response) {
         currObj.output = response.data.msg;
         currObj.status = response.data.status;
-        currObj.$swal('Info', currObj.output, currObj.status);
-        currObj.$bvModal.hide('bv-modal-add-product');
-        currObj.product.name = '';
-        currObj.product.product_cat_id = '';
-        currObj.product.unit_id = '';
-        currObj.product.address = '';
-        currObj.product.price = '';
-        currObj.product.low_stock_alert_quantity = '', currObj.product.phone = '';
-        currObj.opening_stock = '';
-        currObj.product.description = '';
+        currObj.$swal("Info", currObj.output, currObj.status);
+        currObj.$bvModal.hide("bv-modal-add-product");
+        currObj.product.name = "";
+        currObj.product.product_cat_id = "";
+        currObj.product.unit_id = "";
+        currObj.product.address = "";
+        currObj.product.price = "";
+        currObj.product.low_stock_alert_quantity = "", currObj.product.phone = "";
+        currObj.opening_stock = "";
+        currObj.product.description = "";
         currObj.setAvtarUploadImage();
-        currObj.errors = ''; //clearing errors
+        currObj.errors = ""; //clearing errors
 
         currObj.$Progress.finish();
         currObj.fetchProducts();
@@ -8526,22 +8672,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.modalForName = "Edit Product";
       this.modalForCode = 1; // 1 for Edit
 
-      this.$bvModal.show('bv-modal-add-product');
-      currObj.errors = ''; //clearing errors
+      this.$bvModal.show("bv-modal-add-product");
+      currObj.errors = ""; //clearing errors
 
-      axios.get('/api/product/' + id).then(function (response) {
+      axios.get("/api/product/" + id).then(function (response) {
         // console.log(response.data.unit)
-        Vue.set(_this.product, 'name', response.data.product.name);
-        Vue.set(_this.product, 'description', response.data.product.description);
-        Vue.set(_this.product, 'unit_id', response.data.product.unit_id);
-        Vue.set(_this.product, 'price', response.data.product.price);
-        Vue.set(_this.product, 'price', response.data.product.low_stock_alert_quantity); // Vue.set(this.product, 'opening_stock', response.data.product.opening_stock);
+        Vue.set(_this.product, "name", response.data.product.name);
+        Vue.set(_this.product, "description", response.data.product.description);
+        Vue.set(_this.product, "unit_id", response.data.product.unit_id);
+        Vue.set(_this.product, "price", response.data.product.price);
+        Vue.set(_this.product, "price", response.data.product.low_stock_alert_quantity); // Vue.set(this.product, 'opening_stock', response.data.product.opening_stock);
 
-        Vue.set(_this.product, 'product_cat_id', response.data.product.product_cat_id);
+        Vue.set(_this.product, "product_cat_id", response.data.product.product_cat_id);
         _this.imagePreview = response.data.product.image;
         _this.file = response.data.product.image;
-        _this.errors = '';
-        Vue.set(_this.product, 'id', id); //to send id to the update controller 
+        _this.errors = "";
+        Vue.set(_this.product, "id", id); //to send id to the update controller
 
         _this.$Progress.finish();
       })["catch"](function (error) {
@@ -8554,38 +8700,38 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var currObj = this;
       var config = {
         headers: {
-          'content-type': 'multipart/form-data'
+          "content-type": "multipart/form-data"
         }
       };
       var formData = new FormData();
-      formData.append('image', this.file);
-      formData.append('_method', 'PUT'); //add this otherwise data won't pass to backend
+      formData.append("image", this.file);
+      formData.append("_method", "PUT"); //add this otherwise data won't pass to backend
 
-      formData.append('id', this.product.id);
-      formData.append('name', this.product.name);
-      formData.append('price', this.product.price);
-      formData.append('product_cat_id', this.product.product_cat_id);
-      formData.append('unit_id', this.product.unit_id); // formData.append('opening_stock',this.product.opening_stock);
+      formData.append("id", this.product.id);
+      formData.append("name", this.product.name);
+      formData.append("price", this.product.price);
+      formData.append("product_cat_id", this.product.product_cat_id);
+      formData.append("unit_id", this.product.unit_id); // formData.append('opening_stock',this.product.opening_stock);
 
-      formData.append('description', this.product.description);
-      formData.append('low_stock_alert_quantity', this.product.low_stock_alert_quantity); // posting data //using post and sending form data as PUT to match the api route name setting
+      formData.append("description", this.product.description);
+      formData.append("low_stock_alert_quantity", this.product.low_stock_alert_quantity); // posting data //using post and sending form data as PUT to match the api route name setting
 
-      axios.post('/api/product', formData, config).then(function (response) {
+      axios.post("/api/product", formData, config).then(function (response) {
         currObj.output = response.data.msg;
         currObj.status = response.data.status;
-        currObj.$swal('Info', currObj.output, currObj.status);
-        currObj.$bvModal.hide('bv-modal-add-product');
-        currObj.product.name = '';
-        currObj.product.product_cat_id = '';
-        currObj.product.unit_id = '';
-        currObj.product.address = '';
-        currObj.product.phone = '';
-        currObj.product.low_stock_alert_quantity = '';
-        currObj.product.opening_stock = '';
-        currObj.product.description = '';
-        currObj.product.price = '';
+        currObj.$swal("Info", currObj.output, currObj.status);
+        currObj.$bvModal.hide("bv-modal-add-product");
+        currObj.product.name = "";
+        currObj.product.product_cat_id = "";
+        currObj.product.unit_id = "";
+        currObj.product.address = "";
+        currObj.product.phone = "";
+        currObj.product.low_stock_alert_quantity = "";
+        currObj.product.opening_stock = "";
+        currObj.product.description = "";
+        currObj.product.price = "";
         currObj.setAvtarUploadImage();
-        currObj.errors = ''; //clearing errors
+        currObj.errors = ""; //clearing errors
 
         currObj.$Progress.finish();
         currObj.fetchProducts();
@@ -8602,16 +8748,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$Progress.start();
       var currObj = this;
       this.$swal({
-        title: 'Are you sure?',
+        title: "Are you sure?",
         text: "You won't be able to revert this!",
-        type: 'warning',
+        type: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
       }).then(function (result) {
         if (result.value) {
-          axios["delete"]('/api/product/' + id).then(function (response) {
+          axios["delete"]("/api/product/" + id).then(function (response) {
             currObj.output = response.data.msg;
             currObj.status = response.data.status; // alert(currObj.status);
 
@@ -8637,25 +8783,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     autoCompleteTable: function autoCompleteTable() {
       this.searchTableKey = this.searchTableKey.toLowerCase();
 
-      if (this.searchTableKey != '') {
-        this.isLoading = 'Loading Data...';
+      if (this.searchTableKey != "") {
+        this.isLoading = "Loading Data...";
         var currObj = this;
-        axios.post('/api/products/search', {
+        axios.post("/api/products/search", {
           searchQuery: this.searchTableKey
         }).then(function (response) {
-          currObj.isLoading = '';
+          currObj.isLoading = "";
           currObj.products = response.data.data;
 
           if (response.data.data == "") {
             currObj.isLoading = "No Data Found";
           }
 
-          currObj.errors = ''; //clearing errors
+          currObj.errors = ""; //clearing errors
         })["catch"](function (error) {
-          if (error.response.status == '422') {
+          if (error.response.status == "422") {
             currObj.validationErrors = error.response.data.errors;
             currObj.errors = currObj.validationErrors;
-            currObj.isLoading = 'Load Failed...'; // console.log(currObj.errors);
+            currObj.isLoading = "Load Failed..."; // console.log(currObj.errors);
           }
         });
       } else {
@@ -8673,7 +8819,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     hasPermission: function hasPermission(action) {
       var permissions_from_store = this.$store.getters.permissions;
 
-      if (permissions_from_store.includes(action) || permissions_from_store.includes('all')) {
+      if (permissions_from_store.includes(action) || permissions_from_store.includes("all")) {
         return true;
       } else {
         return false;
@@ -166776,7 +166922,13 @@ var render = function() {
                             attrs: { selected: "" },
                             domProps: { value: category.id }
                           },
-                          [_vm._v(_vm._s(category.name))]
+                          [
+                            _vm._v(
+                              "\n                " +
+                                _vm._s(category.name) +
+                                "\n              "
+                            )
+                          ]
                         )
                       }),
                       0
@@ -166878,67 +167030,79 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
-                _c("label", { attrs: { for: "Stock Alert Checkbox" } }, [
-                  _vm._v("I need Stock alert for this product:")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
+                _c("div", { staticClass: "checkboxlabel" }, [
+                  _c(
+                    "label",
                     {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.product.low_stock_alert_active,
-                      expression: "product.low_stock_alert_active"
-                    }
-                  ],
-                  class: ["form-control"],
-                  attrs: { type: "checkbox" },
-                  domProps: {
-                    checked: Array.isArray(_vm.product.low_stock_alert_active)
-                      ? _vm._i(_vm.product.low_stock_alert_active, null) > -1
-                      : _vm.product.low_stock_alert_active
-                  },
-                  on: {
-                    change: function($event) {
-                      var $$a = _vm.product.low_stock_alert_active,
-                        $$el = $event.target,
-                        $$c = $$el.checked ? true : false
-                      if (Array.isArray($$a)) {
-                        var $$v = null,
-                          $$i = _vm._i($$a, $$v)
-                        if ($$el.checked) {
-                          $$i < 0 &&
-                            _vm.$set(
-                              _vm.product,
-                              "low_stock_alert_active",
-                              $$a.concat([$$v])
-                            )
+                      staticStyle: {
+                        display: "flex",
+                        height: "23px",
+                        "align-items": "center",
+                        "margin-right": "10px"
+                      },
+                      attrs: { for: "Stock Alert Checkbox" }
+                    },
+                    [_vm._v("Low Stock Alert Required ?")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.product.low_stock_alert_active,
+                        expression: "product.low_stock_alert_active"
+                      }
+                    ],
+                    staticClass: "checkbox",
+                    attrs: { type: "checkbox" },
+                    domProps: {
+                      checked: Array.isArray(_vm.product.low_stock_alert_active)
+                        ? _vm._i(_vm.product.low_stock_alert_active, null) > -1
+                        : _vm.product.low_stock_alert_active
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.product.low_stock_alert_active,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              _vm.$set(
+                                _vm.product,
+                                "low_stock_alert_active",
+                                $$a.concat([$$v])
+                              )
+                          } else {
+                            $$i > -1 &&
+                              _vm.$set(
+                                _vm.product,
+                                "low_stock_alert_active",
+                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                              )
+                          }
                         } else {
-                          $$i > -1 &&
-                            _vm.$set(
-                              _vm.product,
-                              "low_stock_alert_active",
-                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                            )
+                          _vm.$set(_vm.product, "low_stock_alert_active", $$c)
                         }
-                      } else {
-                        _vm.$set(_vm.product, "low_stock_alert_active", $$c)
                       }
                     }
-                  }
-                }),
-                _vm._v(" "),
-                _vm.errors.low_stock_alert_active
-                  ? _c("span", { class: ["errorText"] }, [
-                      _vm._v(_vm._s(_vm.errors.low_stock_alert_active[0]))
-                    ])
-                  : _vm._e()
+                  }),
+                  _vm._v(" "),
+                  _vm.errors.low_stock_alert_active
+                    ? _c("span", { class: ["errorText"] }, [
+                        _vm._v(_vm._s(_vm.errors.low_stock_alert_active[0]))
+                      ])
+                    : _vm._e()
+                ])
               ]),
               _vm._v(" "),
               _vm.product.low_stock_alert_active
                 ? _c("div", { staticClass: "form-group" }, [
                     _c("label", { attrs: { for: "Stock Alert Quantity" } }, [
-                      _vm._v("Minimun Stock Alert for Product:")
+                      _vm._v("Minimum Stock Quantity for Alert")
                     ]),
                     _vm._v(" "),
                     _c("input", {
@@ -167094,7 +167258,7 @@ var render = function() {
               staticClass: "m-0 font-weight-bold text-primary",
               staticStyle: { display: "inline-block" }
             },
-            [_vm._v("Products")]
+            [_vm._v("\n        Products\n      ")]
           ),
           _vm._v(" "),
           _vm.isLoading == "Loading all Data"
@@ -167318,7 +167482,7 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v("First")]
+                            [_vm._v("\n                First\n              ")]
                           )
                         ]
                       ),
@@ -167342,7 +167506,11 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v("Previous")]
+                            [
+                              _vm._v(
+                                "\n                Previous\n              "
+                              )
+                            ]
                           )
                         ]
                       ),
@@ -167368,7 +167536,13 @@ var render = function() {
                                   }
                                 }
                               },
-                              [_vm._v(_vm._s(n))]
+                              [
+                                _vm._v(
+                                  "\n                " +
+                                    _vm._s(n) +
+                                    "\n              "
+                                )
+                              ]
                             )
                           ]
                         )
@@ -167393,7 +167567,7 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v("Next")]
+                            [_vm._v("\n                Next\n              ")]
                           )
                         ]
                       ),
@@ -167417,7 +167591,7 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v("Last")]
+                            [_vm._v("\n                Last\n              ")]
                           )
                         ]
                       )
@@ -167432,7 +167606,7 @@ var render = function() {
                       _vm._s(_vm.pagination.current_page) +
                       "-" +
                       _vm._s(_vm.pagination.last_page) +
-                      " Total Records: " +
+                      " Total\n          Records: " +
                       _vm._s(_vm.pagination.total_pages) +
                       "\n        "
                   )
@@ -167440,7 +167614,7 @@ var render = function() {
               ])
             ])
           : _c("div", { staticClass: "errorDivEmptyData" }, [
-              _vm._v("\n      No Data Found\n    ")
+              _vm._v("No Data Found")
             ])
       ])
     ],
