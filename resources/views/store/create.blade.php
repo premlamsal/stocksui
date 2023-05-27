@@ -68,32 +68,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="tax-number" class="col-md-4 col-form-label text-md-right">Tax Number</label>
-
-                            <div class="col-md-6">
-                                <input id="tax_number" type="number" class="form-control" name="tax_number" required>
-
-                            </div>
-                        </div>  
-                          <div class="form-group row">
-                            <label for="tax-percentage" class="col-md-4 col-form-label text-md-right">Tax Percentage</label>
-
-                            <div class="col-md-6">
-                                <input id="tax_percentage" type="number" class="form-control" name="tax_percentage" required>
-
-                            </div>
-                        </div> 
-                         <div class="form-group row">
-                            <label for="profit-percentage" class="col-md-4 col-form-label text-md-right">Profit Percentage</label>
-
-                            <div class="col-md-6">
-                                <input id="profit_percentage" type="number" class="form-control" name="profit_percentage" required>
-
-                            </div>
-                        </div>     
-                                 
-
+                      
 
 
                         <div class="form-group row mb-0">

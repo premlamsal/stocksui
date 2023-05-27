@@ -50,8 +50,8 @@ class SupplierController extends Controller
 
             'address' => 'required|string|max:200',
 
-            'phone'   => 'required|unique:customers,phone|digits:10',
-
+            'phone'   =>  'required|unique:suppliers,phone',
+           
             'details' => 'required|string|max:400',
 
 
@@ -67,7 +67,6 @@ class SupplierController extends Controller
 
         $supplier->details = $request->input('details');
 
-        $supplier->opening_balance = $request->input('opening_balance');
 
         $supplier->store_id = $store_id;
 
