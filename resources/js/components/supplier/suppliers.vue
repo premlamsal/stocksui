@@ -30,6 +30,11 @@
           <span v-if="errors.phone" :class="['errorText']">{{ errors.phone[0] }}</span>
         </div>
         <div class="form-group">
+          <label for="Contact-Person">Contact Person:</label>
+          <input type="text" v-model="supplier.contact_person" :class="['form-control']">
+          <span v-if="errors.contact_person" :class="['errorText']">{{ errors.contact_person[0] }}</span>
+        </div>
+        <div class="form-group">
           <label for="Phone">Details:</label>
           <textarea v-model="supplier.details" :class="['form-control']"></textarea>
           <span v-if="errors.details" :class="['errorText']">{{ errors.details[0] }}</span>
@@ -86,6 +91,7 @@
                 <th>Name</th>
                 <th>Address</th>
                 <th>Phone</th>
+                <th>Contact Person</th>
                 <th>Details</th>
                 <th>Updated at</th>
                 <th>Modify</th>
@@ -97,6 +103,7 @@
                 <td @click="supplierProfile(supplier.id)" class="cursor">{{supplier.name}}</td>
                 <td>{{supplier.address}}</td>
                 <td>{{supplier.phone}}</td>
+                <td>{{supplier.contact_person}}</td>
                 <td>{{supplier.details}}</td>
                 <td>{{supplier.updated_at | moment("from", "now")}}</td>
                 <td>
@@ -248,6 +255,8 @@ export default {
       this.supplier.name = '';
       this.supplier.address = '';
       this.supplier.phone = '';
+      this.supplier.contact_person = '';
+
       this.supplier.details = '';
       this.supplier.opening_balance = '';
 
@@ -284,6 +293,8 @@ export default {
           currObj.supplier.name = '';
           currObj.supplier.address = '';
           currObj.supplier.phone = '';
+          currObj.supplier.contact_person = '';
+
           currObj.supplier.details = '';
 
           currObj.errors = ''; //clearing errors
@@ -316,6 +327,8 @@ export default {
           // console.log(response.data.unit)
           Vue.set(this.supplier, 'name', response.data.supplier.name);
           Vue.set(this.supplier, 'address', response.data.supplier.address);
+          Vue.set(this.supplier, 'contact_person', response.data.supplier.contact_person);
+
           Vue.set(this.supplier, 'details', response.data.supplier.details);
           Vue.set(this.supplier, 'phone', response.data.supplier.phone);
           Vue.set(this.supplier, 'id', id); //to send id to the update controller 
@@ -335,6 +348,8 @@ export default {
       formData.append('name', this.supplier.name);
       formData.append('address', this.supplier.address);
       formData.append('phone', this.supplier.phone);
+      formData.append('contact_person', this.supplier.contact_person);
+
       formData.append('id', this.supplier.id);
       formData.append('details',this.supplier.details);
 
@@ -349,6 +364,8 @@ export default {
 
           currObj.supplier.name = '';
           currObj.supplier.address = '';
+          currObj.supplier.contact_person = '';
+
           currObj.supplier.phone = '';
           currObj.supplier.details = '';
           currObj.supplier.opening_balance = '';

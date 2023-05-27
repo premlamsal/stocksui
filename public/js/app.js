@@ -12931,6 +12931,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -13015,6 +13022,7 @@ __webpack_require__.r(__webpack_exports__);
       this.supplier.name = '';
       this.supplier.address = '';
       this.supplier.phone = '';
+      this.supplier.contact_person = '';
       this.supplier.details = '';
       this.supplier.opening_balance = '';
       this.errors = ''; //clearing errors
@@ -13040,6 +13048,7 @@ __webpack_require__.r(__webpack_exports__);
         currObj.supplier.name = '';
         currObj.supplier.address = '';
         currObj.supplier.phone = '';
+        currObj.supplier.contact_person = '';
         currObj.supplier.details = '';
         currObj.errors = ''; //clearing errors
 
@@ -13069,6 +13078,7 @@ __webpack_require__.r(__webpack_exports__);
         // console.log(response.data.unit)
         Vue.set(_this.supplier, 'name', response.data.supplier.name);
         Vue.set(_this.supplier, 'address', response.data.supplier.address);
+        Vue.set(_this.supplier, 'contact_person', response.data.supplier.contact_person);
         Vue.set(_this.supplier, 'details', response.data.supplier.details);
         Vue.set(_this.supplier, 'phone', response.data.supplier.phone);
         Vue.set(_this.supplier, 'id', id); //to send id to the update controller 
@@ -13088,6 +13098,7 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('name', this.supplier.name);
       formData.append('address', this.supplier.address);
       formData.append('phone', this.supplier.phone);
+      formData.append('contact_person', this.supplier.contact_person);
       formData.append('id', this.supplier.id);
       formData.append('details', this.supplier.details);
       axios.post('/api/supplier', formData).then(function (response) {
@@ -13098,6 +13109,7 @@ __webpack_require__.r(__webpack_exports__);
         currObj.$bvModal.hide('bv-modal-add-supplier');
         currObj.supplier.name = '';
         currObj.supplier.address = '';
+        currObj.supplier.contact_person = '';
         currObj.supplier.phone = '';
         currObj.supplier.details = '';
         currObj.supplier.opening_balance = '';
@@ -174244,6 +174256,44 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "Contact-Person" } }, [
+                _vm._v("Contact Person:")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.supplier.contact_person,
+                    expression: "supplier.contact_person"
+                  }
+                ],
+                class: ["form-control"],
+                attrs: { type: "text" },
+                domProps: { value: _vm.supplier.contact_person },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.supplier,
+                      "contact_person",
+                      $event.target.value
+                    )
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors.contact_person
+                ? _c("span", { class: ["errorText"] }, [
+                    _vm._v(_vm._s(_vm.errors.contact_person[0]))
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
               _c("label", { attrs: { for: "Phone" } }, [_vm._v("Details:")]),
               _vm._v(" "),
               _c("textarea", {
@@ -174423,6 +174473,8 @@ var render = function() {
                           _c("td", [_vm._v(_vm._s(supplier.address))]),
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(supplier.phone))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(supplier.contact_person))]),
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(supplier.details))]),
                           _vm._v(" "),
@@ -174655,6 +174707,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("Address")]),
         _vm._v(" "),
         _c("th", [_vm._v("Phone")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Contact Person")]),
         _vm._v(" "),
         _c("th", [_vm._v("Details")]),
         _vm._v(" "),

@@ -1,3 +1,14 @@
+
+
+:root {
+
+    --favblue: #163373;
+    --favgold: #FFD700;
+    --fabwhite: #fff;
+    --success: #163373;
+
+}
+
 .export-block {
     display: inline-block;
 }
@@ -136,51 +147,59 @@ button.btn.custom_btn_table {
 .sidebar,
 .off-canvas-sidebar {
 
-    background-color: #163373;
+    background: var(--favblue);
+
 }
 
 .sidebar .logo,
 .off-canvas-sidebar .logo {
     bottom: 80px !important; 
-    background: #163373;
+    background: var(--favblue);
+
     height: 100%;
 }
 
 .sidebar .sidebar-wrapper,
 .off-canvas-sidebar .sidebar-wrapper {
-    background: #163373;
+    background: var(--favblue);
+
 }
 
 .sidebar li a {
-    color: #FFD700 !important;
+    color:var(--favgold) !important;
     opacity: 1!important;
 }
 
 .nav i {
-    color: #FFD700 !important;
+    color:var(--favgold) !important;
+
 
 }
 
 .sidebar[data-color="black"]:after,
 .off-canvas-sidebar[data-color="black"]:after {
-    background: #163373;
+    background: var(--favblue);
 }
 
 .router-link-active {
-    color: #FFD700 !important;
+    color:var(--favgold) !important;
+
     background: #ffd7002e !important;
     /* border-bottom: 1px solid #ffd700; */
     /* opacity: .1 !important; */
 }
 
 .router-link-active i {
-    color: #FFD700 !important;
+    color:var(--favgold) !important;
+
 }
 .router-link-exact-active{
-    color: #FFD700 !important;
+    color:var(--favgold) !important;
+
 }
 .sidebar .logo .simple-text, .off-canvas-sidebar .logo .simple-text{
-    color: #FFD700 !important;
+    color:var(--favgold) !important;
+
    
 }
 .sidebar .logo:after, .off-canvas-sidebar .logo:after{
@@ -191,3 +210,30 @@ body{
     font-size: 12px!important;
     line-height: 1 !important;
   }
+
+  .btn-primary {
+    background: var(--favblue);
+
+    color:var(--favgold) !important;
+
+}
+.btn-primary:hover{
+    background: var(--favblue) !important;
+
+    color:var(--favgold) !important;
+
+}
+
+.btn-success{
+    background: var(--favblue);
+
+    color:var(--favgold) !important;
+
+}
+
+.btn-success:hover{
+    background: var(--favblue) !important;
+
+    color:var(--favgold) !important;
+
+}

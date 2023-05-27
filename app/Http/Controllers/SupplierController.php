@@ -50,8 +50,10 @@ class SupplierController extends Controller
 
             'address' => 'required|string|max:200',
 
-            'phone'   =>  'required|unique:suppliers,phone',
-           
+            'phone'   =>  'required|unique:suppliers,phone|numeric',
+
+            'contact_person' => 'required|string|max:400',
+
             'details' => 'required|string|max:400',
 
 
@@ -64,6 +66,9 @@ class SupplierController extends Controller
         $supplier->address = $request->input('address');
 
         $supplier->phone = $request->input('phone');
+
+        $supplier->contact_person = $request->input('contact_person');
+
 
         $supplier->details = $request->input('details');
 
@@ -107,6 +112,9 @@ class SupplierController extends Controller
 
             'details' => 'required|string|max:400',
 
+            'contact_person' => 'required|string|max:400',
+
+
 
 
         ]);
@@ -118,6 +126,8 @@ class SupplierController extends Controller
         $supplier->name = $request->input('name');
 
         $supplier->address = $request->input('address');
+
+        $supplier->contact_person = $request->input('contact_person');
 
         $supplier->phone = $request->input('phone');
 

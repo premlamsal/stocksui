@@ -52,32 +52,6 @@
           </li>
 
        
-          {{-- @can('hasPermission','view_transactions')
-           <li>
-            <router-link  to="/transactions" aria-expanded="false">
-            <i class="nc-icon nc-chart-bar-32"></i>
-                <span> Transactions</span>
-            </router-link>
-          </li>
-          
-          @endcan --}}
-          {{-- @can('hasPermission','view_accounts')
-           <li>
-            <router-link  to="/accounts" aria-expanded="false">
-            <i class="nc-icon nc-credit-card"></i>
-                <span> Accounts</span>
-            </router-link>
-          </li>
-          @endcan --}}
-
-          @can('hasPermission','view_customers')
-           <li>
-            <router-link  to="/customers" aria-expanded="false">
-              <i class="nc-icon nc-circle-10"></i>
-                <span>Customers</span>
-            </router-link>
-          </li>
-          @endcan
 
           @can('hasPermission','view_categories')
            <li>
@@ -92,7 +66,7 @@
           <li>
             <router-link  to="/purchases" aria-expanded="false">
               <i class="nc-icon nc-basket"></i>
-                <span>Purchases</span>
+                <span>Purchase Orders</span>
             </router-link>
           </li>
           @endcan
@@ -101,7 +75,7 @@
           <li>
             <router-link  to="/products" aria-expanded="false">
               <i class="nc-icon nc-tile-56"></i>
-                <span>Products</span>
+                <span>Product List</span>
             </router-link>
           </li>
           @endcan
@@ -119,7 +93,7 @@
           <li>
             <router-link  to="/invoices" aria-expanded="false">
               <i class="nc-icon nc-single-copy-04"></i>
-                <span>Invoices</span>
+                <span>Delivery Notes</span>
             </router-link>
           </li>
           @endcan
@@ -137,7 +111,7 @@
           <li>
             <router-link  to="/stocks" aria-expanded="false">
               <i class="nc-icon nc-briefcase-24"></i>
-                <span>Stocks</span>
+                <span>Stock List</span>
             </router-link>
           </li>
           @endcan
