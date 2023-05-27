@@ -47,7 +47,6 @@ class CustomerController extends Controller
             'address' => 'required|string|max:200',
             'phone' => 'required|unique:customers,phone|digits:10',
             'details' => 'required|string|max:400',
-            'opening_balance' => 'required|numeric',
 
         ]);
 
@@ -56,7 +55,6 @@ class CustomerController extends Controller
         $customer->address = $request->input('address');
         $customer->phone = $request->input('phone');
         $customer->details = $request->input('details');
-        $customer->opening_balance = $request->input('opening_balance');
         $customer->store_id = $store_id;
 
         if ($customer->save()) {
@@ -90,7 +88,6 @@ class CustomerController extends Controller
             'address' => 'required|string|max:200',
             'phone' => 'required|digits:10',
             'details' => 'required|string|max:400',
-            'opening_balance' => 'required|numeric',
         ]);
 
         $id = $request->input('id'); //get id from edit modal
@@ -99,7 +96,6 @@ class CustomerController extends Controller
         $customer->address = $request->input('address');
         $customer->phone = $request->input('phone');
         $customer->details = $request->input('details');
-        $customer->opening_balance = $request->input('opening_balance');
         $customer->store_id = $store_id;
 
         if ($customer->save()) {
@@ -116,18 +112,7 @@ class CustomerController extends Controller
         }
     }
 
-    // public function search(Request $request){
-
-    //    $searchQuery= $request->searchQuery;
-
-    //    $queryResults=Customer::where('name','like','%'.$searchQuery.'%')->get();
-
-    //       return response()
-    //         ->json([
-    //             'search' => 'ok',
-    //             'queryResults' => $queryResults
-    //         ]);
-    // }
+   
 
     public function destroy($id)
     {

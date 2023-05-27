@@ -3831,10 +3831,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4003,7 +3999,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       this.customer.name = '';
       this.customer.address = '';
-      this.customer.opening_balance = '';
       this.customer.phone = '';
       this.customer.details = '';
       this.errors = ''; //clearing errors
@@ -4035,7 +4030,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         currObj.customer.name = '';
         currObj.customer.address = '';
         currObj.customer.phone = '';
-        currObj.customer.opening_balance = '';
         currObj.customer.details = '';
         currObj.errors = ''; //clearing errors
 
@@ -4066,7 +4060,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         Vue.set(_this.customer, 'name', response.data.customer.name);
         Vue.set(_this.customer, 'address', response.data.customer.address);
         Vue.set(_this.customer, 'details', response.data.customer.details);
-        Vue.set(_this.customer, 'opening_balance', response.data.customer.opening_balance);
         Vue.set(_this.customer, 'phone', response.data.customer.phone);
         Vue.set(_this.customer, 'id', id); //to send id to the update controller 
 
@@ -4085,7 +4078,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       formData.append('name', this.customer.name);
       formData.append('address', this.customer.address);
       formData.append('phone', this.customer.phone);
-      formData.append('opening_balance', this.customer.opening_balance);
       formData.append('id', this.customer.id);
       formData.append('details', this.customer.details);
       axios.post('/api/customer', formData).then(function (response) {
@@ -4096,7 +4088,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         currObj.customer.name = '';
         currObj.customer.address = '';
         currObj.customer.phone = '';
-        currObj.customer.opening_balance = '';
         currObj.customer.details = '';
         currObj.errors = ''; //clearing errors
 
@@ -12989,13 +12980,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -13108,7 +13092,6 @@ __webpack_require__.r(__webpack_exports__);
         currObj.supplier.name = '';
         currObj.supplier.address = '';
         currObj.supplier.phone = '';
-        currObj.supplier.opening_balance = '';
         currObj.supplier.details = '';
         currObj.errors = ''; //clearing errors
 
@@ -13139,7 +13122,6 @@ __webpack_require__.r(__webpack_exports__);
         Vue.set(_this.supplier, 'name', response.data.supplier.name);
         Vue.set(_this.supplier, 'address', response.data.supplier.address);
         Vue.set(_this.supplier, 'details', response.data.supplier.details);
-        Vue.set(_this.supplier, 'opening_balance', response.data.supplier.opening_balance);
         Vue.set(_this.supplier, 'phone', response.data.supplier.phone);
         Vue.set(_this.supplier, 'id', id); //to send id to the update controller 
 
@@ -13158,7 +13140,6 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('name', this.supplier.name);
       formData.append('address', this.supplier.address);
       formData.append('phone', this.supplier.phone);
-      formData.append('opening_balance', this.supplier.opening_balance);
       formData.append('id', this.supplier.id);
       formData.append('details', this.supplier.details);
       axios.post('/api/supplier', formData).then(function (response) {
@@ -159683,44 +159664,6 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "Opening_balance" } }, [
-                _vm._v("Opening Balance:")
-              ]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.customer.opening_balance,
-                    expression: "customer.opening_balance"
-                  }
-                ],
-                class: ["form-control"],
-                attrs: { type: "text" },
-                domProps: { value: _vm.customer.opening_balance },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(
-                      _vm.customer,
-                      "opening_balance",
-                      $event.target.value
-                    )
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _vm.errors.opening_balance
-                ? _c("span", { class: ["errorText"] }, [
-                    _vm._v(_vm._s(_vm.errors.opening_balance[0]))
-                  ])
-                : _vm._e()
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
               _c("label", { attrs: { for: "Phone" } }, [_vm._v("Details:")]),
               _vm._v(" "),
               _c("textarea", {
@@ -174627,44 +174570,6 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "Opening_balance" } }, [
-                _vm._v("Opening Balance:")
-              ]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.supplier.opening_balance,
-                    expression: "supplier.opening_balance"
-                  }
-                ],
-                class: ["form-control"],
-                attrs: { type: "text" },
-                domProps: { value: _vm.supplier.opening_balance },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(
-                      _vm.supplier,
-                      "opening_balance",
-                      $event.target.value
-                    )
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _vm.errors.opening_balance
-                ? _c("span", { class: ["errorText"] }, [
-                    _vm._v(_vm._s(_vm.errors.opening_balance[0]))
-                  ])
-                : _vm._e()
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
               _c("label", { attrs: { for: "Phone" } }, [_vm._v("Details:")]),
               _vm._v(" "),
               _c("textarea", {
@@ -174844,8 +174749,6 @@ var render = function() {
                           _c("td", [_vm._v(_vm._s(supplier.address))]),
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(supplier.phone))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(supplier.opening_balance))]),
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(supplier.details))]),
                           _vm._v(" "),
@@ -175078,8 +174981,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Address")]),
         _vm._v(" "),
         _c("th", [_vm._v("Phone")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Open.Bal")]),
         _vm._v(" "),
         _c("th", [_vm._v("Details")]),
         _vm._v(" "),

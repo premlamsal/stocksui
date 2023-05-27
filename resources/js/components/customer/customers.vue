@@ -31,11 +31,7 @@
           <input type="phone" v-model="customer.phone" :class="['form-control']">
           <span v-if="errors.phone" :class="['errorText']">{{ errors.phone[0] }}</span>
         </div>
-         <div class="form-group">
-          <label for="Opening_balance">Opening Balance:</label>
-          <input type="text" v-model="customer.opening_balance" :class="['form-control']">
-          <span v-if="errors.opening_balance" :class="['errorText']">{{ errors.opening_balance[0] }}</span>
-        </div>
+         
         <div class="form-group">
           <label for="Phone">Details:</label>
           <textarea v-model="customer.details" :class="['form-control']"></textarea>
@@ -282,7 +278,6 @@ export default {
 
       this.customer.name = '';
       this.customer.address = '';
-      this.customer.opening_balance = '';
       this.customer.phone = '';
       this.customer.details = '';
 
@@ -327,7 +322,6 @@ export default {
           currObj.customer.name = '';
           currObj.customer.address = '';
           currObj.customer.phone = '';
-          currObj.customer.opening_balance = '';
 
           currObj.customer.details = '';
 
@@ -363,7 +357,6 @@ export default {
           Vue.set(this.customer, 'name', response.data.customer.name);
           Vue.set(this.customer, 'address', response.data.customer.address);
           Vue.set(this.customer, 'details', response.data.customer.details);
-          Vue.set(this.customer, 'opening_balance', response.data.customer.opening_balance);
           Vue.set(this.customer, 'phone', response.data.customer.phone);
           Vue.set(this.customer, 'id', id); //to send id to the update controller 
           this.$Progress.finish();
@@ -383,7 +376,6 @@ export default {
       formData.append('name', this.customer.name);
       formData.append('address', this.customer.address);
       formData.append('phone', this.customer.phone);
-      formData.append('opening_balance', this.customer.opening_balance);
       formData.append('id', this.customer.id);
       formData.append('details', this.customer.details);
 
@@ -398,7 +390,6 @@ export default {
           currObj.customer.name = '';
           currObj.customer.address = '';
           currObj.customer.phone = '';
-          currObj.customer.opening_balance = '';
           currObj.customer.details = '';
           currObj.errors = ''; //clearing errors
           currObj.$Progress.finish();
