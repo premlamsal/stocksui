@@ -177,7 +177,7 @@ export default {
 
   methods: {
       supplierProfile(id){
-      this.$router.push({ path: `${id}/supplier-profile/` });
+      // this.$router.push({ path: `${id}/supplier-profile/` });
     },
     //methods codes here
     fetchSuppliers(page_url) {

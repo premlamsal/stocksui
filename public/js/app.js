@@ -3881,10 +3881,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     handleErrorExportCSV: function handleErrorExportCSV() {
       console.log("errorExport");
     },
-    customerProfile: function customerProfile(id) {
-      this.$router.push({
-        path: "".concat(id, "/customer-profile/")
-      });
+    customerProfile: function customerProfile(id) {// this.$router.push({ path: `${id}/customer-profile/` });
     },
     getPermissions: function () {
       var _getPermissions = _asyncToGenerator(
@@ -13003,10 +13000,7 @@ __webpack_require__.r(__webpack_exports__);
     this.fetchSuppliers();
   },
   methods: {
-    supplierProfile: function supplierProfile(id) {
-      this.$router.push({
-        path: "".concat(id, "/supplier-profile/")
-      });
+    supplierProfile: function supplierProfile(id) {// this.$router.push({ path: `${id}/supplier-profile/` });
     },
     //methods codes here
     fetchSuppliers: function fetchSuppliers(page_url) {

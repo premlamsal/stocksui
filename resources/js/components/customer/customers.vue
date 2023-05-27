@@ -186,7 +186,7 @@ export default {
       console.log("errorExport");
     },
     customerProfile(id){
-      this.$router.push({ path: `${id}/customer-profile/` });
+      // this.$router.push({ path: `${id}/customer-profile/` });
     },
 
     getPermissions: async function() {
