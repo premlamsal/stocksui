@@ -95,15 +95,7 @@
                             <div class="h3 font-weight-light">Rs. {{info.grand_total}}</div>
                         </div>
 
-                        <div class="py-3 px-5 text-right">
-                            <div class="mb-2">Discount</div>
-                            <div class="h3 font-weight-light">Rs. {{info.discount}}</div>
-                        </div>
-
-                        <div class="py-3 px-5 text-right">
-                            <div class="mb-2">TAX</div>
-                            <div class="h3 font-weight-light">Rs. {{info.taxAmount}}</div>
-                        </div> 
+                     
                         <div class="py-3 px-5 text-right">
                             <div class="mb-2">Sub - Total amount</div>
                             <div class="h2 font-weight-light">Rs. {{info.sub_total}}</div>
@@ -193,10 +185,9 @@
             Vue.set(currObj.info, 'purchase_reference_id', response.data.purchase.purchase_reference_id),
             Vue.set(currObj.info, 'purchase_date', response.data.purchase.purchase_date),
             Vue.set(currObj.info, 'due_date', response.data.purchase.due_date),
-            Vue.set(currObj.info, 'discount', response.data.purchase.discount),
-            Vue.set(currObj.info, 'sub_total', response.data.purchase.sub_total),
-            Vue.set(currObj.info, 'taxAmount', response.data.purchase.tax_amount),
             Vue.set(currObj.info, 'grand_total', response.data.purchase.grand_total),
+            Vue.set(currObj.info, 'sub_total', response.data.purchase.sub_total),
+
             
             Vue.set(currObj.info, 'supplier_id', response.data.purchase.supplier_id),
             Vue.set(currObj.info, 'supplier_name', response.data.purchase.supplier.name),
@@ -243,11 +234,9 @@
             Vue.set(currObj.store, 'mobile', response.data.store.phone),
             Vue.set(currObj.store, 'url', response.data.store.url),
             //company image
-            Vue.set(currObj.store, 'store_logo',"/img/"+ response.data.store.store_logo),
+            Vue.set(currObj.store, 'store_logo',"/img/"+ response.data.store.store_logo)
             // currObj.store_logo="/img/"+data.store.store_logo //concatenate image location and image name
 
-            Vue.set(currObj.store, 'tax_number', response.data.store.tax_number)
-            Vue.set(currObj.store, 'tax_percentage', response.data.store.tax_percentage)
             // console.log(data.store.name)
         })
         .catch(function(error){

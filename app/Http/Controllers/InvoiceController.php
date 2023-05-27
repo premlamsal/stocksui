@@ -356,18 +356,12 @@ class InvoiceController extends Controller
 
                     if ($Invoice->delete()) {
 
-                        $CustomerTransaction = CustomerTransaction::where('refID',$Invoice->id)->where('store_id',$store_id)->first();
-                            if($CustomerTransaction->delete()){
-                                return response()->json([
-                                    'msg' => 'successfully Deleted',
-                                    'status' => 'success',
-                                ]);
-                            }else{
-                                return response()->json([
-                                    'msg' => 'Customer Transaction Delete Failed',
-                                    'status' => 'error',
-                                ]);
-                            }
+                      
+
+                            return response()->json([
+                                'msg' => 'successfully Deleted',
+                                'status' => 'success',
+                            ]);
                      
                     } else {
                         return response()->json([

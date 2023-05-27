@@ -6621,15 +6621,8 @@ __webpack_require__.r(__webpack_exports__);
       return this.info.subTotal;
     },
     setInvoiceVars: function setInvoiceVars() {},
-    taxAmount: function taxAmount() {
-      return this.subTotal * parseFloat(this.store.tax_percentage / 100);
-    },
     grandTotal: function grandTotal() {
-      if (this.info.discount != null) {
-        return this.subTotal - parseFloat(this.info.discount) + this.taxAmount;
-      } else {
-        return this.subTotal + this.taxAmount;
-      }
+      return this.subTotal;
     }
   },
   //end of computed
@@ -7767,13 +7760,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -7815,7 +7801,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchInvoice: function fetchInvoice() {
       var currObj = this;
       axios.get('/api/invoice/' + this.id).then(function (response) {
-        Vue.set(currObj.info, 'invoice_no', response.data.invoice.id), Vue.set(currObj.info, 'custom_invoice_id', response.data.invoice.custom_invoice_id), Vue.set(currObj.info, 'title', response.data.invoice.title), Vue.set(currObj.info, 'customer_id', response.data.invoice.customer_id), Vue.set(currObj.info, 'customer_name', response.data.invoice.customer_name), Vue.set(currObj.info, 'invoice_date', response.data.invoice.invoice_date), Vue.set(currObj.info, 'due_date', response.data.invoice.due_date), Vue.set(currObj.info, 'discount', response.data.invoice.discount), Vue.set(currObj.info, 'sub_total', response.data.invoice.sub_total), Vue.set(currObj.info, 'taxAmount', response.data.invoice.tax_amount), Vue.set(currObj.info, 'grand_total', response.data.invoice.grand_total), Vue.set(currObj.info, 'customer_address', response.data.invoice.customer.address), Vue.set(currObj.info, 'customer_phone', response.data.invoice.customer.phone), Vue.set(currObj.info, 'customer_details', response.data.invoice.customer.details), Vue.set(currObj.info, 'status', response.data.invoice.status), //veu.set will make data reactive and updated
+        Vue.set(currObj.info, 'invoice_no', response.data.invoice.id), Vue.set(currObj.info, 'custom_invoice_id', response.data.invoice.custom_invoice_id), Vue.set(currObj.info, 'title', response.data.invoice.title), Vue.set(currObj.info, 'customer_id', response.data.invoice.customer_id), Vue.set(currObj.info, 'customer_name', response.data.invoice.customer_name), Vue.set(currObj.info, 'invoice_date', response.data.invoice.invoice_date), Vue.set(currObj.info, 'due_date', response.data.invoice.due_date), Vue.set(currObj.info, 'sub_total', response.data.invoice.sub_total), Vue.set(currObj.info, 'grand_total', response.data.invoice.grand_total), Vue.set(currObj.info, 'customer_address', response.data.invoice.customer.address), Vue.set(currObj.info, 'customer_phone', response.data.invoice.customer.phone), Vue.set(currObj.info, 'customer_details', response.data.invoice.customer.details), Vue.set(currObj.info, 'status', response.data.invoice.status), //veu.set will make data reactive and updated
         currObj.items = response.data.invoice.invoice_detail, //converting number to words
         currObj.convertToWords();
       })["catch"](function (error) {
@@ -9814,21 +9800,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -9910,9 +9881,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     fetchStore: function fetchStore() {
       var currObj = this;
       axios.get("/api/store").then(function (response) {
-        Vue.set(currObj.store, "id", response.data.store.id), // Vue.set(currObj.store, 'name', response.data.store.name),
+        Vue.set(currObj.store, "id", response.data.store.id); // Vue.set(currObj.store, 'name', response.data.store.name),
         // Vue.set(currObj.store, 'detail', response.data.store.detail),
-        Vue.set(currObj.store, "tax_number", response.data.store.tax_number), Vue.set(currObj.store, "tax_percentage", response.data.store.tax_percentage); // Vue.set(currObj.store, 'email', response.data.store.email),
+        // Vue.set(currObj.store, 'email', response.data.store.email),
         // Vue.set(currObj.store, 'address', response.data.store.address),
         // Vue.set(currObj.store, 'phone', response.data.store.phone),
         // Vue.set(currObj.store, 'mobile', response.data.store.mobile),
@@ -10154,15 +10125,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return this.info.subTotal;
     },
     setPurchaseVars: function setPurchaseVars() {},
-    taxAmount: function taxAmount() {
-      return this.subTotal * parseFloat(this.store.tax_percentage / 100);
-    },
     grandTotal: function grandTotal() {
-      if (this.info.discount != null) {
-        return this.subTotal - parseFloat(this.info.discount) + this.taxAmount;
-      } else {
-        return this.subTotal + this.taxAmount;
-      }
+      return this.subTotal;
     }
   },
   //end of computed
@@ -10206,13 +10170,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -10484,10 +10441,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("api/store").then(function (response) {
         Vue.set(currObj.store, "id", response.data.store.id); // Vue.set(currObj.store, 'name', response.data.store.name),
         // Vue.set(currObj.store, 'detail', response.data.store.detail),
-
-        Vue.set(currObj.store, "tax_number", response.data.store.tax_number);
-        Vue.set(currObj.store, "tax_percentage", response.data.store.tax_percentage);
-        Vue.set(currObj.store, "profit_percentage", response.data.store.profit_percentage); // Vue.set(currObj.store, 'email', response.data.store.email),
+        // Vue.set(currObj.store, 'email', response.data.store.email),
         // Vue.set(currObj.store, 'address', response.data.store.address),
         // Vue.set(currObj.store, 'phone', response.data.store.phone),
         // Vue.set(currObj.store, 'mobile', response.data.store.mobile),
@@ -10733,15 +10687,8 @@ __webpack_require__.r(__webpack_exports__);
       }, 0);
       return this.info.subTotal;
     },
-    taxAmount: function taxAmount() {
-      return this.subTotal * 0.13;
-    },
     grandTotal: function grandTotal() {
-      if (this.info.discount != null) {
-        return this.subTotal - parseFloat(this.info.discount) + this.taxAmount;
-      } else {
-        return this.subTotal + this.taxAmount;
-      }
+      return this.subTotal;
     }
   },
   //end of computed
@@ -11258,14 +11205,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -11305,7 +11244,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchPurchase: function fetchPurchase() {
       var currObj = this;
       axios.get('/api/purchase/' + this.id).then(function (response) {
-        Vue.set(currObj.info, 'purchase_no', response.data.purchase.id), Vue.set(currObj.info, 'custom_purchase_id', response.data.purchase.custom_purchase_id), Vue.set(currObj.info, 'note', response.data.purchase.note), Vue.set(currObj.info, 'status', response.data.purchase.status), Vue.set(currObj.info, 'purchase_reference_id', response.data.purchase.purchase_reference_id), Vue.set(currObj.info, 'purchase_date', response.data.purchase.purchase_date), Vue.set(currObj.info, 'due_date', response.data.purchase.due_date), Vue.set(currObj.info, 'discount', response.data.purchase.discount), Vue.set(currObj.info, 'sub_total', response.data.purchase.sub_total), Vue.set(currObj.info, 'taxAmount', response.data.purchase.tax_amount), Vue.set(currObj.info, 'grand_total', response.data.purchase.grand_total), Vue.set(currObj.info, 'supplier_id', response.data.purchase.supplier_id), Vue.set(currObj.info, 'supplier_name', response.data.purchase.supplier.name), Vue.set(currObj.info, 'supplier_address', response.data.purchase.supplier.address), Vue.set(currObj.info, 'supplier_phone', response.data.purchase.supplier.phone), Vue.set(currObj.info, 'supplier_details', response.data.purchase.supplier.details), //veu.set will make data reactive and updated
+        Vue.set(currObj.info, 'purchase_no', response.data.purchase.id), Vue.set(currObj.info, 'custom_purchase_id', response.data.purchase.custom_purchase_id), Vue.set(currObj.info, 'note', response.data.purchase.note), Vue.set(currObj.info, 'status', response.data.purchase.status), Vue.set(currObj.info, 'purchase_reference_id', response.data.purchase.purchase_reference_id), Vue.set(currObj.info, 'purchase_date', response.data.purchase.purchase_date), Vue.set(currObj.info, 'due_date', response.data.purchase.due_date), Vue.set(currObj.info, 'grand_total', response.data.purchase.grand_total), Vue.set(currObj.info, 'sub_total', response.data.purchase.sub_total), Vue.set(currObj.info, 'supplier_id', response.data.purchase.supplier_id), Vue.set(currObj.info, 'supplier_name', response.data.purchase.supplier.name), Vue.set(currObj.info, 'supplier_address', response.data.purchase.supplier.address), Vue.set(currObj.info, 'supplier_phone', response.data.purchase.supplier.phone), Vue.set(currObj.info, 'supplier_details', response.data.purchase.supplier.details), //veu.set will make data reactive and updated
         currObj.items = response.data.purchase.purchase_detail, //converting number to words
         currObj.convertToWords();
       })["catch"](function (error) {
@@ -11323,9 +11262,8 @@ __webpack_require__.r(__webpack_exports__);
       var currObj = this;
       axios.get('/api/store').then(function (response) {
         Vue.set(currObj.store, 'id', response.data.store.id), Vue.set(currObj.store, 'name', response.data.store.name), Vue.set(currObj.store, 'detail', response.data.store.detail), Vue.set(currObj.store, 'email', response.data.store.email), Vue.set(currObj.store, 'address', response.data.store.address), Vue.set(currObj.store, 'phone', response.data.store.phone), Vue.set(currObj.store, 'mobile', response.data.store.phone), Vue.set(currObj.store, 'url', response.data.store.url), //company image
-        Vue.set(currObj.store, 'store_logo', "/img/" + response.data.store.store_logo), // currObj.store_logo="/img/"+data.store.store_logo //concatenate image location and image name
-        Vue.set(currObj.store, 'tax_number', response.data.store.tax_number);
-        Vue.set(currObj.store, 'tax_percentage', response.data.store.tax_percentage); // console.log(data.store.name)
+        Vue.set(currObj.store, 'store_logo', "/img/" + response.data.store.store_logo); // currObj.store_logo="/img/"+data.store.store_logo //concatenate image location and image name
+        // console.log(data.store.name)
       })["catch"](function (error) {
         if (error.response.status == 404) {
           currObj.$router.push({
@@ -165706,22 +165644,6 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "py-3 px-5 text-right" }, [
-                      _c("div", { staticClass: "mb-2" }, [_vm._v("Discount")]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "h3 font-weight-light" }, [
-                        _vm._v("Rs. " + _vm._s(_vm.info.discount))
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "py-3 px-5 text-right" }, [
-                      _c("div", { staticClass: "mb-2" }, [_vm._v("TAX")]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "h3 font-weight-light" }, [
-                        _vm._v("Rs. " + _vm._s(_vm.info.taxAmount))
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "py-3 px-5 text-right" }, [
                       _c("div", { staticClass: "mb-2" }, [
                         _vm._v("Sub - Total amount")
                       ]),
@@ -170510,50 +170432,6 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-2" }, [
-                  _c("h6", [_vm._v("Discount")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.info.discount,
-                        expression: "info.discount"
-                      }
-                    ],
-                    staticClass: "table-discount_input form-control",
-                    class: { "is-invalid": _vm.errors["info.discount"] },
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.info.discount },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.info, "discount", $event.target.value)
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _vm.errors["info.discount"]
-                    ? _c("span", { class: ["errorText"] }, [
-                        _vm._v(_vm._s(_vm.errors["info.discount"][0]))
-                      ])
-                    : _vm._e()
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-2" }, [
-                  _c("h6", [
-                    _vm._v(_vm._s(_vm.store.tax_percentage) + " % Tax")
-                  ]),
-                  _vm._v(
-                    "\n              " +
-                      _vm._s(_vm.taxAmount) +
-                      "\n            "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-2" }, [
                   _c("h6", [_vm._v("SubTotal")]),
                   _vm._v(
                     "\n              " + _vm._s(_vm.subTotal) + "\n            "
@@ -171508,46 +171386,6 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-2" }, [
-                  _c("h6", [_vm._v("Discount")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.info.discount,
-                        expression: "info.discount"
-                      }
-                    ],
-                    staticClass: "table-discount_input form-control",
-                    class: { "is-invalid": _vm.errors["info.discount"] },
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.info.discount },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.info, "discount", $event.target.value)
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _vm.errors["info.discount"]
-                    ? _c("span", { class: ["errorText"] }, [
-                        _vm._v(_vm._s(_vm.errors["info.discount"][0]))
-                      ])
-                    : _vm._e()
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-2" }, [
-                  _c("h6", [
-                    _vm._v(_vm._s(_vm.store.tax_percentage) + " % Tax")
-                  ]),
-                  _vm._v(" " + _vm._s(_vm.taxAmount) + "\n            ")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-2" }, [
                   _c("h6", [_vm._v("SubTotal")]),
                   _vm._v(" " + _vm._s(_vm.subTotal) + "\n            ")
                 ]),
@@ -172309,22 +172147,6 @@ var render = function() {
                       _vm._v(" "),
                       _c("div", { staticClass: "h3 font-weight-light" }, [
                         _vm._v("Rs. " + _vm._s(_vm.info.grand_total))
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "py-3 px-5 text-right" }, [
-                      _c("div", { staticClass: "mb-2" }, [_vm._v("Discount")]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "h3 font-weight-light" }, [
-                        _vm._v("Rs. " + _vm._s(_vm.info.discount))
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "py-3 px-5 text-right" }, [
-                      _c("div", { staticClass: "mb-2" }, [_vm._v("TAX")]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "h3 font-weight-light" }, [
-                        _vm._v("Rs. " + _vm._s(_vm.info.taxAmount))
                       ])
                     ]),
                     _vm._v(" "),

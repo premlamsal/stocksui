@@ -697,17 +697,11 @@ export default {
 
     },
 
-    taxAmount: function() {
-     return this.subTotal * parseFloat(this.store.tax_percentage/100);
-    },
+   
 
     grandTotal: function() {
 
-      if (this.info.discount != null) {
-        return this.subTotal - parseFloat(this.info.discount) + this.taxAmount;
-      } else {
-        return this.subTotal + this.taxAmount;
-      }
+      return this.subTotal;
     }
 
 

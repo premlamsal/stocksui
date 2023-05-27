@@ -91,15 +91,8 @@
                             <div class="h3 font-weight-light">Rs. {{info.grand_total}}</div>
                         </div>
 
-                        <div class="py-3 px-5 text-right">
-                            <div class="mb-2">Discount</div>
-                            <div class="h3 font-weight-light">Rs. {{info.discount}}</div>
-                        </div>
+                   
 
-                        <div class="py-3 px-5 text-right">
-                            <div class="mb-2">TAX</div>
-                            <div class="h3 font-weight-light">Rs. {{info.taxAmount}}</div>
-                        </div> 
                         <div class="py-3 px-5 text-right">
                             <div class="mb-2">Sub - Total amount</div>
                             <div class="h2 font-weight-light">Rs. {{info.sub_total}}</div>
@@ -192,9 +185,7 @@
                  
                 Vue.set(currObj.info, 'invoice_date', response.data.invoice.invoice_date),
                 Vue.set(currObj.info, 'due_date', response.data.invoice.due_date),
-                Vue.set(currObj.info, 'discount', response.data.invoice.discount),
                 Vue.set(currObj.info, 'sub_total', response.data.invoice.sub_total),
-                Vue.set(currObj.info, 'taxAmount', response.data.invoice.tax_amount),
                 Vue.set(currObj.info, 'grand_total', response.data.invoice.grand_total),
                 Vue.set(currObj.info, 'customer_address', response.data.invoice.customer.address),
                 Vue.set(currObj.info, 'customer_phone', response.data.invoice.customer.phone),

@@ -201,14 +201,7 @@
               <div class="col-md-2">
                 <h6>Grand Total</h6> {{grandTotal}}
               </div>
-              <div class="col-md-2">
-                <h6>Discount</h6>
-                <input type="text" class="table-discount_input form-control" v-model="info.discount" :class="{'is-invalid':errors['info.discount']}" />
-                <span v-if="errors['info.discount']" :class="['errorText']">{{errors['info.discount'][0]}}</span>
-              </div>
-              <div class="col-md-2">
-                <h6>{{store.tax_percentage}} % Tax</h6> {{taxAmount}}
-              </div>
+              
               <div class="col-md-2">
                 <h6>SubTotal</h6> {{subTotal}}
               </div>
@@ -288,17 +281,7 @@ export default {
         Vue.set(currObj.store, "id", response.data.store.id);
         // Vue.set(currObj.store, 'name', response.data.store.name),
         // Vue.set(currObj.store, 'detail', response.data.store.detail),
-        Vue.set(currObj.store, "tax_number", response.data.store.tax_number);
-        Vue.set(
-          currObj.store,
-          "tax_percentage",
-          response.data.store.tax_percentage
-        );
-        Vue.set(
-          currObj.store,
-          "profit_percentage",
-          response.data.store.profit_percentage
-        );
+        
         // Vue.set(currObj.store, 'email', response.data.store.email),
         // Vue.set(currObj.store, 'address', response.data.store.address),
         // Vue.set(currObj.store, 'phone', response.data.store.phone),
@@ -611,15 +594,10 @@ export default {
       return this.info.subTotal;
     },
 
-    taxAmount: function() {
-      return this.subTotal * 0.13;
-    },
+   
     grandTotal: function() {
-      if (this.info.discount != null) {
-        return this.subTotal - parseFloat(this.info.discount) + this.taxAmount;
-      } else {
-        return this.subTotal + this.taxAmount;
-      }
+      return this.subTotal;
+     
     }
   }, //end of computed
 
