@@ -45,21 +45,7 @@
                 <input type="phone" :class="['form-control']" placeholder="Company Mobile" v-model="store.mobile">
                 <span v-if="errors.mobile" :class="['errorText']">{{ errors.mobile[0] }}</span>
               </div>
-              <div class="form-group">
-                <label>Tax Percentage</label>
-                <input type="number" :class="['form-control']" placeholder="Tax Percentage" v-model="store.tax_percentage">
-                <span v-if="errors.tax_percentage" :class="['errorText']">{{ errors.tax_percentage[0] }}</span>
-              </div>
-              <div class="form-group">
-                <label>Tax Number</label>
-                <input type="number" :class="['form-control']" placeholder="Tax Number" v-model="store.tax_number">
-                <span v-if="errors.tax_number" :class="['errorText']">{{ errors.tax_number[0] }}</span>
-              </div>
-              <div class="form-group">
-                <label>Profit percentage</label>
-                <input type="number" :class="['form-control']" placeholder="Profit Percentage" v-model="store.profit_percentage">
-                <span v-if="errors.profit_percentage" :class="['errorText']">{{ errors.profit_percentage[0] }}</span>
-              </div>
+            
               <div class="form-group">
                 <label>Company Website</label>
                 <input type="text" :class="['form-control']" placeholder="http://example.com" v-model="store.url">
@@ -94,8 +80,6 @@
                 <p class="card-text" style="text-align: center;">{{store.address}}</p>
                 <p class="card-text" style="text-align: center;">{{store.phone}}</p>
                 <p class="card-text" style="text-align: center;">{{store.mobile}}</p>
-                <p class="card-text" style="text-align: center;">{{store.tax_percentage}}% TAX</p>
-                <p class="card-text" style="text-align: center;">{{store.tax_number}}</p>
               </div>
             </div>
           </div>
@@ -159,9 +143,6 @@ export default {
         Vue.set(currObj.store, 'id', response.data.store.id)
         Vue.set(currObj.store, 'name', response.data.store.name)
         Vue.set(currObj.store, 'detail', response.data.store.detail)
-        Vue.set(currObj.store, 'tax_number', response.data.store.tax_number)
-        Vue.set(currObj.store, 'tax_percentage', response.data.store.tax_percentage)
-        Vue.set(currObj.store, 'profit_percentage', response.data.store.profit_percentage)
         Vue.set(currObj.store, 'email', response.data.store.email)
         Vue.set(currObj.store, 'address', response.data.store.address)
         Vue.set(currObj.store, 'phone', response.data.store.phone)
@@ -266,9 +247,6 @@ export default {
       formData.append('phone', this.store.phone);
       formData.append('mobile', this.store.mobile);
       formData.append('url', this.store.url);
-      formData.append('tax_percentage', this.store.tax_percentage);
-      formData.append('tax_number', this.store.tax_number);
-      formData.append('profit_percentage', this.store.profit_percentage);
       // Display the key/value pairs
 
       // posting data //using post and sending form data as PUT to match the api route name setting

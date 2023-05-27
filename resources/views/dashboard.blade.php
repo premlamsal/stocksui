@@ -292,7 +292,7 @@
 
                 <li>
                   <router-link  to="/app/info" aria-expanded="false">
-                      <span>App Info</span>
+                      {{-- <span>App Info</span> --}}
                   </router-link>
                 </li>
               </ul>

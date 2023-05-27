@@ -6258,10 +6258,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -7028,10 +7024,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
 //
 //
 //
@@ -9776,18 +9768,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -10158,10 +10138,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
 //
 //
 //
@@ -11877,22 +11853,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -11921,9 +11881,6 @@ __webpack_require__.r(__webpack_exports__);
         Vue.set(currObj.store, 'id', response.data.store.id);
         Vue.set(currObj.store, 'name', response.data.store.name);
         Vue.set(currObj.store, 'detail', response.data.store.detail);
-        Vue.set(currObj.store, 'tax_number', response.data.store.tax_number);
-        Vue.set(currObj.store, 'tax_percentage', response.data.store.tax_percentage);
-        Vue.set(currObj.store, 'profit_percentage', response.data.store.profit_percentage);
         Vue.set(currObj.store, 'email', response.data.store.email);
         Vue.set(currObj.store, 'address', response.data.store.address);
         Vue.set(currObj.store, 'phone', response.data.store.phone);
@@ -12022,10 +11979,7 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('address', this.store.address);
       formData.append('phone', this.store.phone);
       formData.append('mobile', this.store.mobile);
-      formData.append('url', this.store.url);
-      formData.append('tax_percentage', this.store.tax_percentage);
-      formData.append('tax_number', this.store.tax_number);
-      formData.append('profit_percentage', this.store.profit_percentage); // Display the key/value pairs
+      formData.append('url', this.store.url); // Display the key/value pairs
       // posting data //using post and sending form data as PUT to match the api route name setting
 
       axios.post('/api/store', formData, config).then(function (response) {
@@ -163381,44 +163335,6 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "form-group" }, [
-                          _c("label", { attrs: { for: "Opening_balance" } }, [
-                            _vm._v("Opening Balance:")
-                          ]),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.customer.opening_balance,
-                                expression: "customer.opening_balance"
-                              }
-                            ],
-                            class: ["form-control"],
-                            attrs: { type: "text" },
-                            domProps: { value: _vm.customer.opening_balance },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.customer,
-                                  "opening_balance",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _vm.errors.opening_balance
-                            ? _c("span", { class: ["errorText"] }, [
-                                _vm._v(_vm._s(_vm.errors.opening_balance[0]))
-                              ])
-                            : _vm._e()
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
                           _c("label", { attrs: { for: "Phone" } }, [
                             _vm._v("Details:")
                           ]),
@@ -164691,44 +164607,6 @@ var render = function() {
                           _vm.errors.address
                             ? _c("span", { class: ["errorText"] }, [
                                 _vm._v(_vm._s(_vm.errors.address[0]))
-                              ])
-                            : _vm._e()
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("label", { attrs: { for: "Opening_balance" } }, [
-                            _vm._v("Opening Balance:")
-                          ]),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.customer.opening_balance,
-                                expression: "customer.opening_balance"
-                              }
-                            ],
-                            class: ["form-control"],
-                            attrs: { type: "text" },
-                            domProps: { value: _vm.customer.opening_balance },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.customer,
-                                  "opening_balance",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _vm.errors.opening_balance
-                            ? _c("span", { class: ["errorText"] }, [
-                                _vm._v(_vm._s(_vm.errors.opening_balance[0]))
                               ])
                             : _vm._e()
                         ]),
@@ -169848,44 +169726,6 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "form-group" }, [
-                          _c("label", { attrs: { for: "Opening_balance" } }, [
-                            _vm._v("Opening Balance:")
-                          ]),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.supplier.opening_balance,
-                                expression: "supplier.opening_balance"
-                              }
-                            ],
-                            class: ["form-control"],
-                            attrs: { type: "text" },
-                            domProps: { value: _vm.supplier.opening_balance },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.supplier,
-                                  "opening_balance",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _vm.errors.opening_balance
-                            ? _c("span", { class: ["errorText"] }, [
-                                _vm._v(_vm._s(_vm.errors.opening_balance[0]))
-                              ])
-                            : _vm._e()
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
                           _c("label", { attrs: { for: "Phone" } }, [
                             _vm._v("Details:")
                           ]),
@@ -170785,44 +170625,6 @@ var render = function() {
                           _vm.errors.phone
                             ? _c("span", { class: ["errorText"] }, [
                                 _vm._v(_vm._s(_vm.errors.phone[0]))
-                              ])
-                            : _vm._e()
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("label", { attrs: { for: "Opening_balance" } }, [
-                            _vm._v("Opening Balance:")
-                          ]),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.supplier.opening_balance,
-                                expression: "supplier.opening_balance"
-                              }
-                            ],
-                            class: ["form-control"],
-                            attrs: { type: "text" },
-                            domProps: { value: _vm.supplier.opening_balance },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.supplier,
-                                  "opening_balance",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _vm.errors.opening_balance
-                            ? _c("span", { class: ["errorText"] }, [
-                                _vm._v(_vm._s(_vm.errors.opening_balance[0]))
                               ])
                             : _vm._e()
                         ]),
@@ -172981,110 +172783,6 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
-                  _c("label", [_vm._v("Tax Percentage")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.store.tax_percentage,
-                        expression: "store.tax_percentage"
-                      }
-                    ],
-                    class: ["form-control"],
-                    attrs: { type: "number", placeholder: "Tax Percentage" },
-                    domProps: { value: _vm.store.tax_percentage },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.store,
-                          "tax_percentage",
-                          $event.target.value
-                        )
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _vm.errors.tax_percentage
-                    ? _c("span", { class: ["errorText"] }, [
-                        _vm._v(_vm._s(_vm.errors.tax_percentage[0]))
-                      ])
-                    : _vm._e()
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", [_vm._v("Tax Number")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.store.tax_number,
-                        expression: "store.tax_number"
-                      }
-                    ],
-                    class: ["form-control"],
-                    attrs: { type: "number", placeholder: "Tax Number" },
-                    domProps: { value: _vm.store.tax_number },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.store, "tax_number", $event.target.value)
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _vm.errors.tax_number
-                    ? _c("span", { class: ["errorText"] }, [
-                        _vm._v(_vm._s(_vm.errors.tax_number[0]))
-                      ])
-                    : _vm._e()
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", [_vm._v("Profit percentage")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.store.profit_percentage,
-                        expression: "store.profit_percentage"
-                      }
-                    ],
-                    class: ["form-control"],
-                    attrs: { type: "number", placeholder: "Profit Percentage" },
-                    domProps: { value: _vm.store.profit_percentage },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.store,
-                          "profit_percentage",
-                          $event.target.value
-                        )
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _vm.errors.profit_percentage
-                    ? _c("span", { class: ["errorText"] }, [
-                        _vm._v(_vm._s(_vm.errors.profit_percentage[0]))
-                      ])
-                    : _vm._e()
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
                   _c("label", [_vm._v("Company Website")]),
                   _vm._v(" "),
                   _c("input", {
@@ -173199,24 +172897,6 @@ var render = function() {
                       staticStyle: { "text-align": "center" }
                     },
                     [_vm._v(_vm._s(_vm.store.mobile))]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "p",
-                    {
-                      staticClass: "card-text",
-                      staticStyle: { "text-align": "center" }
-                    },
-                    [_vm._v(_vm._s(_vm.store.tax_percentage) + "% TAX")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "p",
-                    {
-                      staticClass: "card-text",
-                      staticStyle: { "text-align": "center" }
-                    },
-                    [_vm._v(_vm._s(_vm.store.tax_number))]
                   )
                 ])
               ]
