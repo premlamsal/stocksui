@@ -9,11 +9,305 @@
     </p>
 
     <!-- add deliverynote model start -->
-    <b-modal id="bv-modal-add-deliverynote" hide-footer>
+    <b-modal id="bv-modal-add-deliverynote" hide-footer size="xl">
       <template v-slot:modal-title>
         {{ modalForName }}
       </template>
-      <div class="d-block"></div>
+      <div class="d-block">
+        
+        <div class="card-body shadow" >
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label>Delivery Note No. (auto generated)</label>
+                {{ delivery_note_number }}
+              </div>
+              <div class="form-group" v-if="info.supplier_id != null">
+                <label
+                  >Actual Delivery Number(Reference Delivery Note ID)</label
+                >
+                <span
+                  >{{ info.supplier_short_name }} -
+                  {{ info.delivery_note_reference_number }}</span
+                >
+                <input
+                  type="text"
+                  v-model="info.delivery_note_reference_number"
+                  class="form-control"
+                />
+                <span
+                  v-if="errors['info.delivery_note_reference_number']"
+                  :class="['errorText']"
+                >
+                  {{ errors["info.delivery_note_reference_number"][0] }}
+                  <br />
+                </span>
+              </div>
+              <div class="form-group" style="position: relative">
+                <label>Supplier</label>
+                <input
+                  type="text"
+                  v-model="info.supplier_name"
+                  v-on:keyup="autoComplete"
+                  class="form-control"
+                />
+                <span
+                  v-if="errors['info.supplier_name']"
+                  :class="['errorText']"
+                >
+                  {{ errors["info.supplier_name"][0] }}
+                  <br />
+                </span>
+                <!-- Search suggestion block -->
+                <div class="supplier-search-suggestion">
+                  <div
+                    v-for="queryResult in queryResults"
+                    v-bind:key="queryResult.id"
+                    class="supplier-search-suggestion-inner"
+                  >
+                    <ul>
+                      <li
+                        @click="
+                          clickSearchSuggestion(
+                            queryResult.id,
+                            queryResult.name
+                          )
+                        "
+                      >
+                        {{ queryResult.name }}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- Search suggestion block ends -->
+              </div>
+              <div></div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group"></div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label>Note</label>
+                <textarea v-model="info.note" class="form-control"></textarea>
+                <span v-if="errors['info.note']" :class="['errorText']">{{
+                  errors["info.note"][0]
+                }}</span>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <label>Delivery Note Date</label>
+                  <date-picker
+                    v-model="info.delivery_note_date"
+                    :config="options"
+                    :class="['form-control']"
+                  ></date-picker>
+                  <span
+                    v-if="errors['info.delivery_note_date']"
+                    :class="['errorText']"
+                    >{{ errors["info.delivery_note_date"][0] }}</span
+                  >
+                </div>
+                <div class="col-sm-6">
+                  <label>Due Date</label>
+                  <date-picker
+                    v-model="info.due_date"
+                    :config="options"
+                    :class="['form-control']"
+                  ></date-picker>
+                  <span v-if="errors['info.due_date']" :class="['errorText']">{{
+                    errors["info.due_date"][0]
+                  }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div class="delivery_note">
+            <div class="delivery_note-head">
+              <div class="row">
+                <div class="col-md-1">
+                  <h6>ID</h6>
+                </div>
+                <div class="col-md-3">
+                  <h6>Product Name</h6>
+                </div>
+                <div class="col-md-1">
+                  <h6>Quanity</h6>
+                </div>
+                <div class="col-md-1">
+                  <h6>Unit</h6>
+                </div>
+                <div class="col-md-2">
+                  <h6>Price</h6>
+                </div>
+                <div class="col-md-2">
+                  <h6>Total</h6>
+                </div>
+                <div class="col-md-2">
+                  <h6>Action</h6>
+                </div>
+              </div>
+            </div>
+            <!-- end of delivery_note head-->
+            <div class="delivery_note-body">
+              <div
+                class="delivery_note-items"
+                v-for="(item, index) in items"
+                v-bind:key="item.id"
+              >
+                <div class="row">
+                  <div class="col-md-1" v-if="item.custom_product_id != null">
+                    {{ item.custom_product_id }}
+                  </div>
+                  <div class="col-md-1" v-else>#</div>
+                  <div class="col-md-3">
+                    <div class="auto-complete-product-container">
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Product Name"
+                          v-model="item.product_name"
+                          v-on:keydown="autoCompleteProduct(index)"
+                          :class="{
+                            'is-invalid':
+                              errors['items.' + index + '.product_name'],
+                          }"
+                        />
+                        <span
+                          v-if="errors['items.' + index + '.product_name']"
+                          :class="['errorText']"
+                          >{{
+                            errors["items." + index + ".product_name"][0]
+                          }}</span
+                        >
+                        <!--  suggestion block -->
+                        <div
+                          class="product-search-suggestion-delivery_note"
+                          v-for="queryResultsProduct in queryResultsProducts[
+                            index
+                          ]"
+                          v-bind:key="queryResultsProduct.id"
+                        >
+                          <ul>
+                            <li
+                              v-for="queryResultsProduct in queryResultsProducts[
+                                index
+                              ]"
+                              v-bind:key="queryResultsProduct.id"
+                              @click="
+                                clickSearchProductSuggestion(
+                                  queryResultsProduct.id,
+                                  queryResultsProduct.product.id,
+                                  queryResultsProduct.product.custom_product_id,
+                                  queryResultsProduct.product.name,
+                                  queryResultsProduct.product.unit.id,
+                                  queryResultsProduct.price,
+                                  index
+                                )
+                              "
+                            >
+                              {{ queryResultsProduct.product.name }} --
+                              {{ queryResultsProduct.quantity }}
+                              {{
+                                queryResultsProduct.product.unit.short_name
+                              }}
+                              -- Rs. {{ queryResultsProduct.price }}
+                            </li>
+                          </ul>
+                        </div>
+                        <!--  <span v-if="errors['items.' + index + '.product_name']">
+                      {{ errors['items.' + index + '.product_name'] }}
+                    </span> -->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="Quantity"
+                      v-model="item.quantity"
+                      :class="{
+                        'is-invalid': errors['items.' + index + '.quantity'],
+                      }"
+                    />
+                  </div>
+                  <div class="col-md-1">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Unit"
+                      v-model="item.unit"
+                      :class="{
+                        'is-invalid': errors['items.' + index + '.unit'],
+                      }"
+                    />
+                  </div>
+                  <div class="col-md-2">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter the price"
+                      v-model="item.price"
+                      v-if="item.product_id"
+                      :class="{
+                        'is-invalid': errors['items.' + index + '.price'],
+                      }"
+                    />
+                  </div>
+                  <div class="col-md-2">
+                    <span class="table-text">{{
+                      item.quantity * item.price
+                    }}</span>
+                  </div>
+                  <div class="col-md-2">
+                    <button
+                      href
+                      class="btn btn-danger"
+                      style="border: none"
+                      @click="removeLine(index)"
+                    >
+                      <span
+                        class="nc-icon nc-simple-remove"
+                        style="font-size: 15px"
+                      ></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!-- end of delivery_note items-->
+            </div>
+            <!-- end of delivery_note body-->
+            <div class="delivery_note-foot">
+              <div class="row">
+                <div class="col-md-2">
+                  <button
+                    class="table-add_line btn btn-primary"
+                    @click="addNewLine"
+                  >
+                    <span class="fa fa-plus-circle"></span>
+                  </button>
+                </div>
+                <div class="col-md-2">
+                  <h6>Grand Total</h6>
+                  {{ grandTotal }}
+                </div>
+
+                <div class="col-md-2">
+                  <h6>SubTotal</h6>
+                  {{ subTotal }}
+                </div>
+                <div class="col-md-2"></div>
+              </div>
+            </div>
+            <!-- end of delivery_note foot -->
+          </div>
+          <!-- end of delivery_note -->
+        </div>
+      </div>
       <b-button class="btn-primary mt-3" block @click="callFunc">{{
         modalForName
       }}</b-button>
@@ -237,6 +531,42 @@ export default {
   },
   data() {
     return {
+      items: [
+        {
+          product_name: "",
+          price: "0",
+          quantity: "1",
+          line_total: "",
+          changed: true,
+        },
+      ],
+
+      cloneItems: [
+        {
+          product_name: "",
+          price: "0",
+          quantity: "1",
+          line_total: "",
+          changed: false,
+        },
+      ],
+      delivery_note_number: "",
+      info: {},
+      store: {},
+
+      supplier: {},
+      queryResults: [],
+      queryResultsProducts: [],
+      errors: [],
+      tempCustomDeliveryNoteID: "",
+      showProductSuggestion: false,
+      options: {
+        format: "YYYY-MM-DD",
+        useCurrent: true,
+        showClear: true,
+        showClose: true,
+      },
+
       deliverynotes: [],
       deliverynotes_id: "",
       pagination: {},
@@ -258,9 +588,238 @@ export default {
 
   created() {
     this.fetchDeliveryNotes();
+    this.fetchStore();
   },
 
   methods: {
+    fetchStore() {
+      let currObj = this;
+      this.isLoading = "Loading Data";
+
+      axios
+        .get("api/store")
+
+        .then(function (response) {
+          // Vue.set(currObj.store, "id", response.data.store.id);
+          currObj.store.id=response.data.store.id;
+      
+          Vue.set(
+            currObj.store,
+            "delivery_note_id_count",
+            response.data.store.delivery_note_id_count
+          );
+
+          currObj.delivery_note_number =
+            currObj.store.delivery_note_id_count.split("-");
+
+          currObj.delivery_note_number[1] =
+            parseInt(currObj.delivery_note_number[1]) + 1;
+
+          currObj.delivery_note_number = currObj.delivery_note_number.join("-");
+          console.log(currObj.delivery_note_number)
+
+          currObj.isLoading = "";
+        });
+    }, //
+
+    addNewLine() {
+      this.items.push({
+        product_name: "",
+        price: "0",
+        quantity: "1",
+        product: {
+          custom_product_id: "",
+          unit: {},
+        },
+        line_total: "",
+        changed: false,
+      });
+
+      this.cloneItems.push({
+        product_name: "",
+        price: "0",
+        quantity: "1",
+        product: {
+          custom_product_id: "",
+          unit: {},
+        },
+        line_total: "",
+        changed: false,
+      });
+    }, // end of add new line
+    removeLine(index) {
+      // this.delivery_notes.remove();
+      if (index != 0) {
+        this.items.splice(index, 1);
+        this.cloneItems.splice(index, 1);
+      } else {
+        // alert('You can\'t delete this');
+        this.$toast.error({
+          title: "Opps!!",
+          message: "You can't delete this.",
+        });
+      }
+    }, //end of removeLine function
+
+    calLineTotal(index) {
+      // alert(this.delivery_notes[index].price);
+      this.items[index].line_total =
+        this.items[index].price * this.items[index].quantity;
+      this.cloneItems[index].line_total = this.items[index].line_total;
+    },
+
+
+    autoComplete: _.debounce(function() {
+      let currObj = this;
+      if (this.info.supplier_name === "") {
+        this.queryResults = new Array();
+        this.info.supplier_short_name='';
+        this.info.supplier_id=null;
+        this.info.delivery_note_reference_number='';
+      } else {
+        axios
+          .post("api/suppliers/search", {
+            searchQuery: this.info.supplier_name
+          })
+          .then(response => {
+            this.queryResults = response.data.data;
+          })
+          .catch(error => {
+            if (error.response.status == 422) {
+              currObj.validationErrors = error.response.data.errors;
+              currObj.errors = currObj.validationErrors;
+              // console.log(currObj.errors);
+              currObj.$toast.error({
+                title: "Opps!!",
+                message: error.response.data.message
+              });
+            }
+          });
+      }
+    }, 300),
+
+    autoCompleteProduct: _.debounce(function(index) {
+      if (this.items[index].product_name === "") {
+        this.queryResultsProducts = new Array();
+        this.showProductSuggestion = false;
+      } else {
+        axios
+          .post('/api/products/search',{
+            searchQuery:this.items[index].product_name 
+          })
+          .then(response => {
+            this.queryResultsProducts[index] = response.data.data;
+            if (this.queryResultsProducts[index].length > 0) {
+              this.showProductSuggestion = true;
+            } else {
+              this.showProductSuggestion = false;
+            }
+          })
+          .catch(error => {
+            // if (error.response.status) {
+            //   this.errors = error.response.data.errors;
+            //   console.log(this.errors);
+            // }
+          });
+      }
+      // alert(this.items[index].product_name);
+    }, 300),
+
+    //will find item exits in that items array or not
+    //used to elimate duplicate produt/item in items/products
+    hasItem(key) {
+
+      if (this.items.find(item => item.stock_id === key)) {
+
+        return true;
+      } else {
+        return false;
+      }
+    },
+
+
+    clickSearchProductSuggestion(
+      stock_id,
+      product_id,
+      custom_product_id,
+      product_name,
+      unit_id,
+      cp,
+      index
+    ) {
+
+
+      if (!this.hasItem(stock_id)) {
+        // console.log("Item not in List. So adding");
+        Vue.set(this.items[index], "product_id", product_id);
+
+        Vue.set(this.items[index], "custom_product_id", custom_product_id);
+
+        Vue.set(this.items[index], "product_name", product_name);
+
+        Vue.set(this.items[index], "unit_id", unit_id);
+
+        Vue.set(this.items[index], "stock_id", stock_id);
+
+
+        Vue.set(
+          this.items[index], "price" , parseFloat(cp)
+        );
+
+
+        Vue.set(this.cloneItems[index], "product_id", product_id);
+
+        Vue.set(this.cloneItems[index], "custom_product_id", custom_product_id);
+
+        Vue.set(this.cloneItems[index], "product_name", product_name);
+
+        Vue.set(this.cloneItems[index], "unit_id", unit_id);
+
+        Vue.set(this.items[index], "stock_id", stock_id);
+
+        Vue.set(
+          this.cloneItems[index],
+          "price",
+          parseFloat(cp) 
+        );
+
+        // this.items[index] = this.items[index] + (this.store.profit_percentage)/100;
+
+        // console.log(product_id);
+        // console.log(product_name);
+        // console.log(index);
+        this.queryResultsProducts = new Array();
+
+      } else {
+        // console.log("Item exits in list so deleting the current index item to remove duplicate entry in items array");
+        this.displayToastErrorMessage('Opps', product_name + ' already on the list. You can increase the quantity or choose different stock ');
+
+
+        this.items.splice(index);
+
+        this.cloneItems.splice(index);
+
+        this.queryResultsProducts = new Array();
+        
+      }
+    },
+    clickSearchSuggestion(supplier_id, supplier_name) {
+      Vue.set(this.info, "supplier_id", supplier_id);
+      Vue.set(this.info, "supplier_name", supplier_name);
+      this.queryResults = null;
+      let matches = supplier_name.match(/\b(\w)/g);
+      this.tempCustomDeliveryNoteID=matches.join('');
+      this.tempCustomDeliveryNoteID=this.tempCustomDeliveryNoteID + '-' + supplier_id;
+      this.info.supplier_short_name=this.tempCustomDeliveryNoteID;
+    },
+    displayToastErrorMessage(title, message) {
+      this.$toast.error({
+        title: title,
+        message: message
+      });
+    },
+
+
     //methods codes here
     handleSuccessExportCSV() {
       console.log("success Export");
@@ -511,7 +1070,7 @@ export default {
             .delete("/api/deliverynotes/" + id)
 
             .then(function (response) {
-              // alert('Purchase Removed');
+              // alert('DeliveryNote Removed');
               currObj.output = response.data.msg;
               currObj.status = response.data.status;
 
@@ -546,5 +1105,24 @@ export default {
       }
     }, //has permision
   }, //end of methods
+
+  computed: {
+    //checks errors in the fields
+
+    subTotal: function() {
+      //reduce function is used to sum the array elements
+      this.info.subTotal = this.items.reduce(function(carry, item) {
+        return carry + parseFloat(item.quantity) * parseFloat(item.price);
+      }, 0);
+      return this.info.subTotal;
+    },
+
+   
+    grandTotal: function() {
+      return this.subTotal;
+     
+    }
+  }, //end of computed
+
 }; //end of default
 </script>

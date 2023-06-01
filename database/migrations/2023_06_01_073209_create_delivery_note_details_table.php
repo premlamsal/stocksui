@@ -15,6 +15,20 @@ class CreateDeliveryNoteDetailsTable extends Migration
     {
         Schema::create('delivery_note_details', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('purchase_id');
+            $table->foreign('purchase_id')->references('id')->on('purchases')->onDelete('cascade');
+
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+
+            $table->string('product_name');
+            $table->string('quantity');
+            $table->string('price');
+
+            $table->string('unit');
+
+            $table->string('line_total');
+
             $table->timestamps();
         });
     }

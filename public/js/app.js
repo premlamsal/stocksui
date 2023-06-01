@@ -4778,6 +4778,300 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //custom toggle button
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4786,6 +5080,35 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      items: [{
+        product_name: "",
+        price: "0",
+        quantity: "1",
+        line_total: "",
+        changed: true
+      }],
+      cloneItems: [{
+        product_name: "",
+        price: "0",
+        quantity: "1",
+        line_total: "",
+        changed: false
+      }],
+      delivery_note_number: "",
+      info: {},
+      store: {},
+      supplier: {},
+      queryResults: [],
+      queryResultsProducts: [],
+      errors: [],
+      tempCustomDeliveryNoteID: "",
+      showProductSuggestion: false,
+      options: {
+        format: "YYYY-MM-DD",
+        useCurrent: true,
+        showClear: true,
+        showClose: true
+      },
       deliverynotes: [],
       deliverynotes_id: "",
       pagination: {},
@@ -4800,8 +5123,175 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.fetchDeliveryNotes();
+    this.fetchStore();
   },
   methods: {
+    fetchStore: function fetchStore() {
+      var currObj = this;
+      this.isLoading = "Loading Data";
+      axios.get("api/store").then(function (response) {
+        // Vue.set(currObj.store, "id", response.data.store.id);
+        currObj.store.id = response.data.store.id;
+        Vue.set(currObj.store, "delivery_note_id_count", response.data.store.delivery_note_id_count);
+        currObj.delivery_note_number = currObj.store.delivery_note_id_count.split("-");
+        currObj.delivery_note_number[1] = parseInt(currObj.delivery_note_number[1]) + 1;
+        currObj.delivery_note_number = currObj.delivery_note_number.join("-");
+        console.log(currObj.delivery_note_number);
+        currObj.isLoading = "";
+      });
+    },
+    //
+    addNewLine: function addNewLine() {
+      this.items.push({
+        product_name: "",
+        price: "0",
+        quantity: "1",
+        product: {
+          custom_product_id: "",
+          unit: {}
+        },
+        line_total: "",
+        changed: false
+      });
+      this.cloneItems.push({
+        product_name: "",
+        price: "0",
+        quantity: "1",
+        product: {
+          custom_product_id: "",
+          unit: {}
+        },
+        line_total: "",
+        changed: false
+      });
+    },
+    // end of add new line
+    removeLine: function removeLine(index) {
+      // this.delivery_notes.remove();
+      if (index != 0) {
+        this.items.splice(index, 1);
+        this.cloneItems.splice(index, 1);
+      } else {
+        // alert('You can\'t delete this');
+        this.$toast.error({
+          title: "Opps!!",
+          message: "You can't delete this."
+        });
+      }
+    },
+    //end of removeLine function
+    calLineTotal: function calLineTotal(index) {
+      // alert(this.delivery_notes[index].price);
+      this.items[index].line_total = this.items[index].price * this.items[index].quantity;
+      this.cloneItems[index].line_total = this.items[index].line_total;
+    },
+    autoComplete: _.debounce(function () {
+      var _this = this;
+
+      var currObj = this;
+
+      if (this.info.supplier_name === "") {
+        this.queryResults = new Array();
+        this.info.supplier_short_name = '';
+        this.info.supplier_id = null;
+        this.info.delivery_note_reference_number = '';
+      } else {
+        axios.post("api/suppliers/search", {
+          searchQuery: this.info.supplier_name
+        }).then(function (response) {
+          _this.queryResults = response.data.data;
+        })["catch"](function (error) {
+          if (error.response.status == 422) {
+            currObj.validationErrors = error.response.data.errors;
+            currObj.errors = currObj.validationErrors; // console.log(currObj.errors);
+
+            currObj.$toast.error({
+              title: "Opps!!",
+              message: error.response.data.message
+            });
+          }
+        });
+      }
+    }, 300),
+    autoCompleteProduct: _.debounce(function (index) {
+      var _this2 = this;
+
+      if (this.items[index].product_name === "") {
+        this.queryResultsProducts = new Array();
+        this.showProductSuggestion = false;
+      } else {
+        axios.post('/api/products/search', {
+          searchQuery: this.items[index].product_name
+        }).then(function (response) {
+          _this2.queryResultsProducts[index] = response.data.data;
+
+          if (_this2.queryResultsProducts[index].length > 0) {
+            _this2.showProductSuggestion = true;
+          } else {
+            _this2.showProductSuggestion = false;
+          }
+        })["catch"](function (error) {// if (error.response.status) {
+          //   this.errors = error.response.data.errors;
+          //   console.log(this.errors);
+          // }
+        });
+      } // alert(this.items[index].product_name);
+
+    }, 300),
+    //will find item exits in that items array or not
+    //used to elimate duplicate produt/item in items/products
+    hasItem: function hasItem(key) {
+      if (this.items.find(function (item) {
+        return item.stock_id === key;
+      })) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    clickSearchProductSuggestion: function clickSearchProductSuggestion(stock_id, product_id, custom_product_id, product_name, unit_id, cp, index) {
+      if (!this.hasItem(stock_id)) {
+        // console.log("Item not in List. So adding");
+        Vue.set(this.items[index], "product_id", product_id);
+        Vue.set(this.items[index], "custom_product_id", custom_product_id);
+        Vue.set(this.items[index], "product_name", product_name);
+        Vue.set(this.items[index], "unit_id", unit_id);
+        Vue.set(this.items[index], "stock_id", stock_id);
+        Vue.set(this.items[index], "price", parseFloat(cp));
+        Vue.set(this.cloneItems[index], "product_id", product_id);
+        Vue.set(this.cloneItems[index], "custom_product_id", custom_product_id);
+        Vue.set(this.cloneItems[index], "product_name", product_name);
+        Vue.set(this.cloneItems[index], "unit_id", unit_id);
+        Vue.set(this.items[index], "stock_id", stock_id);
+        Vue.set(this.cloneItems[index], "price", parseFloat(cp)); // this.items[index] = this.items[index] + (this.store.profit_percentage)/100;
+        // console.log(product_id);
+        // console.log(product_name);
+        // console.log(index);
+
+        this.queryResultsProducts = new Array();
+      } else {
+        // console.log("Item exits in list so deleting the current index item to remove duplicate entry in items array");
+        this.displayToastErrorMessage('Opps', product_name + ' already on the list. You can increase the quantity or choose different stock ');
+        this.items.splice(index);
+        this.cloneItems.splice(index);
+        this.queryResultsProducts = new Array();
+      }
+    },
+    clickSearchSuggestion: function clickSearchSuggestion(supplier_id, supplier_name) {
+      Vue.set(this.info, "supplier_id", supplier_id);
+      Vue.set(this.info, "supplier_name", supplier_name);
+      this.queryResults = null;
+      var matches = supplier_name.match(/\b(\w)/g);
+      this.tempCustomDeliveryNoteID = matches.join('');
+      this.tempCustomDeliveryNoteID = this.tempCustomDeliveryNoteID + '-' + supplier_id;
+      this.info.supplier_short_name = this.tempCustomDeliveryNoteID;
+    },
+    displayToastErrorMessage: function displayToastErrorMessage(title, message) {
+      this.$toast.error({
+        title: title,
+        message: message
+      });
+    },
     //methods codes here
     handleSuccessExportCSV: function handleSuccessExportCSV() {
       console.log("success Export");
@@ -4919,7 +5409,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     editDeliveryNote: function editDeliveryNote(id) {
-      var _this = this;
+      var _this3 = this;
 
       this.$Progress.start(); // //this.$Progress.start();
 
@@ -4931,14 +5421,14 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get("/api/deliverynotes/" + id).then(function (response) {
         // console.log(response.data.deliverynote)
-        Vue.set(_this.deliverynote, "name", response.data.deliverynote.name);
-        Vue.set(_this.deliverynote, "description", response.data.deliverynote.description);
-        Vue.set(_this.deliverynote, "id", id); //to send id to the update controller
+        Vue.set(_this3.deliverynote, "name", response.data.deliverynote.name);
+        Vue.set(_this3.deliverynote, "description", response.data.deliverynote.description);
+        Vue.set(_this3.deliverynote, "id", id); //to send id to the update controller
 
-        _this.$Progress.finish();
+        _this3.$Progress.finish();
       })["catch"](function (error) {
         // console.log(error)
-        _this.$Progress.fail();
+        _this3.$Progress.fail();
       });
     },
     updateDeliveryNote: function updateDeliveryNote() {
@@ -5018,7 +5508,7 @@ __webpack_require__.r(__webpack_exports__);
         if (result.value) {
           //delete code here
           axios["delete"]("/api/deliverynotes/" + id).then(function (response) {
-            // alert('Purchase Removed');
+            // alert('DeliveryNote Removed');
             currObj.output = response.data.msg;
             currObj.status = response.data.status; //will get index of that deliverynote to delete and delete only that particular deliverynote only, to reduce server load to refresh everytime when data changed on database from this particular frontend view ----for ex, this.fetchDeliveryNotes();
 
@@ -5046,7 +5536,21 @@ __webpack_require__.r(__webpack_exports__);
       }
     } //has permision
 
-  } //end of methods
+  },
+  //end of methods
+  computed: {
+    //checks errors in the fields
+    subTotal: function subTotal() {
+      //reduce function is used to sum the array elements
+      this.info.subTotal = this.items.reduce(function (carry, item) {
+        return carry + parseFloat(item.quantity) * parseFloat(item.price);
+      }, 0);
+      return this.info.subTotal;
+    },
+    grandTotal: function grandTotal() {
+      return this.subTotal;
+    }
+  } //end of computed
 
 }); //end of default
 
@@ -160816,7 +161320,11 @@ var render = function() {
       _c(
         "b-modal",
         {
-          attrs: { id: "bv-modal-add-deliverynote", "hide-footer": "" },
+          attrs: {
+            id: "bv-modal-add-deliverynote",
+            "hide-footer": "",
+            size: "xl"
+          },
           scopedSlots: _vm._u([
             {
               key: "modal-title",
@@ -160831,7 +161339,641 @@ var render = function() {
         },
         [
           _vm._v(" "),
-          _c("div", { staticClass: "d-block" }),
+          _c("div", { staticClass: "d-block" }, [
+            _c("div", { staticClass: "card-body shadow" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-sm-4" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Delivery Note No. (auto generated)")]),
+                    _vm._v(
+                      "\n              " +
+                        _vm._s(_vm.delivery_note_number) +
+                        "\n            "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _vm.info.supplier_id != null
+                    ? _c("div", { staticClass: "form-group" }, [
+                        _c("label", [
+                          _vm._v(
+                            "Actual Delivery Number(Reference Delivery Note ID)"
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("span", [
+                          _vm._v(
+                            _vm._s(_vm.info.supplier_short_name) +
+                              " -\n                " +
+                              _vm._s(_vm.info.delivery_note_reference_number)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.info.delivery_note_reference_number,
+                              expression: "info.delivery_note_reference_number"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text" },
+                          domProps: {
+                            value: _vm.info.delivery_note_reference_number
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.info,
+                                "delivery_note_reference_number",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.errors["info.delivery_note_reference_number"]
+                          ? _c("span", { class: ["errorText"] }, [
+                              _vm._v(
+                                "\n                " +
+                                  _vm._s(
+                                    _vm.errors[
+                                      "info.delivery_note_reference_number"
+                                    ][0]
+                                  ) +
+                                  "\n                "
+                              ),
+                              _c("br")
+                            ])
+                          : _vm._e()
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group",
+                      staticStyle: { position: "relative" }
+                    },
+                    [
+                      _c("label", [_vm._v("Supplier")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.info.supplier_name,
+                            expression: "info.supplier_name"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.info.supplier_name },
+                        on: {
+                          keyup: _vm.autoComplete,
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.info,
+                              "supplier_name",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.errors["info.supplier_name"]
+                        ? _c("span", { class: ["errorText"] }, [
+                            _vm._v(
+                              "\n                " +
+                                _vm._s(_vm.errors["info.supplier_name"][0]) +
+                                "\n                "
+                            ),
+                            _c("br")
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "supplier-search-suggestion" },
+                        _vm._l(_vm.queryResults, function(queryResult) {
+                          return _c(
+                            "div",
+                            {
+                              key: queryResult.id,
+                              staticClass: "supplier-search-suggestion-inner"
+                            },
+                            [
+                              _c("ul", [
+                                _c(
+                                  "li",
+                                  {
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.clickSearchSuggestion(
+                                          queryResult.id,
+                                          queryResult.name
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                      " +
+                                        _vm._s(queryResult.name) +
+                                        "\n                    "
+                                    )
+                                  ]
+                                )
+                              ])
+                            ]
+                          )
+                        }),
+                        0
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-4" }, [
+                  _c("div", { staticClass: "form-group" })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-4" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Note")]),
+                    _vm._v(" "),
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.info.note,
+                          expression: "info.note"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      domProps: { value: _vm.info.note },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.info, "note", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors["info.note"]
+                      ? _c("span", { class: ["errorText"] }, [
+                          _vm._v(_vm._s(_vm.errors["info.note"][0]))
+                        ])
+                      : _vm._e()
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _c(
+                      "div",
+                      { staticClass: "col-sm-6" },
+                      [
+                        _c("label", [_vm._v("Delivery Note Date")]),
+                        _vm._v(" "),
+                        _c("date-picker", {
+                          class: ["form-control"],
+                          attrs: { config: _vm.options },
+                          model: {
+                            value: _vm.info.delivery_note_date,
+                            callback: function($$v) {
+                              _vm.$set(_vm.info, "delivery_note_date", $$v)
+                            },
+                            expression: "info.delivery_note_date"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.errors["info.delivery_note_date"]
+                          ? _c("span", { class: ["errorText"] }, [
+                              _vm._v(
+                                _vm._s(_vm.errors["info.delivery_note_date"][0])
+                              )
+                            ])
+                          : _vm._e()
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "col-sm-6" },
+                      [
+                        _c("label", [_vm._v("Due Date")]),
+                        _vm._v(" "),
+                        _c("date-picker", {
+                          class: ["form-control"],
+                          attrs: { config: _vm.options },
+                          model: {
+                            value: _vm.info.due_date,
+                            callback: function($$v) {
+                              _vm.$set(_vm.info, "due_date", $$v)
+                            },
+                            expression: "info.due_date"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.errors["info.due_date"]
+                          ? _c("span", { class: ["errorText"] }, [
+                              _vm._v(_vm._s(_vm.errors["info.due_date"][0]))
+                            ])
+                          : _vm._e()
+                      ],
+                      1
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("hr"),
+              _vm._v(" "),
+              _c("div", { staticClass: "delivery_note" }, [
+                _c("div", { staticClass: "delivery_note-head" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-1" }, [
+                      _c("h6", [_vm._v("ID")])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-3" }, [
+                      _c("h6", [_vm._v("Product Name")])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-1" }, [
+                      _c("h6", [_vm._v("Quanity")])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-1" }, [
+                      _c("h6", [_vm._v("Unit")])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-2" }, [
+                      _c("h6", [_vm._v("Price")])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-2" }, [
+                      _c("h6", [_vm._v("Total")])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-2" }, [
+                      _c("h6", [_vm._v("Action")])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "delivery_note-body" },
+                  _vm._l(_vm.items, function(item, index) {
+                    return _c(
+                      "div",
+                      { key: item.id, staticClass: "delivery_note-items" },
+                      [
+                        _c("div", { staticClass: "row" }, [
+                          item.custom_product_id != null
+                            ? _c("div", { staticClass: "col-md-1" }, [
+                                _vm._v(
+                                  "\n                  " +
+                                    _vm._s(item.custom_product_id) +
+                                    "\n                "
+                                )
+                              ])
+                            : _c("div", { staticClass: "col-md-1" }, [
+                                _vm._v("#")
+                              ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-3" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass: "auto-complete-product-container"
+                              },
+                              [
+                                _c(
+                                  "div",
+                                  { staticClass: "form-group" },
+                                  [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: item.product_name,
+                                          expression: "item.product_name"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      class: {
+                                        "is-invalid":
+                                          _vm.errors[
+                                            "items." + index + ".product_name"
+                                          ]
+                                      },
+                                      attrs: {
+                                        type: "text",
+                                        placeholder: "Product Name"
+                                      },
+                                      domProps: { value: item.product_name },
+                                      on: {
+                                        keydown: function($event) {
+                                          return _vm.autoCompleteProduct(index)
+                                        },
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            item,
+                                            "product_name",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _vm.errors[
+                                      "items." + index + ".product_name"
+                                    ]
+                                      ? _c("span", { class: ["errorText"] }, [
+                                          _vm._v(
+                                            _vm._s(
+                                              _vm.errors[
+                                                "items." +
+                                                  index +
+                                                  ".product_name"
+                                              ][0]
+                                            )
+                                          )
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _vm._l(
+                                      _vm.queryResultsProducts[index],
+                                      function(queryResultsProduct) {
+                                        return _c(
+                                          "div",
+                                          {
+                                            key: queryResultsProduct.id,
+                                            staticClass:
+                                              "product-search-suggestion-delivery_note"
+                                          },
+                                          [
+                                            _c(
+                                              "ul",
+                                              _vm._l(
+                                                _vm.queryResultsProducts[index],
+                                                function(queryResultsProduct) {
+                                                  return _c(
+                                                    "li",
+                                                    {
+                                                      key:
+                                                        queryResultsProduct.id,
+                                                      on: {
+                                                        click: function(
+                                                          $event
+                                                        ) {
+                                                          return _vm.clickSearchProductSuggestion(
+                                                            queryResultsProduct.id,
+                                                            queryResultsProduct
+                                                              .product.id,
+                                                            queryResultsProduct
+                                                              .product
+                                                              .custom_product_id,
+                                                            queryResultsProduct
+                                                              .product.name,
+                                                            queryResultsProduct
+                                                              .product.unit.id,
+                                                            queryResultsProduct.price,
+                                                            index
+                                                          )
+                                                        }
+                                                      }
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "\n                            " +
+                                                          _vm._s(
+                                                            queryResultsProduct
+                                                              .product.name
+                                                          ) +
+                                                          " --\n                            " +
+                                                          _vm._s(
+                                                            queryResultsProduct.quantity
+                                                          ) +
+                                                          "\n                            " +
+                                                          _vm._s(
+                                                            queryResultsProduct
+                                                              .product.unit
+                                                              .short_name
+                                                          ) +
+                                                          "\n                            -- Rs. " +
+                                                          _vm._s(
+                                                            queryResultsProduct.price
+                                                          ) +
+                                                          "\n                          "
+                                                      )
+                                                    ]
+                                                  )
+                                                }
+                                              ),
+                                              0
+                                            )
+                                          ]
+                                        )
+                                      }
+                                    )
+                                  ],
+                                  2
+                                )
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-1" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: item.quantity,
+                                  expression: "item.quantity"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              class: {
+                                "is-invalid":
+                                  _vm.errors["items." + index + ".quantity"]
+                              },
+                              attrs: {
+                                type: "number",
+                                placeholder: "Quantity"
+                              },
+                              domProps: { value: item.quantity },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    item,
+                                    "quantity",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-1" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: item.unit,
+                                  expression: "item.unit"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              class: {
+                                "is-invalid":
+                                  _vm.errors["items." + index + ".unit"]
+                              },
+                              attrs: { type: "text", placeholder: "Unit" },
+                              domProps: { value: item.unit },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(item, "unit", $event.target.value)
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-2" }, [
+                            item.product_id
+                              ? _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: item.price,
+                                      expression: "item.price"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  class: {
+                                    "is-invalid":
+                                      _vm.errors["items." + index + ".price"]
+                                  },
+                                  attrs: {
+                                    type: "text",
+                                    placeholder: "Enter the price"
+                                  },
+                                  domProps: { value: item.price },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        item,
+                                        "price",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                })
+                              : _vm._e()
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-2" }, [
+                            _c("span", { staticClass: "table-text" }, [
+                              _vm._v(_vm._s(item.quantity * item.price))
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-2" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-danger",
+                                staticStyle: { border: "none" },
+                                attrs: { href: "" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.removeLine(index)
+                                  }
+                                }
+                              },
+                              [
+                                _c("span", {
+                                  staticClass: "nc-icon nc-simple-remove",
+                                  staticStyle: { "font-size": "15px" }
+                                })
+                              ]
+                            )
+                          ])
+                        ])
+                      ]
+                    )
+                  }),
+                  0
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "delivery_note-foot" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-2" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "table-add_line btn btn-primary",
+                          on: { click: _vm.addNewLine }
+                        },
+                        [_c("span", { staticClass: "fa fa-plus-circle" })]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-2" }, [
+                      _c("h6", [_vm._v("Grand Total")]),
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.grandTotal) +
+                          "\n              "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-2" }, [
+                      _c("h6", [_vm._v("SubTotal")]),
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.subTotal) +
+                          "\n              "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-2" })
+                  ])
+                ])
+              ])
+            ])
+          ]),
           _vm._v(" "),
           _c(
             "b-button",

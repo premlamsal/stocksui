@@ -370,3 +370,19 @@ Route::get('permission/{id}', 'PermissionController@show');
 Route::delete('permission/{id}', 'PermissionController@destroy');
 
 
+
+
+
+//deliverynotes
+
+Route::get('deliverynotes', 'DeliveryNoteController@index');
+
+Route::post('deliverynote', 'DeliveryNoteController@store');
+
+Route::put('deliverynote', 'DeliveryNoteController@update');
+
+Route::get('deliverynote/{id}', 'DeliveryNoteController@show');
+
+Route::delete('deliverynote/{id}', 'DeliveryNoteController@destroy');
+
+
