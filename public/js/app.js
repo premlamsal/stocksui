@@ -5386,142 +5386,86 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     addDeliveryNote: function addDeliveryNote() {
-      this.$Progress.start();
+      //Add
+      this.info.status = "To Pay";
       var currObj = this;
-      axios.post("/api/deliverynotes", this.deliverynotes).then(function (response) {
+      axios.post("/api/deliverynote", {
+        info: this.info,
+        items: this.items
+      }).then(function (response) {
         currObj.output = response.data.msg;
         currObj.status = response.data.status;
         currObj.$swal("Info", currObj.output, currObj.status);
-        currObj.$bvModal.hide("bv-modal-add-deliverynotes");
         currObj.errors = ""; //clearing errors
-
-        currObj.deliverynotes.name = "";
-        currObj.deliverynotes.description = "";
-        currObj.$Progress.finish();
-        currObj.fetchDeliveryNotes();
       })["catch"](function (error) {
-        currObj.$Progress.fail();
-
         if (error.response.status == 422) {
           currObj.validationErrors = error.response.data.errors;
           currObj.errors = currObj.validationErrors; // console.log(currObj.errors);
-        }
-      });
-    },
-    editDeliveryNote: function editDeliveryNote(id) {
-      var _this3 = this;
 
-      this.$Progress.start(); // //this.$Progress.start();
-
-      this.modalForName = "Edit DeliveryNote";
-      this.modalForCode = 1; // 1 for Edit
-
-      this.$bvModal.show("bv-modal-add-deliverynote");
-      this.errors = ""; //clearing errors
-
-      axios.get("/api/deliverynotes/" + id).then(function (response) {
-        // console.log(response.data.deliverynote)
-        Vue.set(_this3.deliverynote, "name", response.data.deliverynote.name);
-        Vue.set(_this3.deliverynote, "description", response.data.deliverynote.description);
-        Vue.set(_this3.deliverynote, "id", id); //to send id to the update controller
-
-        _this3.$Progress.finish();
-      })["catch"](function (error) {
-        // console.log(error)
-        _this3.$Progress.fail();
-      });
-    },
-    updateDeliveryNote: function updateDeliveryNote() {
-      this.$Progress.start();
-      var currObj = this;
-      var formData = new FormData();
-      formData.append("_method", "PUT"); //add this otherwise data won't pass to backend
-
-      formData.append("name", this.deliverynote.name);
-      formData.append("description", this.deliverynote.description);
-      formData.append("id", this.deliverynote.id);
-      axios.post("/api/deliverynote", formData).then(function (response) {
-        currObj.output = response.data.msg;
-        currObj.status = response.data.status; // alert(currObj.status);
-
-        currObj.$swal("Info", currObj.output, currObj.status);
-        currObj.$bvModal.hide("bv-modal-add-deliverynote");
-        currObj.deliverynote.name = "";
-        currObj.deliverynote.description = "";
-        currObj.errors = ""; //clearing errors
-
-        currObj.$Progress.finish();
-        currObj.fetchDeliveryNote();
-      })["catch"](function (error) {
-        currObj.$Progress.fail();
-
-        if (error.response.status == 422) {
-          currObj.validationErrors = error.response.data.errors;
-          currObj.errors = currObj.validationErrors; // console.log(currObj.errors);
-        }
-      });
-    },
-    deleteDeliveryNote: function deleteDeliveryNote(id) {
-      this.$Progress.start();
-      var currObj = this;
-      this.$swal({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!"
-      }).then(function (result) {
-        if (result.value) {
-          axios["delete"]("/api/deliverynote/" + id).then(function (response) {
-            currObj.output = response.data.msg;
-            currObj.status = response.data.status; // alert(currObj.status);
-
-            var index_to_delete = currObj.deliverynotes.findIndex(function (deliverynote) {
-              return deliverynote.id === id;
-            });
-            currObj.deliverynotes.splice(index_to_delete, 1);
-            currObj.$Progress.finish(); // alert(currObj.status);
-
-            currObj.$swal("Info", currObj.output, currObj.status);
-          })["catch"](function (error) {
-            // currObj.output=error;
-            // console.log(currObj.output);
-            currObj.$Progress.fail();
+          currObj.$toast.error({
+            title: "Opps!!",
+            message: error.response.data.message
           });
         }
       });
     },
-    //end of deleteDeliveryNote()
-    deletefetchDeliveryNote: function deletefetchDeliveryNote(id) {
+    editDeliveryNote: function editDeliveryNote(id) {
       this.$Progress.start();
       var currObj = this;
-      this.$swal({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!"
-      }).then(function (result) {
-        if (result.value) {
-          //delete code here
-          axios["delete"]("/api/deliverynotes/" + id).then(function (response) {
-            // alert('DeliveryNote Removed');
-            currObj.output = response.data.msg;
-            currObj.status = response.data.status; //will get index of that deliverynote to delete and delete only that particular deliverynote only, to reduce server load to refresh everytime when data changed on database from this particular frontend view ----for ex, this.fetchDeliveryNotes();
+      this.modalForName = "Edit Delivery Note";
+      this.modalForCode = 1; // 1 for Edit
 
-            var index_to_delete = currObj.deliverynotes.findIndex(function (deliverynote) {
-              return deliverynote.id === id;
-            }); //splice will delete that deliverynote from the array as specfied with index
+      this.$bvModal.show('bv-modal-add-deliverynote');
+      currObj.errors = ''; //clearing errors
 
-            currObj.deliverynotes.splice(index_to_delete, 1);
-            currObj.$Progress.finish(); // alert(currObj.status);
+      axios.get("/api/deliverynote/" + this.id).then(function (response) {
+        Vue.set(currObj.info, "delivery_note_no", response.data.purchase.id), Vue.set(currObj.info, "note", response.data.purchase.note), Vue.set(currObj.info, "custom_delivery_note_id", response.data.deliverynote.custom_delivery_note_id), Vue.set(currObj.info, "title", response.data.deliverynote.title), Vue.set(currObj.info, "supplier_id", response.data.deliverynote.supplier_id), Vue.set(currObj.info, "supplier_name", response.data.deliverynote.supplier_name), Vue.set(currObj.info, "delivery_note_date", response.data.deliverynote.delivery_note_date), Vue.set(currObj.info, "due_date", response.data.deliverynote.due_date), Vue.set(currObj.info, "discount", response.data.deliverynote.discount), Vue.set(currObj.info, "status", response.data.deliverynote.status), //veu.set will make data reactive and updated
+        currObj.items = response.data.delivery_note.itmes, currObj.cloneItems = currObj.items;
+        this.$Progress.finish();
+      })["catch"](function (error) {
+        if (error.response.status == 404) {
+          currObj.$router.push({
+            name: "404"
+          });
+          this.$Progress.finish();
+        }
+      });
+    },
+    fetchPurchase: function fetchPurchase() {
+      var currObj = this;
+      axios.get("/api/purchase/" + this.id).then(function (response) {
+        Vue.set(currObj.info, "purchase_no", response.data.purchase.id), Vue.set(currObj.info, "note", response.data.purchase.note), Vue.set(currObj.info, "custom_purchase_id", response.data.purchase.custom_purchase_id), Vue.set(currObj.info, "title", response.data.purchase.title), Vue.set(currObj.info, "supplier_id", response.data.purchase.supplier_id), Vue.set(currObj.info, "supplier_name", response.data.purchase.supplier_name), Vue.set(currObj.info, "purchase_date", response.data.purchase.purchase_date), Vue.set(currObj.info, "due_date", response.data.purchase.due_date), Vue.set(currObj.info, "discount", response.data.purchase.discount), Vue.set(currObj.info, "status", response.data.purchase.status), //veu.set will make data reactive and updated
+        currObj.items = response.data.purchase.purchase_detail, currObj.cloneItems = currObj.items;
+      })["catch"](function (error) {
+        if (error.response.status == 404) {
+          currObj.$router.push({
+            name: "404"
+          });
+        }
+      });
+    },
+    //end of fetchPurchase
+    updateDeliveryNote: function updateDeliveryNote() {
+      var currObj = this;
+      axios.put("/api/deliverynote", {
+        info: this.info,
+        items: this.items,
+        id: this.id
+      }).then(function (response) {
+        currObj.output = response.data.msg;
+        currObj.status = response.data.status;
+        currObj.$swal("Info", currObj.output, currObj.status);
+        currObj.$router.push({
+          name: "purchases"
+        }); // currObj.errors = '';//clearing errors
+      })["catch"](function (error) {
+        if (error.response.status == 422) {
+          currObj.validationErrors = error.response.data.errors;
+          currObj.errors = currObj.validationErrors; // console.log(currObj.errors);
 
-            currObj.$swal("Info", currObj.output, currObj.status);
-          })["catch"](function (response) {
-            currObj.$Progress.fail();
+          currObj.$toast.error({
+            title: "Opps!!",
+            message: error.response.data.message
           });
         }
       });

@@ -15,8 +15,8 @@ class CreateDeliveryNoteDetailsTable extends Migration
     {
         Schema::create('delivery_note_details', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('purchase_id');
-            $table->foreign('purchase_id')->references('id')->on('purchases')->onDelete('cascade');
+            $table->unsignedBigInteger('delivery_note_id');
+            $table->foreign('delivery_note_id')->references('id')->on('delivery_notes')->onDelete('cascade');
 
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');

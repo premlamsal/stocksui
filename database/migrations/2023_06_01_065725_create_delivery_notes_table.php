@@ -15,8 +15,8 @@ class CreateDeliveryNotesTable extends Migration
     {
         Schema::create('delivery_notes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('custom_purchase_id')->nullable();
-            $table->date('purchase_date');
+            $table->string('custom_delivery_note_id')->nullable();
+            $table->date('delivery_note_date');
             $table->date('due_date');
             $table->string('image')->nullable();
             $table->string('note');
@@ -24,7 +24,7 @@ class CreateDeliveryNotesTable extends Migration
             $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
             $table->string('supplier_name');
             $table->string('sub_total');
-            $table->string('purchase_reference_id');
+            $table->string('delivery_note_reference_id');
             $table->decimal('grand_total');
             $table->string('status');
 
