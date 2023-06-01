@@ -238,7 +238,7 @@
                 <td>{{ product.opening_stock }}</td>
                 <td>{{ product.low_stock_alert_quantity }}</td>
 
-                <td>{{ product.unit.short_name }}</td>
+                <td>{{ product.unit }}</td>
                 <td>Rs. {{ product.price }}</td>
                 <td>
                   <button
@@ -390,35 +390,13 @@ export default {
     //this block will execute when component created
     this.fetchProducts();
     this.fetchCategories();
-    this.fetchUnits();
 
     this.setAvtarUploadImage();
   },
 
   methods: {
     //methods codes here
-    fetchUnits(page_url) {
-      this.$Progress.start();
-      this.isLoading = "Loading all Data";
-      page_url = page_url || "api/units";
-
-      let vm = this; // current pointer instance while going inside the another functional instance
-      axios
-        .get(page_url)
-        .then(function (response) {
-          vm.units = response.data.data;
-          // console.log(response.data);
-          if (vm.units.length != null) {
-            vm.makePagination(response.data.meta, response.data.links);
-          }
-          vm.isLoading = "";
-          vm.$Progress.finish();
-        })
-        .catch(function (error) {
-          // console.log();
-          vm.$Progress.fail();
-        });
-    },
+  
 
     handleSuccessExportCSV() {
       console.log("success Export");
@@ -560,7 +538,7 @@ export default {
 
       this.product.name = "";
       this.product.product_cat_id = "";
-      this.product.unit_id = "";
+      this.product.unit = "";
       this.product.address = "";
       this.product.phone = "";
       this.product.description = "";
@@ -605,7 +583,7 @@ export default {
         this.product.low_stock_alert_quantity
       );
 
-      formData.append("unit_id", this.product.unit_id);
+      formData.append("unit", this.product.unit);
       formData.append("description", this.product.description);
 
       // posting data //using post and sending form data as PUT to match the api route name setting
@@ -621,7 +599,7 @@ export default {
 
           currObj.product.name = "";
           currObj.product.product_cat_id = "";
-          currObj.product.unit_id = "";
+          currObj.product.unit = "";
           currObj.product.address = "";
           currObj.product.price = "";
           (currObj.product.low_stock_alert_quantity = ""),
@@ -662,7 +640,7 @@ export default {
             "description",
             response.data.product.description
           );
-          Vue.set(this.product, "unit_id", response.data.product.unit_id);
+          Vue.set(this.product, "unit", response.data.product.unit);
           Vue.set(this.product, "price", response.data.product.price);
           Vue.set(
             this.product,
@@ -706,7 +684,7 @@ export default {
       formData.append("name", this.product.name);
       formData.append("price", this.product.price);
       formData.append("product_cat_id", this.product.product_cat_id);
-      formData.append("unit_id", this.product.unit_id);
+      formData.append("unit", this.product.unit);
       // formData.append('opening_stock',this.product.opening_stock);
       formData.append("description", this.product.description);
       formData.append(
@@ -726,7 +704,7 @@ export default {
 
           currObj.product.name = "";
           currObj.product.product_cat_id = "";
-          currObj.product.unit_id = "";
+          currObj.product.unit = "";
           currObj.product.address = "";
           currObj.product.phone = "";
           currObj.product.low_stock_alert_quantity = "";

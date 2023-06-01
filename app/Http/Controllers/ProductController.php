@@ -27,7 +27,7 @@ class ProductController extends Controller
 
         $store_id = $user->stores[0]->id;
 
-        return ProductResource::collection(Product::where('store_id', $store_id)->with('unit')->with('category')->paginate(8));
+        return ProductResource::collection(Product::where('store_id', $store_id)->with('category')->paginate(8));
     }
 
     public function store(Request $request)
@@ -44,9 +44,8 @@ class ProductController extends Controller
             'description' => 'required|string|max:1000',
             'price' => 'required|string|max:1000',
             'low_stock_alert_quantity' => 'required|string|max:1000',
-
             'product_cat_id' => 'required|numeric ',
-            'unit_id' => 'required|numeric ',
+            'unit' => 'required|string|max:40 ',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4048',
 
         ]);
@@ -69,7 +68,7 @@ class ProductController extends Controller
         $product = new Product();
         $product->name = $request->input('name');
         $product->product_cat_id = $request->input('product_cat_id');
-        $product->unit_id = $request->input('unit_id');
+        $product->unit = $request->input('unit');
         $product->description = $request->input('description');
         $product->opening_stock = $request->input('opening_stock');
         $product->low_stock_alert_quantity = $request->input('low_stock_alert_quantity');
@@ -94,7 +93,7 @@ class ProductController extends Controller
             }
             $stock->product_id = $product->id;
             
-            $stock->unit_id = $request->input('unit_id');
+            $stock->unit = $request->input('unit');
 
             $stock->store_id = $store_id;
 
@@ -145,7 +144,7 @@ class ProductController extends Controller
             'name' => 'required|string|max:200',
             'description' => 'required|string|max:1000',
             'product_cat_id' => 'required|numeric ',
-            'unit_id' => 'required|numeric ',
+            'unit' => 'required|string|max:40 ',
             'price' => 'required|string|max:1000',
             'low_stock_alert_quantity' => 'required|string|max:1000',
 
@@ -159,7 +158,7 @@ class ProductController extends Controller
         $product = Product::where('id', $id)->where('store_id', $store_id)->first();
         $product->name = $request->input('name');
         $product->product_cat_id = $request->input('product_cat_id');
-        $product->unit_id = $request->input('unit_id');
+        $product->unit = $request->input('unit');
         $product->description = $request->input('description');
         $product->low_stock_alert_quantity = $request->input('low_stock_alert_quantity');
 
@@ -207,7 +206,7 @@ class ProductController extends Controller
 
         $store_id = $user->stores[0]->id;
 
-        $product = Product::where('id', $id)->where('store_id', $store_id)->with('category')->with('unit')->first();
+        $product = Product::where('id', $id)->where('store_id', $store_id)->with('category')->first();
 
         if ($product) {
             return response()->json([
@@ -252,11 +251,11 @@ class ProductController extends Controller
 
         $searchKey = $request->input('searchQuery');
         if ($searchKey != '') {
-            $product=Product::where('name', 'like', '%' . $searchKey . '%')->where('store_id', $store_id)->with('unit')->with('category')->get();
+            $product=Product::where('name', 'like', '%' . $searchKey . '%')->where('store_id', $store_id)->with('category')->get();
             $product_suggestion=array();
             for($i=0;$i<$product->count();$i++){
                 $temp=array();
-                $temp=Stock::where('product_id',$product[$i]->id)->with('product.unit')->get();
+                $temp=Stock::where('product_id',$product[$i]->id)->with('product')->get();
                 $product_suggestion[$i]=$temp;
             }
             return response()->json([

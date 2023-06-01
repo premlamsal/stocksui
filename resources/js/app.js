@@ -434,15 +434,6 @@ let routes = [
         }
       }
   },
-  //showProduct route
-
-  // showProductDetail route
-  {
-    path: '/:id/showProductDetail/',
-    name: 'showProductDetail',
-    component: require('./components/product/showProductDetail.vue').default,
-
-  },
   //users
 
   {

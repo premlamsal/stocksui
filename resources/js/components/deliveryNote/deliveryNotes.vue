@@ -123,7 +123,7 @@
               </div>
             </div>
           </div>
-          <hr />
+       
           <div class="delivery_note">
             <div class="delivery_note-head">
               <div class="row">
@@ -1126,3 +1126,138 @@ export default {
 
 }; //end of default
 </script>
+<style scoped>
+.delivery_note {
+  margin-top: 5em;
+}
+
+.delivery_note-body {
+  margin-top: 2em;
+  padding: 8px;
+}
+
+.delivery_note-head {
+  padding: 1em;
+  /*border-bottom: 1px solid #eee;*/
+  background: coral;
+  color: white;
+  box-shadow: 1px 7px 17px -12px;
+}
+
+.delivery_note-foot {
+  margin-top: 1em;
+  padding: 2em;
+  border-top: 1px solid #eee;
+}
+
+.datetime-picker {}
+
+.datetime-picker input {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.supplier-search-suggestion {
+  background: #fff;
+  position: absolute;
+  overflow-y: scroll;
+  height: auto;
+  max-height: 9em;
+  color: #000;
+  border: 1px solid #e2dfdf;
+  border-top: 0px;
+  width: 100%;
+  box-shadow: 1px 7px 17px -12px;
+  border-radius: 4px;
+}
+
+.supplier-search-suggestion-inner {
+  padding: 1px;
+  border-top: 1px solid #d6d6d6;
+}
+
+.supplier-search-suggestion-inner ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.supplier-search-suggestion-inner li {
+  cursor: pointer;
+  padding: 10px;
+}
+
+.supplier-search-suggestion-inner li:hover {
+  background: #007bff;
+  color: #fff;
+}
+
+.supplier-search-suggestion::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #f5f5f5;
+}
+
+.supplier-search-suggestion::-webkit-scrollbar {
+  width: 6px;
+  background-color: #f5f5f5;
+}
+
+.supplier-search-suggestion::-webkit-scrollbar-thumb {
+  background-color: #000000;
+}
+
+.product-search-suggestion-delivery_note {
+  position: absolute;
+  /* background: #f4f3ef; */
+  width: 100%;
+  color: #212120;
+  /* padding-right: 12px; */
+  overflow-y: scroll;
+  max-height: 9em;
+  z-index: 1;
+  box-shadow: 1px 7px 17px -12px;
+  border-radius: 4px;
+}
+
+.product-search-suggestion-delivery_note ul {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.product-search-suggestion-delivery_note ul li {
+  padding: 10px;
+  cursor: pointer;
+  background: #f4f3ef;
+}
+
+.product-search-suggestion-delivery_note ul li:hover {
+  background: #51cbce;
+  color: white;
+}
+
+.product-search-suggestion-delivery_note::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #f5f5f5;
+}
+
+.product-search-suggestion-delivery_note::-webkit-scrollbar {
+  width: 6px;
+  background-color: #f5f5f5;
+}
+
+.product-search-suggestion-delivery_note::-webkit-scrollbar-thumb {
+  background-color: #000000;
+}
+</style>

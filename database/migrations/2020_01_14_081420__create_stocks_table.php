@@ -25,7 +25,7 @@ class CreateStocksTable extends Migration
 
             $table->decimal('price');
 
-       
+            $table->string('unit');
 
             $table->unsignedBigInteger('store_id');
 
