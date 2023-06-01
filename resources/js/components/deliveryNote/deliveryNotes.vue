@@ -157,8 +157,8 @@
                 v-bind:key="item.id"
               >
                 <div class="row">
-                  <div class="col-md-1" v-if="item.custom_product_id != null">
-                    {{ item.custom_product_id }}
+                  <div class="col-md-1" v-if="item.product.custom_product_id != null">
+                    {{ item.product.custom_product_id }}
                   </div>
                   <div class="col-md-1" v-else>#</div>
                   <div class="col-md-3">
@@ -536,6 +536,7 @@ export default {
           quantity: "1",
           line_total: "",
           changed: true,
+          product:{},
         },
       ],
 
@@ -546,6 +547,8 @@ export default {
           quantity: "1",
           line_total: "",
           changed: false,
+          product:{},
+
         },
       ],
       delivery_note_number: "",

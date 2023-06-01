@@ -5083,14 +5083,16 @@ __webpack_require__.r(__webpack_exports__);
         price: "0",
         quantity: "1",
         line_total: "",
-        changed: true
+        changed: true,
+        product: {}
       }],
       cloneItems: [{
         product_name: "",
         price: "0",
         quantity: "1",
         line_total: "",
-        changed: false
+        changed: false,
+        product: {}
       }],
       delivery_note_number: "",
       info: {},
@@ -161426,11 +161428,11 @@ var render = function() {
                       { key: item.id, staticClass: "delivery_note-items" },
                       [
                         _c("div", { staticClass: "row" }, [
-                          item.custom_product_id != null
+                          item.product.custom_product_id != null
                             ? _c("div", { staticClass: "col-md-1" }, [
                                 _vm._v(
                                   "\n                  " +
-                                    _vm._s(item.custom_product_id) +
+                                    _vm._s(item.product.custom_product_id) +
                                     "\n                "
                                 )
                               ])
