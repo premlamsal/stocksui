@@ -5070,8 +5070,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 //custom toggle button
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -5192,9 +5190,9 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.info.supplier_name === "") {
         this.queryResults = new Array();
-        this.info.supplier_short_name = '';
+        this.info.supplier_short_name = "";
         this.info.supplier_id = null;
-        this.info.delivery_note_reference_number = '';
+        this.info.delivery_note_reference_number = "";
       } else {
         axios.post("api/suppliers/search", {
           searchQuery: this.info.supplier_name
@@ -5220,7 +5218,7 @@ __webpack_require__.r(__webpack_exports__);
         this.queryResultsProducts = new Array();
         this.showProductSuggestion = false;
       } else {
-        axios.post('/api/products/search', {
+        axios.post("/api/products/search", {
           searchQuery: this.items[index].product_name
         }).then(function (response) {
           _this2.queryResultsProducts[index] = response.data.data;
@@ -5271,7 +5269,7 @@ __webpack_require__.r(__webpack_exports__);
         this.queryResultsProducts = new Array();
       } else {
         // console.log("Item exits in list so deleting the current index item to remove duplicate entry in items array");
-        this.displayToastErrorMessage('Opps', product_name + ' already on the list. You can increase the quantity or choose different stock ');
+        this.displayToastErrorMessage("Opps", product_name + " already on the list. You can increase the quantity or choose different stock ");
         this.items.splice(index);
         this.cloneItems.splice(index);
         this.queryResultsProducts = new Array();
@@ -5282,8 +5280,8 @@ __webpack_require__.r(__webpack_exports__);
       Vue.set(this.info, "supplier_name", supplier_name);
       this.queryResults = null;
       var matches = supplier_name.match(/\b(\w)/g);
-      this.tempCustomDeliveryNoteID = matches.join('');
-      this.tempCustomDeliveryNoteID = this.tempCustomDeliveryNoteID + '-' + supplier_id;
+      this.tempCustomDeliveryNoteID = matches.join("");
+      this.tempCustomDeliveryNoteID = this.tempCustomDeliveryNoteID + "-" + supplier_id;
       this.info.supplier_short_name = this.tempCustomDeliveryNoteID;
     },
     displayToastErrorMessage: function displayToastErrorMessage(title, message) {
@@ -5411,40 +5409,28 @@ __webpack_require__.r(__webpack_exports__);
     },
     editDeliveryNote: function editDeliveryNote(id) {
       this.$Progress.start();
+      var matches;
+      var tempIDS;
       var currObj = this;
       this.modalForName = "Edit Delivery Note";
       this.modalForCode = 1; // 1 for Edit
 
-      this.$bvModal.show('bv-modal-add-deliverynote');
-      currObj.errors = ''; //clearing errors
+      this.$bvModal.show("bv-modal-add-deliverynote");
+      currObj.errors = ""; //clearing errors
 
-      axios.get("/api/deliverynote/" + this.id).then(function (response) {
-        Vue.set(currObj.info, "delivery_note_no", response.data.purchase.id), Vue.set(currObj.info, "note", response.data.purchase.note), Vue.set(currObj.info, "custom_delivery_note_id", response.data.deliverynote.custom_delivery_note_id), Vue.set(currObj.info, "title", response.data.deliverynote.title), Vue.set(currObj.info, "supplier_id", response.data.deliverynote.supplier_id), Vue.set(currObj.info, "supplier_name", response.data.deliverynote.supplier_name), Vue.set(currObj.info, "delivery_note_date", response.data.deliverynote.delivery_note_date), Vue.set(currObj.info, "due_date", response.data.deliverynote.due_date), Vue.set(currObj.info, "discount", response.data.deliverynote.discount), Vue.set(currObj.info, "status", response.data.deliverynote.status), //veu.set will make data reactive and updated
-        currObj.items = response.data.delivery_note.itmes, currObj.cloneItems = currObj.items;
-        this.$Progress.finish();
+      axios.get("/api/deliverynote/" + id).then(function (response) {
+        Vue.set(currObj.info, "delivery_note_no", response.data.delivery_note.id), Vue.set(currObj.info, "note", response.data.delivery_note.note), Vue.set(currObj.info, "custom_delivery_note_id", response.data.delivery_note.custom_delivery_note_id), Vue.set(currObj.info, "title", response.data.delivery_note.title), Vue.set(currObj.info, "supplier_id", response.data.delivery_note.supplier_id), Vue.set(currObj.info, "supplier_name", response.data.delivery_note.supplier_name), Vue.set(currObj.info, "due_date", response.data.delivery_note.due_date), Vue.set(currObj.info, "delivery_note_date", response.data.delivery_note.delivery_note_date), tempIDS = response.data.delivery_note.delivery_note_reference_id, tempIDS = tempIDS.split("-"), Vue.set(currObj.info, "delivery_note_reference_number", tempIDS[1]), currObj.clickSearchSuggestion(response.data.delivery_note.supplier_id, response.data.delivery_note.supplier_name), Vue.set(currObj.info, "delivery_note", response.data.delivery_note.due_date), Vue.set(currObj.info, "status", response.data.delivery_note.status), //veu.set will make data reactive and updated
+        currObj.items = response.data.delivery_note.delivery_note_detail, currObj.cloneItems = currObj.items;
+        currObj.$Progress.finish();
       })["catch"](function (error) {
         if (error.response.status == 404) {
           currObj.$router.push({
             name: "404"
           });
-          this.$Progress.finish();
+          currObj.$Progress.finish();
         }
       });
     },
-    fetchPurchase: function fetchPurchase() {
-      var currObj = this;
-      axios.get("/api/purchase/" + this.id).then(function (response) {
-        Vue.set(currObj.info, "purchase_no", response.data.purchase.id), Vue.set(currObj.info, "note", response.data.purchase.note), Vue.set(currObj.info, "custom_purchase_id", response.data.purchase.custom_purchase_id), Vue.set(currObj.info, "title", response.data.purchase.title), Vue.set(currObj.info, "supplier_id", response.data.purchase.supplier_id), Vue.set(currObj.info, "supplier_name", response.data.purchase.supplier_name), Vue.set(currObj.info, "purchase_date", response.data.purchase.purchase_date), Vue.set(currObj.info, "due_date", response.data.purchase.due_date), Vue.set(currObj.info, "discount", response.data.purchase.discount), Vue.set(currObj.info, "status", response.data.purchase.status), //veu.set will make data reactive and updated
-        currObj.items = response.data.purchase.purchase_detail, currObj.cloneItems = currObj.items;
-      })["catch"](function (error) {
-        if (error.response.status == 404) {
-          currObj.$router.push({
-            name: "404"
-          });
-        }
-      });
-    },
-    //end of fetchPurchase
     updateDeliveryNote: function updateDeliveryNote() {
       var currObj = this;
       axios.put("/api/deliverynote", {
@@ -5454,10 +5440,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         currObj.output = response.data.msg;
         currObj.status = response.data.status;
-        currObj.$swal("Info", currObj.output, currObj.status);
-        currObj.$router.push({
-          name: "purchases"
-        }); // currObj.errors = '';//clearing errors
+        currObj.$swal("Info", currObj.output, currObj.status); // currObj.errors = '';//clearing errors
       })["catch"](function (error) {
         if (error.response.status == 422) {
           currObj.validationErrors = error.response.data.errors;
@@ -82705,7 +82688,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.delivery_note[data-v-23e94b6f] {\n  margin-top: 5em;\n}\n.delivery_note-body[data-v-23e94b6f] {\n  margin-top: 2em;\n  padding: 8px;\n}\n.delivery_note-head[data-v-23e94b6f] {\n  padding: 1em;\n  /*border-bottom: 1px solid #eee;*/\n  background: coral;\n  color: white;\n  box-shadow: 1px 7px 17px -12px;\n}\n.delivery_note-foot[data-v-23e94b6f] {\n  margin-top: 1em;\n  padding: 2em;\n  border-top: 1px solid #eee;\n}\n.datetime-picker[data-v-23e94b6f] {}\n.datetime-picker input[data-v-23e94b6f] {\n  display: block;\n  width: 100%;\n  height: calc(1.5em + 0.75rem + 2px);\n  padding: 0.375rem 0.75rem;\n  font-size: 1rem;\n  font-weight: 400;\n  line-height: 1.5;\n  color: #495057;\n  background-color: #fff;\n  background-clip: padding-box;\n  border: 1px solid #ced4da;\n  border-radius: 0.25rem;\n  -webkit-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n}\n.supplier-search-suggestion[data-v-23e94b6f] {\n  background: #fff;\n  position: absolute;\n  overflow-y: scroll;\n  height: auto;\n  max-height: 9em;\n  color: #000;\n  border: 1px solid #e2dfdf;\n  border-top: 0px;\n  width: 100%;\n  box-shadow: 1px 7px 17px -12px;\n  border-radius: 4px;\n}\n.supplier-search-suggestion-inner[data-v-23e94b6f] {\n  padding: 1px;\n  border-top: 1px solid #d6d6d6;\n}\n.supplier-search-suggestion-inner ul[data-v-23e94b6f] {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n.supplier-search-suggestion-inner li[data-v-23e94b6f] {\n  cursor: pointer;\n  padding: 10px;\n}\n.supplier-search-suggestion-inner li[data-v-23e94b6f]:hover {\n  background: #007bff;\n  color: #fff;\n}\n.supplier-search-suggestion[data-v-23e94b6f]::-webkit-scrollbar-track {\n  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);\n  background-color: #f5f5f5;\n}\n.supplier-search-suggestion[data-v-23e94b6f]::-webkit-scrollbar {\n  width: 6px;\n  background-color: #f5f5f5;\n}\n.supplier-search-suggestion[data-v-23e94b6f]::-webkit-scrollbar-thumb {\n  background-color: #000000;\n}\n.product-search-suggestion-delivery_note[data-v-23e94b6f] {\n  position: absolute;\n  /* background: #f4f3ef; */\n  width: 100%;\n  color: #212120;\n  /* padding-right: 12px; */\n  overflow-y: scroll;\n  max-height: 9em;\n  z-index: 1;\n  box-shadow: 1px 7px 17px -12px;\n  border-radius: 4px;\n}\n.product-search-suggestion-delivery_note ul[data-v-23e94b6f] {\n  list-style: none;\n  margin: 0px;\n  padding: 0px;\n}\n.product-search-suggestion-delivery_note ul li[data-v-23e94b6f] {\n  padding: 10px;\n  cursor: pointer;\n  background: #f4f3ef;\n}\n.product-search-suggestion-delivery_note ul li[data-v-23e94b6f]:hover {\n  background: #51cbce;\n  color: white;\n}\n.product-search-suggestion-delivery_note[data-v-23e94b6f]::-webkit-scrollbar-track {\n  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);\n  background-color: #f5f5f5;\n}\n.product-search-suggestion-delivery_note[data-v-23e94b6f]::-webkit-scrollbar {\n  width: 6px;\n  background-color: #f5f5f5;\n}\n.product-search-suggestion-delivery_note[data-v-23e94b6f]::-webkit-scrollbar-thumb {\n  background-color: #000000;\n}\n", ""]);
+exports.push([module.i, "\n.delivery_note[data-v-23e94b6f] {\n  margin-top: 5em;\n}\n.delivery_note-body[data-v-23e94b6f] {\n  margin-top: 2em;\n  padding: 8px;\n}\n.delivery_note-head[data-v-23e94b6f] {\n  padding: 1em;\n  /*border-bottom: 1px solid #eee;*/\n  background: coral;\n  color: white;\n  box-shadow: 1px 7px 17px -12px;\n}\n.delivery_note-foot[data-v-23e94b6f] {\n  margin-top: 1em;\n  padding: 2em;\n  border-top: 1px solid #eee;\n}\n.datetime-picker[data-v-23e94b6f] {\n}\n.datetime-picker input[data-v-23e94b6f] {\n  display: block;\n  width: 100%;\n  height: calc(1.5em + 0.75rem + 2px);\n  padding: 0.375rem 0.75rem;\n  font-size: 1rem;\n  font-weight: 400;\n  line-height: 1.5;\n  color: #495057;\n  background-color: #fff;\n  background-clip: padding-box;\n  border: 1px solid #ced4da;\n  border-radius: 0.25rem;\n  -webkit-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n}\n.supplier-search-suggestion[data-v-23e94b6f] {\n  background: #fff;\n  position: absolute;\n  overflow-y: scroll;\n  height: auto;\n  max-height: 9em;\n  color: #000;\n  border: 1px solid #e2dfdf;\n  border-top: 0px;\n  width: 100%;\n  box-shadow: 1px 7px 17px -12px;\n  border-radius: 4px;\n}\n.supplier-search-suggestion-inner[data-v-23e94b6f] {\n  padding: 1px;\n  border-top: 1px solid #d6d6d6;\n}\n.supplier-search-suggestion-inner ul[data-v-23e94b6f] {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n.supplier-search-suggestion-inner li[data-v-23e94b6f] {\n  cursor: pointer;\n  padding: 10px;\n}\n.supplier-search-suggestion-inner li[data-v-23e94b6f]:hover {\n  background: #007bff;\n  color: #fff;\n}\n.supplier-search-suggestion[data-v-23e94b6f]::-webkit-scrollbar-track {\n  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);\n  background-color: #f5f5f5;\n}\n.supplier-search-suggestion[data-v-23e94b6f]::-webkit-scrollbar {\n  width: 6px;\n  background-color: #f5f5f5;\n}\n.supplier-search-suggestion[data-v-23e94b6f]::-webkit-scrollbar-thumb {\n  background-color: #000000;\n}\n.product-search-suggestion-delivery_note[data-v-23e94b6f] {\n  position: absolute;\n  /* background: #f4f3ef; */\n  width: 100%;\n  color: #212120;\n  /* padding-right: 12px; */\n  overflow-y: scroll;\n  max-height: 9em;\n  z-index: 1;\n  box-shadow: 1px 7px 17px -12px;\n  border-radius: 4px;\n}\n.product-search-suggestion-delivery_note ul[data-v-23e94b6f] {\n  list-style: none;\n  margin: 0px;\n  padding: 0px;\n}\n.product-search-suggestion-delivery_note ul li[data-v-23e94b6f] {\n  padding: 10px;\n  cursor: pointer;\n  background: #f4f3ef;\n}\n.product-search-suggestion-delivery_note ul li[data-v-23e94b6f]:hover {\n  background: #51cbce;\n  color: white;\n}\n.product-search-suggestion-delivery_note[data-v-23e94b6f]::-webkit-scrollbar-track {\n  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);\n  background-color: #f5f5f5;\n}\n.product-search-suggestion-delivery_note[data-v-23e94b6f]::-webkit-scrollbar {\n  width: 6px;\n  background-color: #f5f5f5;\n}\n.product-search-suggestion-delivery_note[data-v-23e94b6f]::-webkit-scrollbar-thumb {\n  background-color: #000000;\n}\n", ""]);
 
 // exports
 
@@ -161907,7 +161890,7 @@ var render = function() {
                       _vm._l(_vm.deliverynotes, function(deliverynote) {
                         return _c("tr", { key: deliverynote.id }, [
                           _c("td", [
-                            _vm._v(_vm._s(deliverynote.custom_deliverynote_id))
+                            _vm._v(_vm._s(deliverynote.custom_delivery_note_id))
                           ]),
                           _vm._v(" "),
                           _c("td", [
@@ -161915,7 +161898,7 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("td", [
-                            _vm._v(_vm._s(deliverynote.customer_name))
+                            _vm._v(_vm._s(deliverynote.supplier_name))
                           ]),
                           _vm._v(" "),
                           _c("td", [
@@ -161923,7 +161906,7 @@ var render = function() {
                               "\n                " +
                                 _vm._s(
                                   _vm._f("moment")(
-                                    deliverynote.deliverynote_date,
+                                    deliverynote.delivery_note_date,
                                     "from",
                                     "now"
                                   )
@@ -161933,7 +161916,7 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("td", [
-                            deliverynote.deliverynote_date ===
+                            deliverynote.delivery_note_date ===
                             deliverynote.due_date
                               ? _c(
                                   "span",
@@ -162001,7 +161984,14 @@ var render = function() {
                                   "button",
                                   {
                                     staticClass:
-                                      "btn btn-outline-success custom_btn_table"
+                                      "btn btn-outline-success custom_btn_table",
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.editDeliveryNote(
+                                          deliverynote.id
+                                        )
+                                      }
+                                    }
                                   },
                                   [
                                     _c("span", {
@@ -162211,7 +162201,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Grand Total")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Client")]),
+        _c("th", [_vm._v("Supplier")]),
         _vm._v(" "),
         _c("th", [_vm._v("Date")]),
         _vm._v(" "),

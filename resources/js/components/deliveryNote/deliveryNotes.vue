@@ -14,8 +14,7 @@
         {{ modalForName }}
       </template>
       <div class="d-block">
-        
-        <div class="card-body shadow" >
+        <div class="card-body shadow">
           <div class="row">
             <div class="col-sm-4">
               <div class="form-group">
@@ -123,7 +122,7 @@
               </div>
             </div>
           </div>
-       
+
           <div class="delivery_note">
             <div class="delivery_note-head">
               <div class="row">
@@ -211,9 +210,7 @@
                             >
                               {{ queryResultsProduct.product.name }} --
                               {{ queryResultsProduct.quantity }}
-                              {{
-                                queryResultsProduct.product.unit.short_name
-                              }}
+                              {{ queryResultsProduct.product.unit.short_name }}
                               -- Rs. {{ queryResultsProduct.price }}
                             </li>
                           </ul>
@@ -379,7 +376,7 @@
               <tr>
                 <th>Delivery Note No.</th>
                 <th>Grand Total</th>
-                <th>Client</th>
+                <th>Supplier</th>
                 <th>Date</th>
                 <th>Due Date</th>
                 <!-- <th>Status</th> -->
@@ -393,16 +390,16 @@
                 v-for="deliverynote in deliverynotes"
                 v-bind:key="deliverynote.id"
               >
-                <td>{{ deliverynote.custom_deliverynote_id }}</td>
+                <td>{{ deliverynote.custom_delivery_note_id }}</td>
                 <td>Rs. {{ deliverynote.grand_total }}</td>
-                <td>{{ deliverynote.customer_name }}</td>
+                <td>{{ deliverynote.supplier_name }}</td>
                 <td>
-                  {{ deliverynote.deliverynote_date | moment("from", "now") }}
+                  {{ deliverynote.delivery_note_date | moment("from", "now") }}
                 </td>
                 <td>
                   <span
                     v-if="
-                      deliverynote.deliverynote_date === deliverynote.due_date
+                      deliverynote.delivery_note_date === deliverynote.due_date
                     "
                     class="bg-danger text-white p-2"
                     >{{ deliverynote.due_date | moment("from", "now") }}</span
@@ -433,6 +430,7 @@
                   <button
                     class="btn btn-outline-success custom_btn_table"
                     v-if="hasPermission('edit_delivery_note')"
+                    @click="editDeliveryNote(deliverynote.id)"
                   >
                     <span class="fa fa-edit custom_icon_table"></span>
                   </button>
@@ -601,8 +599,8 @@ export default {
 
         .then(function (response) {
           // Vue.set(currObj.store, "id", response.data.store.id);
-          currObj.store.id=response.data.store.id;
-      
+          currObj.store.id = response.data.store.id;
+
           Vue.set(
             currObj.store,
             "delivery_note_id_count",
@@ -616,7 +614,7 @@ export default {
             parseInt(currObj.delivery_note_number[1]) + 1;
 
           currObj.delivery_note_number = currObj.delivery_note_number.join("-");
-          console.log(currObj.delivery_note_number)
+          console.log(currObj.delivery_note_number);
 
           currObj.isLoading = "";
         });
@@ -668,46 +666,45 @@ export default {
       this.cloneItems[index].line_total = this.items[index].line_total;
     },
 
-
-    autoComplete: _.debounce(function() {
+    autoComplete: _.debounce(function () {
       let currObj = this;
       if (this.info.supplier_name === "") {
         this.queryResults = new Array();
-        this.info.supplier_short_name='';
-        this.info.supplier_id=null;
-        this.info.delivery_note_reference_number='';
+        this.info.supplier_short_name = "";
+        this.info.supplier_id = null;
+        this.info.delivery_note_reference_number = "";
       } else {
         axios
           .post("api/suppliers/search", {
-            searchQuery: this.info.supplier_name
+            searchQuery: this.info.supplier_name,
           })
-          .then(response => {
+          .then((response) => {
             this.queryResults = response.data.data;
           })
-          .catch(error => {
+          .catch((error) => {
             if (error.response.status == 422) {
               currObj.validationErrors = error.response.data.errors;
               currObj.errors = currObj.validationErrors;
               // console.log(currObj.errors);
               currObj.$toast.error({
                 title: "Opps!!",
-                message: error.response.data.message
+                message: error.response.data.message,
               });
             }
           });
       }
     }, 300),
 
-    autoCompleteProduct: _.debounce(function(index) {
+    autoCompleteProduct: _.debounce(function (index) {
       if (this.items[index].product_name === "") {
         this.queryResultsProducts = new Array();
         this.showProductSuggestion = false;
       } else {
         axios
-          .post('/api/products/search',{
-            searchQuery:this.items[index].product_name 
+          .post("/api/products/search", {
+            searchQuery: this.items[index].product_name,
           })
-          .then(response => {
+          .then((response) => {
             this.queryResultsProducts[index] = response.data.data;
             if (this.queryResultsProducts[index].length > 0) {
               this.showProductSuggestion = true;
@@ -715,7 +712,7 @@ export default {
               this.showProductSuggestion = false;
             }
           })
-          .catch(error => {
+          .catch((error) => {
             // if (error.response.status) {
             //   this.errors = error.response.data.errors;
             //   console.log(this.errors);
@@ -728,15 +725,12 @@ export default {
     //will find item exits in that items array or not
     //used to elimate duplicate produt/item in items/products
     hasItem(key) {
-
-      if (this.items.find(item => item.stock_id === key)) {
-
+      if (this.items.find((item) => item.stock_id === key)) {
         return true;
       } else {
         return false;
       }
     },
-
 
     clickSearchProductSuggestion(
       stock_id,
@@ -747,8 +741,6 @@ export default {
       cp,
       index
     ) {
-
-
       if (!this.hasItem(stock_id)) {
         // console.log("Item not in List. So adding");
         Vue.set(this.items[index], "product_id", product_id);
@@ -761,11 +753,7 @@ export default {
 
         Vue.set(this.items[index], "stock_id", stock_id);
 
-
-        Vue.set(
-          this.items[index], "price" , parseFloat(cp)
-        );
-
+        Vue.set(this.items[index], "price", parseFloat(cp));
 
         Vue.set(this.cloneItems[index], "product_id", product_id);
 
@@ -777,11 +765,7 @@ export default {
 
         Vue.set(this.items[index], "stock_id", stock_id);
 
-        Vue.set(
-          this.cloneItems[index],
-          "price",
-          parseFloat(cp) 
-        );
+        Vue.set(this.cloneItems[index], "price", parseFloat(cp));
 
         // this.items[index] = this.items[index] + (this.store.profit_percentage)/100;
 
@@ -789,36 +773,38 @@ export default {
         // console.log(product_name);
         // console.log(index);
         this.queryResultsProducts = new Array();
-
       } else {
         // console.log("Item exits in list so deleting the current index item to remove duplicate entry in items array");
-        this.displayToastErrorMessage('Opps', product_name + ' already on the list. You can increase the quantity or choose different stock ');
-
+        this.displayToastErrorMessage(
+          "Opps",
+          product_name +
+            " already on the list. You can increase the quantity or choose different stock "
+        );
 
         this.items.splice(index);
 
         this.cloneItems.splice(index);
 
         this.queryResultsProducts = new Array();
-        
       }
     },
     clickSearchSuggestion(supplier_id, supplier_name) {
       Vue.set(this.info, "supplier_id", supplier_id);
       Vue.set(this.info, "supplier_name", supplier_name);
       this.queryResults = null;
+
       let matches = supplier_name.match(/\b(\w)/g);
-      this.tempCustomDeliveryNoteID=matches.join('');
-      this.tempCustomDeliveryNoteID=this.tempCustomDeliveryNoteID + '-' + supplier_id;
-      this.info.supplier_short_name=this.tempCustomDeliveryNoteID;
+      this.tempCustomDeliveryNoteID = matches.join("");
+      this.tempCustomDeliveryNoteID =
+        this.tempCustomDeliveryNoteID + "-" + supplier_id;
+      this.info.supplier_short_name = this.tempCustomDeliveryNoteID;
     },
     displayToastErrorMessage(title, message) {
       this.$toast.error({
         title: title,
-        message: message
+        message: message,
       });
     },
-
 
     //methods codes here
     handleSuccessExportCSV() {
@@ -928,121 +914,95 @@ export default {
       let currObj = this;
       axios
         .post("/api/deliverynote", { info: this.info, items: this.items })
-        .then(function(response) {
+        .then(function (response) {
           currObj.output = response.data.msg;
           currObj.status = response.data.status;
           currObj.$swal("Info", currObj.output, currObj.status);
           currObj.errors = ""; //clearing errors
         })
-        .catch(function(error) {
+        .catch(function (error) {
           if (error.response.status == 422) {
             currObj.validationErrors = error.response.data.errors;
             currObj.errors = currObj.validationErrors;
             // console.log(currObj.errors);
             currObj.$toast.error({
               title: "Opps!!",
-              message: error.response.data.message
+              message: error.response.data.message,
             });
           }
         });
     },
     editDeliveryNote(id) {
       this.$Progress.start();
+      let matches;
+      let tempIDS;
       let currObj = this;
       this.modalForName = "Edit Delivery Note";
       this.modalForCode = 1; // 1 for Edit
-      this.$bvModal.show('bv-modal-add-deliverynote');
-      currObj.errors = ''; //clearing errors
+      this.$bvModal.show("bv-modal-add-deliverynote");
+      currObj.errors = ""; //clearing errors
       axios
-        .get("/api/deliverynote/" + this.id)
+        .get("/api/deliverynote/" + id)
         .then(function (response) {
-          Vue.set(currObj.info, "delivery_note_no", response.data.purchase.id),
-            Vue.set(currObj.info, "note", response.data.purchase.note),
+          Vue.set(
+            currObj.info,
+            "delivery_note_no",
+            response.data.delivery_note.id
+          ),
+            Vue.set(currObj.info, "note", response.data.delivery_note.note),
             Vue.set(
               currObj.info,
               "custom_delivery_note_id",
-              response.data.deliverynote.custom_delivery_note_id
+              response.data.delivery_note.custom_delivery_note_id
             ),
-            Vue.set(currObj.info, "title", response.data.deliverynote.title),
+            Vue.set(currObj.info, "title", response.data.delivery_note.title),
             Vue.set(
               currObj.info,
               "supplier_id",
-              response.data.deliverynote.supplier_id
+              response.data.delivery_note.supplier_id
             ),
             Vue.set(
               currObj.info,
               "supplier_name",
-              response.data.deliverynote.supplier_name
+              response.data.delivery_note.supplier_name
+            ),
+            Vue.set(
+              currObj.info,
+              "due_date",
+              response.data.delivery_note.due_date
             ),
             Vue.set(
               currObj.info,
               "delivery_note_date",
-              response.data.deliverynote.delivery_note_date
+              response.data.delivery_note.delivery_note_date
             ),
-            Vue.set(currObj.info, "due_date", response.data.deliverynote.due_date),
-            Vue.set(currObj.info, "discount", response.data.deliverynote.discount),
-            Vue.set(currObj.info, "status", response.data.deliverynote.status),
+            (tempIDS = response.data.delivery_note.delivery_note_reference_id),
+            (tempIDS = tempIDS.split("-")),
+            Vue.set(currObj.info, "delivery_note_reference_number", tempIDS[1]),
+            currObj.clickSearchSuggestion(
+              response.data.delivery_note.supplier_id,
+              response.data.delivery_note.supplier_name
+            ),
+            Vue.set(
+              currObj.info,
+              "delivery_note",
+              response.data.delivery_note.due_date
+            ),
+            Vue.set(currObj.info, "status", response.data.delivery_note.status),
             //veu.set will make data reactive and updated
-            (currObj.items = response.data.delivery_note.itmes),
+            (currObj.items = response.data.delivery_note.delivery_note_detail),
             (currObj.cloneItems = currObj.items);
-            this.$Progress.finish();
+            currObj.$Progress.finish();
         })
         .catch(function (error) {
           if (error.response.status == 404) {
             currObj.$router.push({ name: "404" });
-            this.$Progress.finish();
+            currObj.$Progress.finish();
           }
         });
-
     },
-    fetchPurchase() {
-      let currObj = this;
 
-      axios
-        .get("/api/purchase/" + this.id)
-        .then(function (response) {
-          Vue.set(currObj.info, "purchase_no", response.data.purchase.id),
-            Vue.set(currObj.info, "note", response.data.purchase.note),
-            Vue.set(
-              currObj.info,
-              "custom_purchase_id",
-              response.data.purchase.custom_purchase_id
-            ),
-            Vue.set(currObj.info, "title", response.data.purchase.title),
-            Vue.set(
-              currObj.info,
-              "supplier_id",
-              response.data.purchase.supplier_id
-            ),
-            Vue.set(
-              currObj.info,
-              "supplier_name",
-              response.data.purchase.supplier_name
-            ),
-            Vue.set(
-              currObj.info,
-              "purchase_date",
-              response.data.purchase.purchase_date
-            ),
-            Vue.set(currObj.info, "due_date", response.data.purchase.due_date),
-            Vue.set(currObj.info, "discount", response.data.purchase.discount),
-            Vue.set(currObj.info, "status", response.data.purchase.status),
-            //veu.set will make data reactive and updated
-            (currObj.items = response.data.purchase.purchase_detail),
-            (currObj.cloneItems = currObj.items);
-        })
-        .catch(function (error) {
-          if (error.response.status == 404) {
-            currObj.$router.push({ name: "404" });
-          }
-        });
-    }, //end of fetchPurchase
-
-   
-
-    
     updateDeliveryNote() {
-    
       let currObj = this;
       axios
         .put("/api/deliverynote", {
@@ -1054,7 +1014,7 @@ export default {
           currObj.output = response.data.msg;
           currObj.status = response.data.status;
           currObj.$swal("Info", currObj.output, currObj.status);
-          currObj.$router.push({ name: "purchases" });
+
           // currObj.errors = '';//clearing errors
         })
         .catch(function (error) {
@@ -1069,7 +1029,6 @@ export default {
           }
         });
     },
-
 
     hasPermission(action) {
       let permissions_from_store = this.$store.getters.permissions;
@@ -1088,21 +1047,18 @@ export default {
   computed: {
     //checks errors in the fields
 
-    subTotal: function() {
+    subTotal: function () {
       //reduce function is used to sum the array elements
-      this.info.subTotal = this.items.reduce(function(carry, item) {
+      this.info.subTotal = this.items.reduce(function (carry, item) {
         return carry + parseFloat(item.quantity) * parseFloat(item.price);
       }, 0);
       return this.info.subTotal;
     },
 
-   
-    grandTotal: function() {
+    grandTotal: function () {
       return this.subTotal;
-     
-    }
+    },
   }, //end of computed
-
 }; //end of default
 </script>
 <style scoped>
@@ -1129,7 +1085,8 @@ export default {
   border-top: 1px solid #eee;
 }
 
-.datetime-picker {}
+.datetime-picker {
+}
 
 .datetime-picker input {
   display: block;

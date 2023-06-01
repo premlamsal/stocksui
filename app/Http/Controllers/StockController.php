@@ -26,8 +26,7 @@ class StockController extends Controller
 
         $store_id = $user->stores[0]->id;
 
-        // return StockResource::collection(Stock::with('product')->with('unit')->paginate(8));
-        return StockResource::collection(Stock::with('product.unit')->where('store_id', $store_id)
+        return StockResource::collection(Stock::with('product')->where('store_id', $store_id)
                 ->paginate(8));
 
         // $data= DB::table('stocks as s')

@@ -144,6 +144,8 @@ class DeliveryNoteController extends Controller
                     if ($store->save()) {
 
                         $delivery_note_status_save = true;
+                        $jsonResponse = ['msg' => 'Successfully created delivery note', 'status' => 'success'];
+        
                     } else {
                         $jsonResponse = ['msg' => 'Failed updating the Data to the store.', 'status' => 'error3'];
                     }
@@ -161,4 +163,26 @@ class DeliveryNoteController extends Controller
 
         return response()->json($jsonResponse);
     }
+    public function show($id)
+    {
+
+        $this->authorize('hasPermission', 'show_delivery_note');
+
+        $user = User::findOrFail(Auth::user()->id);
+
+        $store_id = $user->stores[0]->id;
+        // Get delivery_note
+
+        $delivery_note = DeliveryNote::where('store_id', $store_id)->with('deliveryNoteDetail.product')->with('supplier')->findOrFail($id);
+        $supplier_id = $delivery_note->supplier_id;
+        $Supplier = Supplier::where('id', $supplier_id)->where('store_id', $store_id);
+
+        return response()
+            ->json([
+                'delivery_note' => $delivery_note,
+                'supplier' => $Supplier,
+
+            ]);
+    }
+
 }
