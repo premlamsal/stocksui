@@ -70,6 +70,7 @@
               >
 
               <input
+              style="cursor:pointer"
                 type="checkbox"
                 v-model="product.low_stock_alert_active"
                 class="checkbox"

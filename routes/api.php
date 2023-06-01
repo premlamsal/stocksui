@@ -60,6 +60,25 @@ Route::post('customer/update-payment/', 'CustomerPaymentController@update');
 
 
 
+//List contact
+Route::get('contacts', 'ContactController@index');
+
+//Create new contact
+Route::post('contact', 'ContactController@store');
+
+//List single contact
+Route::get('contact/{id}', 'ContactController@show');
+
+//Update contact
+Route::put('contact', 'ContactController@update');
+
+//Delete contact
+Route::delete('contact/{id}', 'ContactController@destroy');
+
+//Search Contacts
+Route::post('contacts/search', 'ContactController@searchContacts');
+
+
 
 //List supplier
 Route::get('suppliers', 'SupplierController@index');

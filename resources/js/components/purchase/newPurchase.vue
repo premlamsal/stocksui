@@ -245,7 +245,6 @@ export default {
       queryResults: [],
       queryResultsProducts: [],
       errors: [],
-      units: [],
       tempCustomPurchaseID:'',
 
       showProductSuggestion: false,
@@ -261,7 +260,6 @@ export default {
   created() {
     //methods to be executed while this page is created
     //for validation initializing the varibles
-    this.fetchUnits();
     this.fetchStore();
   },
 
@@ -566,17 +564,7 @@ export default {
       });
     },
 
-    fetchUnits() {
-      let vm = this; // current pointer instance while going inside the another functional instance
-      axios
-        .get("/api/units")
-        .then(function(response) {
-          vm.units = response.data.data;
-        })
-        .catch(function(error) {
-          console.log();
-        });
-    }
+   
   }, // end of methods
 
   computed: {

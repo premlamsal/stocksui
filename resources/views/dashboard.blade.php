@@ -79,6 +79,14 @@
             </router-link>
           </li>
           @endcan
+          @can('hasPermission','view_contacts')
+          <li>
+            <router-link  to="/contacts" aria-expanded="false">
+              <i class="nc-icon nc-badge"></i>
+                <span>Contact List</span>
+            </router-link>
+          </li>
+          @endcan
 
           @can('hasPermission','view_suppliers')
           <li>
@@ -89,9 +97,9 @@
           </li>
           @endcan
 
-          @can('hasPermission','view_invoices')
+          @can('hasPermission','view_delivery_notes')
           <li>
-            <router-link  to="/invoices" aria-expanded="false">
+            <router-link  to="/delivery-notes" aria-expanded="false">
               <i class="nc-icon nc-single-copy-04"></i>
                 <span>Delivery Notes</span>
             </router-link>

@@ -162,6 +162,20 @@ let routes = [
       }
 
   },
+  //invoice routes
+  {
+    path: '/delivery-notes',
+    name: 'delivery-notes',
+    component: require('./components/deliveryNote/deliveryNotes.vue').default,
+
+     beforeEnter(to, from, next) {
+        let hasAccess = store.getters.permissions
+        if (hasAccess.includes('view_delivery_notes') || hasAccess.includes('all')) {
+          next()
+        }
+      }
+
+  },
 
   {
     path: '/newInvoice',
@@ -324,6 +338,20 @@ let routes = [
      beforeEnter(to, from, next) {
         let hasAccess = store.getters.permissions
         if (hasAccess.includes('view_suppliers') || hasAccess.includes('all')) {
+          next()
+        }
+      }
+
+  },
+   //contact routes
+   {
+    path: '/contacts',
+    name: 'contacts',
+    component: require('./components/contacts/contacts.vue').default,
+    
+     beforeEnter(to, from, next) {
+        let hasAccess = store.getters.permissions
+        if (hasAccess.includes('view_contact') || hasAccess.includes('all')) {
           next()
         }
       }
