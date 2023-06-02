@@ -320,4 +320,56 @@ class DeliveryNoteController extends Controller
         return $pdf->output();
 
     }
+    public function destroy($id)
+    {
+
+        $user = User::findOrFail(Auth::user()->id);
+
+        $store_id = $user->stores[0]->id;
+        // Get Purchase
+        $delivery_note = DeliveryNote::where('id', $id)->where('store_id', $store_id)->first();
+
+        //get delivery_note details
+        $delivery_note_detail = DeliveryNoteDetail::where('delivery_note_id', $id)->get();
+
+        $countItems = count($delivery_note_detail);
+
+        // $timeStamp=now();
+
+        for ($i = 0; $i < $countItems; $i++) {
+            //get product id from each delivery_note details
+            $p_id = $delivery_note_detail[$i]['product_id'];
+
+            $p_qty = $delivery_note_detail[$i]['quantity'];
+
+            //finding stock to decrease the quantity of this delivery_note
+            $stock = Stock::where('store_id', $store_id)->where('product_id', $p_id);
+
+            $stock_id = $stock->value('id');
+
+            $stock_qty = $stock->value('quantity');
+
+            $stock = Stock::findOrFail($stock_id);
+
+            if ($stock_qty >= $p_qty) {
+
+                $stock->quantity = $stock_qty - $p_qty;
+            }
+            if ($stock->save()) {
+
+                if ($delivery_note->delete()) {
+
+                    return response()->json([
+                        'msg' => 'successfully Deleted',
+                        'status' => 'success',
+                    ]);
+                } else {
+                    return response()->json([
+                        'msg' => 'Delete Failed',
+                        'status' => 'error',
+                    ]);
+                }
+            }
+        }
+    }
 }

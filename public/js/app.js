@@ -5074,6 +5074,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 //custom toggle button
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -5527,6 +5528,35 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
+    deleteDeliveryNote: function deleteDeliveryNote(id) {
+      this.$Progress.start();
+      var currObj = this;
+      this.$swal({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.value) {
+          axios["delete"]('/api/deliverynote/' + id).then(function (response) {
+            currObj.output = response.data.msg;
+            currObj.status = response.data.status; // alert(currObj.status);
+
+            currObj.fetchDeliveryNotes();
+            currObj.$Progress.finish(); // alert(currObj.status);
+
+            currObj.$swal("Info", currObj.output, currObj.status);
+          })["catch"](function (error) {
+            currObj.$Progress.fail(); // currObj.output=error;
+            // console.log(currObj.output);
+          });
+        }
+      });
+    },
+    //end of deleteUnit()
     hasPermission: function hasPermission(action) {
       var permissions_from_store = this.$store.getters.permissions;
 
@@ -162088,7 +162118,14 @@ var render = function() {
                                   "button",
                                   {
                                     staticClass:
-                                      "btn btn-outline-danger custom_btn_table"
+                                      "btn btn-outline-danger custom_btn_table",
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.deleteDeliveryNote(
+                                          deliverynote.id
+                                        )
+                                      }
+                                    }
                                   },
                                   [
                                     _c("span", {

@@ -442,6 +442,7 @@
                   <button
                     class="btn btn-outline-danger custom_btn_table"
                     v-if="hasPermission('delete_delivery_note')"
+                    @click="deleteDeliveryNote(deliverynote.id)"
                   >
                     <span class="fa fa-trash custom_icon_table"></span>
                   </button>
@@ -1109,6 +1110,45 @@ export default {
           }
         });
     },
+
+    deleteDeliveryNote(id) {
+      this.$Progress.start();
+      let currObj = this;
+      this.$swal({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+
+        if (result.value) {
+          axios.delete('/api/deliverynote/' + id)
+            .then(function(response) {
+              currObj.output = response.data.msg;
+              currObj.status = response.data.status;
+              // alert(currObj.status);
+             
+             currObj.fetchDeliveryNotes();
+              currObj.$Progress.finish();
+              // alert(currObj.status);
+              currObj.$swal("Info", currObj.output, currObj.status);
+
+            }).catch(function(error) {
+              currObj.$Progress.fail();
+              // currObj.output=error;
+              // console.log(currObj.output);
+            })
+
+        }
+
+
+      });
+
+
+    }, //end of deleteUnit()
 
     hasPermission(action) {
       let permissions_from_store = this.$store.getters.permissions;
