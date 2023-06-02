@@ -48,7 +48,7 @@ class ContactController extends Controller
 
             'phone'   =>  'required|unique:suppliers,phone|numeric',
 
-            'contact_person' => 'required|string|max:400',
+            'role' => 'required|string|max:400',
 
             'details' => 'required|string|max:400',
 
@@ -63,7 +63,7 @@ class ContactController extends Controller
 
         $supplier->phone = $request->input('phone');
 
-        $supplier->contact_person = $request->input('contact_person');
+        $supplier->role = $request->input('role');
 
 
         $supplier->details = $request->input('details');
@@ -107,7 +107,7 @@ class ContactController extends Controller
 
             'details' => 'required|string|max:400',
 
-            'contact_person' => 'required|string|max:400',
+            'role' => 'required|string|max:400',
 
 
 
@@ -122,7 +122,7 @@ class ContactController extends Controller
 
         $supplier->address = $request->input('address');
 
-        $supplier->contact_person = $request->input('contact_person');
+        $supplier->role = $request->input('role');
 
         $supplier->phone = $request->input('phone');
 

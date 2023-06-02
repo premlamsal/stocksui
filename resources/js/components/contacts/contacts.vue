@@ -30,9 +30,9 @@
           <span v-if="errors.phone" :class="['errorText']">{{ errors.phone[0] }}</span>
         </div>
         <div class="form-group">
-          <label for="Contact-Person">Contact Person:</label>
-          <input type="text" v-model="contact.contact_person" :class="['form-control']">
-          <span v-if="errors.contact_person" :class="['errorText']">{{ errors.contact_person[0] }}</span>
+          <label for="Contact-Person">Role:</label>
+          <input type="text" v-model="contact.role" :class="['form-control']">
+          <span v-if="errors.role" :class="['errorText']">{{ errors.role[0] }}</span>
         </div>
         <div class="form-group">
           <label for="Phone">Details:</label>
@@ -91,7 +91,7 @@
                 <th>Name</th>
                 <th>Address</th>
                 <th>Phone</th>
-                <th>Contact Person</th>
+                <th>Role</th>
                 <th>Details</th>
                 <th>Updated at</th>
                 <th>Modify</th>
@@ -103,7 +103,7 @@
                 <td @click="contactProfile(contact.id)" class="cursor">{{contact.name}}</td>
                 <td>{{contact.address}}</td>
                 <td>{{contact.phone}}</td>
-                <td>{{contact.contact_person}}</td>
+                <td>{{contact.role}}</td>
                 <td>{{contact.details}}</td>
                 <td>{{contact.updated_at | moment("from", "now")}}</td>
                 <td>
@@ -255,7 +255,7 @@ export default {
       this.contact.name = '';
       this.contact.address = '';
       this.contact.phone = '';
-      this.contact.contact_person = '';
+      this.contact.role = '';
 
       this.contact.details = '';
       this.contact.opening_balance = '';
@@ -293,7 +293,7 @@ export default {
           currObj.contact.name = '';
           currObj.contact.address = '';
           currObj.contact.phone = '';
-          currObj.contact.contact_person = '';
+          currObj.contact.role = '';
 
           currObj.contact.details = '';
 
@@ -327,7 +327,7 @@ export default {
           // console.log(response.data.unit)
           Vue.set(this.contact, 'name', response.data.contact.name);
           Vue.set(this.contact, 'address', response.data.contact.address);
-          Vue.set(this.contact, 'contact_person', response.data.contact.contact_person);
+          Vue.set(this.contact, 'role', response.data.contact.role);
 
           Vue.set(this.contact, 'details', response.data.contact.details);
           Vue.set(this.contact, 'phone', response.data.contact.phone);
@@ -348,7 +348,7 @@ export default {
       formData.append('name', this.contact.name);
       formData.append('address', this.contact.address);
       formData.append('phone', this.contact.phone);
-      formData.append('contact_person', this.contact.contact_person);
+      formData.append('role', this.contact.role);
 
       formData.append('id', this.contact.id);
       formData.append('details',this.contact.details);
@@ -364,7 +364,7 @@ export default {
 
           currObj.contact.name = '';
           currObj.contact.address = '';
-          currObj.contact.contact_person = '';
+          currObj.contact.role = '';
 
           currObj.contact.phone = '';
           currObj.contact.details = '';
