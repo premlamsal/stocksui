@@ -103,7 +103,7 @@ class ContactController extends Controller
 
             'address' => 'required|string|max:200',
 
-            'phone'   => 'required|unique:contacts,phone|numeric',
+            'phone'   => 'required|numeric',
 
             'details' => 'required|string|max:400',
 
