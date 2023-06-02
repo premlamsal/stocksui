@@ -386,6 +386,9 @@ Route::get('deliverynote/{id}', 'DeliveryNoteController@show');
 
 Route::delete('deliverynote/{id}', 'DeliveryNoteController@destroy');
 
+Route::get('deliverynotepdf/{id}', 'DeliveryNoteController@pdfdownload');
+
+
 
 
 

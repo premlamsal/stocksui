@@ -5073,6 +5073,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 //custom toggle button
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -5159,6 +5160,22 @@ __webpack_require__.r(__webpack_exports__);
         changed: false,
         product: {}
       }];
+    },
+    downloadDeliveryNotePDF: function downloadDeliveryNotePDF(id) {
+      console.log('download-btn-pressed');
+      axios.get("api/deliverynotepdf/".concat(id), {
+        responseType: "blob"
+      }).then(function (response) {
+        var url = window.URL.createObjectURL(new Blob([response.data]));
+        var link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", "deliverynote.pdf"); //or any other extension
+
+        document.body.appendChild(link);
+        link.click();
+      })["catch"](function (error) {
+        console.log(error);
+      });
     },
     fetchStore: function fetchStore() {
       var currObj = this;
@@ -162025,7 +162042,14 @@ var render = function() {
                                   "button",
                                   {
                                     staticClass:
-                                      "btn btn-outline-primary custom_btn_table"
+                                      "btn btn-outline-primary custom_btn_table",
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.downloadDeliveryNotePDF(
+                                          deliverynote.id
+                                        )
+                                      }
+                                    }
                                   },
                                   [
                                     _c("span", {

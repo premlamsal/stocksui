@@ -11,7 +11,7 @@ use App\Stock;
 use App\Store;
 use App\Supplier;
 use App\User;
-use Barryvdh\DomPDF\PDF;
+
 
 class DeliveryNoteController extends Controller
 {
@@ -309,8 +309,15 @@ class DeliveryNoteController extends Controller
         $delivery_note = DeliveryNote::where('store_id', $store_id)->with('deliveryNoteDetail.product')->with('supplier')->findOrFail($id);
 
 
-        $pdf = PDF::loadView('delivery_note_pdf', compact('delivery_note', $delivery_note));
+        // return response()->json([
+        //     'msg' => $delivery_note,
+        //     'status' => 'error',
+        // ], 500);
+
+        $pdf = \PDF::loadView('delivery_note_pdf', ['delivery_note'=>$delivery_note]);
+        $pdf->setOption(['dpi' => 150, 'defaultFont' => 'sans-serif']);
         $pdf->setPaper('a4', 'portrait');
         return $pdf->output();
+
     }
 }

@@ -632,8 +632,9 @@ export default {
       ];
     },
     downloadDeliveryNotePDF(id) {
+      console.log('download-btn-pressed')
       axios
-        .get(`api/deliverynote/${id}`, {
+        .get(`api/deliverynotepdf/${id}`, {
           responseType: "blob",
         })
         .then((response) => {
