@@ -184,5 +184,117 @@ class DeliveryNoteController extends Controller
 
             ]);
     }
+    public function update(Request $request)
+    {
+
+        $this->authorize('hasPermission', 'edit_delivery_note');
+
+        $user = User::findOrFail(Auth::user()->id);
+
+        $store_id = $user->stores[0]->id;
+        // //validation
+        $this->validate($request, [
+
+            'info.note' => 'required | string |max:200',
+            'info.supplier_name' => 'required | string| max:200',
+            'info.supplier_id' => 'required',
+            'info.due_date' => 'required | date',
+            'info.delivery_note_date' => 'required | date',
+
+            'items.*.product_name' => 'required | string |max:200',
+            'items.*.price' => 'required | numeric',
+            'items.*.quantity' => 'required | numeric',
+
+        ]);
+        $id = $request->id; //we will get delivery note id here
+
+        $delivery_note = DeliveryNote::where('id', $id)->where('store_id', $store_id)->first();
+
+        $items = collect($request->items)->transform(function ($item) {
+            $item['line_total'] = $item['quantity'] * $item['price'];
+            return new DeliveryNoteDetail($item);
+        });
+
+        if ($items->isEmpty()) {
+            return response()
+                ->json([
+                    'items_empty' => ['One or more Item is required.'],
+                ], 422);
+        }
+
+        $store = Store::findOrFail($store_id);
+
+
+        $data = $request->info;
+
+        $data['sub_total'] = $items->sum('line_total');
+        $data['grand_total'] = $data['sub_total'];
+        $data['store_id'] = $store_id;
+
+        $data['delivery_note_reference_id'] = $data['supplier_short_name'] . '-' . $data['delivery_note_reference_number'];
+
+        //first get old items
+        // Get delivery_note
+        $delivery_note = DeliveryNote::where('id', $id)->where('store_id', $store_id)->first();
+
+        //get delivery_note details
+        $delivery_note_detail = DeliveryNoteDetail::where('delivery_note_id', $id)->get();
+
+        $countItems = count($delivery_note_detail);
+
+        $check_save_stock = false;
+
+        // $timeStamp=now();
+        if ($countItems != 0) {
+
+            for ($i = 0; $i < $countItems; $i++) {
+                //get product id from each delivery note details
+                $p_id = $delivery_note_detail[$i]['product_id'];
+
+                $old_delivery_note_detail_qty = $delivery_note_detail[$i]['quantity'];
+
+                //finding stock to decrease the quantity of this delivery_note
+                $stock = Stock::where('product_id', $p_id)->where('store_id', $store_id);
+
+                $stock_id = $stock->value('id');
+
+                $stock_qty = $stock->value('quantity');
+
+                $old_stock_qty = $stock_qty - $old_delivery_note_detail_qty;
+
+                $stock = Stock::where('id', $stock_id)->where('store_id', $store_id)->first();
+
+                $stock->quantity = $old_stock_qty + $items[$i]['quantity'];
+
+                if ($stock->save()) {
+                    $check_save_stock = true;
+                } else {
+                    $check_save_stock = false;
+                }
+            }
+            if ($check_save_stock) {
+
+                $delivery_note->update($data);
+
+                DeliveryNoteDetail::where('delivery_note_id', $delivery_note->id)->delete();
+
+                $delivery_note->deliveryNoteDetail()->saveMany($items);
+                return response()->json(['msg' => 'You have successfully updated the Delivery note.', 'status' => 'success']);
+            } else {
+                //saving stock fails
+                return response()->json(['msg' => 'Initial update to stock failed.', 'status' => 'error'], 500);
+            }
+
+            // check stock save status and do following
+
+        } else {
+
+            return response()->json([
+                'msg' => 'Update Failed. There is no items in this delivery note',
+                'status' => 'error',
+            ], 500);
+        }
+    }
+
 
 }

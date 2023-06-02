@@ -157,7 +157,10 @@
                 v-bind:key="item.id"
               >
                 <div class="row">
-                  <div class="col-md-1" v-if="item.product.custom_product_id != null">
+                  <div
+                    class="col-md-1"
+                    v-if="item.product.custom_product_id != null"
+                  >
                     {{ item.product.custom_product_id }}
                   </div>
                   <div class="col-md-1" v-else>#</div>
@@ -529,6 +532,7 @@ export default {
   },
   data() {
     return {
+      id: "",
       items: [
         {
           product_name: "",
@@ -536,7 +540,7 @@ export default {
           quantity: "1",
           line_total: "",
           changed: true,
-          product:{},
+          product: {},
         },
       ],
 
@@ -547,8 +551,7 @@ export default {
           quantity: "1",
           line_total: "",
           changed: false,
-          product:{},
-
+          product: {},
         },
       ],
       delivery_note_number: "",
@@ -938,7 +941,7 @@ export default {
     editDeliveryNote(id) {
       this.$Progress.start();
       let matches;
-      let tempIDS;
+      let tempIDS = "";
       let currObj = this;
       this.modalForName = "Edit Delivery Note";
       this.modalForCode = 1; // 1 for Edit
@@ -981,7 +984,8 @@ export default {
             ),
             (tempIDS = response.data.delivery_note.delivery_note_reference_id),
             (tempIDS = tempIDS.split("-")),
-            Vue.set(currObj.info, "delivery_note_reference_number", tempIDS[1]),
+            Vue.set(currObj.info, "delivery_note_reference_number", tempIDS[2]),
+            // console.log(tempIDS[2])
             currObj.clickSearchSuggestion(
               response.data.delivery_note.supplier_id,
               response.data.delivery_note.supplier_name
@@ -995,7 +999,7 @@ export default {
             //veu.set will make data reactive and updated
             (currObj.items = response.data.delivery_note.delivery_note_detail),
             (currObj.cloneItems = currObj.items);
-            currObj.$Progress.finish();
+          currObj.$Progress.finish();
         })
         .catch(function (error) {
           if (error.response.status == 404) {
@@ -1011,7 +1015,7 @@ export default {
         .put("/api/deliverynote", {
           info: this.info,
           items: this.items,
-          id: this.id,
+          id: this.info.delivery_note_no,
         })
         .then(function (response) {
           currObj.output = response.data.msg;

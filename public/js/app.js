@@ -5070,6 +5070,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 //custom toggle button
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -5078,6 +5081,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      id: "",
       items: [{
         product_name: "",
         price: "0",
@@ -5412,7 +5416,7 @@ __webpack_require__.r(__webpack_exports__);
     editDeliveryNote: function editDeliveryNote(id) {
       this.$Progress.start();
       var matches;
-      var tempIDS;
+      var tempIDS = "";
       var currObj = this;
       this.modalForName = "Edit Delivery Note";
       this.modalForCode = 1; // 1 for Edit
@@ -5421,7 +5425,8 @@ __webpack_require__.r(__webpack_exports__);
       currObj.errors = ""; //clearing errors
 
       axios.get("/api/deliverynote/" + id).then(function (response) {
-        Vue.set(currObj.info, "delivery_note_no", response.data.delivery_note.id), Vue.set(currObj.info, "note", response.data.delivery_note.note), Vue.set(currObj.info, "custom_delivery_note_id", response.data.delivery_note.custom_delivery_note_id), Vue.set(currObj.info, "title", response.data.delivery_note.title), Vue.set(currObj.info, "supplier_id", response.data.delivery_note.supplier_id), Vue.set(currObj.info, "supplier_name", response.data.delivery_note.supplier_name), Vue.set(currObj.info, "due_date", response.data.delivery_note.due_date), Vue.set(currObj.info, "delivery_note_date", response.data.delivery_note.delivery_note_date), tempIDS = response.data.delivery_note.delivery_note_reference_id, tempIDS = tempIDS.split("-"), Vue.set(currObj.info, "delivery_note_reference_number", tempIDS[1]), currObj.clickSearchSuggestion(response.data.delivery_note.supplier_id, response.data.delivery_note.supplier_name), Vue.set(currObj.info, "delivery_note", response.data.delivery_note.due_date), Vue.set(currObj.info, "status", response.data.delivery_note.status), //veu.set will make data reactive and updated
+        Vue.set(currObj.info, "delivery_note_no", response.data.delivery_note.id), Vue.set(currObj.info, "note", response.data.delivery_note.note), Vue.set(currObj.info, "custom_delivery_note_id", response.data.delivery_note.custom_delivery_note_id), Vue.set(currObj.info, "title", response.data.delivery_note.title), Vue.set(currObj.info, "supplier_id", response.data.delivery_note.supplier_id), Vue.set(currObj.info, "supplier_name", response.data.delivery_note.supplier_name), Vue.set(currObj.info, "due_date", response.data.delivery_note.due_date), Vue.set(currObj.info, "delivery_note_date", response.data.delivery_note.delivery_note_date), tempIDS = response.data.delivery_note.delivery_note_reference_id, tempIDS = tempIDS.split("-"), Vue.set(currObj.info, "delivery_note_reference_number", tempIDS[2]), // console.log(tempIDS[2])
+        currObj.clickSearchSuggestion(response.data.delivery_note.supplier_id, response.data.delivery_note.supplier_name), Vue.set(currObj.info, "delivery_note", response.data.delivery_note.due_date), Vue.set(currObj.info, "status", response.data.delivery_note.status), //veu.set will make data reactive and updated
         currObj.items = response.data.delivery_note.delivery_note_detail, currObj.cloneItems = currObj.items;
         currObj.$Progress.finish();
       })["catch"](function (error) {
@@ -5438,7 +5443,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.put("/api/deliverynote", {
         info: this.info,
         items: this.items,
-        id: this.id
+        id: this.info.delivery_note_no
       }).then(function (response) {
         currObj.output = response.data.msg;
         currObj.status = response.data.status;
