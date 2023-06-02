@@ -6544,6 +6544,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     var _ref;
@@ -6787,10 +6792,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios.get("/api/product/" + id).then(function (response) {
         // console.log(response.data.unit)
         Vue.set(_this.product, "name", response.data.product.name);
-        Vue.set(_this.product, "description", response.data.product.description);
+        Vue.set(currObj.product, "description", response.data.product.description);
         Vue.set(_this.product, "unit", response.data.product.unit);
         Vue.set(_this.product, "price", response.data.product.price);
-        Vue.set(_this.product, "low_stock_alert_active", json_decode(response.data.product.low_stock_alert_active));
+        Vue.set(_this.product, "low_stock_alert_active", JSON.parse(response.data.product.low_stock_alert_active));
         Vue.set(_this.product, "low_stock_alert_quantity", response.data.product.low_stock_alert_quantity); // Vue.set(this.product, 'opening_stock', response.data.product.opening_stock);
 
         Vue.set(_this.product, "product_cat_id", response.data.product.product_cat_id);

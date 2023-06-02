@@ -65,17 +65,22 @@
             <div class="checkboxlabel">
               <label
                 for="Stock Alert Checkbox"
-                style="display: flex; height: 23px; align-items: center;margin-right: 10px;"
+                style="
+                  display: flex;
+                  height: 23px;
+                  align-items: center;
+                  margin-right: 10px;
+                "
                 >Low Stock Alert Required ?</label
               >
 
               <input
-              style="cursor:pointer"
+                style="cursor: pointer"
                 type="checkbox"
                 v-model="product.low_stock_alert_active"
                 class="checkbox"
               />
-            
+
               <span
                 v-if="errors.low_stock_alert_active"
                 :class="['errorText']"
@@ -351,9 +356,7 @@ export default {
         },
       ], //contains all the retrived units from the database
 
-      product: {
-        
-      }, //for form single unit data
+      product: {}, //for form single unit data
 
       modalForName: "",
       modalForCode: 0,
@@ -398,7 +401,6 @@ export default {
 
   methods: {
     //methods codes here
-  
 
     handleSuccessExportCSV() {
       console.log("success Export");
@@ -638,19 +640,15 @@ export default {
           // console.log(response.data.unit)
           Vue.set(this.product, "name", response.data.product.name);
           Vue.set(
-            this.product,
+            currObj.product,
             "description",
             response.data.product.description
           );
           Vue.set(this.product, "unit", response.data.product.unit);
           Vue.set(this.product, "price", response.data.product.price);
-          
-          Vue.set(
-            this.product,
-            "low_stock_alert_active",
-            json_decode(response.data.product.low_stock_alert_active)
-          );
 
+          Vue.set(this.product, "low_stock_alert_active", JSON.parse(response.data.product.low_stock_alert_active));
+         
           Vue.set(
             this.product,
             "low_stock_alert_quantity",
