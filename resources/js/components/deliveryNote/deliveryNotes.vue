@@ -589,13 +589,46 @@ export default {
       ],
     };
   },
-
   created() {
     this.fetchDeliveryNotes();
     this.fetchStore();
   },
 
   methods: {
+    clearDeliveryNoteInput() {
+      this.delivery_note_number = "";
+      this.info = {};
+      this.store = {};
+      this.supplier = {};
+      this.queryResult = [];
+      this.queryResultsProducts = [];
+      this.errors = [];
+      this.tempCustomDeliveryNoteID = "";
+      this.showProductSuggestion = false;
+      this.delivery_notes = [];
+      this.deliverynotes_id = "";
+      this.id = "";
+      this.items = [
+        {
+          product_name: "",
+          price: "0",
+          quantity: "1",
+          line_total: "",
+          changed: true,
+          product: {},
+        },
+      ];
+      this.cloneItems = [
+        {
+          product_name: "",
+          price: "0",
+          quantity: "1",
+          line_total: "",
+          changed: false,
+          product: {},
+        },
+      ];
+    },
     fetchStore() {
       let currObj = this;
       this.isLoading = "Loading Data";
@@ -904,6 +937,7 @@ export default {
       this.errors = ""; //clearing errors
       // Vue.set(this.modalForCode,0);
       this.$bvModal.show("bv-modal-add-deliverynote");
+      this.clearDeliveryNoteInput();
     },
     callFunc() {
       if (this.modalForCode == 0) {
@@ -914,6 +948,7 @@ export default {
         // console.log("Edit DeliveryNote");
       }
     },
+
     addDeliveryNote() {
       //Add
       this.info.status = "To Pay";
@@ -924,7 +959,10 @@ export default {
           currObj.output = response.data.msg;
           currObj.status = response.data.status;
           currObj.$swal("Info", currObj.output, currObj.status);
+          currObj.$bvModal.hide("bv-modal-add-deliverynote");
+          currObj.fetchDeliveryNotes();
           currObj.errors = ""; //clearing errors
+          currObj.clearDeliveryNoteInput();
         })
         .catch(function (error) {
           if (error.response.status == 422) {
@@ -940,6 +978,7 @@ export default {
     },
     editDeliveryNote(id) {
       this.$Progress.start();
+      this.clearDeliveryNoteInput();
       let matches;
       let tempIDS = "";
       let currObj = this;
@@ -1021,6 +1060,10 @@ export default {
           currObj.output = response.data.msg;
           currObj.status = response.data.status;
           currObj.$swal("Info", currObj.output, currObj.status);
+          currObj.$bvModal.hide("bv-modal-add-deliverynote");
+          currObj.clearDeliveryNoteInput();
+
+          currObj.fetchDeliveryNotes();
 
           // currObj.errors = '';//clearing errors
         })

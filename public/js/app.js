@@ -5130,6 +5130,36 @@ __webpack_require__.r(__webpack_exports__);
     this.fetchStore();
   },
   methods: {
+    clearDeliveryNoteInput: function clearDeliveryNoteInput() {
+      this.delivery_note_number = "";
+      this.info = {};
+      this.store = {};
+      this.supplier = {};
+      this.queryResult = [];
+      this.queryResultsProducts = [];
+      this.errors = [];
+      this.tempCustomDeliveryNoteID = "";
+      this.showProductSuggestion = false;
+      this.delivery_notes = [];
+      this.deliverynotes_id = "";
+      this.id = "";
+      this.items = [{
+        product_name: "",
+        price: "0",
+        quantity: "1",
+        line_total: "",
+        changed: true,
+        product: {}
+      }];
+      this.cloneItems = [{
+        product_name: "",
+        price: "0",
+        quantity: "1",
+        line_total: "",
+        changed: false,
+        product: {}
+      }];
+    },
     fetchStore: function fetchStore() {
       var currObj = this;
       this.isLoading = "Loading Data";
@@ -5381,6 +5411,7 @@ __webpack_require__.r(__webpack_exports__);
       // Vue.set(this.modalForCode,0);
 
       this.$bvModal.show("bv-modal-add-deliverynote");
+      this.clearDeliveryNoteInput();
     },
     callFunc: function callFunc() {
       if (this.modalForCode == 0) {
@@ -5400,7 +5431,11 @@ __webpack_require__.r(__webpack_exports__);
         currObj.output = response.data.msg;
         currObj.status = response.data.status;
         currObj.$swal("Info", currObj.output, currObj.status);
+        currObj.$bvModal.hide("bv-modal-add-deliverynote");
+        currObj.fetchDeliveryNotes();
         currObj.errors = ""; //clearing errors
+
+        currObj.clearDeliveryNoteInput();
       })["catch"](function (error) {
         if (error.response.status == 422) {
           currObj.validationErrors = error.response.data.errors;
@@ -5415,6 +5450,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     editDeliveryNote: function editDeliveryNote(id) {
       this.$Progress.start();
+      this.clearDeliveryNoteInput();
       var matches;
       var tempIDS = "";
       var currObj = this;
@@ -5447,7 +5483,10 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         currObj.output = response.data.msg;
         currObj.status = response.data.status;
-        currObj.$swal("Info", currObj.output, currObj.status); // currObj.errors = '';//clearing errors
+        currObj.$swal("Info", currObj.output, currObj.status);
+        currObj.$bvModal.hide("bv-modal-add-deliverynote");
+        currObj.clearDeliveryNoteInput();
+        currObj.fetchDeliveryNotes(); // currObj.errors = '';//clearing errors
       })["catch"](function (error) {
         if (error.response.status == 422) {
           currObj.validationErrors = error.response.data.errors;
