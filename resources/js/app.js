@@ -149,19 +149,7 @@ let routes = [
 
   },
   //invoice routes
-  {
-    path: '/invoices',
-    name: 'invoices',
-    component: require('./components/invoice/invoices.vue').default,
-
-     beforeEnter(to, from, next) {
-        let hasAccess = store.getters.permissions
-        if (hasAccess.includes('view_invoices') || hasAccess.includes('all')) {
-          next()
-        }
-      }
-
-  },
+  
   //invoice routes
   {
     path: '/delivery-notes',
@@ -177,101 +165,8 @@ let routes = [
 
   },
 
-  {
-    path: '/newInvoice',
-    component: require('./components/invoice/newInvoice.vue').default,
-
-     beforeEnter(to, from, next) {
-        let hasAccess = store.getters.permissions
-        if (hasAccess.includes('add_invoices') || hasAccess.includes('all')) {
-          next()
-        }
-      }
-  },
-
-  {
-    path: '/:id/editInvoice',
-    name: 'editInvoice',
-    component: require('./components/invoice/editInvoice.vue').default,
-
-     beforeEnter(to, from, next) {
-        let hasAccess = store.getters.permissions
-        if (hasAccess.includes('edit_invoice') || hasAccess.includes('all')) {
-          next()
-        }
-      }
-  },
 
   
-
-  {
-    path: '/:id/showInvoice/',
-    name: 'showInvoice',
-    component: require('./components/invoice/showInvoice.vue').default,
-   
-     beforeEnter(to, from, next) {
-        let hasAccess = store.getters.permissions
-        if (hasAccess.includes('show_invoice') || hasAccess.includes('all')) {
-          next()
-        }
-      }
-  },
-
-  {
-    path: '/:id/printInvoice/',
-    name: 'printInvoice',
-    component: require('./components/invoice/printInvoice.vue').default
-
-  },
-
-  //estimate routes
-  {
-    path: '/estimates',
-    name: 'estimates',
-    component: require('./components/estimate/estimates.vue').default,
-   
-     beforeEnter(to, from, next) {
-        let hasAccess = store.getters.permissions
-        if (hasAccess.includes('view_estimates') || hasAccess.includes('all')) {
-          next()
-        }
-      }
-  },
-
-  {
-    path: '/newEstimate',
-    component: require('./components/estimate/newEstimate.vue').default,
-
-     beforeEnter(to, from, next) {
-        let hasAccess = store.getters.permissions
-        if (hasAccess.includes('add_estimate') || hasAccess.includes('all')) {
-          next()
-        }
-      }
-  },
-
-  {
-    path: '/:id/editEstimate',
-    name: 'editEstimate',
-    component: require('./components/estimate/editEstimate.vue').default,
-  
-     beforeEnter(to, from, next) {
-        let hasAccess = store.getters.permissions
-        if (hasAccess.includes('edit_estimate') || hasAccess.includes('all')) {
-          next()
-        }
-      }
-  },
-  {
-    path: '/:id/showEstimate/',
-    name: 'showEstimate',
-    component: require('./components/estimate/showEstimate.vue').default
-  },
-  {
-    path: '/:id/printEstimate/',
-    name: 'printEstimate',
-    component: require('./components/estimate/printEstimate.vue').default
-  },
 
   //purchase routes
   {

@@ -51,7 +51,7 @@
           <div class="card-footer ">
             <hr>
             <div class="stats">
-              <router-link to="/invoices" aria-expanded="false">
+              <router-link to="/contacts" aria-expanded="false">
                 <i class="nc-icon nc-badge"></i>
                 <span>Invoices</span>
               </router-link>
