@@ -22,7 +22,7 @@ class ContactController extends Controller
     public function index()
     {
 
-        $this->authorize('hasPermission', 'view_suppliers');
+        $this->authorize('hasPermission', 'view_contacts');
 
         $user = User::findOrFail(Auth::user()->id);
 
@@ -34,7 +34,7 @@ class ContactController extends Controller
     public function store(Request $request)
     {
 
-        $this->authorize('hasPermission', 'add_supplier)');
+        $this->authorize('hasPermission', 'add_contact)');
 
         $user = User::findOrFail(Auth::user()->id);
 
@@ -46,7 +46,7 @@ class ContactController extends Controller
 
             'address' => 'required|string|max:200',
 
-            'phone'   =>  'required|unique:suppliers,phone|numeric',
+            'phone'   =>  'required|unique:contacts,phone|numeric',
 
             'role' => 'required|string|max:400',
 
@@ -55,23 +55,23 @@ class ContactController extends Controller
 
         ]);
 
-        $supplier = new Contact();
+        $contact = new Contact();
 
-        $supplier->name = $request->input('name');
+        $contact->name = $request->input('name');
 
-        $supplier->address = $request->input('address');
+        $contact->address = $request->input('address');
 
-        $supplier->phone = $request->input('phone');
+        $contact->phone = $request->input('phone');
 
-        $supplier->role = $request->input('role');
-
-
-        $supplier->details = $request->input('details');
+        $contact->role = $request->input('role');
 
 
-        $supplier->store_id = $store_id;
+        $contact->details = $request->input('details');
 
-        if ($supplier->save()) {
+
+        $contact->store_id = $store_id;
+
+        if ($contact->save()) {
 
 
             return response()->json([
@@ -81,7 +81,7 @@ class ContactController extends Controller
         } else {
             return response()->json([
 
-                'msg'    => 'Error while adding supplier',
+                'msg'    => 'Error while adding contact',
 
                 'status' => 'error',
             ]);
@@ -91,7 +91,7 @@ class ContactController extends Controller
     public function update(Request $request)
     {
 
-        $this->authorize('hasPermission', 'edit_supplier)');
+        $this->authorize('hasPermission', 'edit_contact)');
 
         $user = User::findOrFail(Auth::user()->id);
 
@@ -103,7 +103,7 @@ class ContactController extends Controller
 
             'address' => 'required|string|max:200',
 
-            'phone'   => 'required|digits:10',
+            'phone'   => 'required|unique:contacts,phone|numeric',
 
             'details' => 'required|string|max:400',
 
@@ -116,20 +116,20 @@ class ContactController extends Controller
 
         $id = $request->input('id'); //get id from edit modal
 
-        $supplier = Contact::where('id', $id)->where('store_id', $store_id)->first();
+        $contact = Contact::where('id', $id)->where('store_id', $store_id)->first();
 
-        $supplier->name = $request->input('name');
+        $contact->name = $request->input('name');
 
-        $supplier->address = $request->input('address');
+        $contact->address = $request->input('address');
 
-        $supplier->role = $request->input('role');
+        $contact->role = $request->input('role');
 
-        $supplier->phone = $request->input('phone');
+        $contact->phone = $request->input('phone');
 
 
-        $supplier->store_id = $store_id;
+        $contact->store_id = $store_id;
 
-        if ($supplier->save()) {
+        if ($contact->save()) {
 
             return response()->json([
                 'msg' => 'Contact updated successfully',
@@ -139,7 +139,7 @@ class ContactController extends Controller
 
             return response()->json([
 
-                'msg'    => 'Error while updating supplier',
+                'msg'    => 'Error while updating contact',
                 'status' => 'error',
             ]);
         }
@@ -149,26 +149,18 @@ class ContactController extends Controller
     public function destroy($id)
     {
 
-        $this->authorize('hasPermission', 'delete_supplier)');
+        $this->authorize('hasPermission', 'delete_contact)');
 
         $user = User::findOrFail(Auth::user()->id);
 
         $store_id = $user->stores[0]->id;
 
-        $supplier = Contact::where('id', $id)->where('store_id', $store_id)->first();
-        if ($supplier->delete()) {
-            $ContactTransaction = ContactTransaction::where('customer_id', $supplier->id)->where('transaction_type', 'opening_balance')->first();
-            if ($ContactTransaction->delete()) {
-                return response()->json([
-                    'msg' => 'successfully Deleted',
-                    'status' => 'success',
-                ]);
-            } else {
-                return response()->json([
-                    'msg' => 'Error while deleting Contact transaction',
-                    'status' => 'error',
-                ]);
-            }
+        $contact = Contact::where('id', $id)->where('store_id', $store_id)->first();
+        if ($contact->delete()) {
+            return response()->json([
+                'msg' => 'successfully Deleted',
+                'status' => 'success',
+            ]);
         } else {
             return response()->json([
                 'msg'    => 'Error while deleting data',
@@ -180,20 +172,17 @@ class ContactController extends Controller
     public function show($id)
     {
 
-        $this->authorize('hasPermission', 'show_supplier');
+        $this->authorize('hasPermission', 'show_contact');
 
         $user = User::findOrFail(Auth::user()->id);
 
         $store_id = $user->stores[0]->id;
 
-        $supplier = Contact::where('id', $id)->where('store_id', $store_id)->first();
+        $contact = Contact::where('id', $id)->where('store_id', $store_id)->first();
 
-        $purchase_amount = Purchase::where('store_id', $store_id)->where('supplier_id', $id)->sum('grand_total');
-
-        if ($supplier->save()) {
+        if ($contact->save()) {
             return response()->json([
-                'supplier' => $supplier,
-                'purchase_amount' => $purchase_amount,
+                'contact' => $contact,
                 'status' => 'success',
             ]);
         } else {
@@ -207,7 +196,7 @@ class ContactController extends Controller
     public function searchContacts(Request $request)
     {
 
-        $this->authorize('hasPermission', 'search_supplier)');
+        $this->authorize('hasPermission', 'search_contact)');
 
         $user = User::findOrFail(Auth::user()->id);
 

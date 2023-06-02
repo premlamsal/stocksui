@@ -351,7 +351,9 @@ export default {
         },
       ], //contains all the retrived units from the database
 
-      product: {}, //for form single unit data
+      product: {
+        
+      }, //for form single unit data
 
       modalForName: "",
       modalForCode: 0,
@@ -642,9 +644,16 @@ export default {
           );
           Vue.set(this.product, "unit", response.data.product.unit);
           Vue.set(this.product, "price", response.data.product.price);
+          
           Vue.set(
             this.product,
-            "price",
+            "low_stock_alert_active",
+            json_decode(response.data.product.low_stock_alert_active)
+          );
+
+          Vue.set(
+            this.product,
+            "low_stock_alert_quantity",
             response.data.product.low_stock_alert_quantity
           );
 

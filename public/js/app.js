@@ -10142,7 +10142,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         Vue.set(_this.product, "description", response.data.product.description);
         Vue.set(_this.product, "unit", response.data.product.unit);
         Vue.set(_this.product, "price", response.data.product.price);
-        Vue.set(_this.product, "price", response.data.product.low_stock_alert_quantity); // Vue.set(this.product, 'opening_stock', response.data.product.opening_stock);
+        Vue.set(_this.product, "low_stock_alert_active", json_decode(response.data.product.low_stock_alert_active));
+        Vue.set(_this.product, "low_stock_alert_quantity", response.data.product.low_stock_alert_quantity); // Vue.set(this.product, 'opening_stock', response.data.product.opening_stock);
 
         Vue.set(_this.product, "product_cat_id", response.data.product.product_cat_id);
         _this.imagePreview = response.data.product.image;
