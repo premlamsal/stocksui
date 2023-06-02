@@ -111,8 +111,8 @@ class PurchaseController extends Controller
 
         $jsonResponse = array();
 
-        //set current delivery_note_id_count to store table
-        $store->delivery_note_id_count = $new_count_purchase_id;
+        //set current purchase_id_count to store table
+        $store->purchase_id_count = $new_count_purchase_id;
         if ($store->save()) {
             $jsonResponse = ['msg' => 'Successfully created purchase note', 'status' => 'success'];
         } else {

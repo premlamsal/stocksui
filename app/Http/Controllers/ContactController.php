@@ -48,9 +48,9 @@ class ContactController extends Controller
 
             'phone'   =>  'required|unique:contacts,phone|numeric',
 
-            'role' => 'required|string|max:400',
+            'role' => 'required|string|max:30',
 
-            'details' => 'required|string|max:400',
+            'company' => 'required|string|max:50',
 
 
         ]);
@@ -66,7 +66,7 @@ class ContactController extends Controller
         $contact->role = $request->input('role');
 
 
-        $contact->details = $request->input('details');
+        $contact->company = $request->input('company');
 
 
         $contact->store_id = $store_id;
@@ -105,9 +105,9 @@ class ContactController extends Controller
 
             'phone'   => 'required|numeric',
 
-            'details' => 'required|string|max:400',
+            'company' => 'required|string|max:50',
 
-            'role' => 'required|string|max:400',
+            'role' => 'required|string|max:30',
 
 
 

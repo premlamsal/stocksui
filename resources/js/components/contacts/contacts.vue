@@ -35,9 +35,9 @@
           <span v-if="errors.role" :class="['errorText']">{{ errors.role[0] }}</span>
         </div>
         <div class="form-group">
-          <label for="Phone">Details:</label>
-          <textarea v-model="contact.details" :class="['form-control']"></textarea>
-          <span v-if="errors.details" :class="['errorText']">{{ errors.details[0] }}</span>
+          <label for="Phone">Company:</label>
+          <input type="text" v-model="contact.company" :class="['form-control']">
+          <span v-if="errors.company" :class="['errorText']">{{ errors.company[0] }}</span>
         </div>
       </div>
       <b-button class="btn-primary mt-3" block @click="callFunc">{{modalForName}}</b-button>
@@ -92,7 +92,7 @@
                 <th>Address</th>
                 <th>Phone</th>
                 <th>Role</th>
-                <th>Details</th>
+                <th>Company</th>
                 <th>Updated at</th>
                 <th>Modify</th>
               </tr>
@@ -104,7 +104,7 @@
                 <td>{{contact.address}}</td>
                 <td>{{contact.phone}}</td>
                 <td>{{contact.role}}</td>
-                <td>{{contact.details}}</td>
+                <td>{{contact.company}}</td>
                 <td>{{contact.updated_at | moment("from", "now")}}</td>
                 <td>
                   <button class="btn btn-success custom_btn_table" @click=editContact(contact.id) v-if="hasPermission('edit_contact')"><span class="fa fa-edit custom_icon_table"></span></button>
@@ -167,7 +167,7 @@ export default {
 
       // store_id: 3 ,
 
-      contacts_export_fileds:["name","address","phone","details"],
+      contacts_export_fileds:["name","address","phone","company"],
 
     }
   },
@@ -257,7 +257,7 @@ export default {
       this.contact.phone = '';
       this.contact.role = '';
 
-      this.contact.details = '';
+      this.contact.company = '';
       this.contact.opening_balance = '';
 
 
@@ -295,7 +295,7 @@ export default {
           currObj.contact.phone = '';
           currObj.contact.role = '';
 
-          currObj.contact.details = '';
+          currObj.contact.company = '';
 
           currObj.errors = ''; //clearing errors
           currObj.$Progress.finish();
@@ -329,7 +329,7 @@ export default {
           Vue.set(this.contact, 'address', response.data.contact.address);
           Vue.set(this.contact, 'role', response.data.contact.role);
 
-          Vue.set(this.contact, 'details', response.data.contact.details);
+          Vue.set(this.contact, 'company', response.data.contact.company);
           Vue.set(this.contact, 'phone', response.data.contact.phone);
           Vue.set(this.contact, 'id', id); //to send id to the update controller 
           this.$Progress.finish();
@@ -351,7 +351,7 @@ export default {
       formData.append('role', this.contact.role);
 
       formData.append('id', this.contact.id);
-      formData.append('details',this.contact.details);
+      formData.append('company',this.contact.company);
 
       axios.post('/api/contact', formData)
         .then(function(response) {
@@ -367,7 +367,7 @@ export default {
           currObj.contact.role = '';
 
           currObj.contact.phone = '';
-          currObj.contact.details = '';
+          currObj.contact.company = '';
           currObj.contact.opening_balance = '';
           currObj.errors = ''; //clearing errors
           currObj.$Progress.finish();

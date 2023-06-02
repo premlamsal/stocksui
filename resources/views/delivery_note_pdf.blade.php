@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>How To Generate Invoice PDF In Laravel 9 - Techsolutionstuff</title>
+    <title>Delivery Note</title>
 </head>
 <style type="text/css">
     body {
@@ -104,7 +104,7 @@
 <body>
     <div class="head-title">
         <h1 class="text-center m-0 p-0">Delivery Note</h1>
-
+        {{ $delivery_note->delivery_note_detail }}
     </div>
     <div class="add-detail mt-10">
         <div class="w-50 float-left mt-10">

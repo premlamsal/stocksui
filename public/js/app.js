@@ -3838,7 +3838,7 @@ __webpack_require__.r(__webpack_exports__);
       pagination: {},
       isLoading: '',
       // store_id: 3 ,
-      contacts_export_fileds: ["name", "address", "phone", "details"]
+      contacts_export_fileds: ["name", "address", "phone", "company"]
     };
   },
   created: function created() {
@@ -3909,7 +3909,7 @@ __webpack_require__.r(__webpack_exports__);
       this.contact.address = '';
       this.contact.phone = '';
       this.contact.role = '';
-      this.contact.details = '';
+      this.contact.company = '';
       this.contact.opening_balance = '';
       this.errors = ''; //clearing errors
       // Vue.set(this.modalForCode,0);
@@ -3935,7 +3935,7 @@ __webpack_require__.r(__webpack_exports__);
         currObj.contact.address = '';
         currObj.contact.phone = '';
         currObj.contact.role = '';
-        currObj.contact.details = '';
+        currObj.contact.company = '';
         currObj.errors = ''; //clearing errors
 
         currObj.$Progress.finish();
@@ -3965,7 +3965,7 @@ __webpack_require__.r(__webpack_exports__);
         Vue.set(_this.contact, 'name', response.data.contact.name);
         Vue.set(_this.contact, 'address', response.data.contact.address);
         Vue.set(_this.contact, 'role', response.data.contact.role);
-        Vue.set(_this.contact, 'details', response.data.contact.details);
+        Vue.set(_this.contact, 'company', response.data.contact.company);
         Vue.set(_this.contact, 'phone', response.data.contact.phone);
         Vue.set(_this.contact, 'id', id); //to send id to the update controller 
 
@@ -3986,7 +3986,7 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('phone', this.contact.phone);
       formData.append('role', this.contact.role);
       formData.append('id', this.contact.id);
-      formData.append('details', this.contact.details);
+      formData.append('company', this.contact.company);
       axios.post('/api/contact', formData).then(function (response) {
         currObj.output = response.data.msg;
         currObj.status = response.data.status; // alert(currObj.status);
@@ -3997,7 +3997,7 @@ __webpack_require__.r(__webpack_exports__);
         currObj.contact.address = '';
         currObj.contact.role = '';
         currObj.contact.phone = '';
-        currObj.contact.details = '';
+        currObj.contact.company = '';
         currObj.contact.opening_balance = '';
         currObj.errors = ''; //clearing errors
 
@@ -155445,32 +155445,33 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "Phone" } }, [_vm._v("Details:")]),
+              _c("label", { attrs: { for: "Phone" } }, [_vm._v("Company:")]),
               _vm._v(" "),
-              _c("textarea", {
+              _c("input", {
                 directives: [
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.contact.details,
-                    expression: "contact.details"
+                    value: _vm.contact.company,
+                    expression: "contact.company"
                   }
                 ],
                 class: ["form-control"],
-                domProps: { value: _vm.contact.details },
+                attrs: { type: "text" },
+                domProps: { value: _vm.contact.company },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.contact, "details", $event.target.value)
+                    _vm.$set(_vm.contact, "company", $event.target.value)
                   }
                 }
               }),
               _vm._v(" "),
-              _vm.errors.details
+              _vm.errors.company
                 ? _c("span", { class: ["errorText"] }, [
-                    _vm._v(_vm._s(_vm.errors.details[0]))
+                    _vm._v(_vm._s(_vm.errors.company[0]))
                   ])
                 : _vm._e()
             ])
@@ -155627,7 +155628,7 @@ var render = function() {
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(contact.role))]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(contact.details))]),
+                          _c("td", [_vm._v(_vm._s(contact.company))]),
                           _vm._v(" "),
                           _c("td", [
                             _vm._v(
@@ -155861,7 +155862,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Role")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Details")]),
+        _c("th", [_vm._v("Company")]),
         _vm._v(" "),
         _c("th", [_vm._v("Updated at")]),
         _vm._v(" "),

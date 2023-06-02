@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class DeliveryNote extends Model
 {
+    
     public function deliveryNoteDetail()
     {
         return $this->hasMany('\App\DeliveryNoteDetail', 'delivery_note_id', 'id');
