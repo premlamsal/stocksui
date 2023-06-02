@@ -608,6 +608,8 @@ export default {
       this.delivery_notes = [];
       this.deliverynotes_id = "";
       this.id = "";
+
+
       this.items = [
         {
           product_name: "",
@@ -1034,10 +1036,23 @@ export default {
               "delivery_note",
               response.data.delivery_note.due_date
             ),
-            Vue.set(currObj.info, "status", response.data.delivery_note.status),
-            //veu.set will make data reactive and updated
-            (currObj.items = response.data.delivery_note.delivery_note_detail),
-            (currObj.cloneItems = currObj.items);
+            Vue.set(currObj.info, "status", response.data.delivery_note.status);
+            let items=response.data.delivery_note.delivery_note_detail;
+
+
+            // veu.set will make data reactive and updated
+            // Vue.set(currObj, "items",items),
+            // Vue.set(currObj, "cloneItems",items),
+
+            for(let i=0;i<items.length;i++){
+              currObj.items[i]=items[i];
+            }
+            for(let i=0;i<items.length;i++){
+              currObj.cloneItems[i]=items[i];
+
+            }
+
+
           currObj.$Progress.finish();
         })
         .catch(function (error) {

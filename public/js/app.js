@@ -5462,8 +5462,19 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get("/api/deliverynote/" + id).then(function (response) {
         Vue.set(currObj.info, "delivery_note_no", response.data.delivery_note.id), Vue.set(currObj.info, "note", response.data.delivery_note.note), Vue.set(currObj.info, "custom_delivery_note_id", response.data.delivery_note.custom_delivery_note_id), Vue.set(currObj.info, "title", response.data.delivery_note.title), Vue.set(currObj.info, "supplier_id", response.data.delivery_note.supplier_id), Vue.set(currObj.info, "supplier_name", response.data.delivery_note.supplier_name), Vue.set(currObj.info, "due_date", response.data.delivery_note.due_date), Vue.set(currObj.info, "delivery_note_date", response.data.delivery_note.delivery_note_date), tempIDS = response.data.delivery_note.delivery_note_reference_id, tempIDS = tempIDS.split("-"), Vue.set(currObj.info, "delivery_note_reference_number", tempIDS[2]), // console.log(tempIDS[2])
-        currObj.clickSearchSuggestion(response.data.delivery_note.supplier_id, response.data.delivery_note.supplier_name), Vue.set(currObj.info, "delivery_note", response.data.delivery_note.due_date), Vue.set(currObj.info, "status", response.data.delivery_note.status), //veu.set will make data reactive and updated
-        currObj.items = response.data.delivery_note.delivery_note_detail, currObj.cloneItems = currObj.items;
+        currObj.clickSearchSuggestion(response.data.delivery_note.supplier_id, response.data.delivery_note.supplier_name), Vue.set(currObj.info, "delivery_note", response.data.delivery_note.due_date), Vue.set(currObj.info, "status", response.data.delivery_note.status);
+        var items = response.data.delivery_note.delivery_note_detail; // veu.set will make data reactive and updated
+        // Vue.set(currObj, "items",items),
+        // Vue.set(currObj, "cloneItems",items),
+
+        for (var i = 0; i < items.length; i++) {
+          currObj.items[i] = items[i];
+        }
+
+        for (var _i = 0; _i < items.length; _i++) {
+          currObj.cloneItems[_i] = items[_i];
+        }
+
         currObj.$Progress.finish();
       })["catch"](function (error) {
         if (error.response.status == 404) {
