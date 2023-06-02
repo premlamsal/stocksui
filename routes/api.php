@@ -326,7 +326,7 @@ Route::post('users/search', 'UserController@searchUsers');
 Route::get('dashInfo', 'DashboardController@dashInfo');
 
 //dashboard 
-Route::get('sales/chart/{before_month}', 'DashboardController@salesChart');
+// Route::get('sales/chart/{before_month}', 'DashboardController@salesChart');
 
 
 

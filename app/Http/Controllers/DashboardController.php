@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contact;
 use App\Invoice;
 use App\Product;
 use App\Purchase;
@@ -28,9 +29,10 @@ class DashboardController extends Controller
 
         $product = Product::where('store_id', $store_id)->count();
 
+        $contact = Contact::where('store_id', $store_id)->count();
+
         $supplier = Supplier::where('store_id', $store_id)->count();
 
-        $invoice = Invoice::where('store_id', $store_id)->sum('grand_total');
 
         $purchase = Purchase::where('store_id', $store_id)->sum('grand_total');
 
@@ -39,8 +41,8 @@ class DashboardController extends Controller
         return response()->json([
             'product'  => $product,
             'supplier' => $supplier,
-            'invoice'  => $invoice,
             'purchase' => $purchase,
+            'contact' => $contact,
             'stock'    => $stock,
             'status'   => 'success',
         ]);

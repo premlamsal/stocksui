@@ -36,13 +36,13 @@
             <div class="row">
               <div class="col-5 col-md-4">
                 <div class="icon-big text-center icon-warning">
-                  <i class="nc-icon nc-single-copy-04 text-success"></i>
+                  <i class="nc-icon nc-badge text-success"></i>
                 </div>
               </div>
               <div class="col-7 col-md-8">
                 <div class="numbers">
-                  <p class="card-category">Invoices</p>
-                  <p class="card-title">Rs. {{dash.invoice}}
+                  <p class="card-category">Contacts</p>
+                  <p class="card-title"> {{dash.contact}}
                   </p>
                 </div>
               </div>
@@ -52,7 +52,7 @@
             <hr>
             <div class="stats">
               <router-link to="/invoices" aria-expanded="false">
-                <i class="nc-icon nc-single-copy-04"></i>
+                <i class="nc-icon nc-badge"></i>
                 <span>Invoices</span>
               </router-link>
             </div>
@@ -119,51 +119,7 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card ">
-          <div class="card-header ">
-            <h5 class="card-title">Sales Report</h5>
-            <p class="card-category">sales performance over {{before_month}} months</p>
-          </div>
-          <div class="card-body ">
-            <div id="outerChart">
-              <!-- <line-chart
-                    v-if="loaded"
-                    :chartdata="chartdata"
-                    :options="options"/> -->
-              <bar-chart v-if="loaded && showBar" :chartdata="chartdata" :options="options" />
-              <line-chart v-if="loaded && showLine" :chartdata="chartdata" :options="options" />
-            </div>
-          </div>
-          <div class="card-footer ">
-            <hr>
-            <div class="row">
-              <div class="col-md-4">
-                <div class="from-group">
-                  <label>Chart Type</label>
-                  <select v-model="type" class="from-control" @change="changeSalesChartType">
-                    <option value="line">Line</option>
-                    <option value="bar">Bar</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="from-group">
-                  <label>Records Before</label>
-                  <select v-model="before_month" class="from-control" @change="changeSalesChartMonth">
-                    <option value="3">3 months</option>
-                    <option value="6">6 months</option>
-                    <option value="9">9 months</option>
-                    <option value="12">12 months</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+ 
    <!--  <div class="row">
           <div class="col-md-6">
             <div class="card ">
@@ -304,7 +260,7 @@ export default {
 
   mounted() {
 
-    this.getSalesChart();
+    // this.getSalesChart();
 
   },
 

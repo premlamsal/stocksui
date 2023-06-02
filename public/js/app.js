@@ -4287,50 +4287,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4377,8 +4333,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     //   this.$router.push({ name: 'selectStore'});
     // }
   },
-  mounted: function mounted() {
-    this.getSalesChart();
+  mounted: function mounted() {// this.getSalesChart();
   },
   methods: {
     changeSalesChartType: function changeSalesChartType() {
@@ -159735,12 +159690,12 @@ var render = function() {
               _c("div", { staticClass: "col-7 col-md-8" }, [
                 _c("div", { staticClass: "numbers" }, [
                   _c("p", { staticClass: "card-category" }, [
-                    _vm._v("Invoices")
+                    _vm._v("Contacts")
                   ]),
                   _vm._v(" "),
                   _c("p", { staticClass: "card-title" }, [
                     _vm._v(
-                      "Rs. " + _vm._s(_vm.dash.invoice) + "\n                "
+                      " " + _vm._s(_vm.dash.contact) + "\n                "
                     )
                   ])
                 ])
@@ -159759,7 +159714,7 @@ var render = function() {
                   "router-link",
                   { attrs: { to: "/invoices", "aria-expanded": "false" } },
                   [
-                    _c("i", { staticClass: "nc-icon nc-single-copy-04" }),
+                    _c("i", { staticClass: "nc-icon nc-badge" }),
                     _vm._v(" "),
                     _c("span", [_vm._v("Invoices")])
                   ]
@@ -159860,151 +159815,6 @@ var render = function() {
           ])
         ])
       ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("div", { staticClass: "card " }, [
-          _c("div", { staticClass: "card-header " }, [
-            _c("h5", { staticClass: "card-title" }, [_vm._v("Sales Report")]),
-            _vm._v(" "),
-            _c("p", { staticClass: "card-category" }, [
-              _vm._v(
-                "sales performance over " + _vm._s(_vm.before_month) + " months"
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body " }, [
-            _c(
-              "div",
-              { attrs: { id: "outerChart" } },
-              [
-                _vm.loaded && _vm.showBar
-                  ? _c("bar-chart", {
-                      attrs: { chartdata: _vm.chartdata, options: _vm.options }
-                    })
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.loaded && _vm.showLine
-                  ? _c("line-chart", {
-                      attrs: { chartdata: _vm.chartdata, options: _vm.options }
-                    })
-                  : _vm._e()
-              ],
-              1
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-footer " }, [
-            _c("hr"),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-4" }, [
-                _c("div", { staticClass: "from-group" }, [
-                  _c("label", [_vm._v("Chart Type")]),
-                  _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.type,
-                          expression: "type"
-                        }
-                      ],
-                      staticClass: "from-control",
-                      on: {
-                        change: [
-                          function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.type = $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          },
-                          _vm.changeSalesChartType
-                        ]
-                      }
-                    },
-                    [
-                      _c("option", { attrs: { value: "line" } }, [
-                        _vm._v("Line")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "bar" } }, [_vm._v("Bar")])
-                    ]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-4" }, [
-                _c("div", { staticClass: "from-group" }, [
-                  _c("label", [_vm._v("Records Before")]),
-                  _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.before_month,
-                          expression: "before_month"
-                        }
-                      ],
-                      staticClass: "from-control",
-                      on: {
-                        change: [
-                          function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.before_month = $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          },
-                          _vm.changeSalesChartMonth
-                        ]
-                      }
-                    },
-                    [
-                      _c("option", { attrs: { value: "3" } }, [
-                        _vm._v("3 months")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "6" } }, [
-                        _vm._v("6 months")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "9" } }, [
-                        _vm._v("9 months")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "12" } }, [
-                        _vm._v("12 months")
-                      ])
-                    ]
-                  )
-                ])
-              ])
-            ])
-          ])
-        ])
-      ])
     ])
   ])
 }
@@ -160025,7 +159835,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-5 col-md-4" }, [
       _c("div", { staticClass: "icon-big text-center icon-warning" }, [
-        _c("i", { staticClass: "nc-icon nc-single-copy-04 text-success" })
+        _c("i", { staticClass: "nc-icon nc-badge text-success" })
       ])
     ])
   },
