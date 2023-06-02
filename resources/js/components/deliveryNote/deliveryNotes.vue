@@ -427,6 +427,7 @@
                   <button
                     class="btn btn-outline-primary custom_btn_table"
                     v-if="hasPermission('show_delivery_note')"
+                    @click="downloadDeliveryNotePDF(deliverynote.id)"
                   >
                     <span class="fa fa-align-justify custom_icon_table"></span>
                   </button>
@@ -609,7 +610,6 @@ export default {
       this.deliverynotes_id = "";
       this.id = "";
 
-
       this.items = [
         {
           product_name: "",
@@ -630,6 +630,23 @@ export default {
           product: {},
         },
       ];
+    },
+    downloadDeliveryNotePDF(id) {
+      axios
+        .get(`api/deliverynote/${id}`, {
+          responseType: "blob",
+        })
+        .then((response) => {
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+          const link = document.createElement("a");
+          link.href = url;
+          link.setAttribute("download", "deliverynote.pdf"); //or any other extension
+          document.body.appendChild(link);
+          link.click();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
     fetchStore() {
       let currObj = this;
@@ -1037,21 +1054,18 @@ export default {
               response.data.delivery_note.due_date
             ),
             Vue.set(currObj.info, "status", response.data.delivery_note.status);
-            let items=response.data.delivery_note.delivery_note_detail;
+          let items = response.data.delivery_note.delivery_note_detail;
 
+          // veu.set will make data reactive and updated
+          // Vue.set(currObj, "items",items),
+          // Vue.set(currObj, "cloneItems",items),
 
-            // veu.set will make data reactive and updated
-            // Vue.set(currObj, "items",items),
-            // Vue.set(currObj, "cloneItems",items),
-
-            for(let i=0;i<items.length;i++){
-              currObj.items[i]=items[i];
-            }
-            for(let i=0;i<items.length;i++){
-              currObj.cloneItems[i]=items[i];
-
-            }
-
+          for (let i = 0; i < items.length; i++) {
+            currObj.items[i] = items[i];
+          }
+          for (let i = 0; i < items.length; i++) {
+            currObj.cloneItems[i] = items[i];
+          }
 
           currObj.$Progress.finish();
         })

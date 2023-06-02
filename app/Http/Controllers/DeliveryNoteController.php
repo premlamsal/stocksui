@@ -11,6 +11,7 @@ use App\Stock;
 use App\Store;
 use App\Supplier;
 use App\User;
+use Barryvdh\DomPDF\PDF;
 
 class DeliveryNoteController extends Controller
 {
@@ -128,7 +129,7 @@ class DeliveryNoteController extends Controller
 
             //found product on stock
             if ($stock_id != 0) {
-               $stock = Stock::findOrFail($stock_id);
+                $stock = Stock::findOrFail($stock_id);
 
                 $stock->quantity = $new_stock_quantity;
 
@@ -145,7 +146,6 @@ class DeliveryNoteController extends Controller
 
                         $delivery_note_status_save = true;
                         $jsonResponse = ['msg' => 'Successfully created delivery note', 'status' => 'success'];
-        
                     } else {
                         $jsonResponse = ['msg' => 'Failed updating the Data to the store.', 'status' => 'error3'];
                     }
@@ -296,5 +296,21 @@ class DeliveryNoteController extends Controller
         }
     }
 
+    public function pdfdownload($id)
+    {
 
+        $this->authorize('hasPermission', 'show_delivery_note');
+
+        $user = User::findOrFail(Auth::user()->id);
+
+        $store_id = $user->stores[0]->id;
+        // Get delivery_note
+
+        $delivery_note = DeliveryNote::where('store_id', $store_id)->with('deliveryNoteDetail.product')->with('supplier')->findOrFail($id);
+
+
+        $pdf = PDF::loadView('delivery_note_pdf', compact('delivery_note', $delivery_note));
+        $pdf->setPaper('a4', 'portrait');
+        return $pdf->output();
+    }
 }

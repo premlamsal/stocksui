@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Http\Request;
 
 /*
@@ -384,5 +385,8 @@ Route::put('deliverynote', 'DeliveryNoteController@update');
 Route::get('deliverynote/{id}', 'DeliveryNoteController@show');
 
 Route::delete('deliverynote/{id}', 'DeliveryNoteController@destroy');
+
+
+
 
 
