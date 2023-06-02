@@ -287,44 +287,8 @@ let routes = [
       }
   },
 
-  {
-    path: '/newPurchase',
-    component: require('./components/purchase/newPurchase.vue').default,
    
-     beforeEnter(to, from, next) {
-        let hasAccess = store.getters.permissions
-        if (hasAccess.includes('add_purchase') || hasAccess.includes('all')) {
-          next()
-        }
-      }
-  },
 
-  {
-    path: '/:id/editPurchase',
-    name: 'editPurchase',
-    component: require('./components/purchase/editPurchase.vue').default,
-
-     beforeEnter(to, from, next) {
-        let hasAccess = store.getters.permissions
-        if (hasAccess.includes('edit_purchase') || hasAccess.includes('all')) {
-          next()
-        }
-      }
-  },
-
-  
-
-  {
-    path: '/:id/showPurchase/',
-    name: 'showPurchase',
-    component: require('./components/purchase/showPurchase.vue').default
-  },
-
-  {
-    path: '/:id/printPurchase/',
-    name: 'printPurchase',
-    component: require('./components/purchase/printPurchase.vue').default
-  },
 
 
 

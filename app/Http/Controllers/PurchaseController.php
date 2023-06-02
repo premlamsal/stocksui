@@ -111,55 +111,13 @@ class PurchaseController extends Controller
 
         $jsonResponse = array();
 
-        for ($i = 0; $i < $countItems; $i++) {
-
-            $p_id = $items[$i]['product_id'];
-
-            $stock = Stock::where('store_id', $store_id)->where('product_id', $p_id);
-
-            //retirving current product-> stock quantity
-            $in_stock_quantity = $stock->value('quantity');
-
-            //get stock id
-            $stock_id = $stock->value('id');
-
-            $stock_price_old = $stock->value('price');
-
-            //adding current stock with new purchased product quantity
-            $new_stock_quantity = $in_stock_quantity + $items[$i]['quantity'];
-
-            //found product on stock
-            if ($stock_id != 0) {
-               $stock = Stock::findOrFail($stock_id);
-
-                $stock->quantity = $new_stock_quantity;
-
-                $stock->price = $items[$i]['price'];
-
-                $stock->updated_at = $timeStamp;
-
-                $stock->updated_at = $timeStamp;
-
-                if ($stock->save()) {
-                    //set current purchase_id_count to store table
-                    $store->purchase_id_count = $new_count_purchase_id;
-                    if ($store->save()) {
-
-                        $purchase_status_save = true;
-                    } else {
-                        $jsonResponse = ['msg' => 'Failed updating the Data to the store.', 'status' => 'error3'];
-                    }
-                } else {
-
-                    $jsonResponse = ['msg' => 'Failed Saving the Data to the Stock.', 'status' => 'error3'];
-                }
-            } else {
-
-                //couldn't find the product on stock
-                $jsonResponse = ['msg' => 'couldn\'t find the product on stock', 'status' => 'error3'];
-            }
+        //set current delivery_note_id_count to store table
+        $store->delivery_note_id_count = $new_count_purchase_id;
+        if ($store->save()) {
+            $jsonResponse = ['msg' => 'Successfully created purchase note', 'status' => 'success'];
+        } else {
+            $jsonResponse = ['msg' => 'Failed updating the Data to the store.', 'status' => 'error3'];
         }
-
 
         return response()->json($jsonResponse);
     }
@@ -218,59 +176,13 @@ class PurchaseController extends Controller
         $purchaseDetail = PurchaseDetail::where('purchase_id', $id)->get();
 
         $countItems = count($purchaseDetail);
+        
+        $purchase->update($data);
 
-        $check_save_stock = false;
+        PurchaseDetail::where('purchase_id', $purchase->id)->delete();
 
-        // $timeStamp=now();
-        if ($countItems != 0) {
-
-            for ($i = 0; $i < $countItems; $i++) {
-                //get product id from each purchase details
-                $p_id = $purchaseDetail[$i]['product_id'];
-
-                $old_purchase_detail_qty = $purchaseDetail[$i]['quantity'];
-
-                //finding stock to decrease the quantity of this purchase
-                $stock = Stock::where('product_id', $p_id)->where('store_id', $store_id);
-
-                $stock_id = $stock->value('id');
-
-                $stock_qty = $stock->value('quantity');
-
-                $old_stock_qty = $stock_qty - $old_purchase_detail_qty;
-
-                $stock = Stock::where('id', $stock_id)->where('store_id', $store_id)->first();
-
-                $stock->quantity = $old_stock_qty + $items[$i]['quantity'];
-
-                if ($stock->save()) {
-                    $check_save_stock = true;
-                } else {
-                    $check_save_stock = false;
-                }
-            }
-            if ($check_save_stock) {
-
-                $purchase->update($data);
-
-                PurchaseDetail::where('purchase_id', $purchase->id)->delete();
-
-                $purchase->purchaseDetail()->saveMany($items);
-                return response()->json(['msg' => 'You have successfully updated the Purchase.', 'status' => 'success']);
-            } else {
-                //saving stock fails
-                return response()->json(['msg' => 'Initial update to stock failed.', 'status' => 'error'], 500);
-            }
-
-            // check stock save status and do following
-
-        } else {
-
-            return response()->json([
-                'msg' => 'Update Failed. There is no items in this purchase',
-                'status' => 'error',
-            ], 500);
-        }
+        $purchase->purchaseDetail()->saveMany($items);
+        return response()->json(['msg' => 'You have successfully updated the Delivery note.', 'status' => 'success']);
     }
 
 
@@ -285,7 +197,7 @@ class PurchaseController extends Controller
         $store_id = $user->stores[0]->id;
         // Get Purchase
 
-        $Purchase = Purchase::where('store_id', $store_id)->with('purchaseDetail.product.unit')->with('supplier')->findOrFail($id);
+        $Purchase = Purchase::where('store_id', $store_id)->with('purchaseDetail.product')->with('supplier')->findOrFail($id);
         $supplier_id = $Purchase->supplier_id;
         $Supplier = Supplier::where('id', $supplier_id)->where('store_id', $store_id);
 
@@ -313,40 +225,17 @@ class PurchaseController extends Controller
 
         // $timeStamp=now();
 
-        for ($i = 0; $i < $countItems; $i++) {
-            //get product id from each purchase details
-            $p_id = $purchaseDetail[$i]['product_id'];
+        if ($Purchase->delete()) {
 
-            $p_qty = $purchaseDetail[$i]['quantity'];
-
-            //finding stock to decrease the quantity of this purchase
-            $stock = Stock::where('store_id', $store_id)->where('product_id', $p_id);
-
-            $stock_id = $stock->value('id');
-
-            $stock_qty = $stock->value('quantity');
-
-            $stock = Stock::findOrFail($stock_id);
-
-            if ($stock_qty >= $p_qty) {
-
-                $stock->quantity = $stock_qty - $p_qty;
-            }
-            if ($stock->save()) {
-
-                if ($Purchase->delete()) {
-
-                    return response()->json([
-                        'msg' => 'successfully Deleted',
-                        'status' => 'success',
-                    ]);
-                } else {
-                    return response()->json([
-                        'msg' => 'Delete Failed',
-                        'status' => 'error',
-                    ]);
-                }
-            }
+            return response()->json([
+                'msg' => 'successfully Deleted',
+                'status' => 'success',
+            ]);
+        } else {
+            return response()->json([
+                'msg' => 'Delete Failed',
+                'status' => 'error',
+            ]);
         }
     }
     public function searchPurchases(Request $request)
