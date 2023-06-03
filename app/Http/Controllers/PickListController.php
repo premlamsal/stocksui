@@ -40,7 +40,7 @@ class PickListController extends Controller
         //validation
         $this->validate($request, [
 
-            
+
             'info.ship_name' => 'required | string| max:200',
             'info.ship_address' => 'required | string| max:200',
             'info.sailing_date' => 'required | string |max:200',
@@ -101,9 +101,16 @@ class PickListController extends Controller
 
         $jsonResponse = array();
 
-        $jsonResponse = ['msg' => 'Successfully created pick list', 'status' => 'success'];
+        //set current invoice_id_count to store table
+        $store->pick_list_id_count = $new_count_pick_list_id;
 
-        return response()->json($jsonResponse);
+        if ($store->save()) {
+
+            return response()->json(['msg' => 'You have successfully created the Pick List.', 'status' => 'success']);
+        } else {
+
+            return response()->json(['msg' => 'Failed to create the Pick List.', 'status' => 'error']);
+        }
     }
     public function show($id)
     {
@@ -178,8 +185,6 @@ class PickListController extends Controller
                 ], 422);
         }
 
-        $store = Store::findOrFail($store_id);
-
 
         $data = $request->info;
 
@@ -204,6 +209,10 @@ class PickListController extends Controller
         PickListDetail::where('pick_list_id', $pick_list->id)->delete();
 
         $pick_list->pickListDetail()->saveMany($items);
+
+
+
+        $invoice_status_save = true;
         return response()->json(['msg' => 'You have successfully updated the Delivery note.', 'status' => 'success']);
     }
 
