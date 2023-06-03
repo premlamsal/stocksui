@@ -148,9 +148,8 @@ let routes = [
     component: require('./components/dashboard/dashboard.vue').default,
 
   },
-  //invoice routes
   
-  //invoice routes
+  
   {
     path: '/delivery-notes',
     name: 'delivery-notes',
@@ -159,6 +158,20 @@ let routes = [
      beforeEnter(to, from, next) {
         let hasAccess = store.getters.permissions
         if (hasAccess.includes('view_delivery_notes') || hasAccess.includes('all')) {
+          next()
+        }
+      }
+
+  },
+   
+  {
+    path: '/pick-lists',
+    name: 'pick-lists',
+    component: require('./components/pickList/pickLists.vue').default,
+
+     beforeEnter(to, from, next) {
+        let hasAccess = store.getters.permissions
+        if (hasAccess.includes('view_picked_lists') || hasAccess.includes('all')) {
           next()
         }
       }

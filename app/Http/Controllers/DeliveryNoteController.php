@@ -306,7 +306,7 @@ class DeliveryNoteController extends Controller
         $store_id = $user->stores[0]->id;
         // Get delivery_note
 
-        $delivery_note = DeliveryNote::where('store_id', $store_id)->with('deliveryNoteDetail')->with('supplier')->findOrFail($id);
+        $delivery_note = DeliveryNote::where('store_id', $store_id)->with('deliveryNoteDetail.product')->with('supplier')->findOrFail($id);
 
 
         // return response()->json([

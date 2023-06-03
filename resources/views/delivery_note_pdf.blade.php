@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Delivery Note</title>
+    <title>Delivery</title>
 </head>
 <style type="text/css">
     body {
@@ -104,7 +104,6 @@
 <body>
     <div class="head-title">
         <h1 class="text-center m-0 p-0">Delivery Note</h1>
-        {{ $delivery_note->delivery_note_detail }}
     </div>
     <div class="add-detail mt-10">
         <div class="w-50 float-left mt-10">
@@ -149,7 +148,7 @@
             <tr>
 
             </tr>
-            {{-- @foreach ($delivery_note->delivery_note_detail as $dn_items)
+            @foreach ($delivery_note->delivery_note_detail as $dn_items)
             <tr>
                 <td>{{ $dn_items->product->custom_product_id }}</td>
                 <td>{{ $dn_items->name }}</td>
@@ -158,7 +157,7 @@
                 <td>{{ $dn_items->price }}</td>
                 <td>{{ $dn_items->line_total }}</td>
                 </tr>
-            @endforeach --}}
+            @endforeach
             <tr align="center">
 
 

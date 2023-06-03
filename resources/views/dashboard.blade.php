@@ -62,6 +62,15 @@
           </li>
           @endcan
 
+          @can('hasPermission','view_pick_lists')
+          <li>
+            <router-link  to="/pick-lists" aria-expanded="false">
+              <i class="nc-icon nc-tap-01"></i>
+                <span>Pick List</span>
+            </router-link>
+          </li>
+          @endcan
+
           @can('hasPermission','view_purchases')
           <li>
             <router-link  to="/purchases" aria-expanded="false">
@@ -70,6 +79,7 @@
             </router-link>
           </li>
           @endcan
+       
 
           @can('hasPermission','view_products')
           <li>
