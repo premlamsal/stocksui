@@ -6663,6 +6663,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 //custom toggle button
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -161215,31 +161217,30 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "col-sm-1" }),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-sm-3 mt-3" }, [
-                  _c("div", { staticClass: "form-group mt-3" }, [
-                    _c("h6", [
-                      _vm._v(
-                        "Pick By: ............................................."
-                      )
+                _c(
+                  "div",
+                  {
+                    staticClass: "col-sm-3 mt-3",
+                    staticStyle: { "text-align": "right" }
+                  },
+                  [
+                    _c("div", { staticClass: "form-group mt-3" }, [
+                      _c("h6", [
+                        _vm._v(
+                          "Picked By: ............................................."
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group mt-3" }, [
+                      _c("h6", [
+                        _vm._v(
+                          "Checked By: ........................................."
+                        )
+                      ])
                     ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group mt-3" }, [
-                    _c("h6", [
-                      _vm._v(
-                        "Check By:............................................."
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group mt-3" }, [
-                    _c("h6", [
-                      _vm._v(
-                        "Missing: ............................................."
-                      )
-                    ])
-                  ])
-                ])
+                  ]
+                )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "pick_list" }, [
@@ -161296,7 +161297,7 @@ var render = function() {
                                   "is-invalid":
                                     _vm.errors["items." + index + ".shlef"]
                                 },
-                                attrs: { type: "text", placeholder: "shelf" },
+                                attrs: { type: "text", placeholder: "Shelf" },
                                 domProps: { value: item.shlef },
                                 on: {
                                   input: function($event) {
@@ -161402,7 +161403,7 @@ var render = function() {
                               },
                               attrs: {
                                 type: "text",
-                                placeholder: "desciption"
+                                placeholder: "Description"
                               },
                               domProps: { value: item.description },
                               on: {
@@ -161439,7 +161440,7 @@ var render = function() {
                               },
                               attrs: {
                                 type: "text",
-                                placeholder: "quantity picked"
+                                placeholder: "Quantity Picked"
                               },
                               domProps: { value: item.quan },
                               on: {
@@ -161495,11 +161496,15 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "col-md-4" }, [
-                      _c("h6", [
-                        _vm._v("Total Quantity To Pick: ..................")
-                      ]),
-                      _vm._v(" "),
-                      _c("h6", [_vm._v("Quantity Picked: ...................")])
+                      _c("div", { staticStyle: { "text-align": "right" } }, [
+                        _c("h6", [
+                          _vm._v("Total Quantity To Pick: ..................")
+                        ]),
+                        _vm._v(" "),
+                        _c("h6", [
+                          _vm._v("Quantity Picked: ...................")
+                        ])
+                      ])
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "col-md-4" }),

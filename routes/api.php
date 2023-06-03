@@ -391,5 +391,22 @@ Route::get('deliverynotepdf/{id}', 'DeliveryNoteController@pdfdownload');
 
 
 
+//picklists
+
+Route::get('picklists', 'PickListController@index');
+
+Route::post('picklist', 'PickListController@store');
+
+Route::put('picklist', 'PickListController@update');
+
+Route::get('picklist/{id}', 'PickListController@show');
+
+Route::delete('picklist/{id}', 'PickListController@destroy');
+
+Route::get('picklistspdf/{id}', 'PickListController@pdfdownload');
+
+
+
+
 
 

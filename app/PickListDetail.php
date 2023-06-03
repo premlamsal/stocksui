@@ -10,4 +10,6 @@ class PickListDetail extends Model
     {
         return $this->belongsTo('\App\PickList', 'pick_list_id', 'id');
     }
+
+    protected $fillable = ['delivery_note_id', 'shelf', 'requested', 'picked', 'description', 'quantity_picked'];
 }

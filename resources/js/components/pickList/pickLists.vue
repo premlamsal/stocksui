@@ -95,10 +95,10 @@
               </div>
             </div>
             <div class="col-sm-1"></div>
-            <div class="col-sm-3 mt-3">
-              <div class="form-group mt-3"><h6>Pick By: .............................................</h6></div>
-              <div class="form-group mt-3"><h6>Check By:.............................................</h6></div>
-              <div class="form-group mt-3"><h6>Missing: .............................................</h6></div>
+            <div class="col-sm-3 mt-3" style="text-align:right">
+              <div class="form-group mt-3"><h6>Picked By: .............................................</h6></div>
+              <div class="form-group mt-3"><h6>Checked By: .........................................</h6></div>
+              <!-- <div class="form-group mt-3"><h6>Missing: .............................................</h6></div> -->
             </div>
           </div>
 
@@ -141,7 +141,7 @@
                       <input
                         type="text"
                         class="form-control"
-                        placeholder="shelf"
+                        placeholder="Shelf"
                         v-model="item.shlef"
                         :class="{
                           'is-invalid': errors['items.' + index + '.shlef'],
@@ -180,7 +180,7 @@
                     <input
                       type="text"
                       class="form-control"
-                      placeholder="desciption"
+                      placeholder="Description"
                       v-model="item.description"
                       :class="{
                         'is-invalid': errors['items.' + index + '.description'],
@@ -191,7 +191,7 @@
                     <input
                       type="text"
                       class="form-control"
-                      placeholder="quantity picked"
+                      placeholder="Quantity Picked"
                       v-model="item.quan"
                       :class="{
                         'is-invalid':
@@ -228,9 +228,11 @@
                   </button>
                 </div>
                 <div class="col-md-4">
+                  <div style="text-align:right">
                   <h6>Total Quantity To Pick: ..................</h6>
                   <h6>Quantity Picked: ...................</h6>
                 </div>
+              </div>
 
                 <div class="col-md-4"></div>
                 <div class="col-md-4"></div>
