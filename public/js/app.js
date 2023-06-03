@@ -5955,6 +5955,469 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5964,10 +6427,10 @@ __webpack_require__.r(__webpack_exports__);
       //for form single permission data
       modalForName: "",
       modalForCode: 0,
-      searchTableKey: '',
+      searchTableKey: "",
       errors: [],
       pagination: {},
-      isLoading: '',
+      isLoading: "",
       checkedPermissions: []
     };
   },
@@ -5980,7 +6443,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchPermissions: function fetchPermissions(page_url) {
       this.$Progress.start();
       this.isLoading = "Loading all Data";
-      page_url = page_url || '/api/permissions';
+      page_url = page_url || "/api/permissions";
       var vm = this; // current pointer instance while going inside the another functional instance
 
       axios.get(page_url).then(function (response) {
@@ -5990,12 +6453,12 @@ __webpack_require__.r(__webpack_exports__);
           vm.makePagination(response.data.meta, response.data.links);
         }
 
-        vm.isLoading = '';
+        vm.isLoading = "";
         vm.$Progress.finish();
       })["catch"](function (error) {
         // console.log();
         vm.$Progress.fail();
-      }); //above and below code provide same result but above code need current instance pointer for value assignmnent 
+      }); //above and below code provide same result but above code need current instance pointer for value assignmnent
       //below code donot need current pointer to be save becasue it execute in current block rather then another block that need previous pointer.
       // axios.get('/api/permissions')
       // .then(response=>{
@@ -6024,13 +6487,13 @@ __webpack_require__.r(__webpack_exports__);
     showAddModal: function showAddModal() {
       this.modalForName = "Add Permission"; // Vue.set(this.modalForName,"Add Permission");
 
-      this.modalForCode = 0; //0 for add 
+      this.modalForCode = 0; //0 for add
 
-      this.permission.name = '';
-      this.errors = ''; //clearing errors       
+      this.permission.name = "";
+      this.errors = ""; //clearing errors
       // Vue.set(this.modalForCode,0);
 
-      this.$bvModal.show('bv-modal-add-permission');
+      this.$bvModal.show("bv-modal-add-permission");
     },
     callFunc: function callFunc() {
       if (this.modalForCode == 0) {
@@ -6044,13 +6507,13 @@ __webpack_require__.r(__webpack_exports__);
       var currObj = this; //set check permission to sending form input
 
       this.permission.name = this.checkedPermissions;
-      axios.post('/api/permission', this.permission).then(function (response) {
+      axios.post("/api/permission", this.permission).then(function (response) {
         currObj.output = response.data.msg;
         currObj.status = response.data.status;
-        currObj.$swal('Info', currObj.output, currObj.status);
-        currObj.$bvModal.hide('bv-modal-add-permission');
-        currObj.permission.name = '';
-        currObj.errors = ''; //clearing errors
+        currObj.$swal("Info", currObj.output, currObj.status);
+        currObj.$bvModal.hide("bv-modal-add-permission");
+        currObj.permission.name = "";
+        currObj.errors = ""; //clearing errors
 
         currObj.$Progress.finish();
         currObj.fetchPermissions();
@@ -6070,13 +6533,13 @@ __webpack_require__.r(__webpack_exports__);
       this.modalForName = "Edit Permission";
       this.modalForCode = 1; // 1 for Edit
 
-      this.$bvModal.show('bv-modal-add-permission');
-      this.errors = ''; //clearing errors
+      this.$bvModal.show("bv-modal-add-permission");
+      this.errors = ""; //clearing errors
 
-      axios.get('/api/permission/' + id).then(function (response) {
+      axios.get("/api/permission/" + id).then(function (response) {
         // console.log(response.data.permission)
         _this.checkedPermissions = response.data.permission;
-        Vue.set(_this.permission, 'id', id); //to send id to the update controller 
+        Vue.set(_this.permission, "id", id); //to send id to the update controller
 
         _this.$Progress.finish();
       })["catch"](function (error) {
@@ -6088,18 +6551,18 @@ __webpack_require__.r(__webpack_exports__);
       this.$Progress.start();
       var currObj = this;
       var formData = new FormData();
-      formData.append('_method', 'PUT'); //add this otherwise data won't pass to backend
+      formData.append("_method", "PUT"); //add this otherwise data won't pass to backend
 
-      formData.append('name', this.checkedPermissions);
-      formData.append('id', this.permission.id);
-      axios.post('/api/permission', formData).then(function (response) {
+      formData.append("name", this.checkedPermissions);
+      formData.append("id", this.permission.id);
+      axios.post("/api/permission", formData).then(function (response) {
         currObj.output = response.data.msg;
         currObj.status = response.data.status; // alert(currObj.status);
 
-        currObj.$swal('Info', currObj.output, currObj.status);
-        currObj.$bvModal.hide('bv-modal-add-permission');
-        currObj.permission.name = '';
-        currObj.errors = ''; //clearing errors
+        currObj.$swal("Info", currObj.output, currObj.status);
+        currObj.$bvModal.hide("bv-modal-add-permission");
+        currObj.permission.name = "";
+        currObj.errors = ""; //clearing errors
 
         currObj.$Progress.finish();
         currObj.fetchPermissions();
@@ -6116,16 +6579,16 @@ __webpack_require__.r(__webpack_exports__);
       this.$Progress.start();
       var currObj = this;
       this.$swal({
-        title: 'Are you sure?',
+        title: "Are you sure?",
         text: "You won't be able to revert this!",
-        type: 'warning',
+        type: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
       }).then(function (result) {
         if (result.value) {
-          axios["delete"]('/api/permission/' + id).then(function (response) {
+          axios["delete"]("/api/permission/" + id).then(function (response) {
             currObj.output = response.data.msg;
             currObj.status = response.data.status; // alert(currObj.status);
 
@@ -6151,13 +6614,13 @@ __webpack_require__.r(__webpack_exports__);
     autoCompleteTable: function autoCompleteTable() {
       this.searchTableKey = this.searchTableKey.toLowerCase();
 
-      if (this.searchTableKey != '') {
-        this.isLoading = 'Loading Data...';
+      if (this.searchTableKey != "") {
+        this.isLoading = "Loading Data...";
         var currObj = this;
-        axios.post('/api/permissions/search', {
+        axios.post("/api/permissions/search", {
           searchQuery: this.searchTableKey
         }).then(function (response) {
-          currObj.isLoading = '';
+          currObj.isLoading = "";
           currObj.suppliers = response.data.data;
 
           if (response.data.data == "") {
@@ -6168,12 +6631,12 @@ __webpack_require__.r(__webpack_exports__);
           // currObj.status=response.data.status;
 
 
-          currObj.errors = ''; //clearing errors
+          currObj.errors = ""; //clearing errors
         })["catch"](function (error) {
-          if (error.response.status == '422') {
+          if (error.response.status == "422") {
             currObj.validationErrors = error.response.data.errors;
             currObj.errors = currObj.validationErrors;
-            currObj.isLoading = 'Load Failed...'; // console.log(currObj.errors);
+            currObj.isLoading = "Load Failed..."; // console.log(currObj.errors);
           }
         });
       } else {
@@ -6185,7 +6648,7 @@ __webpack_require__.r(__webpack_exports__);
     hasPermission: function hasPermission(action) {
       var permissions_from_store = this.$store.getters.permissions;
 
-      if (permissions_from_store.includes(action) || permissions_from_store.includes('all')) {
+      if (permissions_from_store.includes(action) || permissions_from_store.includes("all")) {
         return true;
       } else {
         return false;
@@ -158417,7 +158880,16 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "row m-4" }, [
             _c("div", { staticClass: "col-md-2" }, [
-              _c("span", [_vm._v("View")]),
+              _c(
+                "span",
+                {
+                  staticStyle: {
+                    "font-weight": "bold",
+                    "margin-bottom": "20px"
+                  }
+                },
+                [_vm._v("View")]
+              ),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
                 _c("input", {
@@ -158430,10 +158902,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "view_customers" },
+                  attrs: { type: "checkbox", value: "view_contacts" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "view_customers") > -1
+                      ? _vm._i(_vm.checkedPermissions, "view_contacts") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -158442,7 +158914,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "view_customers",
+                        var $$v = "view_contacts",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -158464,9 +158936,9 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "view_customers" }
+                    attrs: { for: "view_contacts" }
                   },
-                  [_vm._v("\n            Customer\n          ")]
+                  [_vm._v("\n            Contact\n          ")]
                 )
               ]),
               _vm._v(" "),
@@ -158532,10 +159004,11 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "view_invoices" },
+                  attrs: { type: "checkbox", value: "view_delivery_notess" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "view_invoices") > -1
+                      ? _vm._i(_vm.checkedPermissions, "view_delivery_notess") >
+                        -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -158544,7 +159017,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "view_invoices",
+                        var $$v = "view_delivery_notess",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -158566,9 +159039,9 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "view_invoices" }
+                    attrs: { for: "view_delivery_notess" }
                   },
-                  [_vm._v("\n            Invoice\n          ")]
+                  [_vm._v("\n            Delivery Note\n          ")]
                 )
               ]),
               _vm._v(" "),
@@ -158736,10 +159209,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "view_units" },
+                  attrs: { type: "checkbox", value: "view_pick_lists" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "view_units") > -1
+                      ? _vm._i(_vm.checkedPermissions, "view_pick_lists") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -158748,7 +159221,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "view_units",
+                        var $$v = "view_pick_lists",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -158770,15 +159243,11 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "view_units" }
+                    attrs: { for: "view_pick_lists" }
                   },
-                  [_vm._v("\n            Unit\n          ")]
+                  [_vm._v("\n            Pick List\n          ")]
                 )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-2" }, [
-              _c("span", [_vm._v("Add")]),
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
                 _c("input", {
@@ -158791,10 +159260,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "add_customer" },
+                  attrs: { type: "checkbox", value: "view_contact_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "add_customer") > -1
+                      ? _vm._i(_vm.checkedPermissions, "view_contact_list") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -158803,7 +159272,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "add_customer",
+                        var $$v = "view_contact_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -158825,9 +159294,175 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "add_customer" }
+                    attrs: { for: "view_stock_list" }
                   },
-                  [_vm._v("\n            Customer\n          ")]
+                  [_vm._v("\n    Stock List\n  ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.checkedPermissions,
+                      expression: "checkedPermissions"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "checkbox", value: "view_contact_list" },
+                  domProps: {
+                    checked: Array.isArray(_vm.checkedPermissions)
+                      ? _vm._i(_vm.checkedPermissions, "view_contact_list") > -1
+                      : _vm.checkedPermissions
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.checkedPermissions,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = "view_contact_list",
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            (_vm.checkedPermissions = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.checkedPermissions = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.checkedPermissions = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "view_user" }
+                  },
+                  [_vm._v("\n    Users \n  ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.checkedPermissions,
+                      expression: "checkedPermissions"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "checkbox", value: "view_contact_list" },
+                  domProps: {
+                    checked: Array.isArray(_vm.checkedPermissions)
+                      ? _vm._i(_vm.checkedPermissions, "view_contact_list") > -1
+                      : _vm.checkedPermissions
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.checkedPermissions,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = "view_contact_list",
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            (_vm.checkedPermissions = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.checkedPermissions = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.checkedPermissions = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "view_settings" }
+                  },
+                  [_vm._v("\n    Settings \n  ")]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-2" }, [
+              _c(
+                "span",
+                {
+                  staticStyle: {
+                    "font-weight": "bold",
+                    "margin-bottom": "20px"
+                  }
+                },
+                [_vm._v("Add")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.checkedPermissions,
+                      expression: "checkedPermissions"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "checkbox", value: "add_contact" },
+                  domProps: {
+                    checked: Array.isArray(_vm.checkedPermissions)
+                      ? _vm._i(_vm.checkedPermissions, "add_contact") > -1
+                      : _vm.checkedPermissions
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.checkedPermissions,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = "add_contact",
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            (_vm.checkedPermissions = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.checkedPermissions = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.checkedPermissions = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "add_contact" }
+                  },
+                  [_vm._v(" Contact ")]
                 )
               ]),
               _vm._v(" "),
@@ -158893,10 +159528,11 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "add_invoice" },
+                  attrs: { type: "checkbox", value: "add_delivery_notes" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "add_invoice") > -1
+                      ? _vm._i(_vm.checkedPermissions, "add_delivery_notes") >
+                        -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -158905,7 +159541,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "add_invoice",
+                        var $$v = "add_delivery_notes",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -158927,9 +159563,9 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "add_invoice" }
+                    attrs: { for: "add_delivery_notes" }
                   },
-                  [_vm._v("\n            Invoice\n          ")]
+                  [_vm._v("\n            Delivery Note\n          ")]
                 )
               ]),
               _vm._v(" "),
@@ -159031,7 +159667,7 @@ var render = function() {
                     staticClass: "form-check-label",
                     attrs: { for: "add_product" }
                   },
-                  [_vm._v("\n            Product\n          ")]
+                  [_vm._v(" Product ")]
                 )
               ]),
               _vm._v(" "),
@@ -159097,10 +159733,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "add_unit" },
+                  attrs: { type: "checkbox", value: "add_pick_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "add_unit") > -1
+                      ? _vm._i(_vm.checkedPermissions, "add_pick_list") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -159109,7 +159745,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "add_unit",
+                        var $$v = "add_pick_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -159131,15 +159767,11 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "add_unit" }
+                    attrs: { for: "add_pick_list" }
                   },
-                  [_vm._v("\n            Unit\n          ")]
+                  [_vm._v("\n            Pick List\n          ")]
                 )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-2" }, [
-              _c("span", [_vm._v("Edit")]),
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
                 _c("input", {
@@ -159152,10 +159784,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "edit_customer" },
+                  attrs: { type: "checkbox", value: "view_contact_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "edit_customer") > -1
+                      ? _vm._i(_vm.checkedPermissions, "view_contact_list") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -159164,7 +159796,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "edit_customer",
+                        var $$v = "view_contact_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -159186,9 +159818,175 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "edit_customer" }
+                    attrs: { for: "view_stock_list" }
                   },
-                  [_vm._v("\n            Customer\n          ")]
+                  [_vm._v("\n            Stock List\n          ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.checkedPermissions,
+                      expression: "checkedPermissions"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "checkbox", value: "view_contact_list" },
+                  domProps: {
+                    checked: Array.isArray(_vm.checkedPermissions)
+                      ? _vm._i(_vm.checkedPermissions, "view_contact_list") > -1
+                      : _vm.checkedPermissions
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.checkedPermissions,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = "view_contact_list",
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            (_vm.checkedPermissions = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.checkedPermissions = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.checkedPermissions = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "view_user" }
+                  },
+                  [_vm._v(" Users ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.checkedPermissions,
+                      expression: "checkedPermissions"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "checkbox", value: "view_contact_list" },
+                  domProps: {
+                    checked: Array.isArray(_vm.checkedPermissions)
+                      ? _vm._i(_vm.checkedPermissions, "view_contact_list") > -1
+                      : _vm.checkedPermissions
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.checkedPermissions,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = "view_contact_list",
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            (_vm.checkedPermissions = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.checkedPermissions = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.checkedPermissions = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "view_settings" }
+                  },
+                  [_vm._v("\n            Settings\n          ")]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-2" }, [
+              _c(
+                "span",
+                {
+                  staticStyle: {
+                    "font-weight": "bold",
+                    "margin-bottom": "20px"
+                  }
+                },
+                [_vm._v("Edit")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.checkedPermissions,
+                      expression: "checkedPermissions"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "checkbox", value: "edit_contact" },
+                  domProps: {
+                    checked: Array.isArray(_vm.checkedPermissions)
+                      ? _vm._i(_vm.checkedPermissions, "edit_contact") > -1
+                      : _vm.checkedPermissions
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.checkedPermissions,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = "edit_contact",
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            (_vm.checkedPermissions = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.checkedPermissions = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.checkedPermissions = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "edit_contact" }
+                  },
+                  [_vm._v(" Contact ")]
                 )
               ]),
               _vm._v(" "),
@@ -159254,10 +160052,11 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "edit_invoice" },
+                  attrs: { type: "checkbox", value: "edit_delivery_notes" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "edit_invoice") > -1
+                      ? _vm._i(_vm.checkedPermissions, "edit_delivery_notes") >
+                        -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -159266,7 +160065,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "edit_invoice",
+                        var $$v = "edit_delivery_notes",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -159288,9 +160087,9 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "edit_invoice" }
+                    attrs: { for: "edit_delivery_notes" }
                   },
-                  [_vm._v("\n            Invoice\n          ")]
+                  [_vm._v("\n            Delivery Note\n          ")]
                 )
               ]),
               _vm._v(" "),
@@ -159392,7 +160191,7 @@ var render = function() {
                     staticClass: "form-check-label",
                     attrs: { for: "edit_product" }
                   },
-                  [_vm._v("\n            Product\n          ")]
+                  [_vm._v(" Product ")]
                 )
               ]),
               _vm._v(" "),
@@ -159458,10 +160257,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "edit_unit" },
+                  attrs: { type: "checkbox", value: "edit_pick_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "edit_unit") > -1
+                      ? _vm._i(_vm.checkedPermissions, "edit_pick_list") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -159470,7 +160269,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "edit_unit",
+                        var $$v = "edit_pick_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -159492,15 +160291,11 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "edit_unit" }
+                    attrs: { for: "edit_pick_list" }
                   },
-                  [_vm._v("\n            Unit\n          ")]
+                  [_vm._v("\n            Pick List\n          ")]
                 )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-2" }, [
-              _c("span", [_vm._v("Delete")]),
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
                 _c("input", {
@@ -159513,10 +160308,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "delete_customer" },
+                  attrs: { type: "checkbox", value: "edit_contact_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "delete_customer") > -1
+                      ? _vm._i(_vm.checkedPermissions, "edit_contact_list") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -159525,7 +160320,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "delete_customer",
+                        var $$v = "edit_contact_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -159547,9 +160342,175 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "delete_customer" }
+                    attrs: { for: "edit_stock_list" }
                   },
-                  [_vm._v("\n            Customer\n          ")]
+                  [_vm._v("\n    Stock List\n  ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.checkedPermissions,
+                      expression: "checkedPermissions"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "checkbox", value: "edit_contact_list" },
+                  domProps: {
+                    checked: Array.isArray(_vm.checkedPermissions)
+                      ? _vm._i(_vm.checkedPermissions, "edit_contact_list") > -1
+                      : _vm.checkedPermissions
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.checkedPermissions,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = "edit_contact_list",
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            (_vm.checkedPermissions = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.checkedPermissions = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.checkedPermissions = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "edit_user" }
+                  },
+                  [_vm._v("\n    Users \n  ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.checkedPermissions,
+                      expression: "checkedPermissions"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "checkbox", value: "edit_contact_list" },
+                  domProps: {
+                    checked: Array.isArray(_vm.checkedPermissions)
+                      ? _vm._i(_vm.checkedPermissions, "edit_contact_list") > -1
+                      : _vm.checkedPermissions
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.checkedPermissions,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = "edit_contact_list",
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            (_vm.checkedPermissions = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.checkedPermissions = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.checkedPermissions = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "edit_settings" }
+                  },
+                  [_vm._v("\n    Settings \n  ")]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-2" }, [
+              _c(
+                "span",
+                {
+                  staticStyle: {
+                    "font-weight": "bold",
+                    "margin-bottom": "20px"
+                  }
+                },
+                [_vm._v("Delete")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.checkedPermissions,
+                      expression: "checkedPermissions"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "checkbox", value: "delete_contact" },
+                  domProps: {
+                    checked: Array.isArray(_vm.checkedPermissions)
+                      ? _vm._i(_vm.checkedPermissions, "delete_contact") > -1
+                      : _vm.checkedPermissions
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.checkedPermissions,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = "delete_contact",
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            (_vm.checkedPermissions = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.checkedPermissions = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.checkedPermissions = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "delete_contact" }
+                  },
+                  [_vm._v("\n            Contact\n          ")]
                 )
               ]),
               _vm._v(" "),
@@ -159615,10 +160576,13 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "delete_invoice" },
+                  attrs: { type: "checkbox", value: "delete_delivery_notes" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "delete_invoice") > -1
+                      ? _vm._i(
+                          _vm.checkedPermissions,
+                          "delete_delivery_notes"
+                        ) > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -159627,7 +160591,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "delete_invoice",
+                        var $$v = "delete_delivery_notes",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -159649,9 +160613,9 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "delete_invoice" }
+                    attrs: { for: "delete_delivery_notes" }
                   },
-                  [_vm._v("\n            Invoice\n          ")]
+                  [_vm._v("\n            Delivery Note\n          ")]
                 )
               ]),
               _vm._v(" "),
@@ -159819,10 +160783,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "delete_unit" },
+                  attrs: { type: "checkbox", value: "delete_pick_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "delete_unit") > -1
+                      ? _vm._i(_vm.checkedPermissions, "delete_pick_list") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -159831,7 +160795,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "delete_unit",
+                        var $$v = "delete_pick_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -159853,15 +160817,11 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "delete_unit" }
+                    attrs: { for: "delete_pick_list" }
                   },
-                  [_vm._v("\n            Unit\n          ")]
+                  [_vm._v("\n            Pick List\n          ")]
                 )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-2" }, [
-              _c("span", [_vm._v("Show")]),
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
                 _c("input", {
@@ -159874,10 +160834,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "show_customer" },
+                  attrs: { type: "checkbox", value: "edit_contact_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "show_customer") > -1
+                      ? _vm._i(_vm.checkedPermissions, "edit_contact_list") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -159886,7 +160846,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "show_customer",
+                        var $$v = "edit_contact_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -159908,9 +160868,175 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "show_customer" }
+                    attrs: { for: "edit_stock_list" }
                   },
-                  [_vm._v("\n            Customer\n          ")]
+                  [_vm._v("\n            Stock List\n          ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.checkedPermissions,
+                      expression: "checkedPermissions"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "checkbox", value: "edit_contact_list" },
+                  domProps: {
+                    checked: Array.isArray(_vm.checkedPermissions)
+                      ? _vm._i(_vm.checkedPermissions, "edit_contact_list") > -1
+                      : _vm.checkedPermissions
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.checkedPermissions,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = "edit_contact_list",
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            (_vm.checkedPermissions = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.checkedPermissions = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.checkedPermissions = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "edit_user" }
+                  },
+                  [_vm._v(" Users ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.checkedPermissions,
+                      expression: "checkedPermissions"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "checkbox", value: "edit_contact_list" },
+                  domProps: {
+                    checked: Array.isArray(_vm.checkedPermissions)
+                      ? _vm._i(_vm.checkedPermissions, "edit_contact_list") > -1
+                      : _vm.checkedPermissions
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.checkedPermissions,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = "edit_contact_list",
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            (_vm.checkedPermissions = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.checkedPermissions = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.checkedPermissions = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "edit_settings" }
+                  },
+                  [_vm._v("\n            Settings\n          ")]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-2" }, [
+              _c(
+                "span",
+                {
+                  staticStyle: {
+                    "font-weight": "bold",
+                    "margin-bottom": "20px"
+                  }
+                },
+                [_vm._v("Show")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.checkedPermissions,
+                      expression: "checkedPermissions"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "checkbox", value: "show_contact" },
+                  domProps: {
+                    checked: Array.isArray(_vm.checkedPermissions)
+                      ? _vm._i(_vm.checkedPermissions, "show_contact") > -1
+                      : _vm.checkedPermissions
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.checkedPermissions,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = "show_contact",
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            (_vm.checkedPermissions = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.checkedPermissions = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.checkedPermissions = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "show_contact" }
+                  },
+                  [_vm._v(" Contact ")]
                 )
               ]),
               _vm._v(" "),
@@ -159976,10 +161102,11 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "show_invoice" },
+                  attrs: { type: "checkbox", value: "show_delivery_notes" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "show_invoice") > -1
+                      ? _vm._i(_vm.checkedPermissions, "show_delivery_notes") >
+                        -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -159988,7 +161115,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "show_invoice",
+                        var $$v = "show_delivery_notes",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -160010,9 +161137,9 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "show_invoice" }
+                    attrs: { for: "show_delivery_notes" }
                   },
-                  [_vm._v("\n            Invoice\n          ")]
+                  [_vm._v("\n            Delivery Note\n          ")]
                 )
               ]),
               _vm._v(" "),
@@ -160114,7 +161241,7 @@ var render = function() {
                     staticClass: "form-check-label",
                     attrs: { for: "show_product" }
                   },
-                  [_vm._v("\n            Product\n          ")]
+                  [_vm._v(" Product ")]
                 )
               ]),
               _vm._v(" "),
@@ -160180,10 +161307,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "show_unit" },
+                  attrs: { type: "checkbox", value: "show_pick_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "show_unit") > -1
+                      ? _vm._i(_vm.checkedPermissions, "show_pick_list") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -160192,7 +161319,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "show_unit",
+                        var $$v = "show_pick_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -160214,15 +161341,11 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "show_unit" }
+                    attrs: { for: "show_pick_list" }
                   },
-                  [_vm._v("\n            Unit\n          ")]
+                  [_vm._v("\n            Pick List\n          ")]
                 )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-2" }, [
-              _c("span", [_vm._v("Search")]),
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
                 _c("input", {
@@ -160235,10 +161358,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "search_customer" },
+                  attrs: { type: "checkbox", value: "show_contact_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "search_customer") > -1
+                      ? _vm._i(_vm.checkedPermissions, "show_contact_list") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -160247,7 +161370,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "search_customer",
+                        var $$v = "show_contact_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -160269,9 +161392,175 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "search_customer" }
+                    attrs: { for: "show_stock_list" }
                   },
-                  [_vm._v("\n            Customer\n          ")]
+                  [_vm._v("\n            Stock List\n          ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.checkedPermissions,
+                      expression: "checkedPermissions"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "checkbox", value: "show_contact_list" },
+                  domProps: {
+                    checked: Array.isArray(_vm.checkedPermissions)
+                      ? _vm._i(_vm.checkedPermissions, "show_contact_list") > -1
+                      : _vm.checkedPermissions
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.checkedPermissions,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = "show_contact_list",
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            (_vm.checkedPermissions = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.checkedPermissions = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.checkedPermissions = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "show_user" }
+                  },
+                  [_vm._v(" Users ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.checkedPermissions,
+                      expression: "checkedPermissions"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "checkbox", value: "show_contact_list" },
+                  domProps: {
+                    checked: Array.isArray(_vm.checkedPermissions)
+                      ? _vm._i(_vm.checkedPermissions, "show_contact_list") > -1
+                      : _vm.checkedPermissions
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.checkedPermissions,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = "show_contact_list",
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            (_vm.checkedPermissions = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.checkedPermissions = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.checkedPermissions = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "show_settings" }
+                  },
+                  [_vm._v("\n            Settings\n          ")]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-2" }, [
+              _c(
+                "span",
+                {
+                  staticStyle: {
+                    "font-weight": "bold",
+                    "margin-bottom": "20px"
+                  }
+                },
+                [_vm._v("Search")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.checkedPermissions,
+                      expression: "checkedPermissions"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "checkbox", value: "search_contact" },
+                  domProps: {
+                    checked: Array.isArray(_vm.checkedPermissions)
+                      ? _vm._i(_vm.checkedPermissions, "search_contact") > -1
+                      : _vm.checkedPermissions
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.checkedPermissions,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = "search_contact",
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            (_vm.checkedPermissions = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.checkedPermissions = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.checkedPermissions = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "search_contact" }
+                  },
+                  [_vm._v("\n            Contact\n          ")]
                 )
               ]),
               _vm._v(" "),
@@ -160337,10 +161626,13 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "search_invoice" },
+                  attrs: { type: "checkbox", value: "search_delivery_notes" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "search_invoice") > -1
+                      ? _vm._i(
+                          _vm.checkedPermissions,
+                          "search_delivery_notes"
+                        ) > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -160349,7 +161641,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "search_invoice",
+                        var $$v = "search_delivery_notes",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -160371,9 +161663,9 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "search_invoice" }
+                    attrs: { for: "search_delivery_notes" }
                   },
-                  [_vm._v("\n            Invoice\n          ")]
+                  [_vm._v("\n            Delivery Note\n          ")]
                 )
               ]),
               _vm._v(" "),
@@ -160541,10 +161833,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "search_unit" },
+                  attrs: { type: "checkbox", value: "search_pick_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "search_unit") > -1
+                      ? _vm._i(_vm.checkedPermissions, "search_pick_list") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -160553,7 +161845,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "search_unit",
+                        var $$v = "search_pick_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -160575,9 +161867,165 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "search_unit" }
+                    attrs: { for: "search_pick_list" }
                   },
-                  [_vm._v("\n            Unit\n          ")]
+                  [_vm._v("\n            Pick List\n          ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.checkedPermissions,
+                      expression: "checkedPermissions"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "checkbox", value: "search_contact_list" },
+                  domProps: {
+                    checked: Array.isArray(_vm.checkedPermissions)
+                      ? _vm._i(_vm.checkedPermissions, "search_contact_list") >
+                        -1
+                      : _vm.checkedPermissions
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.checkedPermissions,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = "search_contact_list",
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            (_vm.checkedPermissions = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.checkedPermissions = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.checkedPermissions = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "search_stock_list" }
+                  },
+                  [_vm._v("\n            Stock List\n          ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.checkedPermissions,
+                      expression: "checkedPermissions"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "checkbox", value: "search_contact_list" },
+                  domProps: {
+                    checked: Array.isArray(_vm.checkedPermissions)
+                      ? _vm._i(_vm.checkedPermissions, "search_contact_list") >
+                        -1
+                      : _vm.checkedPermissions
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.checkedPermissions,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = "search_contact_list",
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            (_vm.checkedPermissions = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.checkedPermissions = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.checkedPermissions = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "search_user" }
+                  },
+                  [_vm._v(" Users ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.checkedPermissions,
+                      expression: "checkedPermissions"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "checkbox", value: "search_contact_list" },
+                  domProps: {
+                    checked: Array.isArray(_vm.checkedPermissions)
+                      ? _vm._i(_vm.checkedPermissions, "search_contact_list") >
+                        -1
+                      : _vm.checkedPermissions
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.checkedPermissions,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = "search_contact_list",
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            (_vm.checkedPermissions = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.checkedPermissions = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.checkedPermissions = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "search_settings" }
+                  },
+                  [_vm._v("\n            Settings\n          ")]
                 )
               ])
             ])
@@ -160596,7 +162044,9 @@ var render = function() {
                     attrs: { type: "hidden" }
                   }),
                   _vm._v(
-                    " " + _vm._s(_vm.checkedPermissions) + "\n            "
+                    "\n            " +
+                      _vm._s(_vm.checkedPermissions) +
+                      "\n            "
                   ),
                   _vm.errors.name
                     ? _c("span", { class: ["errorText"] }, [
@@ -160618,7 +162068,7 @@ var render = function() {
                 },
                 [
                   _vm._v(
-                    "\n          You can allow permissions like: Show, Search and View for the better experience. So, read full documentation before adding permission to user.\n        "
+                    "\n          You can allow permissions like: Show, Search and View for the better\n          experience. So, read full documentation before adding permission to\n          user.\n        "
                   )
                 ]
               )
@@ -160661,7 +162111,7 @@ var render = function() {
               staticClass: "m-0 font-weight-bold text-primary",
               staticStyle: { display: "inline" }
             },
-            [_vm._v("Permissions")]
+            [_vm._v("\n        Permissions\n      ")]
           ),
           _vm._v(" "),
           _vm.isLoading ? _c("div", [_vm._v(_vm._s(_vm.isLoading))]) : _vm._e(),
@@ -160819,7 +162269,7 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v("First")]
+                            [_vm._v("\n                First\n              ")]
                           )
                         ]
                       ),
@@ -160843,7 +162293,11 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v("Previous")]
+                            [
+                              _vm._v(
+                                "\n                Previous\n              "
+                              )
+                            ]
                           )
                         ]
                       ),
@@ -160869,7 +162323,13 @@ var render = function() {
                                   }
                                 }
                               },
-                              [_vm._v(_vm._s(n))]
+                              [
+                                _vm._v(
+                                  "\n                " +
+                                    _vm._s(n) +
+                                    "\n              "
+                                )
+                              ]
                             )
                           ]
                         )
@@ -160894,7 +162354,7 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v("Next")]
+                            [_vm._v("\n                Next\n              ")]
                           )
                         ]
                       ),
@@ -160918,7 +162378,7 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v("Last")]
+                            [_vm._v("\n                Last\n              ")]
                           )
                         ]
                       )
@@ -160933,7 +162393,7 @@ var render = function() {
                       _vm._s(_vm.pagination.current_page) +
                       "-" +
                       _vm._s(_vm.pagination.last_page) +
-                      " Total Records: " +
+                      " Total\n          Records: " +
                       _vm._s(_vm.pagination.total_pages) +
                       "\n        "
                   )
@@ -160941,7 +162401,7 @@ var render = function() {
               ])
             ])
           : _c("div", { staticClass: "errorDivEmptyData" }, [
-              _vm._v("\n      No Data Found\n    ")
+              _vm._v("No Data Found")
             ])
       ])
     ],
