@@ -7891,19 +7891,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     var _ref;
@@ -7916,7 +7903,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         description: "",
         low_stock_alert_active: false,
         low_stock_alert_quantity: "",
-        price: "",
         category: {},
         unit: {}
       }],
@@ -7932,7 +7918,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       units: [],
       //contains all the retrived units from the database
       categories: []
-    }, _defineProperty(_ref, "errors", []), _defineProperty(_ref, "pagination", {}), _defineProperty(_ref, "file", ""), _defineProperty(_ref, "selectedFile", ""), _defineProperty(_ref, "imagePreview", ""), _defineProperty(_ref, "products_export_fileds", ["custom_product_id", "name", "price", "cp", "sp", "description"]), _ref;
+    }, _defineProperty(_ref, "errors", []), _defineProperty(_ref, "pagination", {}), _defineProperty(_ref, "file", ""), _defineProperty(_ref, "selectedFile", ""), _defineProperty(_ref, "imagePreview", ""), _defineProperty(_ref, "products_export_fileds", ["custom_product_id", "name", "cp", "sp", "description"]), _ref;
   },
   created: function created() {
     //this block will execute when component created
@@ -8069,7 +8055,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.product.phone = "";
       this.product.description = "";
       this.opening_stock = "";
-      this.product.price = "";
       this.low_stock_alert_quantity = "";
       this.setAvtarUploadImage();
       this.errors = ""; //clearing errors
@@ -8100,7 +8085,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       formData.append("name", this.product.name);
       formData.append("product_cat_id", this.product.product_cat_id);
       formData.append("opening_stock", this.product.opening_stock);
-      formData.append("price", this.product.price);
       formData.append("low_stock_alert_quantity", this.product.low_stock_alert_quantity);
       formData.append("unit", this.product.unit);
       formData.append("description", this.product.description); // posting data //using post and sending form data as PUT to match the api route name setting
@@ -8114,7 +8098,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         currObj.product.product_cat_id = "";
         currObj.product.unit = "";
         currObj.product.address = "";
-        currObj.product.price = "";
         currObj.product.low_stock_alert_quantity = "", currObj.product.phone = "";
         currObj.opening_stock = "";
         currObj.product.description = "";
@@ -8149,7 +8132,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         Vue.set(_this.product, "name", response.data.product.name);
         Vue.set(currObj.product, "description", response.data.product.description);
         Vue.set(_this.product, "unit", response.data.product.unit);
-        Vue.set(_this.product, "price", response.data.product.price);
         Vue.set(_this.product, "low_stock_alert_active", JSON.parse(response.data.product.low_stock_alert_active));
         Vue.set(_this.product, "low_stock_alert_quantity", response.data.product.low_stock_alert_quantity); // Vue.set(this.product, 'opening_stock', response.data.product.opening_stock);
 
@@ -8179,7 +8161,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       formData.append("id", this.product.id);
       formData.append("name", this.product.name);
-      formData.append("price", this.product.price);
       formData.append("product_cat_id", this.product.product_cat_id);
       formData.append("unit", this.product.unit); // formData.append('opening_stock',this.product.opening_stock);
 
@@ -8199,7 +8180,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         currObj.product.low_stock_alert_quantity = "";
         currObj.product.opening_stock = "";
         currObj.product.description = "";
-        currObj.product.price = "";
         currObj.setAvtarUploadImage();
         currObj.errors = ""; //clearing errors
 
@@ -8298,15 +8278,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     //end of methods block
 
   },
-  computed: {
-    grandTotal: function grandTotal() {
-      //reduce function is used to sum the array elements
-      this.products.grandTotal = this.products.reduce(function (carry, product) {
-        return carry + parseFloat(product.quantity) * parseFloat(product.price);
-      }, 0);
-      return this.products.grandTotal;
-    }
-  }
+  computed: {}
 });
 
 /***/ }),
@@ -163726,38 +163698,6 @@ var render = function() {
                 : _vm._e(),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
-                _c("label", { attrs: { for: "Price" } }, [_vm._v("Price:")]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.product.price,
-                      expression: "product.price"
-                    }
-                  ],
-                  class: ["form-control"],
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.product.price },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.product, "price", $event.target.value)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _vm.errors.price
-                  ? _c("span", { class: ["errorText"] }, [
-                      _vm._v(_vm._s(_vm.errors.price[0]))
-                    ])
-                  : _vm._e()
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group" }, [
                 _c("label", { attrs: { for: "Description" } }, [
                   _vm._v(" Description:")
                 ]),
@@ -163984,10 +163924,6 @@ var render = function() {
                               ]),
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(product.unit))]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _vm._v("Rs. " + _vm._s(product.price))
-                              ]),
                               _vm._v(" "),
                               _c("td", [
                                 _vm.hasPermission("edit_product")
@@ -164227,8 +164163,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Low Stock Alert Quantity")]),
         _vm._v(" "),
         _c("th", [_vm._v("Unit")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Price")]),
         _vm._v(" "),
         _c("th", [_vm._v("Actions")])
       ])

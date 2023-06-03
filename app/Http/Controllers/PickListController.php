@@ -49,9 +49,9 @@ class PickListController extends Controller
 
             'items.*.shelf' => 'required | string |max:200',
             'items.*.requested' => 'required | numeric',
-            'items.*.picked' => 'numeric',
+            'items.*.picked' => 'string|max:200',
             'items.*.description' => 'required | string|max:400',
-            'items.*.quantity_picked' => 'numeric',
+            // 'items.*.quantity_picked' => 'string',
 
         ]);
 
@@ -142,9 +142,9 @@ class PickListController extends Controller
 
             'items.*.shelf' => 'required | string |max:200',
             'items.*.requested' => 'required | numeric',
-            'items.*.picked' => 'numeric',
+            'items.*.picked' => 'string|max:200',
             'items.*.description' => 'required | string|max:400',
-            'items.*.quantity_picked' => 'numeric',
+            // 'items.*.quantity_picked' => 'numeric',
 
         ]);
         $store = Store::findOrFail($store_id);

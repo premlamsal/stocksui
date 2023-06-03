@@ -103,18 +103,7 @@
               >{{ errors.low_stock_alert_quantity[0] }}</span
             >
           </div>
-          <div class="form-group">
-            <label for="Price">Price:</label>
-            <input
-              type="text"
-              v-model="product.price"
-              :class="['form-control']"
-            />
-            <span v-if="errors.price" :class="['errorText']">{{
-              errors.price[0]
-            }}</span>
-          </div>
-
+         
           <div class="form-group">
             <label for="Description"> Description:</label>
             <textarea :class="['form-control']" v-model="product.description">{{
@@ -220,7 +209,6 @@
                 <th>Low Stock Alert Quantity</th>
 
                 <th>Unit</th>
-                <th>Price</th>
 
                 <th>Actions</th>
               </tr>
@@ -244,7 +232,6 @@
                 <td>{{ product.low_stock_alert_quantity }}</td>
 
                 <td>{{ product.unit }}</td>
-                <td>Rs. {{ product.price }}</td>
                 <td>
                   <button
                     class="btn btn-outline-success custom_btn_table"
@@ -350,7 +337,6 @@ export default {
           description: "",
           low_stock_alert_active: false,
           low_stock_alert_quantity: "",
-          price: "",
           category: {},
           unit: {},
         },
@@ -384,7 +370,6 @@ export default {
       products_export_fileds: [
         "custom_product_id",
         "name",
-        "price",
         "cp",
         "sp",
         "description",
@@ -547,7 +532,6 @@ export default {
       this.product.phone = "";
       this.product.description = "";
       this.opening_stock = "";
-      this.product.price = "";
       this.low_stock_alert_quantity = "";
 
       this.setAvtarUploadImage();
@@ -581,7 +565,6 @@ export default {
       formData.append("name", this.product.name);
       formData.append("product_cat_id", this.product.product_cat_id);
       formData.append("opening_stock", this.product.opening_stock);
-      formData.append("price", this.product.price);
       formData.append(
         "low_stock_alert_quantity",
         this.product.low_stock_alert_quantity
@@ -605,7 +588,6 @@ export default {
           currObj.product.product_cat_id = "";
           currObj.product.unit = "";
           currObj.product.address = "";
-          currObj.product.price = "";
           (currObj.product.low_stock_alert_quantity = ""),
             (currObj.product.phone = "");
           currObj.opening_stock = "";
@@ -645,7 +627,6 @@ export default {
             response.data.product.description
           );
           Vue.set(this.product, "unit", response.data.product.unit);
-          Vue.set(this.product, "price", response.data.product.price);
 
           Vue.set(this.product, "low_stock_alert_active", JSON.parse(response.data.product.low_stock_alert_active));
          
@@ -689,7 +670,6 @@ export default {
       formData.append("_method", "PUT"); //add this otherwise data won't pass to backend
       formData.append("id", this.product.id);
       formData.append("name", this.product.name);
-      formData.append("price", this.product.price);
       formData.append("product_cat_id", this.product.product_cat_id);
       formData.append("unit", this.product.unit);
       // formData.append('opening_stock',this.product.opening_stock);
@@ -718,7 +698,6 @@ export default {
 
           currObj.product.opening_stock = "";
           currObj.product.description = "";
-          currObj.product.price = "";
 
           currObj.setAvtarUploadImage();
 
@@ -828,17 +807,7 @@ export default {
   },
 
   computed: {
-    grandTotal: function () {
-      //reduce function is used to sum the array elements
-      this.products.grandTotal = this.products.reduce(function (
-        carry,
-        product
-      ) {
-        return carry + parseFloat(product.quantity) * parseFloat(product.price);
-      },
-      0);
-      return this.products.grandTotal;
-    },
+  
   },
 };
 </script>

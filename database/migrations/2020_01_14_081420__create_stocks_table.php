@@ -23,7 +23,7 @@ class CreateStocksTable extends Migration
 
             $table->decimal('quantity');
 
-            $table->decimal('price');
+            $table->decimal('price')->nullable();
 
             $table->string('unit');
 
