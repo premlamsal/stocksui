@@ -44,7 +44,7 @@ class ContactController extends Controller
 
             'name'    => 'required|regex:/^[\pL\s\-]+$/u',
 
-            'address' => 'required|string|max:200',
+            'email' => 'required|email|max:200',
 
             'phone'   =>  'required|unique:contacts,phone|numeric',
 
@@ -59,7 +59,7 @@ class ContactController extends Controller
 
         $contact->name = $request->input('name');
 
-        $contact->address = $request->input('address');
+        $contact->email = $request->input('email');
 
         $contact->phone = $request->input('phone');
 
@@ -101,7 +101,7 @@ class ContactController extends Controller
 
             'name'    => 'required|regex:/^[\pL\s\-]+$/u',
 
-            'address' => 'required|string|max:200',
+            'email' => 'required|email|max:200',
 
             'phone'   => 'required|numeric',
 
@@ -120,7 +120,7 @@ class ContactController extends Controller
 
         $contact->name = $request->input('name');
 
-        $contact->address = $request->input('address');
+        $contact->email = $request->input('email');
 
         $contact->role = $request->input('role');
 

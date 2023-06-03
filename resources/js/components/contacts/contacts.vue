@@ -20,9 +20,9 @@
           <span v-if="errors.name" :class="['errorText']">{{ errors.name[0] }}</span>
         </div>
         <div class="form-group">
-          <label for="Address">Address:</label>
-          <input type="text" v-model="contact.address" :class="['form-control']">
-          <span v-if="errors.address" :class="['errorText']">{{ errors.address[0] }}</span>
+          <label for="Email">Email:</label>
+          <input type="email" v-model="contact.email" :class="['form-control']">
+          <span v-if="errors.email" :class="['errorText']">{{ errors.email[0] }}</span>
         </div>
         <div class="form-group">
           <label for="Phone">Phone:</label>
@@ -89,7 +89,7 @@
               <tr>
                 <!-- <th>ID</th> -->
                 <th>Name</th>
-                <th>Address</th>
+                <th>Email</th>
                 <th>Phone</th>
                 <th>Role</th>
                 <th>Company</th>
@@ -101,7 +101,7 @@
               <tr v-for="contact in contacts" v-bind:key="contact.id">
                 <!-- <td>{{contact.id}}</td> -->
                 <td @click="contactProfile(contact.id)" class="cursor">{{contact.name}}</td>
-                <td>{{contact.address}}</td>
+                <td>{{contact.email}}</td>
                 <td>{{contact.phone}}</td>
                 <td>{{contact.role}}</td>
                 <td>{{contact.company}}</td>
@@ -167,7 +167,7 @@ export default {
 
       // store_id: 3 ,
 
-      contacts_export_fileds:["name","address","phone","company"],
+      contacts_export_fileds:["name","email","phone","company"],
 
     }
   },
@@ -253,7 +253,7 @@ export default {
       this.modalForCode = 0; //0 for add 
 
       this.contact.name = '';
-      this.contact.address = '';
+      this.contact.email = '';
       this.contact.phone = '';
       this.contact.role = '';
 
@@ -291,7 +291,7 @@ export default {
 
 
           currObj.contact.name = '';
-          currObj.contact.address = '';
+          currObj.contact.email = '';
           currObj.contact.phone = '';
           currObj.contact.role = '';
 
@@ -326,7 +326,7 @@ export default {
         .then(response => {
           // console.log(response.data.unit)
           Vue.set(this.contact, 'name', response.data.contact.name);
-          Vue.set(this.contact, 'address', response.data.contact.address);
+          Vue.set(this.contact, 'email', response.data.contact.email);
           Vue.set(this.contact, 'role', response.data.contact.role);
 
           Vue.set(this.contact, 'company', response.data.contact.company);
@@ -346,7 +346,7 @@ export default {
       let formData = new FormData();
       formData.append('_method', 'PUT'); //add this otherwise data won't pass to backend
       formData.append('name', this.contact.name);
-      formData.append('address', this.contact.address);
+      formData.append('email', this.contact.email);
       formData.append('phone', this.contact.phone);
       formData.append('role', this.contact.role);
 
@@ -363,7 +363,7 @@ export default {
           currObj.$bvModal.hide('bv-modal-add-contact');
 
           currObj.contact.name = '';
-          currObj.contact.address = '';
+          currObj.contact.email = '';
           currObj.contact.role = '';
 
           currObj.contact.phone = '';

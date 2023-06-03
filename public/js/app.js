@@ -3838,7 +3838,7 @@ __webpack_require__.r(__webpack_exports__);
       pagination: {},
       isLoading: '',
       // store_id: 3 ,
-      contacts_export_fileds: ["name", "address", "phone", "company"]
+      contacts_export_fileds: ["name", "email", "phone", "company"]
     };
   },
   created: function created() {
@@ -3906,7 +3906,7 @@ __webpack_require__.r(__webpack_exports__);
       this.modalForCode = 0; //0 for add 
 
       this.contact.name = '';
-      this.contact.address = '';
+      this.contact.email = '';
       this.contact.phone = '';
       this.contact.role = '';
       this.contact.company = '';
@@ -3932,7 +3932,7 @@ __webpack_require__.r(__webpack_exports__);
         currObj.$swal('Info', currObj.output, currObj.status);
         currObj.$bvModal.hide('bv-modal-add-contact');
         currObj.contact.name = '';
-        currObj.contact.address = '';
+        currObj.contact.email = '';
         currObj.contact.phone = '';
         currObj.contact.role = '';
         currObj.contact.company = '';
@@ -3963,7 +3963,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/api/contact/' + id).then(function (response) {
         // console.log(response.data.unit)
         Vue.set(_this.contact, 'name', response.data.contact.name);
-        Vue.set(_this.contact, 'address', response.data.contact.address);
+        Vue.set(_this.contact, 'email', response.data.contact.email);
         Vue.set(_this.contact, 'role', response.data.contact.role);
         Vue.set(_this.contact, 'company', response.data.contact.company);
         Vue.set(_this.contact, 'phone', response.data.contact.phone);
@@ -3982,7 +3982,7 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('_method', 'PUT'); //add this otherwise data won't pass to backend
 
       formData.append('name', this.contact.name);
-      formData.append('address', this.contact.address);
+      formData.append('email', this.contact.email);
       formData.append('phone', this.contact.phone);
       formData.append('role', this.contact.role);
       formData.append('id', this.contact.id);
@@ -3994,7 +3994,7 @@ __webpack_require__.r(__webpack_exports__);
         currObj.$swal('Info', currObj.output, currObj.status);
         currObj.$bvModal.hide('bv-modal-add-contact');
         currObj.contact.name = '';
-        currObj.contact.address = '';
+        currObj.contact.email = '';
         currObj.contact.role = '';
         currObj.contact.phone = '';
         currObj.contact.company = '';
@@ -156751,33 +156751,33 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "Address" } }, [_vm._v("Address:")]),
+              _c("label", { attrs: { for: "Email" } }, [_vm._v("Email:")]),
               _vm._v(" "),
               _c("input", {
                 directives: [
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.contact.address,
-                    expression: "contact.address"
+                    value: _vm.contact.email,
+                    expression: "contact.email"
                   }
                 ],
                 class: ["form-control"],
-                attrs: { type: "text" },
-                domProps: { value: _vm.contact.address },
+                attrs: { type: "email" },
+                domProps: { value: _vm.contact.email },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.contact, "address", $event.target.value)
+                    _vm.$set(_vm.contact, "email", $event.target.value)
                   }
                 }
               }),
               _vm._v(" "),
-              _vm.errors.address
+              _vm.errors.email
                 ? _c("span", { class: ["errorText"] }, [
-                    _vm._v(_vm._s(_vm.errors.address[0]))
+                    _vm._v(_vm._s(_vm.errors.email[0]))
                   ])
                 : _vm._e()
             ]),
@@ -157026,7 +157026,7 @@ var render = function() {
                             [_vm._v(_vm._s(contact.name))]
                           ),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(contact.address))]),
+                          _c("td", [_vm._v(_vm._s(contact.email))]),
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(contact.phone))]),
                           _vm._v(" "),
@@ -157260,7 +157260,7 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Name")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Address")]),
+        _c("th", [_vm._v("Email")]),
         _vm._v(" "),
         _c("th", [_vm._v("Phone")]),
         _vm._v(" "),
