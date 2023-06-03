@@ -6657,14 +6657,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 //custom toggle button
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -6675,7 +6667,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       id: "",
       items: [{
-        shlef: "",
+        shelf: "",
         requested: "1",
         picked: "",
         description: "",
@@ -6683,7 +6675,7 @@ __webpack_require__.r(__webpack_exports__);
         changed: true
       }],
       cloneItems: [{
-        shlef: "",
+        shelf: "",
         requested: "1",
         picked: "",
         description: "",
@@ -6731,7 +6723,7 @@ __webpack_require__.r(__webpack_exports__);
       this.picklists_id = "";
       this.id = "";
       this.items = [{
-        shlef: "",
+        shelf: "",
         requested: "1",
         picked: "",
         description: "",
@@ -6739,7 +6731,7 @@ __webpack_require__.r(__webpack_exports__);
         changed: true
       }];
       this.cloneItems = [{
-        shlef: "",
+        shelf: "",
         requested: "1",
         picked: "",
         description: "",
@@ -6780,7 +6772,7 @@ __webpack_require__.r(__webpack_exports__);
     //
     addNewLine: function addNewLine() {
       this.items.push({
-        shlef: "",
+        shelf: "",
         requested: "1",
         picked: "",
         description: "",
@@ -6788,7 +6780,7 @@ __webpack_require__.r(__webpack_exports__);
         changed: true
       });
       this.cloneItems.push({
-        shlef: "",
+        shelf: "",
         requested: "1",
         picked: "",
         description: "",
@@ -6991,7 +6983,7 @@ __webpack_require__.r(__webpack_exports__);
       currObj.errors = ""; //clearing errors
 
       axios.get("/api/picklist/" + id).then(function (response) {
-        Vue.set(currObj.info, "pick_list_no", response.data.pick_list.id), Vue.set(currObj.info, "ship_address", response.data.pick_list.ship_address), Vue.set(currObj.info, "custom_pick_list_id", response.data.pick_list.custom_pick_list_id), Vue.set(currObj.info, "title", response.data.pick_list.title), Vue.set(currObj.info, "ship_name", response.data.pick_list.ship_name), Vue.set(currObj.info, "date_requested", response.data.pick_list.date_requested), Vue.set(currObj.info, "picked_date", response.data.pick_list.picked_date), Vue.set(currObj.info, "status", response.data.pick_list.status);
+        Vue.set(currObj.info, "pick_list_no", response.data.pick_list.id), Vue.set(currObj.info, "ship_name", response.data.pick_list.ship_name), Vue.set(currObj.info, "ship_address", response.data.pick_list.ship_address), Vue.set(currObj.info, "sailing_date", response.data.pick_list.sailing_date), Vue.set(currObj.info, "date_requested", response.data.pick_list.date_requested), Vue.set(currObj.info, "picked_date", response.data.pick_list.picked_date), Vue.set(currObj.info, "custom_pick_list_id", response.data.pick_list.custom_pick_list_id), Vue.set(currObj.info, "status", response.data.pick_list.status);
         var items = response.data.pick_list.pick_list_detail; // veu.set will make data reactive and updated
         // Vue.set(currObj, "items",items),
         // Vue.set(currObj, "cloneItems",items),
@@ -161288,33 +161280,33 @@ var render = function() {
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: item.shlef,
-                                    expression: "item.shlef"
+                                    value: item.shelf,
+                                    expression: "item.shelf"
                                   }
                                 ],
                                 staticClass: "form-control",
                                 class: {
                                   "is-invalid":
-                                    _vm.errors["items." + index + ".shlef"]
+                                    _vm.errors["items." + index + ".shelf"]
                                 },
                                 attrs: { type: "text", placeholder: "Shelf" },
-                                domProps: { value: item.shlef },
+                                domProps: { value: item.shelf },
                                 on: {
                                   input: function($event) {
                                     if ($event.target.composing) {
                                       return
                                     }
-                                    _vm.$set(item, "shlef", $event.target.value)
+                                    _vm.$set(item, "shelf", $event.target.value)
                                   }
                                 }
                               }),
                               _vm._v(" "),
-                              _vm.errors["items." + index + ".shlef"]
+                              _vm.errors["items." + index + ".shelf"]
                                 ? _c("span", { class: ["errorText"] }, [
                                     _vm._v(
                                       _vm._s(
                                         _vm.errors[
-                                          "items." + index + ".shlef"
+                                          "items." + index + ".shelf"
                                         ][0]
                                       )
                                     )
@@ -161427,8 +161419,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: item.quan,
-                                  expression: "item.quan"
+                                  value: item.quantity_picked,
+                                  expression: "item.quantity_picked"
                                 }
                               ],
                               staticClass: "form-control",
@@ -161442,13 +161434,17 @@ var render = function() {
                                 type: "text",
                                 placeholder: "Quantity Picked"
                               },
-                              domProps: { value: item.quan },
+                              domProps: { value: item.quantity_picked },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
                                     return
                                   }
-                                  _vm.$set(item, "quan", $event.target.value)
+                                  _vm.$set(
+                                    item,
+                                    "quantity_picked",
+                                    $event.target.value
+                                  )
                                 }
                               }
                             })
@@ -161653,68 +161649,24 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("td", [
-                            _vm._v("Rs. " + _vm._s(picklist.grand_total))
+                            _vm._v("Rs. " + _vm._s(picklist.sailing_date))
                           ]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(picklist.ship_name))]),
+                          _c("td", [_vm._v(_vm._s(picklist.sailing_date))]),
                           _vm._v(" "),
                           _c("td", [
                             _vm._v(
                               "\n                " +
-                                _vm._s(
-                                  _vm._f("moment")(
-                                    picklist.picked_date,
-                                    "from",
-                                    "now"
-                                  )
-                                ) +
+                                _vm._s(picklist.picked_date) +
                                 "\n              "
                             )
                           ]),
                           _vm._v(" "),
                           _c("td", [
-                            picklist.picked_date === picklist.date_requested
-                              ? _c(
-                                  "span",
-                                  { staticClass: "bg-danger text-white p-2" },
-                                  [
-                                    _vm._v(
-                                      _vm._s(
-                                        _vm._f("moment")(
-                                          picklist.date_requested,
-                                          "from",
-                                          "now"
-                                        )
-                                      )
-                                    )
-                                  ]
-                                )
-                              : _c(
-                                  "span",
-                                  { staticClass: "bg-success text-white p-2" },
-                                  [
-                                    _vm._v(
-                                      _vm._s(
-                                        _vm._f("moment")(
-                                          picklist.date_requested,
-                                          "from",
-                                          "now"
-                                        )
-                                      )
-                                    )
-                                  ]
-                                )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
                             _vm._v(
-                              _vm._s(
-                                _vm._f("moment")(
-                                  picklist.updated_at,
-                                  "from",
-                                  "now"
-                                )
-                              )
+                              "\n                " +
+                                _vm._s(picklist.date_requested) +
+                                "\n              "
                             )
                           ]),
                           _vm._v(" "),
@@ -161965,15 +161917,13 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Pick List No.")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Grand Total")]),
+        _c("th", [_vm._v("Sailing Name")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Supplier")]),
+        _c("th", [_vm._v("Sailing Date")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Date")]),
+        _c("th", [_vm._v("Picked Date")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Due Date")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Last Modified at")]),
+        _c("th", [_vm._v("Date Request")]),
         _vm._v(" "),
         _c("th", [_vm._v("Modify")])
       ])

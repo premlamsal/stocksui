@@ -142,15 +142,15 @@
                         type="text"
                         class="form-control"
                         placeholder="Shelf"
-                        v-model="item.shlef"
+                        v-model="item.shelf"
                         :class="{
-                          'is-invalid': errors['items.' + index + '.shlef'],
+                          'is-invalid': errors['items.' + index + '.shelf'],
                         }"
                       />
                       <span
-                        v-if="errors['items.' + index + '.shlef']"
+                        v-if="errors['items.' + index + '.shelf']"
                         :class="['errorText']"
-                        >{{ errors["items." + index + ".shlef"][0] }}</span
+                        >{{ errors["items." + index + ".shelf"][0] }}</span
                       >
                     </div>
                   </div>
@@ -192,7 +192,7 @@
                       type="text"
                       class="form-control"
                       placeholder="Quantity Picked"
-                      v-model="item.quan"
+                      v-model="item.quantity_picked"
                       :class="{
                         'is-invalid':
                           errors['items.' + index + '.quantity_picked'],
@@ -314,12 +314,11 @@
             <thead>
               <tr>
                 <th>Pick List No.</th>
-                <th>Grand Total</th>
-                <th>Supplier</th>
-                <th>Date</th>
-                <th>Due Date</th>
+                <th>Sailing Name</th>
+                <th>Sailing Date</th>
+                <th>Picked Date</th>
                 <!-- <th>Status</th> -->
-                <th>Last Modified at</th>
+                <th>Date Request</th>
                 <th>Modify</th>
               </tr>
             </thead>
@@ -327,21 +326,15 @@
             <tbody>
               <tr v-for="picklist in picklists" v-bind:key="picklist.id">
                 <td>{{ picklist.custom_pick_list_id }}</td>
-                <td>Rs. {{ picklist.grand_total }}</td>
-                <td>{{ picklist.ship_name }}</td>
+                <td>Rs. {{ picklist.sailing_date }}</td>
+                <td>{{ picklist.sailing_date}}</td>
                 <td>
-                  {{ picklist.picked_date | moment("from", "now") }}
+                  {{ picklist.picked_date}}
                 </td>
                 <td>
-                  <span
-                    v-if="picklist.picked_date === picklist.date_requested"
-                    class="bg-danger text-white p-2"
-                    >{{ picklist.date_requested | moment("from", "now") }}</span
-                  >
-                  <span v-else class="bg-success text-white p-2">{{
-                    picklist.date_requested | moment("from", "now")
-                  }}</span>
+                  {{ picklist.date_requested }}
                 </td>
+               
 
                 <!--
                <td v-if="(picklist.status==='Paid')">
@@ -353,7 +346,6 @@
                 </td>
                 -->
 
-                <td>{{ picklist.updated_at | moment("from", "now") }}</td>
                 <td>
                   <button
                     class="btn btn-outline-primary custom_btn_table"
@@ -468,7 +460,7 @@ export default {
       id: "",
       items: [
         {
-          shlef: "",
+          shelf: "",
           requested: "1",
           picked: "",
           description: "",
@@ -479,7 +471,7 @@ export default {
 
       cloneItems: [
         {
-          shlef: "",
+          shelf: "",
           requested: "1",
           picked: "",
           description: "",
@@ -538,7 +530,7 @@ export default {
 
       this.items = [
         {
-          shlef: "",
+          shelf: "",
           requested: "1",
           picked: "",
           description: "",
@@ -548,7 +540,7 @@ export default {
       ];
       this.cloneItems = [
         {
-          shlef: "",
+          shelf: "",
           requested: "1",
           picked: "",
           description: "",
@@ -607,7 +599,7 @@ export default {
 
     addNewLine() {
       this.items.push({
-        shlef: "",
+        shelf: "",
         requested: "1",
         picked: "",
         description: "",
@@ -616,7 +608,7 @@ export default {
       });
 
       this.cloneItems.push({
-        shlef: "",
+        shelf: "",
         requested: "1",
         picked: "",
         description: "",
@@ -830,6 +822,11 @@ export default {
         .get("/api/picklist/" + id)
         .then(function (response) {
           Vue.set(currObj.info, "pick_list_no", response.data.pick_list.id),
+          Vue.set(
+              currObj.info,
+              "ship_name",
+              response.data.pick_list.ship_name
+            ),
             Vue.set(
               currObj.info,
               "ship_address",
@@ -837,25 +834,26 @@ export default {
             ),
             Vue.set(
               currObj.info,
-              "custom_pick_list_id",
-              response.data.pick_list.custom_pick_list_id
-            ),
-            Vue.set(currObj.info, "title", response.data.pick_list.title),
-            Vue.set(
-              currObj.info,
-              "ship_name",
-              response.data.pick_list.ship_name
+              "sailing_date",
+              response.data.pick_list.sailing_date
             ),
             Vue.set(
               currObj.info,
               "date_requested",
               response.data.pick_list.date_requested
             ),
+
             Vue.set(
               currObj.info,
               "picked_date",
               response.data.pick_list.picked_date
             ),
+            Vue.set(
+              currObj.info,
+              "custom_pick_list_id",
+              response.data.pick_list.custom_pick_list_id
+            ),
+         
             Vue.set(currObj.info, "status", response.data.pick_list.status);
           let items = response.data.pick_list.pick_list_detail;
 

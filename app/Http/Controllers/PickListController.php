@@ -40,18 +40,17 @@ class PickListController extends Controller
         //validation
         $this->validate($request, [
 
-            'info.note' => 'required | string |max:200',
-            'info.supplier_name' => 'required | string| max:200',
-            'info.supplier_id' => 'required',
-            'info.due_date' => 'required | date',
-            'info.pick_list_date' => 'required | date',
+            'info.ship_name' => 'required | string| max:200',
+            'info.ship_address' => 'required | string| max:200',
+            'info.sailing_date' => 'required | string |max:200',
+            'info.date_requested' => 'required',
+            'info.picked_date' => 'required | date',
 
-            'info.pick_list_reference_number' => 'required | string| max:200',
-
-
-            'items.*.product_name' => 'required | string |max:200',
-            'items.*.price' => 'required | numeric',
-            'items.*.quantity' => 'required | numeric',
+            'items.*.shlef' => 'required | string |max:200',
+            'items.*.requested' => 'required | numeric',
+            'items.*.picked' => 'required | string|max:200',
+            'items.*.description' => 'required | string|max:400',
+            'items.*.quantity_picked' => 'required | numeric',
 
         ]);
 
@@ -71,7 +70,7 @@ class PickListController extends Controller
 
         //collecting data
         $items = collect($request->items)->transform(function ($item) {
-            $item['line_total'] = $item['quantity'] * $item['price'];
+            // $item['line_total'] = $item['quantity'] * $item['price'];
             return new PickListDetail($item);
         });
 
@@ -84,13 +83,7 @@ class PickListController extends Controller
 
         $data = $request->info;
 
-        $data['sub_total'] = $items->sum('line_total');
-
-        $data['grand_total'] = $data['sub_total'];
-
         $data['store_id'] = $store_id;
-
-        $data['pick_list_reference_id'] = $data['supplier_short_name'] . '-' . $data['pick_list_reference_number'];
 
         $data['custom_pick_list_id'] = $new_count_pick_list_id;
 
@@ -140,20 +133,40 @@ class PickListController extends Controller
         // //validation
         $this->validate($request, [
 
-            'info.due_date' => 'required | date',
-            'info.pick_list_date' => 'required | date',
+            'info.ship_name' => 'required | string| max:200',
+            'info.ship_address' => 'required | string| max:200',
+            'info.sailing_date' => 'required | string |max:200',
+            'info.date_requested' => 'required',
+            'info.picked_date' => 'required | date',
 
-            'items.*.product_name' => 'required | string |max:200',
-            'items.*.price' => 'required | numeric',
-            'items.*.quantity' => 'required | numeric',
+            'items.*.shelf' => 'required | string |max:200',
+            'items.*.requested' => 'required | numeric',
+            'items.*.picked' => 'required | string|max:200',
+            'items.*.description' => 'required | string|max:400',
+            'items.*.quantity_picked' => 'required | numeric',
 
         ]);
+        $store = Store::findOrFail($store_id);
+
+        //old pick list id
+        $pick_list_id_count = $store->pick_list_id_count;
+
+        //explode pick list id from database
+
+        $custom_pick_list_id = explode('-', $pick_list_id_count);
+
+        $custom_pick_list_id[1] = $custom_pick_list_id[1] + 1; //increase pick list
+
+        //new custom_pick_list_id
+        $new_count_pick_list_id = implode('-', $custom_pick_list_id);
+
+
         $id = $request->id; //we will get pick list id here
 
         $pick_list = PickList::where('id', $id)->where('store_id', $store_id)->first();
 
         $items = collect($request->items)->transform(function ($item) {
-            $item['line_total'] = $item['quantity'] * $item['price'];
+            // $item['line_total'] = $item['quantity'] * $item['price'];
             return new PickListDetail($item);
         });
 
@@ -171,7 +184,8 @@ class PickListController extends Controller
 
         $data['store_id'] = $store_id;
 
-        $data['pick_list_reference_id'] = $data['supplier_short_name'] . '-' . $data['pick_list_reference_number'];
+        $data['custom_pick_list_id'] = $new_count_pick_list_id;
+
 
         //first get old items
         // Get pick_list

@@ -23,6 +23,7 @@ class CreateStoresTable extends Migration
             $table->string('email')->unique();
             $table->string('url')->nullable();
             $table->string('delivery_note_id_count')->default('DN-0');
+            $table->string('pick_list_id_count')->default('PL-0');
             $table->string('purchase_id_count')->default('PUR-0');
             $table->string('product_id_count')->default('PRO-0');
             $table->string('store_logo')->nullable();
