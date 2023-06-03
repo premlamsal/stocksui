@@ -314,7 +314,7 @@
             <thead>
               <tr>
                 <th>Pick List No.</th>
-                <th>Sailing Name</th>
+                <th>Ship Name</th>
                 <th>Sailing Date</th>
                 <th>Picked Date</th>
                 <!-- <th>Status</th> -->
@@ -326,7 +326,7 @@
             <tbody>
               <tr v-for="picklist in picklists" v-bind:key="picklist.id">
                 <td>{{ picklist.custom_pick_list_id }}</td>
-                <td>Rs. {{ picklist.sailing_date }}</td>
+                <td> {{ picklist.ship_name }}</td>
                 <td>{{ picklist.sailing_date}}</td>
                 <td>
                   {{ picklist.picked_date}}

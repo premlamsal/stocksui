@@ -42,8 +42,8 @@ class ProductController extends Controller
         $this->validate($request, [
             'name' => 'required|string|max:200',
             'description' => 'required|string|max:1000',
-            'price' => 'required|string|max:1000',
-            'low_stock_alert_active'=>'required',
+            'price' => 'string|max:1000',
+            'low_stock_alert_active'=>'numeric',
             'low_stock_alert_quantity' => 'required|string|max:1000',
             'product_cat_id' => 'required|numeric ',
             'unit' => 'required|string|max:40 ',
@@ -142,14 +142,14 @@ class ProductController extends Controller
         $store_id = $user->stores[0]->id;
 
         $this->validate($request, [
+       
             'name' => 'required|string|max:200',
             'description' => 'required|string|max:1000',
+            'price' => 'string|max:1000',
+            'low_stock_alert_active'=>'numeric',
+            'low_stock_alert_quantity' => 'required|string|max:1000',
             'product_cat_id' => 'required|numeric ',
             'unit' => 'required|string|max:40 ',
-            'price' => 'required|string|max:1000',
-            'low_stock_alert_quantity' => 'required|string|max:1000',
-
-
             'id' => 'required|numeric ',
             // 'image'=> 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
 

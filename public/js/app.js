@@ -163108,9 +163108,7 @@ var render = function() {
                             _vm._v(_vm._s(picklist.custom_pick_list_id))
                           ]),
                           _vm._v(" "),
-                          _c("td", [
-                            _vm._v("Rs. " + _vm._s(picklist.sailing_date))
-                          ]),
+                          _c("td", [_vm._v(" " + _vm._s(picklist.ship_name))]),
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(picklist.sailing_date))]),
                           _vm._v(" "),
@@ -163377,7 +163375,7 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Pick List No.")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Sailing Name")]),
+        _c("th", [_vm._v("Ship Name")]),
         _vm._v(" "),
         _c("th", [_vm._v("Sailing Date")]),
         _vm._v(" "),

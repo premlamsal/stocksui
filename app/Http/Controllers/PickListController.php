@@ -40,17 +40,18 @@ class PickListController extends Controller
         //validation
         $this->validate($request, [
 
+            
             'info.ship_name' => 'required | string| max:200',
             'info.ship_address' => 'required | string| max:200',
             'info.sailing_date' => 'required | string |max:200',
             'info.date_requested' => 'required',
             'info.picked_date' => 'required | date',
 
-            'items.*.shlef' => 'required | string |max:200',
+            'items.*.shelf' => 'required | string |max:200',
             'items.*.requested' => 'required | numeric',
-            'items.*.picked' => 'required | string|max:200',
+            'items.*.picked' => 'numeric',
             'items.*.description' => 'required | string|max:400',
-            'items.*.quantity_picked' => 'required | numeric',
+            'items.*.quantity_picked' => 'numeric',
 
         ]);
 
@@ -141,9 +142,9 @@ class PickListController extends Controller
 
             'items.*.shelf' => 'required | string |max:200',
             'items.*.requested' => 'required | numeric',
-            'items.*.picked' => 'required | string|max:200',
+            'items.*.picked' => 'numeric',
             'items.*.description' => 'required | string|max:400',
-            'items.*.quantity_picked' => 'required | numeric',
+            'items.*.quantity_picked' => 'numeric',
 
         ]);
         $store = Store::findOrFail($store_id);
