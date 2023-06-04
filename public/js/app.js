@@ -177934,10 +177934,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "view_events_list" },
+                  attrs: { type: "checkbox", value: "view_event_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "view_events_list") > -1
+                      ? _vm._i(_vm.checkedPermissions, "view_event_list") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -177946,7 +177946,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "view_events_list",
+                        var $$v = "view_event_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -178356,10 +178356,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "view_stock_list" },
+                  attrs: { type: "checkbox", value: "add_stock_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "view_stock_list") > -1
+                      ? _vm._i(_vm.checkedPermissions, "add_stock_list") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -178368,7 +178368,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "view_stock_list",
+                        var $$v = "add_stock_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -178390,7 +178390,7 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "view_stock_list" }
+                    attrs: { for: "add_stock_list" }
                   },
                   [_vm._v("\n            Stock List\n          ")]
                 )
@@ -178407,10 +178407,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "view_users_list" },
+                  attrs: { type: "checkbox", value: "add_users_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "view_users_list") > -1
+                      ? _vm._i(_vm.checkedPermissions, "add_users_list") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -178419,7 +178419,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "view_users_list",
+                        var $$v = "add_users_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -178441,7 +178441,7 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "view_user" }
+                    attrs: { for: "add_user" }
                   },
                   [_vm._v(" Users ")]
                 )
@@ -178458,11 +178458,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "view_settings_list" },
+                  attrs: { type: "checkbox", value: "add_settings_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "view_settings_list") >
-                        -1
+                      ? _vm._i(_vm.checkedPermissions, "add_settings_list") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -178471,7 +178470,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "view_settings_list",
+                        var $$v = "add_settings_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -178493,7 +178492,7 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "view_settings" }
+                    attrs: { for: "add_settings" }
                   },
                   [_vm._v("\n            Settings\n          ")]
                 )
@@ -178510,10 +178509,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "view_event_list" },
+                  attrs: { type: "checkbox", value: "add_event_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "view_event_list") > -1
+                      ? _vm._i(_vm.checkedPermissions, "add_event_list") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -178522,7 +178521,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "view_event_list",
+                        var $$v = "add_event_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -178544,7 +178543,7 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "view_event" }
+                    attrs: { for: "add_event" }
                   },
                   [_vm._v("\n            Event\n          ")]
                 )
@@ -179510,10 +179509,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "edit_stock_list" },
+                  attrs: { type: "checkbox", value: "delete_stock_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "edit_stock_list") > -1
+                      ? _vm._i(_vm.checkedPermissions, "delete_stock_list") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -179522,7 +179521,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "edit_stock_list",
+                        var $$v = "delete_stock_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -179544,7 +179543,7 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "edit_stock_list" }
+                    attrs: { for: "delete_stock_list" }
                   },
                   [_vm._v("\n            Stock List\n          ")]
                 )
@@ -179561,10 +179560,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "edit_users_list" },
+                  attrs: { type: "checkbox", value: "delete_users_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "edit_users_list") > -1
+                      ? _vm._i(_vm.checkedPermissions, "delete_users_list") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -179573,7 +179572,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "edit_users_list",
+                        var $$v = "delete_users_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -179595,7 +179594,7 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "edit_user" }
+                    attrs: { for: "delete_user" }
                   },
                   [_vm._v(" Users ")]
                 )
@@ -179612,10 +179611,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "edit_settings_list" },
+                  attrs: { type: "checkbox", value: "delete_settings_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "edit_settings_list") >
+                      ? _vm._i(_vm.checkedPermissions, "delete_settings_list") >
                         -1
                       : _vm.checkedPermissions
                   },
@@ -179625,7 +179624,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "edit_settings_list",
+                        var $$v = "delete_settings_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -179664,10 +179663,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "edit_event_list" },
+                  attrs: { type: "checkbox", value: "delete_event_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "edit_event_list") > -1
+                      ? _vm._i(_vm.checkedPermissions, "delete_event_list") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -179676,7 +179675,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "edit_event_list",
+                        var $$v = "delete_event_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -179698,7 +179697,7 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "edit_event" }
+                    attrs: { for: "delete_event" }
                   },
                   [_vm._v("\n            Event\n          ")]
                 )
