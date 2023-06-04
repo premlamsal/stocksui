@@ -76,7 +76,6 @@
                 <!-- <th>ID</th> -->
                 <th>Name</th>
                 <th>Permissions</th>
-                <th>Updated at</th>
                 <th>Modify</th>
               </tr>
             </thead>
@@ -85,7 +84,6 @@
                 <!-- <td>{{role.id}}</td> -->
                 <td>{{role.name}}</td>
                 <td>{{role.permissions[0].name}}</td>
-                <td>{{role.updated_at | moment("from", "now")}}</td>
                 <td>
                   <button class="btn btn-outline-success custom_btn_table" @click=editRole(role.id) v-if="hasPermission('edit_role')"><span class="fa fa-edit custom_icon_table"></span></button>
                   <button class="btn btn-outline-danger custom_btn_table" @click=deleteRole(role.id) v-if="hasPermission('delete_role')"><span class="fa fa-trash custom_icon_table"></span></button>

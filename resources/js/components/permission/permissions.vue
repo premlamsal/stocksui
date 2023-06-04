@@ -812,7 +812,6 @@
                 <!-- <th>ID</th> -->
                 <th>Name</th>
                 <!-- <th>Permissions</th> -->
-                <th>Updated at</th>
                 <th>Modify</th>
               </tr>
             </thead>
@@ -821,7 +820,6 @@
                 <!-- <td>{{permission.id}}</td> -->
                 <td>{{ permission.name }}</td>
                 <!-- <td>{{permission.long_name}}</td> -->
-                <td>{{ permission.created_at | moment("from", "now") }}</td>
                 <td>
                   <button
                     class="btn btn-outline-success custom_btn_table"

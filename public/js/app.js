@@ -17337,7 +17337,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -17730,8 +17729,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
 //
 //
 //
@@ -19085,8 +19082,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 //custom toggle button
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -19608,8 +19603,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
 //
 //
 //
@@ -22933,8 +22926,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 //custom toggle button
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -23456,8 +23447,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
 //
 //
 //
@@ -25040,8 +25029,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -25324,8 +25311,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
 //
 //
 //
@@ -174541,7 +174526,7 @@ var render = function() {
                 },
                 [
                   _c("span", { staticClass: "fa fa-plus-circle" }),
-                  _vm._v(" Add Category")
+                  _vm._v(" Add New Category")
                 ]
               )
             ],
@@ -174873,18 +174858,6 @@ var render = function() {
                           _c("td", [_vm._v(_vm._s(category.description))]),
                           _vm._v(" "),
                           _c("td", [
-                            _vm._v(
-                              _vm._s(
-                                _vm._f("moment")(
-                                  category.updated_at,
-                                  "from",
-                                  "now"
-                                )
-                              )
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
                             _vm.hasPermission("edit_category")
                               ? _c(
                                   "button",
@@ -175111,8 +175084,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Description")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Updated at")]),
-        _vm._v(" "),
         _c("th", [_vm._v("Modify")])
       ])
     ])
@@ -175188,7 +175159,7 @@ var render = function() {
                 },
                 [
                   _c("span", { staticClass: "fa fa-plus-circle" }),
-                  _vm._v(" Add Contact")
+                  _vm._v(" Add New Contact")
                 ]
               )
             ],
@@ -175555,18 +175526,6 @@ var render = function() {
                           _c("td", [_vm._v(_vm._s(contact.company))]),
                           _vm._v(" "),
                           _c("td", [
-                            _vm._v(
-                              _vm._s(
-                                _vm._f("moment")(
-                                  contact.updated_at,
-                                  "from",
-                                  "now"
-                                )
-                              )
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
                             _vm.hasPermission("edit_contact")
                               ? _c(
                                   "button",
@@ -175787,8 +175746,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Role")]),
         _vm._v(" "),
         _c("th", [_vm._v("Company")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Updated at")]),
         _vm._v(" "),
         _c("th", [_vm._v("Modify")])
       ])
@@ -176197,7 +176154,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("\n      New Delivery Note\n    ")]
+              [_vm._v("\n      Add Delivery Note\n    ")]
             )
           ])
         : _vm._e(),
@@ -177052,18 +177009,6 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("td", [
-                            _vm._v(
-                              _vm._s(
-                                _vm._f("moment")(
-                                  deliverynote.updated_at,
-                                  "from",
-                                  "now"
-                                )
-                              )
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
                             _vm.hasPermission("show_delivery_note")
                               ? _c(
                                   "button",
@@ -177321,8 +177266,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Date")]),
         _vm._v(" "),
         _c("th", [_vm._v("Due Date")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Last Modified at")]),
         _vm._v(" "),
         _c("th", [_vm._v("Modify")])
       ])
@@ -181008,18 +180951,6 @@ var render = function() {
                           _c("td", [_vm._v(_vm._s(permission.name))]),
                           _vm._v(" "),
                           _c("td", [
-                            _vm._v(
-                              _vm._s(
-                                _vm._f("moment")(
-                                  permission.created_at,
-                                  "from",
-                                  "now"
-                                )
-                              )
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
                             _vm.hasPermission("edit_permission")
                               ? _c(
                                   "button",
@@ -181244,8 +181175,6 @@ var staticRenderFns = [
     return _c("thead", [
       _c("tr", [
         _c("th", [_vm._v("Name")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Updated at")]),
         _vm._v(" "),
         _c("th", [_vm._v("Modify")])
       ])
@@ -183063,7 +182992,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("\n      New Purchase\n    ")]
+              [_vm._v("\n      Add Purchase Order\n    ")]
             )
           ])
         : _vm._e(),
@@ -183911,18 +183840,6 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("td", [
-                            _vm._v(
-                              _vm._s(
-                                _vm._f("moment")(
-                                  purchase.updated_at,
-                                  "from",
-                                  "now"
-                                )
-                              )
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
                             _vm.hasPermission("show_purchase")
                               ? _c(
                                   "button",
@@ -184176,8 +184093,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Date")]),
         _vm._v(" "),
         _c("th", [_vm._v("Due Date")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Last Modified at")]),
         _vm._v(" "),
         _c("th", [_vm._v("Modify")])
       ])
@@ -184521,14 +184436,6 @@ var render = function() {
                           _c("td", [_vm._v(_vm._s(role.permissions[0].name))]),
                           _vm._v(" "),
                           _c("td", [
-                            _vm._v(
-                              _vm._s(
-                                _vm._f("moment")(role.updated_at, "from", "now")
-                              )
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
                             _vm.hasPermission("edit_role")
                               ? _c(
                                   "button",
@@ -184743,8 +184650,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Name")]),
         _vm._v(" "),
         _c("th", [_vm._v("Permissions")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Updated at")]),
         _vm._v(" "),
         _c("th", [_vm._v("Modify")])
       ])
@@ -186683,18 +186588,6 @@ var render = function() {
                           _c("td", [_vm._v(_vm._s(supplier.details))]),
                           _vm._v(" "),
                           _c("td", [
-                            _vm._v(
-                              _vm._s(
-                                _vm._f("moment")(
-                                  supplier.updated_at,
-                                  "from",
-                                  "now"
-                                )
-                              )
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
                             _vm.hasPermission("edit_supplier")
                               ? _c(
                                   "button",
@@ -186915,8 +186808,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Contact Person")]),
         _vm._v(" "),
         _c("th", [_vm._v("Details")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Updated at")]),
         _vm._v(" "),
         _c("th", [_vm._v("Modify")])
       ])
@@ -187387,14 +187278,6 @@ var render = function() {
                               ]),
                           _vm._v(" "),
                           _c("td", [
-                            _vm._v(
-                              _vm._s(
-                                _vm._f("moment")(user.created_at, "from", "now")
-                              )
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
                             _vm.hasPermission("edit_user")
                               ? _c(
                                   "button",
@@ -187615,8 +187498,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Role")]),
         _vm._v(" "),
         _c("th", [_vm._v("Verified at")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Created at")]),
         _vm._v(" "),
         _c("th", [_vm._v("Action")])
       ])

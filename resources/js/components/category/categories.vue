@@ -9,7 +9,7 @@
         class="btn btn-success"
         style="margin-top: 8px"
       >
-        <span class="fa fa-plus-circle"></span> Add Category</b-button
+        <span class="fa fa-plus-circle"></span> Add New Category</b-button
       >
     </p>
     <!-- add category model start -->
@@ -146,7 +146,6 @@
               <tr>
                 <th>Name</th>
                 <th>Description</th>
-                <th>Updated at</th>
                 <th>Modify</th>
               </tr>
             </thead>
@@ -154,7 +153,7 @@
               <tr v-for="category in categories" v-bind:key="category.id">
                 <td>{{ category.name }}</td>
                 <td>{{ category.description }}</td>
-                <td>{{ category.updated_at | moment("from", "now") }}</td>
+                <!-- <td>{{ category.updated_at | moment("from", "now") }}</td> -->
                 <td>
                   <button
                     class="btn btn-outline-success custom_btn_table"

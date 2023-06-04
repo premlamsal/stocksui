@@ -4,7 +4,7 @@
     <h1 class="h3 mb-2 text-gray-800">Delivery Notes</h1>
     <p class="mb-4" v-if="hasPermission('add_delivery_notes')">
       <button class="btn btn-primary" @click="showAddModal()">
-        New Delivery Note
+        Add Delivery Note
       </button>
     </p>
 
@@ -386,7 +386,6 @@
                 <th>Date</th>
                 <th>Due Date</th>
                 <!-- <th>Status</th> -->
-                <th>Last Modified at</th>
                 <th>Modify</th>
               </tr>
             </thead>
@@ -425,7 +424,6 @@
                 </td>
                 -->
 
-                <td>{{ deliverynote.updated_at | moment("from", "now") }}</td>
                 <td>
                   <button
                     class="btn btn-outline-primary custom_btn_table"

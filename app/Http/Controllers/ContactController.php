@@ -46,7 +46,7 @@ class ContactController extends Controller
 
             'email' => 'required|email|max:200',
 
-            'phone'   =>  'required|unique:contacts,phone|numeric',
+            'phone'   => 'required|numeric',
 
             'role' => 'required|string|max:30',
 

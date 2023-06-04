@@ -101,7 +101,6 @@
                 <th>Email</th>
                 <th>Role</th>
                 <th>Verified at</th>
-                <th>Created at</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -125,7 +124,6 @@
                           {{user.email_verified_at | moment("from", "now")}}
                          </span>
                 </td>
-                <td>{{user.created_at | moment("from", "now")}}</td>
                 <td>
                   <button class="btn btn-outline-success custom_btn_table" @click=editUser(user.id) v-if="hasPermission('edit_user')"><span class="fa fa-edit custom_icon_table"></span></button>
                   <button class="btn btn-outline-danger custom_btn_table" @click=deleteUser(user.id) v-if="hasPermission('delete_user')"><span class="fa fa-trash custom_icon_table"></span></button>

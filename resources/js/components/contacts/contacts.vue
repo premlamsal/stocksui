@@ -4,7 +4,7 @@
     <h1 class="h3 mb-2 text-gray-800">Contact</h1>
     <p class="mb-4" v-if="hasPermission('add_contact')">
       <b-button id="show-btn" @click="showAddModal" class="btn btn-success" style="margin-top: 8px;">
-        <span class="fa fa-plus-circle"></span> Add Contact</b-button>
+        <span class="fa fa-plus-circle"></span> Add New Contact</b-button>
     </p>
     <!-- add unit model start -->
     <b-modal id="bv-modal-add-contact" hide-footer>
@@ -93,7 +93,6 @@
                 <th>Phone</th>
                 <th>Role</th>
                 <th>Company</th>
-                <th>Updated at</th>
                 <th>Modify</th>
               </tr>
             </thead>
@@ -105,7 +104,6 @@
                 <td>{{contact.phone}}</td>
                 <td>{{contact.role}}</td>
                 <td>{{contact.company}}</td>
-                <td>{{contact.updated_at | moment("from", "now")}}</td>
                 <td>
                   <button class="btn btn-success custom_btn_table" @click=editContact(contact.id) v-if="hasPermission('edit_contact')"><span class="fa fa-edit custom_icon_table"></span></button>
                   <button class="btn btn-danger custom_btn_table" @click=deleteContact(contact.id) v-if="hasPermission('delete_contact')"><span class="fa fa-trash custom_icon_table"></span></button>

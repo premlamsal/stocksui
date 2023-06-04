@@ -93,7 +93,6 @@
                 <th>Phone</th>
                 <th>Contact Person</th>
                 <th>Details</th>
-                <th>Updated at</th>
                 <th>Modify</th>
               </tr>
             </thead>
@@ -105,7 +104,6 @@
                 <td>{{supplier.phone}}</td>
                 <td>{{supplier.contact_person}}</td>
                 <td>{{supplier.details}}</td>
-                <td>{{supplier.updated_at | moment("from", "now")}}</td>
                 <td>
                   <button class="btn btn-success custom_btn_table" @click=editSupplier(supplier.id) v-if="hasPermission('edit_supplier')"><span class="fa fa-edit custom_icon_table"></span></button>
                   <button class="btn btn-danger custom_btn_table" @click=deleteSupplier(supplier.id) v-if="hasPermission('delete_supplier')"><span class="fa fa-trash custom_icon_table"></span></button>
