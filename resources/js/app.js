@@ -40,7 +40,9 @@ import VSelect from '@alfsnd/vue-bootstrap-select';
 import { Bar, Line } from 'vue-chartjs';
 
 
-
+ 
+ 
+ 
 
 //notification block//
 //Toaster
@@ -146,6 +148,13 @@ let routes = [
     path: '/dashboard',
     name:'dashboard',
     component: require('./components/dashboard/dashboard.vue').default,
+
+  },
+  
+  {
+    path: '/calendar',
+    name:'calendar',
+    component: require('./components/calendar/Calendar.vue').default,
 
   },
   

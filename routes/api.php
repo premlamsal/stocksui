@@ -406,6 +406,25 @@ Route::delete('picklist/{id}', 'PickListController@destroy');
 Route::get('picklistspdf/{id}', 'PickListController@pdfdownload');
 
 
+//calendar + event
+
+//List event
+Route::get('events', 'EventController@index');
+
+//Create new event
+Route::post('event', 'EventController@store');
+
+//List single event
+Route::get('event/{id}', 'EventController@show');
+
+//Update event
+Route::put('event', 'EventController@update');
+
+//Delete event
+Route::delete('event/{id}', 'EventController@destroy');
+
+//Search Events
+Route::post('events/search', 'EventController@searchEvents');
 
 
 
