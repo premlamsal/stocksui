@@ -734,7 +734,7 @@
               value="search_event_list"
               v-model="checkedPermissions"
             />
-            <label class="form-check-label" for="search_event"> Events </label>
+            <label class="form-check-label" for="search_event"> Event</label>
           </div>
         </div>
       </div>

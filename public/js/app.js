@@ -180854,7 +180854,7 @@ var render = function() {
                     staticClass: "form-check-label",
                     attrs: { for: "search_event" }
                   },
-                  [_vm._v(" Events ")]
+                  [_vm._v(" Event")]
                 )
               ])
             ])
