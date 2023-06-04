@@ -160,7 +160,7 @@ class EventController extends Controller
             ]);
         } else {
             return response()->json([
-                'msg' => 'Error while retriving Customer',
+                'msg' => 'Error while retriving Event',
                 'status' => 'error',
             ]);
         }

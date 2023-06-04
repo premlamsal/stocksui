@@ -16978,8 +16978,8 @@ __webpack_require__.r(__webpack_exports__);
       var formData = new FormData();
       formData.append("_method", "PUT"); //add this otherwise data won't pass to backend
 
-      formData.append("title", this.event.name);
-      formData.append("date", this.event.company);
+      formData.append("title", this.event.title);
+      formData.append("date", this.event.date);
       formData.append("id", this.event.id);
       axios.post("/api/event", formData).then(function (response) {
         currObj.output = response.data.msg;
