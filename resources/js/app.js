@@ -152,9 +152,9 @@ let routes = [
   },
   
   {
-    path: '/events',
-    name:'events',
-    component: require('./components/events/events.vue').default,
+    path: '/calendar',
+    name:'calendar',
+    component: require('./components/calendar/calendar.vue').default,
 
   },
   

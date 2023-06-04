@@ -98,38 +98,47 @@
             </label>
           </div>
           <div class="form-group">
-    <input
-      class="form-check-input"
-      type="checkbox"
-      value="view_contact_list"
-      v-model="checkedPermissions"
-    />
-    <label class="form-check-label" for="view_stock_list">
-      Stock List
-    </label>
-  </div>
-  <div class="form-group">
-    <input
-      class="form-check-input"
-      type="checkbox"
-      value="view_contact_list"
-      v-model="checkedPermissions"
-    />
-    <label class="form-check-label" for="view_user">
-      Users 
-    </label>
-  </div>
-  <div class="form-group">
-    <input
-      class="form-check-input"
-      type="checkbox"
-      value="view_contact_list"
-      v-model="checkedPermissions"
-    />
-    <label class="form-check-label" for="view_settings">
-      Settings 
-    </label>
-  </div>
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="view_stock_list"
+              v-model="checkedPermissions"
+            />
+            <label class="form-check-label" for="view_stock_list">
+              Stock List
+            </label>
+          </div>
+          <div class="form-group">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="view_users_list"
+              v-model="checkedPermissions"
+            />
+            <label class="form-check-label" for="view_user"> Users </label>
+          </div>
+          <div class="form-group">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="view_settings_list"
+              v-model="checkedPermissions"
+            />
+            <label class="form-check-label" for="view_settings">
+              Settings
+            </label>
+          </div>
+          <div class="form-group">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="view_events_list"
+              v-model="checkedPermissions"
+            />
+            <label class="form-check-label" for="view_events">
+              Event
+            </label>
+          </div>
         </div>
         <div class="col-md-2">
           <span style="font-weight: bold; margin-bottom: 20px">Add</span>
@@ -210,7 +219,7 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="view_contact_list"
+              value="view_stock_list"
               v-model="checkedPermissions"
             />
             <label class="form-check-label" for="view_stock_list">
@@ -221,7 +230,7 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="view_contact_list"
+              value="view_users_list"
               v-model="checkedPermissions"
             />
             <label class="form-check-label" for="view_user"> Users </label>
@@ -230,14 +239,24 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="view_contact_list"
+              value="view_settings_list"
               v-model="checkedPermissions"
             />
             <label class="form-check-label" for="view_settings">
               Settings
             </label>
           </div>
-    
+          <div class="form-group">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="view_event_list"
+              v-model="checkedPermissions"
+            />
+            <label class="form-check-label" for="view_event">
+              Event
+            </label>
+          </div>
         </div>
 
         <div class="col-md-2">
@@ -316,38 +335,47 @@
             </label>
           </div>
           <div class="form-group">
-    <input
-      class="form-check-input"
-      type="checkbox"
-      value="edit_contact_list"
-      v-model="checkedPermissions"
-    />
-    <label class="form-check-label" for="edit_stock_list">
-      Stock List
-    </label>
-  </div>
-  <div class="form-group">
-    <input
-      class="form-check-input"
-      type="checkbox"
-      value="edit_contact_list"
-      v-model="checkedPermissions"
-    />
-    <label class="form-check-label" for="edit_user">
-      Users 
-    </label>
-  </div>
-  <div class="form-group">
-    <input
-      class="form-check-input"
-      type="checkbox"
-      value="edit_contact_list"
-      v-model="checkedPermissions"
-    />
-    <label class="form-check-label" for="edit_settings">
-      Settings 
-    </label>
-  </div>
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="edit_stock_list"
+              v-model="checkedPermissions"
+            />
+            <label class="form-check-label" for="edit_stock_list">
+              Stock List
+            </label>
+          </div>
+          <div class="form-group">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="edit_users_list"
+              v-model="checkedPermissions"
+            />
+            <label class="form-check-label" for="edit_user"> Users </label>
+          </div>
+          <div class="form-group">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="edit_settings_list"
+              v-model="checkedPermissions"
+            />
+            <label class="form-check-label" for="edit_settings">
+              Settings
+            </label>
+          </div>
+          <div class="form-group">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="edit_event_list"
+              v-model="checkedPermissions"
+            />
+            <label class="form-check-label" for="edit_event">
+              Event
+            </label>
+          </div>
         </div>
         <div class="col-md-2">
           <span style="font-weight: bold; margin-bottom: 20px">Delete</span>
@@ -432,7 +460,7 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="edit_contact_list"
+              value="edit_stock_list"
               v-model="checkedPermissions"
             />
             <label class="form-check-label" for="edit_stock_list">
@@ -443,7 +471,7 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="edit_contact_list"
+              value="edit_users_list"
               v-model="checkedPermissions"
             />
             <label class="form-check-label" for="edit_user"> Users </label>
@@ -452,11 +480,22 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="edit_contact_list"
+              value="edit_settings_list"
               v-model="checkedPermissions"
             />
             <label class="form-check-label" for="edit_settings">
               Settings
+            </label>
+          </div>
+          <div class="form-group">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="edit_event_list"
+              v-model="checkedPermissions"
+            />
+            <label class="form-check-label" for="edit_event">
+              Event
             </label>
           </div>
         </div>
@@ -550,7 +589,7 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="show_contact_list"
+              value="show_users_list"
               v-model="checkedPermissions"
             />
             <label class="form-check-label" for="show_user"> Users </label>
@@ -559,11 +598,22 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="show_contact_list"
+              value="show_settings_list"
               v-model="checkedPermissions"
             />
             <label class="form-check-label" for="show_settings">
               Settings
+            </label>
+          </div>
+          <div class="form-group">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="show_event_list"
+              v-model="checkedPermissions"
+            />
+            <label class="form-check-label" for="show_event">
+              Event
             </label>
           </div>
         </div>
@@ -650,7 +700,7 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="search_contact_list"
+              value="search_stock_list"
               v-model="checkedPermissions"
             />
             <label class="form-check-label" for="search_stock_list">
@@ -661,7 +711,7 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="search_contact_list"
+              value="search_users_list"
               v-model="checkedPermissions"
             />
             <label class="form-check-label" for="search_user"> Users </label>
@@ -670,12 +720,21 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="search_contact_list"
+              value="search_settings_list"
               v-model="checkedPermissions"
             />
             <label class="form-check-label" for="search_settings">
               Settings
             </label>
+          </div>
+          <div class="form-group">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="search_event_list"
+              v-model="checkedPermissions"
+            />
+            <label class="form-check-label" for="search_event"> Events </label>
           </div>
         </div>
       </div>

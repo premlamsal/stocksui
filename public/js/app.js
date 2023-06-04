@@ -16781,6 +16781,282 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/calendar/calendar.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/calendar/calendar.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _fullcalendar_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @fullcalendar/vue */ "./node_modules/@fullcalendar/vue/dist/index.js");
+/* harmony import */ var _fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fullcalendar/daygrid */ "./node_modules/@fullcalendar/daygrid/index.js");
+/* harmony import */ var _fullcalendar_interaction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fullcalendar/interaction */ "./node_modules/@fullcalendar/interaction/index.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    FullCalendar: _fullcalendar_vue__WEBPACK_IMPORTED_MODULE_0__["default"] // make the <FullCalendar> tag available
+
+  },
+  data: function data() {
+    return {
+      event: {},
+      modalForName: "",
+      modalForCode: 0,
+      errors: [],
+      options: {
+        format: "YYYY-MM-DD",
+        useCurrent: true,
+        showClear: true,
+        showClose: true
+      },
+      calendarOptions: {
+        plugins: [_fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_1__["default"], _fullcalendar_interaction__WEBPACK_IMPORTED_MODULE_2__["default"]],
+        initialView: "dayGridMonth",
+        dateClick: this.handleDateClick,
+        eventClick: this.handleEventClick,
+        events: []
+      }
+    };
+  },
+  created: function created() {
+    this.fetchEvents();
+  },
+  methods: {
+    fetchEvents: function fetchEvents() {
+      var _this = this;
+
+      this.$Progress.start();
+      axios.get("/api/events").then(function (response) {
+        _this.calendarOptions.events = response.data.data;
+
+        _this.$Progress.finish();
+      })["catch"](function (error) {
+        console.log(error);
+
+        _this.$Progress.fail();
+      });
+    },
+    showAddModal: function showAddModal() {
+      this.modalForName = "Add Event"; // Vue.set(this.modalForName,"Add Unit");
+
+      this.modalForCode = 0; //0 for add
+
+      this.event.title = "";
+      this.event.date = "";
+      this.errors = ""; //clearing errors
+      // Vue.set(this.modalForCode,0);
+
+      this.$bvModal.show("bv-modal-add-event");
+    },
+    callFunc: function callFunc() {
+      if (this.modalForCode == 0) {
+        this.addEvent();
+      } else if (this.modalForCode == 1) {
+        this.updateEvent(); // console.log("Edit Unit");
+      }
+    },
+    addEvent: function addEvent() {
+      this.$Progress.start();
+      var currObj = this;
+      axios.post("/api/event", this.event).then(function (response) {
+        currObj.output = response.data.msg;
+        currObj.status = response.data.status;
+        currObj.$swal("Info", currObj.output, currObj.status);
+        currObj.$bvModal.hide("bv-modal-add-event");
+        currObj.event.title = "";
+        currObj.event.date = "";
+        currObj.errors = ""; //clearing errors
+
+        currObj.$Progress.finish();
+        currObj.fetchEvents();
+      })["catch"](function (error) {
+        currObj.$Progress.fail();
+
+        if (error.response.status == 422) {
+          currObj.validationErrors = error.response.data.errors;
+          currObj.errors = currObj.validationErrors; // console.log(currObj.errors);
+        }
+      });
+    },
+    editEvent: function editEvent(id) {
+      var _this2 = this;
+
+      this.$Progress.start();
+      var currObj = this;
+      this.modalForName = "Edit Event";
+      this.modalForCode = 1; // 1 for Edit
+
+      this.$bvModal.show("bv-modal-add-event");
+      currObj.errors = ""; //clearing errors
+
+      axios.get("/api/event/" + id).then(function (response) {
+        // console.log(response.data.unit)
+        Vue.set(_this2.event, "title", response.data.event.title);
+        Vue.set(_this2.event, "date", response.data.event.date);
+        Vue.set(_this2.event, "id", id); //to send id to the update controller
+
+        _this2.$Progress.finish();
+      })["catch"](function (error) {
+        // console.log(error)
+        _this2.$Progress.fail();
+      });
+    },
+    updateEvent: function updateEvent() {
+      this.$Progress.start();
+      var currObj = this;
+      var formData = new FormData();
+      formData.append("_method", "PUT"); //add this otherwise data won't pass to backend
+
+      formData.append("title", this.event.title);
+      formData.append("date", this.event.date);
+      formData.append("id", this.event.id);
+      axios.post("/api/event", formData).then(function (response) {
+        currObj.output = response.data.msg;
+        currObj.status = response.data.status; // alert(currObj.status);
+
+        currObj.$swal("Info", currObj.output, currObj.status);
+        currObj.$bvModal.hide("bv-modal-add-event");
+        currObj.event.title = "";
+        currObj.event.date = "";
+        currObj.event.id = "";
+        currObj.$Progress.finish();
+        currObj.fetchEvents();
+      })["catch"](function (error) {
+        currObj.$Progress.fail();
+
+        if (error.response.status == 422) {
+          currObj.validationErrors = error.response.data.errors;
+          currObj.errors = currObj.validationErrors; // console.log(currObj.errors);
+        }
+      });
+    },
+    deleteEvent: function deleteEvent(id) {
+      this.$Progress.start();
+      var currObj = this;
+      this.$swal({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(function (result) {
+        if (result.value) {
+          axios["delete"]("/api/event/" + id).then(function (response) {
+            currObj.output = response.data.msg;
+            currObj.status = response.data.status;
+            currObj.$Progress.finish();
+            currObj.$swal("Info", currObj.output, currObj.status);
+            currObj.fetchEvents();
+          })["catch"](function (error) {
+            currObj.$Progress.fail();
+          });
+        }
+      });
+    },
+    //end of deleteUnit()
+    handleDateClick: function handleDateClick(arg) {
+      alert("date click! " + arg.dateStr);
+    },
+    handleEventClick: function handleEventClick(clickInfo) {
+      //   if (
+      //     confirm(
+      //       `Are you sure you want to delete the event '${clickInfo.event.title}'`
+      //     )
+      //   ) {
+      this.editEvent(clickInfo.event.id); // clickInfo.event.remove();
+      // console.log(this.calendarOptions.events)
+      // console.log(clickInfo.event.id);
+      //   }
+    },
+    hasPermission: function hasPermission(action) {
+      var permissions_from_store = this.$store.getters.permissions;
+
+      if (permissions_from_store.includes(action) || permissions_from_store.includes("all")) {
+        return true;
+      } else {
+        return false;
+      }
+    } //has permision
+    //end of methods block
+
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/category/categories.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/category/categories.vue?vue&type=script&lang=js& ***!
@@ -19323,282 +19599,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/events/events.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/events/events.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _fullcalendar_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @fullcalendar/vue */ "./node_modules/@fullcalendar/vue/dist/index.js");
-/* harmony import */ var _fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fullcalendar/daygrid */ "./node_modules/@fullcalendar/daygrid/index.js");
-/* harmony import */ var _fullcalendar_interaction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fullcalendar/interaction */ "./node_modules/@fullcalendar/interaction/index.js");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    FullCalendar: _fullcalendar_vue__WEBPACK_IMPORTED_MODULE_0__["default"] // make the <FullCalendar> tag available
-
-  },
-  data: function data() {
-    return {
-      event: {},
-      modalForName: "",
-      modalForCode: 0,
-      errors: [],
-      options: {
-        format: "YYYY-MM-DD",
-        useCurrent: true,
-        showClear: true,
-        showClose: true
-      },
-      calendarOptions: {
-        plugins: [_fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_1__["default"], _fullcalendar_interaction__WEBPACK_IMPORTED_MODULE_2__["default"]],
-        initialView: "dayGridMonth",
-        dateClick: this.handleDateClick,
-        eventClick: this.handleEventClick,
-        events: []
-      }
-    };
-  },
-  created: function created() {
-    this.fetchEvents();
-  },
-  methods: {
-    fetchEvents: function fetchEvents() {
-      var _this = this;
-
-      this.$Progress.start();
-      axios.get("/api/events").then(function (response) {
-        _this.calendarOptions.events = response.data.data;
-
-        _this.$Progress.finish();
-      })["catch"](function (error) {
-        console.log(error);
-
-        _this.$Progress.fail();
-      });
-    },
-    showAddModal: function showAddModal() {
-      this.modalForName = "Add Event"; // Vue.set(this.modalForName,"Add Unit");
-
-      this.modalForCode = 0; //0 for add
-
-      this.event.title = "";
-      this.event.date = "";
-      this.errors = ""; //clearing errors
-      // Vue.set(this.modalForCode,0);
-
-      this.$bvModal.show("bv-modal-add-event");
-    },
-    callFunc: function callFunc() {
-      if (this.modalForCode == 0) {
-        this.addEvent();
-      } else if (this.modalForCode == 1) {
-        this.updateEvent(); // console.log("Edit Unit");
-      }
-    },
-    addEvent: function addEvent() {
-      this.$Progress.start();
-      var currObj = this;
-      axios.post("/api/event", this.event).then(function (response) {
-        currObj.output = response.data.msg;
-        currObj.status = response.data.status;
-        currObj.$swal("Info", currObj.output, currObj.status);
-        currObj.$bvModal.hide("bv-modal-add-event");
-        currObj.event.title = "";
-        currObj.event.date = "";
-        currObj.errors = ""; //clearing errors
-
-        currObj.$Progress.finish();
-        currObj.fetchEvents();
-      })["catch"](function (error) {
-        currObj.$Progress.fail();
-
-        if (error.response.status == 422) {
-          currObj.validationErrors = error.response.data.errors;
-          currObj.errors = currObj.validationErrors; // console.log(currObj.errors);
-        }
-      });
-    },
-    editEvent: function editEvent(id) {
-      var _this2 = this;
-
-      this.$Progress.start();
-      var currObj = this;
-      this.modalForName = "Edit Event";
-      this.modalForCode = 1; // 1 for Edit
-
-      this.$bvModal.show("bv-modal-add-event");
-      currObj.errors = ""; //clearing errors
-
-      axios.get("/api/event/" + id).then(function (response) {
-        // console.log(response.data.unit)
-        Vue.set(_this2.event, "title", response.data.event.title);
-        Vue.set(_this2.event, "date", response.data.event.date);
-        Vue.set(_this2.event, "id", id); //to send id to the update controller
-
-        _this2.$Progress.finish();
-      })["catch"](function (error) {
-        // console.log(error)
-        _this2.$Progress.fail();
-      });
-    },
-    updateEvent: function updateEvent() {
-      this.$Progress.start();
-      var currObj = this;
-      var formData = new FormData();
-      formData.append("_method", "PUT"); //add this otherwise data won't pass to backend
-
-      formData.append("title", this.event.title);
-      formData.append("date", this.event.date);
-      formData.append("id", this.event.id);
-      axios.post("/api/event", formData).then(function (response) {
-        currObj.output = response.data.msg;
-        currObj.status = response.data.status; // alert(currObj.status);
-
-        currObj.$swal("Info", currObj.output, currObj.status);
-        currObj.$bvModal.hide("bv-modal-add-event");
-        currObj.event.title = "";
-        currObj.event.date = "";
-        currObj.event.id = "";
-        currObj.$Progress.finish();
-        currObj.fetchEvents();
-      })["catch"](function (error) {
-        currObj.$Progress.fail();
-
-        if (error.response.status == 422) {
-          currObj.validationErrors = error.response.data.errors;
-          currObj.errors = currObj.validationErrors; // console.log(currObj.errors);
-        }
-      });
-    },
-    deleteEvent: function deleteEvent(id) {
-      this.$Progress.start();
-      var currObj = this;
-      this.$swal({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!"
-      }).then(function (result) {
-        if (result.value) {
-          axios["delete"]("/api/event/" + id).then(function (response) {
-            currObj.output = response.data.msg;
-            currObj.status = response.data.status;
-            currObj.$Progress.finish();
-            currObj.$swal("Info", currObj.output, currObj.status);
-            currObj.fetchEvents();
-          })["catch"](function (error) {
-            currObj.$Progress.fail();
-          });
-        }
-      });
-    },
-    //end of deleteUnit()
-    handleDateClick: function handleDateClick(arg) {
-      alert("date click! " + arg.dateStr);
-    },
-    handleEventClick: function handleEventClick(clickInfo) {
-      //   if (
-      //     confirm(
-      //       `Are you sure you want to delete the event '${clickInfo.event.title}'`
-      //     )
-      //   ) {
-      this.editEvent(clickInfo.event.id); // clickInfo.event.remove();
-      // console.log(this.calendarOptions.events)
-      // console.log(clickInfo.event.id);
-      //   }
-    },
-    hasPermission: function hasPermission(action) {
-      var permissions_from_store = this.$store.getters.permissions;
-
-      if (permissions_from_store.includes(action) || permissions_from_store.includes("all")) {
-        return true;
-      } else {
-        return false;
-      }
-    } //has permision
-    //end of methods block
-
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/permission/permissions.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/permission/permissions.vue?vue&type=script&lang=js& ***!
@@ -19608,6 +19608,65 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -174265,6 +174324,187 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/calendar/calendar.vue?vue&type=template&id=f116d698&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/calendar/calendar.vue?vue&type=template&id=f116d698& ***!
+  \********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("h1", { staticClass: "h3 mb-2 text-gray-800" }, [_vm._v("Calendar")]),
+      _vm._v(" "),
+      _vm.hasPermission("add_event")
+        ? _c(
+            "p",
+            { staticClass: "mb-4" },
+            [
+              _c(
+                "b-button",
+                {
+                  staticClass: "btn btn-success",
+                  staticStyle: { "margin-top": "8px" },
+                  attrs: { id: "show-btn" },
+                  on: {
+                    click: function($event) {
+                      return _vm.showAddModal()
+                    }
+                  }
+                },
+                [
+                  _c("span", { staticClass: "fa fa-plus-circle" }),
+                  _vm._v(" Add Event")
+                ]
+              )
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          attrs: { id: "bv-modal-add-event", "hide-footer": "" },
+          scopedSlots: _vm._u([
+            {
+              key: "modal-title",
+              fn: function() {
+                return [
+                  _c("span", { staticClass: "text-primary" }, [
+                    _vm._v(_vm._s(_vm.modalForName))
+                  ])
+                ]
+              },
+              proxy: true
+            }
+          ])
+        },
+        [
+          _vm._v(" "),
+          _c("div", { staticClass: "d-block" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.event.id,
+                    expression: "event.id"
+                  }
+                ],
+                attrs: { type: "hidden" },
+                domProps: { value: _vm.event.id },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.event, "id", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "Title" } }, [_vm._v("Title:")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.event.title,
+                    expression: "event.title"
+                  }
+                ],
+                class: ["form-control"],
+                attrs: { type: "text" },
+                domProps: { value: _vm.event.title },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.event, "title", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors.title
+                ? _c("span", { class: ["errorText"] }, [
+                    _vm._v(_vm._s(_vm.errors.title[0]))
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "form-group" },
+              [
+                _c("label", { attrs: { for: "Date" } }, [_vm._v("Date:")]),
+                _vm._v(" "),
+                _c("date-picker", {
+                  class: ["form-control"],
+                  attrs: { config: _vm.options },
+                  model: {
+                    value: _vm.event.date,
+                    callback: function($$v) {
+                      _vm.$set(_vm.event, "date", $$v)
+                    },
+                    expression: "event.date"
+                  }
+                }),
+                _vm._v(" "),
+                _vm.errors.date
+                  ? _c("span", { class: ["errorText"] }, [
+                      _vm._v(_vm._s(_vm.errors.date[0]))
+                    ])
+                  : _vm._e()
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "b-button",
+            {
+              staticClass: "btn-primary mt-3",
+              attrs: { block: "" },
+              on: { click: _vm.callFunc }
+            },
+            [_vm._v(_vm._s(_vm.modalForName))]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "card shadow mb-4" }, [
+        _c(
+          "div",
+          { staticClass: "card-body" },
+          [_c("FullCalendar", { attrs: { options: _vm.calendarOptions } })],
+          1
+        )
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/category/categories.vue?vue&type=template&id=df9a715c&scoped=true&":
 /*!**********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/category/categories.vue?vue&type=template&id=df9a715c&scoped=true& ***!
@@ -177095,187 +177335,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/events/events.vue?vue&type=template&id=6ce4ff14&":
-/*!****************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/events/events.vue?vue&type=template&id=6ce4ff14& ***!
-  \****************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("h1", { staticClass: "h3 mb-2 text-gray-800" }, [_vm._v("Calendar")]),
-      _vm._v(" "),
-      _vm.hasPermission("add_event")
-        ? _c(
-            "p",
-            { staticClass: "mb-4" },
-            [
-              _c(
-                "b-button",
-                {
-                  staticClass: "btn btn-success",
-                  staticStyle: { "margin-top": "8px" },
-                  attrs: { id: "show-btn" },
-                  on: {
-                    click: function($event) {
-                      return _vm.showAddModal()
-                    }
-                  }
-                },
-                [
-                  _c("span", { staticClass: "fa fa-plus-circle" }),
-                  _vm._v(" Add Event")
-                ]
-              )
-            ],
-            1
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _c(
-        "b-modal",
-        {
-          attrs: { id: "bv-modal-add-event", "hide-footer": "" },
-          scopedSlots: _vm._u([
-            {
-              key: "modal-title",
-              fn: function() {
-                return [
-                  _c("span", { staticClass: "text-primary" }, [
-                    _vm._v(_vm._s(_vm.modalForName))
-                  ])
-                ]
-              },
-              proxy: true
-            }
-          ])
-        },
-        [
-          _vm._v(" "),
-          _c("div", { staticClass: "d-block" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.event.id,
-                    expression: "event.id"
-                  }
-                ],
-                attrs: { type: "hidden" },
-                domProps: { value: _vm.event.id },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.event, "id", $event.target.value)
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("label", { attrs: { for: "Title" } }, [_vm._v("Title:")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.event.title,
-                    expression: "event.title"
-                  }
-                ],
-                class: ["form-control"],
-                attrs: { type: "text" },
-                domProps: { value: _vm.event.title },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.event, "title", $event.target.value)
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _vm.errors.title
-                ? _c("span", { class: ["errorText"] }, [
-                    _vm._v(_vm._s(_vm.errors.title[0]))
-                  ])
-                : _vm._e()
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "form-group" },
-              [
-                _c("label", { attrs: { for: "Date" } }, [_vm._v("Date:")]),
-                _vm._v(" "),
-                _c("date-picker", {
-                  class: ["form-control"],
-                  attrs: { config: _vm.options },
-                  model: {
-                    value: _vm.event.date,
-                    callback: function($$v) {
-                      _vm.$set(_vm.event, "date", $$v)
-                    },
-                    expression: "event.date"
-                  }
-                }),
-                _vm._v(" "),
-                _vm.errors.date
-                  ? _c("span", { class: ["errorText"] }, [
-                      _vm._v(_vm._s(_vm.errors.date[0]))
-                    ])
-                  : _vm._e()
-              ],
-              1
-            )
-          ]),
-          _vm._v(" "),
-          _c(
-            "b-button",
-            {
-              staticClass: "btn-primary mt-3",
-              attrs: { block: "" },
-              on: { click: _vm.callFunc }
-            },
-            [_vm._v(_vm._s(_vm.modalForName))]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "card shadow mb-4" }, [
-        _c(
-          "div",
-          { staticClass: "card-body" },
-          [_c("FullCalendar", { attrs: { options: _vm.calendarOptions } })],
-          1
-        )
-      ])
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/permission/permissions.vue?vue&type=template&id=6661a24f&":
 /*!*************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/permission/permissions.vue?vue&type=template&id=6661a24f& ***!
@@ -177721,10 +177780,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "view_contact_list" },
+                  attrs: { type: "checkbox", value: "view_stock_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "view_contact_list") > -1
+                      ? _vm._i(_vm.checkedPermissions, "view_stock_list") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -177733,7 +177792,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "view_contact_list",
+                        var $$v = "view_stock_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -177757,7 +177816,7 @@ var render = function() {
                     staticClass: "form-check-label",
                     attrs: { for: "view_stock_list" }
                   },
-                  [_vm._v("\n    Stock List\n  ")]
+                  [_vm._v("\n            Stock List\n          ")]
                 )
               ]),
               _vm._v(" "),
@@ -177772,10 +177831,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "view_contact_list" },
+                  attrs: { type: "checkbox", value: "view_users_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "view_contact_list") > -1
+                      ? _vm._i(_vm.checkedPermissions, "view_users_list") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -177784,7 +177843,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "view_contact_list",
+                        var $$v = "view_users_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -177808,7 +177867,7 @@ var render = function() {
                     staticClass: "form-check-label",
                     attrs: { for: "view_user" }
                   },
-                  [_vm._v("\n    Users \n  ")]
+                  [_vm._v(" Users ")]
                 )
               ]),
               _vm._v(" "),
@@ -177823,10 +177882,11 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "view_contact_list" },
+                  attrs: { type: "checkbox", value: "view_settings_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "view_contact_list") > -1
+                      ? _vm._i(_vm.checkedPermissions, "view_settings_list") >
+                        -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -177835,7 +177895,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "view_contact_list",
+                        var $$v = "view_settings_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -177859,7 +177919,58 @@ var render = function() {
                     staticClass: "form-check-label",
                     attrs: { for: "view_settings" }
                   },
-                  [_vm._v("\n    Settings \n  ")]
+                  [_vm._v("\n            Settings\n          ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.checkedPermissions,
+                      expression: "checkedPermissions"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "checkbox", value: "view_events_list" },
+                  domProps: {
+                    checked: Array.isArray(_vm.checkedPermissions)
+                      ? _vm._i(_vm.checkedPermissions, "view_events_list") > -1
+                      : _vm.checkedPermissions
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.checkedPermissions,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = "view_events_list",
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            (_vm.checkedPermissions = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.checkedPermissions = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.checkedPermissions = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "view_events" }
+                  },
+                  [_vm._v("\n            Event\n          ")]
                 )
               ])
             ]),
@@ -178245,10 +178356,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "view_contact_list" },
+                  attrs: { type: "checkbox", value: "view_stock_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "view_contact_list") > -1
+                      ? _vm._i(_vm.checkedPermissions, "view_stock_list") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -178257,7 +178368,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "view_contact_list",
+                        var $$v = "view_stock_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -178296,10 +178407,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "view_contact_list" },
+                  attrs: { type: "checkbox", value: "view_users_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "view_contact_list") > -1
+                      ? _vm._i(_vm.checkedPermissions, "view_users_list") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -178308,7 +178419,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "view_contact_list",
+                        var $$v = "view_users_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -178347,10 +178458,11 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "view_contact_list" },
+                  attrs: { type: "checkbox", value: "view_settings_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "view_contact_list") > -1
+                      ? _vm._i(_vm.checkedPermissions, "view_settings_list") >
+                        -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -178359,7 +178471,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "view_contact_list",
+                        var $$v = "view_settings_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -178384,6 +178496,57 @@ var render = function() {
                     attrs: { for: "view_settings" }
                   },
                   [_vm._v("\n            Settings\n          ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.checkedPermissions,
+                      expression: "checkedPermissions"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "checkbox", value: "view_event_list" },
+                  domProps: {
+                    checked: Array.isArray(_vm.checkedPermissions)
+                      ? _vm._i(_vm.checkedPermissions, "view_event_list") > -1
+                      : _vm.checkedPermissions
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.checkedPermissions,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = "view_event_list",
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            (_vm.checkedPermissions = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.checkedPermissions = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.checkedPermissions = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "view_event" }
+                  },
+                  [_vm._v("\n            Event\n          ")]
                 )
               ])
             ]),
@@ -178769,10 +178932,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "edit_contact_list" },
+                  attrs: { type: "checkbox", value: "edit_stock_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "edit_contact_list") > -1
+                      ? _vm._i(_vm.checkedPermissions, "edit_stock_list") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -178781,7 +178944,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "edit_contact_list",
+                        var $$v = "edit_stock_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -178805,7 +178968,7 @@ var render = function() {
                     staticClass: "form-check-label",
                     attrs: { for: "edit_stock_list" }
                   },
-                  [_vm._v("\n    Stock List\n  ")]
+                  [_vm._v("\n            Stock List\n          ")]
                 )
               ]),
               _vm._v(" "),
@@ -178820,10 +178983,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "edit_contact_list" },
+                  attrs: { type: "checkbox", value: "edit_users_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "edit_contact_list") > -1
+                      ? _vm._i(_vm.checkedPermissions, "edit_users_list") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -178832,7 +178995,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "edit_contact_list",
+                        var $$v = "edit_users_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -178856,7 +179019,7 @@ var render = function() {
                     staticClass: "form-check-label",
                     attrs: { for: "edit_user" }
                   },
-                  [_vm._v("\n    Users \n  ")]
+                  [_vm._v(" Users ")]
                 )
               ]),
               _vm._v(" "),
@@ -178871,10 +179034,11 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "edit_contact_list" },
+                  attrs: { type: "checkbox", value: "edit_settings_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "edit_contact_list") > -1
+                      ? _vm._i(_vm.checkedPermissions, "edit_settings_list") >
+                        -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -178883,7 +179047,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "edit_contact_list",
+                        var $$v = "edit_settings_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -178907,7 +179071,58 @@ var render = function() {
                     staticClass: "form-check-label",
                     attrs: { for: "edit_settings" }
                   },
-                  [_vm._v("\n    Settings \n  ")]
+                  [_vm._v("\n            Settings\n          ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.checkedPermissions,
+                      expression: "checkedPermissions"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "checkbox", value: "edit_event_list" },
+                  domProps: {
+                    checked: Array.isArray(_vm.checkedPermissions)
+                      ? _vm._i(_vm.checkedPermissions, "edit_event_list") > -1
+                      : _vm.checkedPermissions
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.checkedPermissions,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = "edit_event_list",
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            (_vm.checkedPermissions = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.checkedPermissions = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.checkedPermissions = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "edit_event" }
+                  },
+                  [_vm._v("\n            Event\n          ")]
                 )
               ])
             ]),
@@ -179295,10 +179510,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "edit_contact_list" },
+                  attrs: { type: "checkbox", value: "edit_stock_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "edit_contact_list") > -1
+                      ? _vm._i(_vm.checkedPermissions, "edit_stock_list") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -179307,7 +179522,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "edit_contact_list",
+                        var $$v = "edit_stock_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -179346,10 +179561,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "edit_contact_list" },
+                  attrs: { type: "checkbox", value: "edit_users_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "edit_contact_list") > -1
+                      ? _vm._i(_vm.checkedPermissions, "edit_users_list") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -179358,7 +179573,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "edit_contact_list",
+                        var $$v = "edit_users_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -179397,10 +179612,11 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "edit_contact_list" },
+                  attrs: { type: "checkbox", value: "edit_settings_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "edit_contact_list") > -1
+                      ? _vm._i(_vm.checkedPermissions, "edit_settings_list") >
+                        -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -179409,7 +179625,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "edit_contact_list",
+                        var $$v = "edit_settings_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -179434,6 +179650,57 @@ var render = function() {
                     attrs: { for: "edit_settings" }
                   },
                   [_vm._v("\n            Settings\n          ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.checkedPermissions,
+                      expression: "checkedPermissions"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "checkbox", value: "edit_event_list" },
+                  domProps: {
+                    checked: Array.isArray(_vm.checkedPermissions)
+                      ? _vm._i(_vm.checkedPermissions, "edit_event_list") > -1
+                      : _vm.checkedPermissions
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.checkedPermissions,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = "edit_event_list",
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            (_vm.checkedPermissions = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.checkedPermissions = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.checkedPermissions = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "edit_event" }
+                  },
+                  [_vm._v("\n            Event\n          ")]
                 )
               ])
             ]),
@@ -179870,10 +180137,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "show_contact_list" },
+                  attrs: { type: "checkbox", value: "show_users_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "show_contact_list") > -1
+                      ? _vm._i(_vm.checkedPermissions, "show_users_list") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -179882,7 +180149,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "show_contact_list",
+                        var $$v = "show_users_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -179921,10 +180188,11 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "show_contact_list" },
+                  attrs: { type: "checkbox", value: "show_settings_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "show_contact_list") > -1
+                      ? _vm._i(_vm.checkedPermissions, "show_settings_list") >
+                        -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -179933,7 +180201,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "show_contact_list",
+                        var $$v = "show_settings_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -179958,6 +180226,57 @@ var render = function() {
                     attrs: { for: "show_settings" }
                   },
                   [_vm._v("\n            Settings\n          ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.checkedPermissions,
+                      expression: "checkedPermissions"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "checkbox", value: "show_event_list" },
+                  domProps: {
+                    checked: Array.isArray(_vm.checkedPermissions)
+                      ? _vm._i(_vm.checkedPermissions, "show_event_list") > -1
+                      : _vm.checkedPermissions
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.checkedPermissions,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = "show_event_list",
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            (_vm.checkedPermissions = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.checkedPermissions = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.checkedPermissions = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "show_event" }
+                  },
+                  [_vm._v("\n            Event\n          ")]
                 )
               ])
             ]),
@@ -180345,11 +180664,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "search_contact_list" },
+                  attrs: { type: "checkbox", value: "search_stock_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "search_contact_list") >
-                        -1
+                      ? _vm._i(_vm.checkedPermissions, "search_stock_list") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -180358,7 +180676,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "search_contact_list",
+                        var $$v = "search_stock_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -180397,11 +180715,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "search_contact_list" },
+                  attrs: { type: "checkbox", value: "search_users_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "search_contact_list") >
-                        -1
+                      ? _vm._i(_vm.checkedPermissions, "search_users_list") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -180410,7 +180727,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "search_contact_list",
+                        var $$v = "search_users_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -180449,10 +180766,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "search_contact_list" },
+                  attrs: { type: "checkbox", value: "search_settings_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "search_contact_list") >
+                      ? _vm._i(_vm.checkedPermissions, "search_settings_list") >
                         -1
                       : _vm.checkedPermissions
                   },
@@ -180462,7 +180779,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "search_contact_list",
+                        var $$v = "search_settings_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -180487,6 +180804,57 @@ var render = function() {
                     attrs: { for: "search_settings" }
                   },
                   [_vm._v("\n            Settings\n          ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.checkedPermissions,
+                      expression: "checkedPermissions"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "checkbox", value: "search_event_list" },
+                  domProps: {
+                    checked: Array.isArray(_vm.checkedPermissions)
+                      ? _vm._i(_vm.checkedPermissions, "search_event_list") > -1
+                      : _vm.checkedPermissions
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.checkedPermissions,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = "search_event_list",
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            (_vm.checkedPermissions = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.checkedPermissions = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.checkedPermissions = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "search_event" }
+                  },
+                  [_vm._v(" Events ")]
                 )
               ])
             ])
@@ -208832,9 +209200,9 @@ var routes = [{
   name: 'dashboard',
   component: __webpack_require__(/*! ./components/dashboard/dashboard.vue */ "./resources/js/components/dashboard/dashboard.vue")["default"]
 }, {
-  path: '/events',
-  name: 'events',
-  component: __webpack_require__(/*! ./components/events/events.vue */ "./resources/js/components/events/events.vue")["default"]
+  path: '/calendar',
+  name: 'calendar',
+  component: __webpack_require__(/*! ./components/calendar/calendar.vue */ "./resources/js/components/calendar/calendar.vue")["default"]
 }, {
   path: '/delivery-notes',
   name: 'delivery-notes',
@@ -209258,6 +209626,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_info_vue_vue_type_template_id_420edb27___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_info_vue_vue_type_template_id_420edb27___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/calendar/calendar.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/calendar/calendar.vue ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _calendar_vue_vue_type_template_id_f116d698___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./calendar.vue?vue&type=template&id=f116d698& */ "./resources/js/components/calendar/calendar.vue?vue&type=template&id=f116d698&");
+/* harmony import */ var _calendar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./calendar.vue?vue&type=script&lang=js& */ "./resources/js/components/calendar/calendar.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _calendar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _calendar_vue_vue_type_template_id_f116d698___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _calendar_vue_vue_type_template_id_f116d698___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/calendar/calendar.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/calendar/calendar.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/calendar/calendar.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_calendar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./calendar.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/calendar/calendar.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_calendar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/calendar/calendar.vue?vue&type=template&id=f116d698&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/calendar/calendar.vue?vue&type=template&id=f116d698& ***!
+  \**************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_calendar_vue_vue_type_template_id_f116d698___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./calendar.vue?vue&type=template&id=f116d698& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/calendar/calendar.vue?vue&type=template&id=f116d698&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_calendar_vue_vue_type_template_id_f116d698___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_calendar_vue_vue_type_template_id_f116d698___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -209808,75 +210245,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_deliveryNotes_vue_vue_type_template_id_23e94b6f_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_deliveryNotes_vue_vue_type_template_id_23e94b6f_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/events/events.vue":
-/*!***************************************************!*\
-  !*** ./resources/js/components/events/events.vue ***!
-  \***************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _events_vue_vue_type_template_id_6ce4ff14___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./events.vue?vue&type=template&id=6ce4ff14& */ "./resources/js/components/events/events.vue?vue&type=template&id=6ce4ff14&");
-/* harmony import */ var _events_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./events.vue?vue&type=script&lang=js& */ "./resources/js/components/events/events.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _events_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _events_vue_vue_type_template_id_6ce4ff14___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _events_vue_vue_type_template_id_6ce4ff14___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/events/events.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/events/events.vue?vue&type=script&lang=js&":
-/*!****************************************************************************!*\
-  !*** ./resources/js/components/events/events.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_events_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./events.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/events/events.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_events_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/events/events.vue?vue&type=template&id=6ce4ff14&":
-/*!**********************************************************************************!*\
-  !*** ./resources/js/components/events/events.vue?vue&type=template&id=6ce4ff14& ***!
-  \**********************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_events_vue_vue_type_template_id_6ce4ff14___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./events.vue?vue&type=template&id=6ce4ff14& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/events/events.vue?vue&type=template&id=6ce4ff14&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_events_vue_vue_type_template_id_6ce4ff14___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_events_vue_vue_type_template_id_6ce4ff14___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

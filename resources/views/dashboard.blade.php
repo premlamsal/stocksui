@@ -36,9 +36,7 @@
     <div id="app">
         <div class="wrapper ">
             <div class="sidebar" data-color="black" data-active-color="danger">
-                <!--
-        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
-    -->
+               
 
                 <div class="sidebar-wrapper">
                     <ul class="nav">
@@ -53,9 +51,9 @@
 
                         @can('hasPermission', 'view_events')
                             <li>
-                                <router-link to="/events" aria-expanded="false">
+                                <router-link to="/calendar" aria-expanded="false">
                                     <i class="nc-icon nc-map-big"></i>
-                                    <span>Events</span>
+                                    <span>Calendar</span>
                                 </router-link>
                             </li>
                         @endcan
