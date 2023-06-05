@@ -71,7 +71,7 @@ class ProductController extends Controller
         $product->unit = $request->input('unit');
         $product->description = $request->input('description');
 
-        if ($request->input('low_stock_alert_active')===true) {
+        if ($request->input('low_stock_alert_active') === 'true') {
             $product->low_stock_alert_active = true;
             $product->low_stock_alert_quantity = $request->input('low_stock_alert_quantity');
         } else {
@@ -91,13 +91,9 @@ class ProductController extends Controller
         if ($product->save()) {
 
             $stock = new Stock();
-            if (($request->input('opening_stock')) > 0) {
-                $stock->quantity = $request->input('opening_stock');
-            } else {
-                $stock->quantity = 0.00;
-            }
-            $stock->product_id = $product->id;
 
+            $stock->quantity = 0.00;
+            $stock->product_id = $product->id;
             $stock->unit = $request->input('unit');
 
             $stock->store_id = $store_id;
@@ -161,7 +157,7 @@ class ProductController extends Controller
         $product->name = $request->input('name');
         $product->product_cat_id = $request->input('product_cat_id');
         $product->unit = $request->input('unit');
-        if ($request->input('low_stock_alert_active')==='true') {
+        if ($request->input('low_stock_alert_active') === 'true') {
             $product->low_stock_alert_active = true;
             $product->low_stock_alert_quantity = $request->input('low_stock_alert_quantity');
         } else {
