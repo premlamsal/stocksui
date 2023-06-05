@@ -51,7 +51,11 @@ class EventController extends Controller
 
         $event->title = $request->input('title');
 
-        $event->date = $request->input('date');
+        $event->start = $request->input('start');
+        $event->end = $request->input('end');
+        $event->description = $request->input('description');
+        $event->back_color = $request->input('back_color');
+        $event->text_color = $request->input('text_color');
 
 
 
@@ -97,9 +101,11 @@ class EventController extends Controller
 
         $event->title = $request->input('title');
 
-        $event->date = $request->input('date');
-
-
+        $event->start = $request->input('start');
+        $event->end = $request->input('end');
+        $event->description = $request->input('description');
+        $event->back_color = $request->input('back_color');
+        $event->text_color = $request->input('text_color');
         $event->store_id = $store_id;
 
         if ($event->save()) {
