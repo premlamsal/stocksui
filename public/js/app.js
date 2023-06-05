@@ -16966,13 +16966,19 @@ __webpack_require__.r(__webpack_exports__);
         _this.$Progress.fail();
       });
     },
-    showAddModal: function showAddModal() {
+    showAddModal: function showAddModal(date) {
       this.modalForName = "Add Event"; // Vue.set(this.modalForName,"Add Unit");
 
       this.modalForCode = 0; //0 for add
 
       this.event.title = "";
-      this.event.start = "";
+
+      if (date) {
+        this.event.start = date;
+      } else {
+        this.event.start = "";
+      }
+
       this.event.end = "";
       this.event.description = "";
       this.event.back_color = "";
@@ -17108,6 +17114,7 @@ __webpack_require__.r(__webpack_exports__);
     //end of deleteUnit()
     handleDateClick: function handleDateClick(arg) {
       alert("date click! " + arg.dateStr);
+      this.showAddModal(arg.dateStr);
     },
     handleEventClick: function handleEventClick(clickInfo) {
       //   if (

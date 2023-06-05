@@ -170,13 +170,17 @@ export default {
         });
     },
 
-    showAddModal() {
+    showAddModal(date) {
       this.modalForName = "Add Event";
       // Vue.set(this.modalForName,"Add Unit");
       this.modalForCode = 0; //0 for add
 
       this.event.title = "";
-      this.event.start = "";
+      if (date) {
+        this.event.start = date;
+      } else {
+        this.event.start = "";
+      }
       this.event.end = "";
       this.event.description = "";
       this.event.back_color = "";
@@ -242,15 +246,11 @@ export default {
           // console.log(response.data.unit)
           Vue.set(this.event, "title", response.data.event.title);
           Vue.set(this.event, "start", response.data.event.start);
-          
+
           Vue.set(this.event, "back_color", response.data.event.back_color);
           Vue.set(this.event, "text_color", response.data.event.text_color);
           Vue.set(this.event, "end", response.data.event.end);
-          Vue.set(
-            this.event,
-            "description",
-            response.data.event.description
-          );
+          Vue.set(this.event, "description", response.data.event.description);
 
           Vue.set(this.event, "id", id); //to send id to the update controller
           this.$Progress.finish();
@@ -332,6 +332,7 @@ export default {
     }, //end of deleteUnit()
     handleDateClick: function (arg) {
       alert("date click! " + arg.dateStr);
+      this.showAddModal(arg.dateStr);
     },
     handleEventClick(clickInfo) {
       //   if (
