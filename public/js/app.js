@@ -17144,7 +17144,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     //end of deleteUnit()
     handleDateClick: function handleDateClick(arg) {
-      alert("date click! " + arg.dateStr);
+      // alert("date click! " + arg.dateStr);
       this.showAddModal(arg.dateStr);
     },
     handleEventClick: function handleEventClick(clickInfo) {

@@ -323,7 +323,7 @@ export default {
       });
     }, //end of deleteUnit()
     handleDateClick: function (arg) {
-      alert("date click! " + arg.dateStr);
+      // alert("date click! " + arg.dateStr);
       this.showAddModal(arg.dateStr);
     },
     handleEventClick(clickInfo) {
