@@ -103,7 +103,7 @@
               >{{ errors.low_stock_alert_quantity[0] }}</span
             >
           </div>
-         
+
           <div class="form-group">
             <label for="Description"> Description:</label>
             <textarea :class="['form-control']" v-model="product.description">{{
@@ -205,7 +205,6 @@
                 <th>Image</th>
                 <th>Product Name</th>
                 <th>Description</th>
-                <th>Open.Stock</th>
                 <th>Low Stock Alert Quantity</th>
 
                 <th>Unit</th>
@@ -228,7 +227,6 @@
                 <!-- <td @click="showProductDetail(product.id)">{{product.name}}</td> -->
                 <td>{{ product.name }}</td>
                 <td>{{ product.description }}</td>
-                <td>{{ product.opening_stock }}</td>
                 <td>{{ product.low_stock_alert_quantity }}</td>
 
                 <td>{{ product.unit }}</td>
@@ -333,7 +331,6 @@ export default {
         {
           custom_product_id: "",
           name: "",
-          opening_stock: "",
           description: "",
           low_stock_alert_active: false,
           low_stock_alert_quantity: "",
@@ -531,7 +528,7 @@ export default {
       this.product.address = "";
       this.product.phone = "";
       this.product.description = "";
-      this.opening_stock = "";
+      this.low_stock_alert_active = false;
       this.low_stock_alert_quantity = "";
 
       this.setAvtarUploadImage();
@@ -564,7 +561,10 @@ export default {
       // formData.append('id',this.product.id);
       formData.append("name", this.product.name);
       formData.append("product_cat_id", this.product.product_cat_id);
-      formData.append("opening_stock", this.product.opening_stock);
+      formData.append(
+        "low_stock_alert_active",
+        this.product.low_stock_alert_active
+      );
       formData.append(
         "low_stock_alert_quantity",
         this.product.low_stock_alert_quantity
@@ -585,12 +585,13 @@ export default {
           currObj.$bvModal.hide("bv-modal-add-product");
 
           currObj.product.name = "";
+          currObj.product.low_stock_alert_active =false;
+
           currObj.product.product_cat_id = "";
-          currObj.product.unit = "";
-          currObj.product.address = "";
-          (currObj.product.low_stock_alert_quantity = ""),
-            (currObj.product.phone = "");
-          currObj.opening_stock = "";
+          (currObj.product.unit = ""),
+            (currObj.product.address = ""),
+            (currObj.product.low_stock_alert_quantity = ""),
+            (currObj.product.phone = ""),
           currObj.product.description = "";
 
           currObj.setAvtarUploadImage();
@@ -628,8 +629,12 @@ export default {
           );
           Vue.set(this.product, "unit", response.data.product.unit);
 
-          Vue.set(this.product, "low_stock_alert_active", JSON.parse(response.data.product.low_stock_alert_active));
-         
+          Vue.set(
+            this.product,
+            "low_stock_alert_active",
+            JSON.parse(response.data.product.low_stock_alert_active)
+          );
+
           Vue.set(
             this.product,
             "low_stock_alert_quantity",
@@ -670,6 +675,8 @@ export default {
       formData.append("_method", "PUT"); //add this otherwise data won't pass to backend
       formData.append("id", this.product.id);
       formData.append("name", this.product.name);
+      formData.append("low_stock_alert_active", this.product.low_stock_alert_active);
+      
       formData.append("product_cat_id", this.product.product_cat_id);
       formData.append("unit", this.product.unit);
       // formData.append('opening_stock',this.product.opening_stock);
@@ -692,11 +699,9 @@ export default {
           currObj.product.name = "";
           currObj.product.product_cat_id = "";
           currObj.product.unit = "";
-          currObj.product.address = "";
-          currObj.product.phone = "";
+          currObj.product.low_stock_alert_active = "";
           currObj.product.low_stock_alert_quantity = "";
 
-          currObj.product.opening_stock = "";
           currObj.product.description = "";
 
           currObj.setAvtarUploadImage();
@@ -806,8 +811,6 @@ export default {
     //end of methods block
   },
 
-  computed: {
-  
-  },
+  computed: {},
 };
 </script>

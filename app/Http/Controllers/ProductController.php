@@ -16,7 +16,6 @@ class ProductController extends Controller
     {
 
         $this->middleware('auth:api');
-
     }
     public function index()
     {
@@ -43,7 +42,7 @@ class ProductController extends Controller
             'name' => 'required|string|max:200',
             'description' => 'required|string|max:1000',
             'price' => 'string|max:1000',
-            'low_stock_alert_active'=>'numeric',
+            'low_stock_alert_active' => 'numeric',
             'low_stock_alert_quantity' => 'required|string|max:1000',
             'product_cat_id' => 'required|numeric ',
             'unit' => 'required|string|max:40 ',
@@ -74,6 +73,11 @@ class ProductController extends Controller
         $product->opening_stock = $request->input('opening_stock');
         $product->low_stock_alert_quantity = $request->input('low_stock_alert_quantity');
 
+        if ($request->input('low_stock_alert_active')) {
+            $product->low_stock_alert_active = true;
+        } else {
+            $product->low_stock_alert_active = false;
+        }
         $product->store_id = $store_id;
         $product->custom_product_id = $new_count_product_id; //asign new increase product custom id
 
@@ -93,7 +97,7 @@ class ProductController extends Controller
                 $stock->quantity = 0.00;
             }
             $stock->product_id = $product->id;
-            
+
             $stock->unit = $request->input('unit');
 
             $stock->store_id = $store_id;
@@ -116,21 +120,18 @@ class ProductController extends Controller
                         'status' => 'error',
                     ]);
                 }
-
             } else {
                 return response()->json([
                     'msg' => 'Error saving data to stock.',
                     'status' => 'error',
                 ]);
             }
-
         } else {
             return response()->json([
                 'msg' => 'Opps! My Back got cracked while working in Database',
                 'status' => 'error',
             ]);
         }
-
     }
     public function update(Request $request)
     {
@@ -142,11 +143,11 @@ class ProductController extends Controller
         $store_id = $user->stores[0]->id;
 
         $this->validate($request, [
-       
+
             'name' => 'required|string|max:200',
             'description' => 'required|string|max:1000',
             'price' => 'string|max:1000',
-            'low_stock_alert_active'=>'numeric',
+            'low_stock_alert_active' => 'string',
             'low_stock_alert_quantity' => 'required|string|max:1000',
             'product_cat_id' => 'required|numeric ',
             'unit' => 'required|string|max:40 ',
@@ -160,6 +161,11 @@ class ProductController extends Controller
         $product->name = $request->input('name');
         $product->product_cat_id = $request->input('product_cat_id');
         $product->unit = $request->input('unit');
+        if ($request->input('low_stock_alert_active')) {
+            $product->low_stock_alert_active = true;
+        } else {
+            $product->low_stock_alert_active = false;
+        }
         $product->description = $request->input('description');
         $product->low_stock_alert_quantity = $request->input('low_stock_alert_quantity');
 
@@ -175,14 +181,12 @@ class ProductController extends Controller
                 $imageName = '/img/' . time() . '.' . $request->image->getClientOriginalExtension();
                 $request->image->move(public_path('img'), $imageName);
                 $product->image = $imageName;
-
             } else {
                 return response()->json([
                     'msg' => 'Opps! My Back got cracked while working in Database',
                     'status' => 'error',
                 ]);
             }
-
         }
         if ($product->update()) {
             return response()->json([
@@ -195,7 +199,6 @@ class ProductController extends Controller
                 'status' => 'error',
             ]);
         }
-
     }
 
     public function show($id)
@@ -252,24 +255,21 @@ class ProductController extends Controller
 
         $searchKey = $request->input('searchQuery');
         if ($searchKey != '') {
-            $product=Product::where('name', 'like', '%' . $searchKey . '%')->where('store_id', $store_id)->with('category')->get();
-            $product_suggestion=array();
-            for($i=0;$i<$product->count();$i++){
-                $temp=array();
-                $temp=Stock::where('product_id',$product[$i]->id)->with('product')->get();
-                $product_suggestion[$i]=$temp;
+            $product = Product::where('name', 'like', '%' . $searchKey . '%')->where('store_id', $store_id)->with('category')->get();
+            $product_suggestion = array();
+            for ($i = 0; $i < $product->count(); $i++) {
+                $temp = array();
+                $temp = Stock::where('product_id', $product[$i]->id)->with('product')->get();
+                $product_suggestion[$i] = $temp;
             }
             return response()->json([
                 'data' => $product_suggestion[0],
             ]);
-        
         } else {
             return response()->json([
                 'msg' => 'Error while retriving Products. No Data Supplied as key.',
                 'status' => 'error',
             ]);
         }
-
     }
-
 }

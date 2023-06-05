@@ -21995,8 +21995,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     var _ref;
@@ -22005,7 +22003,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       products: [{
         custom_product_id: "",
         name: "",
-        opening_stock: "",
         description: "",
         low_stock_alert_active: false,
         low_stock_alert_quantity: "",
@@ -22160,7 +22157,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.product.address = "";
       this.product.phone = "";
       this.product.description = "";
-      this.opening_stock = "";
+      this.low_stock_alert_active = false;
       this.low_stock_alert_quantity = "";
       this.setAvtarUploadImage();
       this.errors = ""; //clearing errors
@@ -22190,7 +22187,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       formData.append("name", this.product.name);
       formData.append("product_cat_id", this.product.product_cat_id);
-      formData.append("opening_stock", this.product.opening_stock);
+      formData.append("low_stock_alert_active", this.product.low_stock_alert_active);
       formData.append("low_stock_alert_quantity", this.product.low_stock_alert_quantity);
       formData.append("unit", this.product.unit);
       formData.append("description", this.product.description); // posting data //using post and sending form data as PUT to match the api route name setting
@@ -22201,12 +22198,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         currObj.$swal("Info", currObj.output, currObj.status);
         currObj.$bvModal.hide("bv-modal-add-product");
         currObj.product.name = "";
+        currObj.product.low_stock_alert_active = false;
         currObj.product.product_cat_id = "";
-        currObj.product.unit = "";
-        currObj.product.address = "";
-        currObj.product.low_stock_alert_quantity = "", currObj.product.phone = "";
-        currObj.opening_stock = "";
-        currObj.product.description = "";
+        currObj.product.unit = "", currObj.product.address = "", currObj.product.low_stock_alert_quantity = "", currObj.product.phone = "", currObj.product.description = "";
         currObj.setAvtarUploadImage();
         currObj.errors = ""; //clearing errors
 
@@ -22267,6 +22261,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       formData.append("id", this.product.id);
       formData.append("name", this.product.name);
+      formData.append("low_stock_alert_active", this.product.low_stock_alert_active);
       formData.append("product_cat_id", this.product.product_cat_id);
       formData.append("unit", this.product.unit); // formData.append('opening_stock',this.product.opening_stock);
 
@@ -22281,10 +22276,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         currObj.product.name = "";
         currObj.product.product_cat_id = "";
         currObj.product.unit = "";
-        currObj.product.address = "";
-        currObj.product.phone = "";
+        currObj.product.low_stock_alert_active = "";
         currObj.product.low_stock_alert_quantity = "";
-        currObj.product.opening_stock = "";
         currObj.product.description = "";
         currObj.setAvtarUploadImage();
         currObj.errors = ""; //clearing errors
@@ -182702,8 +182695,6 @@ var render = function() {
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(product.description))]),
                               _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(product.opening_stock))]),
-                              _vm._v(" "),
                               _c("td", [
                                 _vm._v(_vm._s(product.low_stock_alert_quantity))
                               ]),
@@ -182942,8 +182933,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Product Name")]),
         _vm._v(" "),
         _c("th", [_vm._v("Description")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Open.Stock")]),
         _vm._v(" "),
         _c("th", [_vm._v("Low Stock Alert Quantity")]),
         _vm._v(" "),
