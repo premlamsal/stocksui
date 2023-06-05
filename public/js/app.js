@@ -16992,7 +16992,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     selectColor: function selectColor(color) {
       this.event = _objectSpread({}, this.event, {
-        cssClass: color
+        cssClass: color,
+        back_color: color
       });
     },
     showAddModal: function showAddModal(date) {
@@ -17066,6 +17067,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         // console.log(response.data.unit)
         Vue.set(_this2.event, "title", response.data.event.title);
         Vue.set(_this2.event, "start", response.data.event.start);
+        Vue.set(_this2.event, "cssClass", response.data.event.back_color);
         Vue.set(_this2.event, "back_color", response.data.event.back_color);
         Vue.set(_this2.event, "text_color", response.data.event.text_color);
         Vue.set(_this2.event, "end", response.data.event.end);

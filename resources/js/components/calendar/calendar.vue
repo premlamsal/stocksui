@@ -158,7 +158,8 @@ export default {
     selectColor(color){
       this.event = {
         ...this.event,
-        cssClass: color
+        cssClass: color,
+        back_color:color,
       }
     },
     showAddModal(date) {
@@ -237,7 +238,7 @@ export default {
           // console.log(response.data.unit)
           Vue.set(this.event, "title", response.data.event.title);
           Vue.set(this.event, "start", response.data.event.start);
-
+          Vue.set(this.event, "cssClass", response.data.event.back_color);
           Vue.set(this.event, "back_color", response.data.event.back_color);
           Vue.set(this.event, "text_color", response.data.event.text_color);
           Vue.set(this.event, "end", response.data.event.end);
