@@ -66,26 +66,11 @@
             errors.description[0]
           }}</span>
         </div>
+        
         <div class="form-group">
           <label for="color-picker">Pick a color for event:</label>
-          <div class="back_color_container" style="display: flex">
-            <verte
-              v-model="event.back_color"
-              model="rgb"
-              picker="square"
-              menuPosition="left"
-            ></verte>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="color-picker">Pick a color for event text:</label>
           <div class="text_color_container" style="display: flex">
-            <verte
-              v-model="event.text_color"
-              model="rgb"
-              picker="square"
-              menuPosition="left"
-            ></verte>
+            <color-picker @colorPicked="selectColor" :color="event.cssClass" />
           </div>
         </div>
       </div>
@@ -115,11 +100,10 @@
 import FullCalendar from "@fullcalendar/vue";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import "verte/dist/verte.css";
-import Verte from "verte";
+import ColorPicker from './ColorPicker';
 export default {
   components: {
-    Verte,
+    ColorPicker,
     FullCalendar, // make the <FullCalendar> tag available
   },
   data() {
@@ -130,6 +114,7 @@ export default {
         title: "",
         start: "",
         end: "",
+        cssClass: '',
         description: "",
       },
 
@@ -170,6 +155,12 @@ export default {
         });
     },
 
+    selectColor(color){
+      this.event = {
+        ...this.event,
+        cssClass: color
+      }
+    },
     showAddModal(date) {
       this.modalForName = "Add Event";
       // Vue.set(this.modalForName,"Add Unit");
@@ -368,5 +359,32 @@ export default {
 .verte {
   border: 2px solid #9e9e9e;
   border-radius: 15px;
+}
+.red {
+  background: rgb(235, 77, 77) !important;
+  color: whitesmoke !important;
+}
+.blue {
+  background: rgb(59, 59, 163) !important;
+  color: whitesmoke !important;
+}
+.orange {
+  background: orange !important;
+  color: white !important;
+}
+.green {
+  background: rgb(49, 155, 49) !important;
+  color: white !important;
+}
+.blue,
+.orange,
+.red,
+.green {
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+.event-item {
+  padding: 2px 0 2px 4px !important;
 }
 </style>

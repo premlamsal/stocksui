@@ -16781,6 +16781,41 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/calendar/ColorPicker.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/calendar/ColorPicker.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'ColorPicker',
+  props: ['color'],
+  data: function data() {
+    return {
+      colors: ['red', 'green', 'blue', 'orange']
+    };
+  },
+  methods: {
+    selectColor: function selectColor(color) {
+      this.$emit('colorPicked', color);
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/calendar/calendar.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/calendar/calendar.vue?vue&type=script&lang=js& ***!
@@ -16793,130 +16828,118 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fullcalendar_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @fullcalendar/vue */ "./node_modules/@fullcalendar/vue/dist/index.js");
 /* harmony import */ var _fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fullcalendar/daygrid */ "./node_modules/@fullcalendar/daygrid/index.js");
 /* harmony import */ var _fullcalendar_interaction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fullcalendar/interaction */ "./node_modules/@fullcalendar/interaction/index.js");
-/* harmony import */ var verte_dist_verte_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! verte/dist/verte.css */ "./node_modules/verte/dist/verte.css");
-/* harmony import */ var verte_dist_verte_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(verte_dist_verte_css__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var verte__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! verte */ "./node_modules/verte/dist/verte.esm.js");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var _ColorPicker__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ColorPicker */ "./resources/js/components/calendar/ColorPicker.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    Verte: verte__WEBPACK_IMPORTED_MODULE_4__["default"],
+    ColorPicker: _ColorPicker__WEBPACK_IMPORTED_MODULE_3__["default"],
     FullCalendar: _fullcalendar_vue__WEBPACK_IMPORTED_MODULE_0__["default"] // make the <FullCalendar> tag available
 
   },
@@ -16928,6 +16951,7 @@ __webpack_require__.r(__webpack_exports__);
         title: "",
         start: "",
         end: "",
+        cssClass: '',
         description: ""
       },
       modalForName: "",
@@ -16964,6 +16988,11 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
 
         _this.$Progress.fail();
+      });
+    },
+    selectColor: function selectColor(color) {
+      this.event = _objectSpread({}, this.event, {
+        cssClass: color
       });
     },
     showAddModal: function showAddModal(date) {
@@ -94021,19 +94050,19 @@ exports.push([module.i, ".swal2-popup.swal2-toast{-webkit-box-orient:horizontal;
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/verte/dist/verte.css":
-/*!***************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./node_modules/verte/dist/verte.css ***!
-  \***************************************************************************************************************************/
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/calendar/ColorPicker.vue?vue&type=style&index=0&id=6aae05aa&scoped=true&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/calendar/ColorPicker.vue?vue&type=style&index=0&id=6aae05aa&scoped=true&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(/*! ../../css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
 // module
-exports.push([module.i, "\n.verte {\n  position: relative;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.verte * {\n    box-sizing: border-box;\n}\n.verte--loading {\n  opacity: 0;\n}\n.verte__guide {\n  width: 24px;\n  height: 24px;\n  padding: 0;\n  border: 0;\n  background: transparent;\n}\n.verte__guide:focus {\n    outline: 0;\n}\n.verte__guide svg {\n    width: 100%;\n    height: 100%;\n    fill: inherit;\n}\n.verte__menu {\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-align: stretch;\n          align-items: stretch;\n  width: 250px;\n  border-radius: 6px;\n  background-color: #fff;\n  will-change: transform;\n  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);\n}\n.verte__menu:focus {\n    outline: none;\n}\n.verte__menu-origin {\n  display: none;\n  position: absolute;\n  z-index: 10;\n}\n.verte__menu-origin--active {\n    display: -webkit-box;\n    display: flex;\n}\n.verte__menu-origin--static {\n    position: static;\n    z-index: initial;\n}\n.verte__menu-origin--top {\n    bottom: 50px;\n}\n.verte__menu-origin--bottom {\n    top: 50px;\n}\n.verte__menu-origin--right {\n    right: 0;\n}\n.verte__menu-origin--left {\n    left: 0;\n}\n.verte__menu-origin--center {\n    position: fixed;\n    top: 0;\n    left: 0;\n    width: 100vw;\n    height: 100vh;\n    -webkit-box-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n            align-items: center;\n    background-color: rgba(0, 0, 0, 0.1);\n}\n.verte__menu-origin:focus {\n    outline: none;\n}\n.verte__controller {\n  padding: 0 20px 20px;\n}\n.verte__recent {\n  display: -webkit-box;\n  display: flex;\n  flex-wrap: wrap;\n  -webkit-box-pack: end;\n          justify-content: flex-end;\n  -webkit-box-align: center;\n          align-items: center;\n  width: 100%;\n}\n.verte__recent-color {\n    margin: 4px;\n    width: 27px;\n    height: 27px;\n    border-radius: 50%;\n    background-color: #fff;\n    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n    background-image: linear-gradient(45deg, rgba(112, 128, 144, 0.5) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, rgba(112, 128, 144, 0.5) 75%), linear-gradient(-45deg, rgba(112, 128, 144, 0.5) 25%, transparent 25%), linear-gradient(-45deg, transparent 75%, rgba(112, 128, 144, 0.5) 75%);\n    background-size: 6px 6px;\n    background-position: 0 0, 3px -3px, 0 3px, -3px 0px;\n    overflow: hidden;\n}\n.verte__recent-color:after {\n      content: '';\n      display: block;\n      width: 100%;\n      height: 100%;\n      background-color: currentColor;\n}\n.verte__value {\n  padding: 0.6em;\n  width: 100%;\n  border: 1px solid #708090;\n  border-radius: 6px 0 0 6px;\n  text-align: center;\n  font-size: 12px;\n  -webkit-appearance: none;\n  -moz-appearance: textfield;\n}\n.verte__value:focus {\n    outline: none;\n    border-color: #1a3aff;\n}\n.verte__icon {\n  width: 20px;\n  height: 20px;\n}\n.verte__icon--small {\n    width: 12px;\n    height: 12px;\n}\n.verte__input {\n  padding: 5px;\n  margin: 0 3px;\n  min-width: 0;\n  text-align: center;\n  border-width: 0 0 1px 0;\n  -webkit-appearance: none;\n          appearance: none;\n  -moz-appearance: textfield;\n}\n.verte__input::-webkit-inner-spin-button, .verte__input::-webkit-outer-spin-button {\n    -webkit-appearance: none;\n    margin: 0;\n}\n.verte__inputs {\n  display: -webkit-box;\n  display: flex;\n  font-size: 16px;\n  margin-bottom: 5px;\n}\n.verte__draggable {\n  border-radius: 6px 6px 0 0;\n  height: 8px;\n  width: 100%;\n  cursor: -webkit-grab;\n  cursor: grab;\n  background: linear-gradient(90deg, #fff 2px, transparent 1%) center, linear-gradient(#fff 2px, transparent 1%) center, rgba(112, 128, 144, 0.2);\n  background-size: 4px 4px;\n}\n.verte__model,\n.verte__submit {\n  position: relative;\n  display: -webkit-inline-box;\n  display: inline-flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n          align-items: center;\n  padding: 1px;\n  border: 0;\n  text-align: center;\n  cursor: pointer;\n  background-color: transparent;\n  font-weight: 700;\n  color: #708090;\n  fill: #708090;\n  outline: none;\n}\n.verte__model:hover,\n  .verte__submit:hover {\n    fill: #1a3aff;\n    color: #1a3aff;\n}\n.verte__close {\n  position: absolute;\n  top: 1px;\n  right: 1px;\n  z-index: 1;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n          align-items: center;\n  padding: 4px;\n  cursor: pointer;\n  border-radius: 50%;\n  border: 0;\n  -webkit-transform: translate(50%, -50%);\n          transform: translate(50%, -50%);\n  background-color: rgba(0, 0, 0, 0.4);\n  fill: #fff;\n  outline: none;\n  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);\n}\n.verte__close:hover {\n    background-color: rgba(0, 0, 0, 0.6);\n}\n.verte-picker {\n  width: 100%;\n  margin: 0 auto 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.verte-picker--wheel {\n    margin-top: 20px;\n}\n.verte-picker__origin {\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n    position: relative;\n    margin: 0 auto;\n    overflow: hidden;\n}\n.verte-picker__slider {\n    margin: 20px 20px 0;\n}\n.verte-picker__canvas {\n    display: block;\n}\n.verte-picker__cursor {\n    position: absolute;\n    top: 0;\n    left: 0;\n    margin: -6px;\n    width: 12px;\n    height: 12px;\n    border: 1px solid #fff;\n    border-radius: 50%;\n    will-change: transform;\n    pointer-events: none;\n    background-color: transparent;\n    box-shadow: #fff 0px 0px 0px 1.5px, rgba(0, 0, 0, 0.3) 0px 0px 1px 1px inset, rgba(0, 0, 0, 0.4) 0px 0px 1px 2px;\n}\n.verte-picker__input {\n    display: -webkit-box;\n    display: flex;\n    margin-bottom: 10px;\n}\n.slider {\n  position: relative;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  box-sizing: border-box;\n  margin-bottom: 10px;\n  font-size: 20px;\n}\n.slider:hover .slider-label, .slider--dragging .slider-label {\n    visibility: visible;\n    opacity: 1;\n}\n.slider__input {\n  margin-bottom: 0;\n  padding: 0.3em;\n  margin-left: 0.2em;\n  max-width: 70px;\n  width: 20%;\n  border: 0;\n  text-align: center;\n  font-size: 12px;\n  -webkit-appearance: none;\n  -moz-appearance: textfield;\n}\n.slider__input::-webkit-inner-spin-button, .slider__input::-webkit-outer-spin-button {\n    -webkit-appearance: none;\n    margin: 0;\n}\n.slider__input:focus {\n    outline: none;\n    border-color: #1a3aff;\n}\n.slider__track {\n  position: relative;\n  -webkit-box-flex: 1;\n          flex: 1;\n  margin: 3px;\n  width: auto;\n  height: 8px;\n  background: #fff;\n  will-change: transfom;\n  background-image: linear-gradient(45deg, rgba(112, 128, 144, 0.5) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, rgba(112, 128, 144, 0.5) 75%), linear-gradient(-45deg, rgba(112, 128, 144, 0.5) 25%, transparent 25%), linear-gradient(-45deg, transparent 75%, rgba(112, 128, 144, 0.5) 75%);\n  background-size: 6px 6px;\n  background-position: 0 0, 3px -3px, 0 3px, -3px 0px;\n  border-radius: 10px;\n}\n.slider__handle {\n  position: relative;\n  position: absolute;\n  top: 0;\n  left: 0;\n  will-change: transform;\n  color: #000;\n  margin: -2px 0 0 -8px;\n  width: 12px;\n  height: 12px;\n  border: 2px solid #fff;\n  background-color: currentColor;\n  border-radius: 50%;\n  box-shadow: 0 1px 4px -2px black;\n}\n.slider__label {\n  position: absolute;\n  top: -3em;\n  left: 0.4em;\n  z-index: 999;\n  visibility: hidden;\n  padding: 6px;\n  min-width: 3em;\n  border-radius: 6px;\n  background-color: #000;\n  color: #fff;\n  text-align: center;\n  font-size: 12px;\n  line-height: 1em;\n  opacity: 0;\n  -webkit-transform: translate(-50%, 0);\n          transform: translate(-50%, 0);\n  white-space: nowrap;\n}\n.slider__label:before {\n    position: absolute;\n    bottom: -0.6em;\n    left: 50%;\n    display: block;\n    width: 0;\n    height: 0;\n    border-width: 0.6em 0.6em 0 0.6em;\n    border-style: solid;\n    border-color: #000 transparent transparent transparent;\n    content: '';\n    -webkit-transform: translate3d(-50%, 0, 0);\n            transform: translate3d(-50%, 0, 0);\n}\n.slider__fill {\n  width: 100%;\n  height: 100%;\n  -webkit-transform-origin: left top;\n          transform-origin: left top;\n  border-radius: 10px;\n}", ""]);
+exports.push([module.i, "\n.picker-main[data-v-6aae05aa] {\n  width: 55%;\n}\n.header[data-v-6aae05aa] {\n  font-size: 14px;\n  text-transform: uppercase;\n  color: orangered;\n  letter-spacing: 0.5px;\n  margin: 0 0 6px;\n  text-align: left;\n}\n.color-picker[data-v-6aae05aa] {\n  display: -webkit-box;\n  display: flex;\n  justify-content: space-around;\n}\n.color-picker > .color[data-v-6aae05aa] {\n  width: 40px;\n  height: 40px;\n  border-radius: 50%;\n  border: 1.5px solid whitesmoke;\n  cursor: pointer;\n}\n.color.selected[data-v-6aae05aa]{\n  box-shadow: 0 2px 3px 1px rgba(0, 0, 0, 0.2);\n  border: 3px solid rgba(0, 0, 0, 0.4);\n}\n.color.red[data-v-6aae05aa] {\n  background: rgb(235, 77, 77);\n}\n.color.blue[data-v-6aae05aa] {\n  background: rgb(59, 59, 163);\n}\n.color.orange[data-v-6aae05aa] {\n  background: orange;\n}\n.color.green[data-v-6aae05aa] {\n  background: rgb(49, 155, 49);\n}\n", ""]);
 
 // exports
 
@@ -94052,7 +94081,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.verte[data-v-f116d698] {\n  border: 2px solid #9e9e9e;\n  border-radius: 15px;\n}\n", ""]);
+exports.push([module.i, "\n.verte[data-v-f116d698] {\n  border: 2px solid #9e9e9e;\n  border-radius: 15px;\n}\n.red[data-v-f116d698] {\n  background: rgb(235, 77, 77) !important;\n  color: whitesmoke !important;\n}\n.blue[data-v-f116d698] {\n  background: rgb(59, 59, 163) !important;\n  color: whitesmoke !important;\n}\n.orange[data-v-f116d698] {\n  background: orange !important;\n  color: white !important;\n}\n.green[data-v-f116d698] {\n  background: rgb(49, 155, 49) !important;\n  color: white !important;\n}\n.blue[data-v-f116d698],\n.orange[data-v-f116d698],\n.red[data-v-f116d698],\n.green[data-v-f116d698] {\n  font-size: 13px;\n  font-weight: 500;\n  text-transform: capitalize;\n}\n.event-item[data-v-f116d698] {\n  padding: 2px 0 2px 4px !important;\n}\n", ""]);
 
 // exports
 
@@ -166483,6 +166512,36 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/calendar/ColorPicker.vue?vue&type=style&index=0&id=6aae05aa&scoped=true&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/calendar/ColorPicker.vue?vue&type=style&index=0&id=6aae05aa&scoped=true&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./ColorPicker.vue?vue&type=style&index=0&id=6aae05aa&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/calendar/ColorPicker.vue?vue&type=style&index=0&id=6aae05aa&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/calendar/calendar.vue?vue&type=style&index=0&id=f116d698&scoped=true&lang=css&":
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/calendar/calendar.vue?vue&type=style&index=0&id=f116d698&scoped=true&lang=css& ***!
@@ -170688,2613 +170747,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 /***/ }),
 
-/***/ "./node_modules/verte/dist/verte.css":
-/*!*******************************************!*\
-  !*** ./node_modules/verte/dist/verte.css ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../../css-loader??ref--6-1!../../postcss-loader/src??ref--6-2!./verte.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/verte/dist/verte.css");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-
-/***/ "./node_modules/verte/dist/verte.esm.js":
-/*!**********************************************!*\
-  !*** ./node_modules/verte/dist/verte.esm.js ***!
-  \**********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/**
-    * Verte v0.0.12
-    * (c) 2019 Baianat
-    * @license MIT
-    */
-/**
-  * color-fns v0.0.10
-  * (c) 2019 Baianat
-  * @license MIT
-  */
-function _typeof(obj) {
-  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    _typeof = function (obj) {
-      return typeof obj;
-    };
-  } else {
-    _typeof = function (obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
-  }
-
-  return _typeof(obj);
-}
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) { descriptor.writable = true; }
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) { _defineProperties(Constructor.prototype, protoProps); }
-  if (staticProps) { _defineProperties(Constructor, staticProps); }
-  return Constructor;
-}
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function");
-  }
-
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) { _setPrototypeOf(subClass, superClass); }
-}
-
-function _getPrototypeOf(o) {
-  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  };
-  return _getPrototypeOf(o);
-}
-
-function _setPrototypeOf(o, p) {
-  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
-
-  return _setPrototypeOf(o, p);
-}
-
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return self;
-}
-
-function _possibleConstructorReturn(self, call) {
-  if (call && (typeof call === "object" || typeof call === "function")) {
-    return call;
-  }
-
-  return _assertThisInitialized(self);
-}
-
-function _superPropBase(object, property) {
-  while (!Object.prototype.hasOwnProperty.call(object, property)) {
-    object = _getPrototypeOf(object);
-    if (object === null) { break; }
-  }
-
-  return object;
-}
-
-function _get(target, property, receiver) {
-  if (typeof Reflect !== "undefined" && Reflect.get) {
-    _get = Reflect.get;
-  } else {
-    _get = function _get(target, property, receiver) {
-      var base = _superPropBase(target, property);
-
-      if (!base) { return; }
-      var desc = Object.getOwnPropertyDescriptor(base, property);
-
-      if (desc.get) {
-        return desc.get.call(receiver);
-      }
-
-      return desc.value;
-    };
-  }
-
-  return _get(target, property, receiver || target);
-}
-
-function getColorModel(color) {
-  if (_typeof(color) === 'object' && color.model) {
-    return color.model;
-  }
-
-  if (color.slice(0, 1) === '#' && (color.length === 4 || color.length === 7)) {
-    return 'hex';
-  }
-
-  if (color.slice(0, 1) === '#' && (color.length === 6 || color.length === 9)) {
-    return 'hex';
-  }
-
-  if (color.slice(0, 4).toUpperCase() === 'RGBA') {
-    return 'rgb';
-  }
-
-  if (color.slice(0, 3).toUpperCase() === 'RGB') {
-    return 'rgb';
-  }
-
-  if (color.slice(0, 4).toUpperCase() === 'HSLA') {
-    return 'hsl';
-  }
-
-  if (color.slice(0, 3).toUpperCase() === 'HSL') {
-    return 'hsl';
-  }
-
-  return false;
-}
-
-function hexNumToDec(hexNum) {
-  if (isNaN(parseInt(hexNum, 16))) {
-    return 0;
-  }
-
-  return parseInt(hexNum, 16);
-}
-
-function isBetween(lb, ub) {
-  return function (value) {
-    return value >= lb && value <= ub;
-  };
-}
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-function mixValue(val1, val2) {
-  var ratio = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0.5;
-  return Number((val1 * (1 - ratio) + val2 * ratio).toFixed(2));
-}
-function isValidAlpha(alpha) {
-  return !(alpha === undefined || isNaN(alpha) || alpha < 0 || alpha > 1);
-}
-
-var Color =
-/*#__PURE__*/
-function () {
-  function Color(components) {
-    var _this = this;
-
-    _classCallCheck(this, Color);
-
-    this.invalid = !this.validate(components);
-
-    if (!this.invalid) {
-      Object.keys(components).forEach(function (c) {
-        _this[c] = components[c];
-      });
-    }
-
-    this.init();
-  }
-
-  _createClass(Color, [{
-    key: "init",
-    value: function init() {}
-  }, {
-    key: "validate",
-    value: function validate(components) {
-      return !!components && _typeof(components) === 'object';
-    }
-  }]);
-
-  return Color;
-}();
-var RgbColor =
-/*#__PURE__*/
-function (_Color) {
-  _inherits(RgbColor, _Color);
-
-  function RgbColor() {
-    _classCallCheck(this, RgbColor);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(RgbColor).apply(this, arguments));
-  }
-
-  _createClass(RgbColor, [{
-    key: "validate",
-    value: function validate(components) {
-      if (!_get(_getPrototypeOf(RgbColor.prototype), "validate", this).call(this, components)) {
-        return false;
-      }
-
-      var isInRange = isBetween(0, 255);
-      return isInRange(components.red) && isInRange(components.green) && isInRange(components.blue);
-    }
-  }, {
-    key: "init",
-    value: function init() {
-      this.model = 'rgb';
-      this.alpha = isValidAlpha(this.alpha) ? this.alpha : 1;
-    }
-  }, {
-    key: "toString",
-    value: function toString() {
-      if (this.invalid) {
-        return 'Invalid Color';
-      }
-
-      if (isBetween(0, 0.999)(this.alpha)) {
-        return "rgba(".concat(this.red, ",").concat(this.green, ",").concat(this.blue, ",").concat(this.alpha, ")");
-      }
-
-      return "rgb(".concat(this.red, ",").concat(this.green, ",").concat(this.blue, ")");
-    }
-  }]);
-
-  return RgbColor;
-}(Color);
-var HslColor =
-/*#__PURE__*/
-function (_Color2) {
-  _inherits(HslColor, _Color2);
-
-  function HslColor() {
-    _classCallCheck(this, HslColor);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(HslColor).apply(this, arguments));
-  }
-
-  _createClass(HslColor, [{
-    key: "validate",
-    value: function validate(components) {
-      if (!_get(_getPrototypeOf(HslColor.prototype), "validate", this).call(this, components)) {
-        return false;
-      }
-
-      var isPercentage = isBetween(0, 100);
-      return isBetween(0, 360)(components.hue) && isPercentage(components.lum) && isPercentage(components.sat);
-    }
-  }, {
-    key: "init",
-    value: function init() {
-      this.model = 'hsl';
-      this.alpha = isValidAlpha(this.alpha) ? this.alpha : 1;
-    }
-  }, {
-    key: "toString",
-    value: function toString() {
-      if (this.invalid) {
-        return 'Invalid Color';
-      }
-
-      if (isBetween(0, 0.999)(this.alpha)) {
-        return "hsla(".concat(this.hue, ",").concat(this.sat, "%,").concat(this.lum, "%,").concat(this.alpha, ")");
-      }
-
-      return "hsl(".concat(this.hue, ",").concat(this.sat, "%,").concat(this.lum, "%)");
-    }
-  }]);
-
-  return HslColor;
-}(Color);
-var HexColor =
-/*#__PURE__*/
-function (_Color3) {
-  _inherits(HexColor, _Color3);
-
-  function HexColor() {
-    _classCallCheck(this, HexColor);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(HexColor).apply(this, arguments));
-  }
-
-  _createClass(HexColor, [{
-    key: "validate",
-    value: function validate(components) {
-      if (!_get(_getPrototypeOf(HexColor.prototype), "validate", this).call(this, components)) {
-        return false;
-      }
-
-      return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test("#".concat(components.red).concat(components.green).concat(components.blue));
-    }
-  }, {
-    key: "init",
-    value: function init() {
-      this.model = 'hex';
-      this.alpha = this.alpha !== undefined ? this.alpha : 'ff';
-    }
-  }, {
-    key: "toString",
-    value: function toString() {
-      if (this.invalid) {
-        return 'Invalid Color';
-      }
-
-      if (isBetween(0, 0.999)(hexNumToDec(this.alpha) / 255)) {
-        return "#".concat(this.red).concat(this.green).concat(this.blue).concat(this.alpha);
-      }
-
-      return "#".concat(this.red).concat(this.green).concat(this.blue);
-    }
-  }]);
-
-  return HexColor;
-}(Color);
-
-var Colors = /*#__PURE__*/Object.freeze({
-  Color: Color,
-  RgbColor: RgbColor,
-  HslColor: HslColor,
-  HexColor: HexColor
-});
-
-function parseRgb(rgb) {
-  if (_typeof(rgb) === 'object') {
-    return rgb;
-  } // will consider rgb/rgba color prefix as a valid input color
-  // while the output will be a valid web colors
-  // valid input colors examples 'rgb(100, 0, 0, 0.5)', 'rgba(0, 0, 0)'
-  // the output for the inputted examples 'rgba(100, 0, 0, 0.5)', 'rgb(0, 0, 0)'
-
-
-  var match = rgb.match(/^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,*\s*(\d*(?:\.\d+)*)*\)/i);
-
-  if (!match || match.length < 4) {
-    return new RgbColor();
-  }
-
-  return new RgbColor({
-    red: Number(match[1]),
-    green: Number(match[2]),
-    blue: Number(match[3]),
-    alpha: Number(match[4])
-  });
-}
-
-function expandHexShorthand(hex) {
-  var regex = /^#([a-f\d])([a-f\d])([a-f\d])([a-f\d])*$/i;
-
-  if ((hex.length === 5 || hex.length === 4) && regex.test(hex)) {
-    hex = hex.replace(regex, function (m, r, g, b, a) {
-      return "#".concat(r).concat(r).concat(g).concat(g).concat(b).concat(b).concat(a ? "".concat(a).concat(a) : '');
-    });
-  }
-
-  return hex;
-}
-
-function parseHex(hex) {
-  if (_typeof(hex) === 'object') {
-    return hex;
-  }
-
-  var expanded = expandHexShorthand(hex);
-  var match = expanded.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})*/i);
-
-  if (!match || match.length < 4) {
-    return new HexColor();
-  }
-
-  return new HexColor({
-    hex: expanded,
-    red: match[1],
-    green: match[2],
-    blue: match[3],
-    alpha: match[4]
-  });
-}
-
-function parseHsl(hsl) {
-  if (_typeof(hsl) === 'object') {
-    return hsl;
-  } // will consider hsl/hsla color prefix as a valid input color
-  // while the output will be a valid web colors
-  // valid input colors examples 'hsl(255, 100%, 50%, 0.5)', 'hsla(100, 100%, 50%)'
-  // the output for the inputted examples 'hsla(255, 100%, 50%, 0.5)', 'hsl(100, 100%, 50%)'
-
-
-  var match = hsl.match(/^hsla?\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*,*\s*(\d*(?:\.\d+)*)*\)/i);
-
-  if (!match || match.length < 4) {
-    return new HslColor();
-  }
-
-  return new HslColor({
-    hue: Number(match[1]),
-    sat: Number(match[2]),
-    lum: Number(match[3]),
-    alpha: Number(match[4])
-  });
-}
-
-/**
- * Checks if the given color string is valid (parsable).
- *
- * @param {String} color The color string to be checked.
- */
-
-function isValidColor(color) {
-  var model = getColorModel(color);
-
-  if (model === 'rgb') {
-    return !parseRgb(color).invalid;
-  }
-
-  if (model === 'hex') {
-    return !parseHex(color).invalid;
-  }
-
-  if (model === 'hsl') {
-    return !parseHsl(color).invalid;
-  }
-
-  return false;
-}
-
-function decNumToHex(decNum) {
-  decNum = Math.floor(decNum);
-
-  if (isNaN(decNum)) {
-    return '00';
-  }
-
-  return ('0' + decNum.toString(16)).slice(-2);
-}
-
-function rgbToHex(rgb) {
-  if (!rgb) {
-    return new HexColor();
-  }
-
-  rgb = parseRgb(rgb);
-  var _ref = [decNumToHex(rgb.red), decNumToHex(rgb.green), decNumToHex(rgb.blue), rgb.alpha ? decNumToHex(rgb.alpha * 255) : null],
-      rr = _ref[0],
-      gg = _ref[1],
-      bb = _ref[2],
-      aa = _ref[3];
-  return new HexColor({
-    red: rr,
-    green: gg,
-    blue: bb,
-    alpha: aa || 'ff'
-  });
-}
-
-function rgb2Hsl(rgb) {
-  if (!rgb) {
-    return new HslColor();
-  }
-
-  rgb = parseRgb(rgb); // Convert the RGB values to the range 0-1
-
-  var _ref = [rgb.red / 255, rgb.green / 255, rgb.blue / 255, rgb.alpha],
-      red = _ref[0],
-      green = _ref[1],
-      blue = _ref[2],
-      alpha = _ref[3];
-  var hue = 0,
-      sat = 0,
-      lum = 0; // Find the minimum and maximum values of R, G and B.
-
-  var min = Math.min(red, green, blue);
-  var max = Math.max(red, green, blue); // Calculate the lightness value
-
-  lum = (min + max) / 2; // Calculate the saturation.
-
-  if (min !== max) {
-    sat = lum > 0.5 ? (max - min) / (2 - max - min) : (max - min) / (max + min);
-  } // calculate the hue
-
-
-  if (red >= max && min !== max) {
-    hue = 60 * ((green - blue) / (max - min));
-  }
-
-  if (green >= max && min !== max) {
-    hue = 60 * (2.0 + (blue - red) / (max - min));
-  }
-
-  if (blue >= max && min !== max) {
-    hue = 60 * (4.0 + (red - green) / (max - min));
-  } // normalize values
-
-
-  hue = hue < 0 ? Math.floor(hue + 360) : Math.floor(hue);
-  sat = Math.floor(sat * 100);
-  lum = Math.floor(lum * 100);
-  return new HslColor({
-    hue: hue,
-    sat: sat,
-    lum: lum,
-    alpha: alpha
-  });
-}
-
-function hexToRgb(hex) {
-  if (!hex) {
-    return new RgbColor();
-  }
-
-  var _parseHex = parseHex(hex),
-      red = _parseHex.red,
-      green = _parseHex.green,
-      blue = _parseHex.blue,
-      alpha = _parseHex.alpha;
-
-  return new RgbColor({
-    red: hexNumToDec(red),
-    green: hexNumToDec(green),
-    blue: hexNumToDec(blue),
-    alpha: alpha === undefined ? 1 : Number((hexNumToDec(alpha) / 255).toFixed(2))
-  });
-}
-
-function normalizeDecNum(value) {
-  return Math.min(Math.max(parseInt(value), 0), 255);
-}
-
-function hslToRgb(hsl) {
-  if (!hsl) {
-    return new RgbColor();
-  }
-  hsl = parseHsl(hsl);
-  var _ref = [hsl.hue / 360, hsl.sat / 100, hsl.lum / 100, hsl.alpha],
-      hue = _ref[0],
-      sat = _ref[1],
-      lgh = _ref[2],
-      alpha = _ref[3];
-  var red = 0,
-      green = 0,
-      blue = 0;
-
-  if (sat === 0) {
-    red = green = blue = normalizeDecNum(lgh * 255);
-  }
-
-  if (sat !== 0) {
-    var temp1 = lgh >= 50 ? lgh + sat - lgh * sat : lgh * (1 + sat);
-    var temp2 = 2 * lgh - temp1;
-
-    var testHue = function testHue(test) {
-      if (test < 0) { test += 1; }
-      if (test > 1) { test -= 1; }
-      if (test < 1 / 6) { return temp2 + (temp1 - temp2) * 6 * test; }
-      if (test < 1 / 2) { return temp1; }
-      if (test < 2 / 3) { return temp2 + (temp1 - temp2) * (2 / 3 - test) * 6; }
-      return temp2;
-    };
-
-    red = normalizeDecNum(255 * testHue(hue + 1 / 3));
-    green = normalizeDecNum(255 * testHue(hue));
-    blue = normalizeDecNum(255 * testHue(hue - 1 / 3));
-  }
-
-  return new RgbColor({
-    red: red,
-    green: green,
-    blue: blue,
-    alpha: alpha
-  });
-}
-
-function hexToHsl(hex) {
-  if (!hex) {
-    return new HslColor();
-  }
-
-  return rgb2Hsl(hexToRgb(hex));
-}
-
-function hslToHex(hsl) {
-  if (!hsl) {
-    return new HexColor();
-  }
-
-  return rgbToHex(hslToRgb(hsl));
-}
-
-/**
- * Parses the given color string into a RGB color object.
- *
- * @param {String} color The color to be parsed and converted.
- */
-
-function toRgb(color) {
-  var model = getColorModel(color);
-
-  if (model === 'hex') {
-    return hexToRgb(color);
-  }
-
-  if (model === 'hsl') {
-    return hslToRgb(color);
-  }
-
-  if (model === 'rgb' && typeof color === 'string') {
-    return parseRgb(color);
-  }
-
-  if (model === 'rgb' && _typeof(color) === 'object') {
-    return color;
-  }
-
-  return new RgbColor();
-}
-
-/**
- * Parses the given color string into a HSL color object.
- *
- * @param {String} color The color to be parsed and converted.
- */
-
-function toHsl(color) {
-  var model = getColorModel(color);
-
-  if (model === 'hex') {
-    return hexToHsl(color);
-  }
-
-  if (model === 'rgb') {
-    return rgb2Hsl(color);
-  }
-
-  if (model === 'hsl' && typeof color === 'string') {
-    return parseHsl(color);
-  }
-
-  if (model === 'hsl' && _typeof(color) === 'object') {
-    return color;
-  }
-
-  return new HslColor();
-}
-
-/**
- * Parses the given color string into a Hex color object.
- *
- * @param {String} color The color to be parsed and converted.
- */
-
-function toHex(color) {
-  var model = getColorModel(color);
-
-  if (model === 'rgb') {
-    return rgbToHex(color);
-  }
-
-  if (model === 'hsl') {
-    return hslToHex(color);
-  }
-
-  if (model === 'hex' && typeof color === 'string') {
-    return parseHex(color);
-  }
-
-  if (model === 'hex' && _typeof(color) === 'object') {
-    return color;
-  }
-
-  return new HexColor();
-}
-
-function getRandomColor() {
-  return "rgb(".concat(getRandomInt(0, 255), ", ").concat(getRandomInt(0, 255), ", ").concat(getRandomInt(0, 255), ")");
-}
-
-function mixColors(color1, color2, ratio) {
-  color1 = toRgb(color1);
-  color2 = toRgb(color2);
-  var red = Math.floor(mixValue(color1.red, color2.red, ratio));
-  var green = Math.floor(mixValue(color1.green, color2.green, ratio));
-  var blue = Math.floor(mixValue(color1.blue, color2.blue, ratio));
-  var alpha = mixValue(color1.alpha, color2.alpha, ratio);
-  return new RgbColor({
-    red: red,
-    green: green,
-    blue: blue,
-    alpha: alpha
-  });
-}
-
-/**
- * Utilities
- */
-function newArray (length, valueSource) {
-  var array = [];
-  for (var i = 0; i < length; i++) {
-    var value = typeof valueSource === 'function' ? valueSource() : valueSource;
-    array.push(value);
-  }
-
-  return array;
-}
-
-function debounce (func, immediate) {
-  if ( immediate === void 0 ) immediate = false;
-
-  var timeout;
-  return function () {
-    var arguments$1 = arguments;
-
-    var later = function () {
-      timeout = null;
-      if (!immediate) { func.apply(void 0, arguments$1); }
-    };
-    var callNow = immediate && !timeout;
-    window.cancelAnimationFrame(timeout);
-    timeout = window.requestAnimationFrame(later);
-    if (callNow) { func.apply(void 0, arguments); }
-  };
-}
-
-function isElementClosest (element, wrapper) {
-  while (element !== document && element !== null) {
-    if (element === wrapper) { return true; }
-    element = element.parentNode;
-  }
-
-  return false;
-}
-
-function getClosestValue (array, value) {
-  return array.reduce(function (prev, curr) {
-    return Math.abs(curr - value) < Math.abs(prev - value) ? curr : prev;
-  });
-}
-
-function getPolarCoords (x, y) {
-  return {
-    r: Math.sqrt((x * x) + (y * y)),
-    theta: Math.atan2(y, x) * 180 / Math.PI
-  };
-}
-
-function getCartesianCoords (r, theta) {
-  return {
-    x: r * Math.cos(theta * Math.PI * 2),
-    y: r * Math.sin(theta * Math.PI * 2)
-  };
-}
-
-function warn (message) {
-  console.warn(("[Verte]: " + message));
-}
-
-function makeListValidator (propName, list) {
-  return function (value) {
-    var isValid = list.indexOf(value) !== -1;
-    if (!isValid && "development" !== 'production') {
-      warn(("The \"" + propName + "\" property can be only one of: " + (list.map(function (l) { return "'" + l + "'"; }).join(', ')) + "."));
-    }
-
-    return isValid;
-  };
-}
-function getEventCords (event) {
-  if (event.type.match(/^touch/i)) {
-    var touch = event.touches[0];
-    return { x: touch.clientX, y: touch.clientY };
-  }
-  if (event.type.match(/^mouse/i)) {
-    return { x: event.clientX, y: event.clientY };
-  }
-  return { x: 0, y: 0 };
-}
-
-//
-
-var script = {
-  name: 'VerteSlider',
-  props: {
-    gradient: Array,
-    classes: Array,
-    colorCode: { type: Boolean, default: false },
-    editable: { type: Boolean, default: true },
-    reverse: { type: Boolean, default: false },
-    label: { type: Boolean, default: false },
-    trackSlide: { type: Boolean, default: true },
-    min: { type: Number, default: 0 },
-    max: { type: Number, default: 255 },
-    step: { type: Number, default: 1 },
-    value: { type: Number, default: 0 },
-    handlesValue: { type: Array, default: function () { return [0]; } }
-  },
-  data: function () { return ({
-    fill: {
-      translate: 0,
-      scale: 0
-    },
-    multiple: false,
-    currentValue: 0,
-    handles: [],
-    values: []
-  }); },
-  watch: {
-    gradient: function gradient (val) {
-      this.initGradient(val);
-      this.reloadHandlesColor();
-    },
-    values: function values () {
-      this.multiple = this.values.length > 1;
-      this.fill = this.multiple ? false : this.fill || {};
-    },
-    value: function value (val, oldVal) {
-      if (val === oldVal || val === this.currentValue) { return; }
-
-      this.updateValue(this.value, true);
-    }
-  },
-  methods: {
-    init: function init () {
-      var this$1 = this;
-
-      this.$emitInputEvent = debounce(function () {
-        this$1.$emit('input', this$1.currentValue);
-      });
-      this.multiple = this.values.length > 1;
-      this.values = this.handlesValue;
-      this.handles = this.handlesValue.map(function (value, index) {
-        return { value: value, position: 0, color: '#fff' };
-      });
-      if (this.values.length === 1) {
-        this.values[0] = Number(this.value);
-      }
-      this.values.sort();
-
-      this.initElements();
-      if (this.gradient) {
-        this.initGradient(this.gradient);
-      }
-      this.initEvents();
-      this.values.forEach(function (handle, index) {
-        this$1.activeHandle = index;
-        this$1.updateValue(handle, true);
-      });
-    },
-    initElements: function initElements () {
-      var ref;
-
-      this.wrapper = this.$refs.wrapper;
-      this.track = this.$refs.track;
-      this.fill = this.$refs.fill;
-
-      this.wrapper.classList.toggle('slider--editable', this.editable);
-      this.wrapper.classList.toggle('slider--reverse', this.reverse);
-      if (this.classes) {
-        (ref = this.wrapper.classList).add.apply(ref, this.classes);
-      }
-    },
-    initGradient: function initGradient (gradient) {
-      if (gradient.length > 1) {
-        this.fill.style.backgroundImage = "linear-gradient(90deg, " + gradient + ")";
-        return;
-      }
-      this.fill.style.backgroundImage = '';
-      this.fill.style.backgroundColor = gradient[0];
-      this.handles.forEach(function (handle) {
-        handle.style.color = gradient[0];
-      });
-    },
-    handleResize: function handleResize () {
-      this.updateWidth();
-      this.updateValue(this.currentValue, true);
-    },
-    initEvents: function initEvents () {
-      window.addEventListener('resize', this.handleResize);
-    },
-    /**
-     * fire select events
-     */
-    select: function select (event) {
-      event.preventDefault();
-      event.stopPropagation();
-      // check if  left mouse is clicked
-      if (event.buttons === 2) { return; }
-
-      this.updateWidth();
-      this.track.classList.add('slider--dragging');
-      this.ticking = false;
-
-      var stepValue = this.getStepValue(event);
-
-      if (this.multiple) {
-        var closest = getClosestValue(this.values, stepValue);
-        this.activeHandle = this.values.indexOf(closest);
-      }
-      this.updateValue(stepValue);
-
-      this.tempDrag = this.dragging.bind(this);
-      this.tempRelease = this.release.bind(this);
-      document.addEventListener('mousemove', this.tempDrag);
-      document.addEventListener('touchmove', this.tempDrag);
-      document.addEventListener('touchend', this.tempRelease);
-      document.addEventListener('mouseup', this.tempRelease);
-    },
-    /**
-     * dragging motion
-     */
-    dragging: function dragging (event) {
-      var this$1 = this;
-
-      var stepValue = this.getStepValue(event);
-      if (!this.ticking) {
-        window.requestAnimationFrame(function () {
-          this$1.updateValue(stepValue);
-          this$1.ticking = false;
-        });
-
-        this.ticking = true;
-      }
-    },
-    /**
-     * release handler
-     */
-    release: function release () {
-      this.track.classList.remove('slider--dragging');
-      document.removeEventListener('mousemove', this.tempDrag);
-      document.removeEventListener('touchmove', this.tempDrag);
-      document.removeEventListener('mouseup', this.tempRelease);
-      document.removeEventListener('touchend', this.tempRelease);
-    },
-    getStepValue: function getStepValue (event) {
-      var ref = getEventCords(event);
-      var x = ref.x;
-
-      var mouseValue = (x - this.currentX);
-      var stepCount = parseInt((mouseValue / this.stepWidth) + 0.5, 10);
-      var stepValue = (stepCount * this.step) + this.min;
-      if (!this.decimalsCount) {
-        return stepValue;
-      }
-      return Number(stepValue.toFixed(this.decimalsCount));
-    },
-    updateWidth: function updateWidth () {
-      var trackRect = this.track.getBoundingClientRect();
-      this.currentX = trackRect.left;
-      this.width = trackRect.width;
-      this.stepWidth = (this.width / (this.max - this.min)) * this.step;
-    },
-    /**
-     * get the filled area percentage
-     * @param  {Object} slider
-     * @param  {Number} value
-     * @return {Number}
-     */
-    getPositionPercentage: function getPositionPercentage (value) {
-      return ((value - this.min) / (this.max - this.min)).toFixed(2);
-    },
-    normalizeValue: function normalizeValue (value) {
-      if (isNaN(Number(value))) {
-        return this.value;
-      }
-      if (this.multiple) {
-        var prevValue = this.values[this.activeHandle - 1] || this.min;
-        var nextValue = this.values[this.activeHandle + 1] || this.max;
-        value = Math.min(Math.max(Number(value), prevValue), nextValue);
-      }
-      return Math.min(Math.max(Number(value), this.min), this.max);
-    },
-    addHandle: function addHandle (value) {
-      var closest = getClosestValue(this.values, value);
-      var closestIndex = this.values.indexOf(closest);
-      var closestValue = this.values[closestIndex];
-      var newIndex = closestValue <= value ? closestIndex + 1 : closestIndex;
-      this.handles.splice(newIndex, 0, {
-        value: value,
-        position: 0,
-        color: '#fff'
-      });
-      this.values.splice(newIndex, 0, value);
-
-      this.activeHandle = newIndex;
-      this.currentValue = null;
-      this.updateValue(value);
-    },
-    removeHandle: function removeHandle (index) {
-      this.handles.splice(index, 1);
-      this.values.splice(index, 1);
-      this.activeHandle = index === 0 ? index + 1 : index - 1;
-    },
-    /**
-     * get the handle color
-     * @param  {Number} positionPercentage
-     * @return {Number} handle hex color code
-     */
-    getHandleColor: function getHandleColor (positionPercentage) {
-      var this$1 = this;
-
-      var colorCount = this.gradient.length - 1;
-      var region = positionPercentage;
-      for (var i = 1; i <= colorCount; i++) {
-        // check the current zone
-        if (region >= ((i - 1) / colorCount) && region <= (i / colorCount)) {
-          // get the active color percentage
-          var colorPercentage = (region - ((i - 1) / colorCount)) / (1 / colorCount);
-          // return the mixed color based on the zone boundary colors
-          return mixColors(this$1.gradient[i - 1], this$1.gradient[i], colorPercentage);
-        }
-      }
-      return 'rgb(0, 0, 0)';
-    },
-    /**
-     * update the slider fill, value and color
-     * @param {Number} value
-     */
-
-    reloadHandlesColor: function reloadHandlesColor () {
-      var this$1 = this;
-
-      this.handles.forEach(function (handle, index) {
-        var positionPercentage = this$1.getPositionPercentage(handle.value);
-        var color = this$1.getHandleColor(positionPercentage);
-        this$1.handles[index].color = color.toString();
-      });
-    },
-
-    updateValue: function updateValue (value, muted) {
-      var this$1 = this;
-      if ( muted === void 0 ) muted = false;
-
-      // if (Number(value) === this.value) return;
-
-      window.requestAnimationFrame(function () {
-        var normalized = this$1.normalizeValue(value);
-        var positionPercentage = this$1.getPositionPercentage(normalized);
-
-        if (this$1.fill) {
-          this$1.fill.translate = positionPercentage * this$1.width;
-          this$1.fill.scale = 1 - positionPercentage;
-        }
-
-        this$1.values[this$1.activeHandle] = normalized;
-        this$1.handles[this$1.activeHandle].value = normalized;
-        this$1.handles[this$1.activeHandle].position = positionPercentage * this$1.width;
-        this$1.currentValue = normalized;
-        this$1.$refs.input.value = this$1.currentValue;
-
-        if (this$1.gradient) {
-          var color = this$1.getHandleColor(positionPercentage);
-          this$1.handles[this$1.activeHandle].color = color.toString();
-          if (this$1.colorCode) {
-            this$1.currentValue = color;
-          }
-        }
-
-        if (muted) { return; }
-        this$1.$emitInputEvent();
-      });
-    }
-  },
-  created: function created () {
-    var stepSplited = this.step.toString().split('.')[1];
-    this.currentValue = this.value;
-    this.decimalsCount = stepSplited ? stepSplited.length : 0;
-  },
-  mounted: function mounted () {
-    var this$1 = this;
-
-    this.init();
-    this.$nextTick(function () {
-      this$1.updateWidth();
-      this$1.updateValue(undefined, true);
-    });
-  },
-  destroyed: function destroyed () {
-    window.removeEventListener('resize', this.handleResize);
-  },
-};
-
-/* script */
-            var __vue_script__ = script;
-/* template */
-var __vue_render__ = function() {
-  var _vm = this;
-  var _h = _vm.$createElement;
-  var _c = _vm._self._c || _h;
-  return _c("div", { ref: "wrapper", staticClass: "slider" }, [
-    _c(
-      "div",
-      _vm._g(
-        { ref: "track", staticClass: "slider__track" },
-        _vm.trackSlide ? { mousedown: _vm.select, touchstart: _vm.select } : {}
-      ),
-      [
-        _c("div", { ref: "fill", staticClass: "slider__fill" }),
-        _vm._l(_vm.handles, function(handle) {
-          return _c(
-            "div",
-            {
-              staticClass: "slider__handle",
-              style:
-                "transform: translate(" +
-                handle.position +
-                "px, 0); background-color: " +
-                handle.color +
-                ";",
-              on: { mousedown: _vm.select, touchstart: _vm.select }
-            },
-            [
-              _vm.label
-                ? _c("div", { staticClass: "slider__label" }, [
-                    _vm._v(_vm._s(handle.value))
-                  ])
-                : _vm._e()
-            ]
-          )
-        })
-      ],
-      2
-    ),
-    _c("input", {
-      directives: [
-        {
-          name: "show",
-          rawName: "v-show",
-          value: _vm.editable,
-          expression: "editable"
-        }
-      ],
-      ref: "input",
-      staticClass: "slider__input",
-      attrs: { type: _vm.colorCode ? "text" : "number" },
-      on: {
-        change: function($event) {
-          _vm.updateValue($event.target.value);
-        }
-      }
-    })
-  ])
-};
-var __vue_staticRenderFns__ = [];
-__vue_render__._withStripped = true;
-
-  /* style */
-  var __vue_inject_styles__ = undefined;
-  /* scoped */
-  var __vue_scope_id__ = undefined;
-  /* module identifier */
-  var __vue_module_identifier__ = undefined;
-  /* functional template */
-  var __vue_is_functional_template__ = false;
-  /* component normalizer */
-  function __vue_normalize__(
-    template, style, script$$1,
-    scope, functional, moduleIdentifier,
-    createInjector, createInjectorSSR
-  ) {
-    var component = (typeof script$$1 === 'function' ? script$$1.options : script$$1) || {};
-
-    {
-      component.__file = "/mnt/c/Users/Abdelrahman/Projects/verte/src/components/Slider.vue";
-    }
-
-    if (!component.render) {
-      component.render = template.render;
-      component.staticRenderFns = template.staticRenderFns;
-      component._compiled = true;
-
-      if (functional) { component.functional = true; }
-    }
-
-    component._scopeId = scope;
-
-    return component
-  }
-  /* style inject */
-  function __vue_create_injector__() {
-    var head = document.head || document.getElementsByTagName('head')[0];
-    var styles = __vue_create_injector__.styles || (__vue_create_injector__.styles = {});
-    var isOldIE =
-      typeof navigator !== 'undefined' &&
-      /msie [6-9]\\b/.test(navigator.userAgent.toLowerCase());
-
-    return function addStyle(id, css) {
-      if (document.querySelector('style[data-vue-ssr-id~="' + id + '"]')) { return } // SSR styles are present.
-
-      var group = isOldIE ? css.media || 'default' : id;
-      var style = styles[group] || (styles[group] = { ids: [], parts: [], element: undefined });
-
-      if (!style.ids.includes(id)) {
-        var code = css.source;
-        var index = style.ids.length;
-
-        style.ids.push(id);
-
-        if (isOldIE) {
-          style.element = style.element || document.querySelector('style[data-group=' + group + ']');
-        }
-
-        if (!style.element) {
-          var el = style.element = document.createElement('style');
-          el.type = 'text/css';
-
-          if (css.media) { el.setAttribute('media', css.media); }
-          if (isOldIE) {
-            el.setAttribute('data-group', group);
-            el.setAttribute('data-next-index', '0');
-          }
-
-          head.appendChild(el);
-        }
-
-        if (isOldIE) {
-          index = parseInt(style.element.getAttribute('data-next-index'));
-          style.element.setAttribute('data-next-index', index + 1);
-        }
-
-        if (style.element.styleSheet) {
-          style.parts.push(code);
-          style.element.styleSheet.cssText = style.parts
-            .filter(Boolean)
-            .join('\n');
-        } else {
-          var textNode = document.createTextNode(code);
-          var nodes = style.element.childNodes;
-          if (nodes[index]) { style.element.removeChild(nodes[index]); }
-          if (nodes.length) { style.element.insertBefore(textNode, nodes[index]); }
-          else { style.element.appendChild(textNode); }
-        }
-      }
-    }
-  }
-  /* style inject SSR */
-  
-
-  
-  var Slider = __vue_normalize__(
-    { render: __vue_render__, staticRenderFns: __vue_staticRenderFns__ },
-    __vue_inject_styles__,
-    __vue_script__,
-    __vue_scope_id__,
-    __vue_is_functional_template__,
-    __vue_module_identifier__,
-    __vue_create_injector__,
-    undefined
-  );
-
-//
-
-var script$1 = {
-  name: 'VertePicker',
-  components: {
-    Slider: Slider
-  },
-  props: {
-    mode: { type: String, default: 'square' },
-    edge: { type: Number, default: 250 },
-    diameter: { type: Number, default: 180 },
-    satSlider: { type: Boolean, default: true },
-    alpha: { type: Number, default: 1 },
-    value: { type: String, default: '#fff' }
-  },
-  data: function () { return ({
-    currentHue: 0,
-    currentSat: 0,
-    currentColor: '',
-    cursor: {},
-    preventUpdating: false,
-    preventEcho: false
-  }); },
-  watch: {
-    // handles external changes.
-    value: function value (val) {
-      if (this.preventUpdating) {
-        this.preventUpdating = false;
-        return;
-      }
-      this.handleValue(val, true);
-    },
-    currentSat: function currentSat () {
-      this.updateWheelColors();
-      this.updateColor();
-    },
-    currentHue: function currentHue () {
-      this.updateSquareColors();
-      this.updateColor();
-    }
-  },
-  methods: {
-    initSquare: function initSquare () {
-      // setup canvas
-      var edge = this.edge;
-      this.$refs.canvas.width = edge;
-      this.$refs.canvas.height = edge - 100;
-      this.ctx = this.$refs.canvas.getContext('2d');
-      this.updateSquareColors();
-    },
-    initWheel: function initWheel () {
-      // setup canvas
-      this.$refs.canvas.width = this.diameter;
-      this.$refs.canvas.height = this.diameter;
-      this.ctx = this.$refs.canvas.getContext('2d');
-
-      // draw wheel circle path
-      this.circle = {
-        path: new Path2D(), // eslint-disable-line
-        xCords: this.diameter / 2,
-        yCords: this.diameter / 2,
-        radius: this.diameter / 2
-      };
-      this.circle.path.moveTo(this.circle.xCords, this.circle.yCords);
-      this.circle.path.arc(
-        this.circle.xCords,
-        this.circle.yCords,
-        this.circle.radius,
-        0,
-        360
-      );
-      this.circle.path.closePath();
-      this.updateWheelColors();
-    },
-    // this function calls when the color changed from outside the picker
-    handleValue: function handleValue (color, muted) {
-      if ( muted === void 0 ) muted = false;
-
-      var ref = this.pickerRect;
-      var width = ref.width;
-      var height = ref.height;
-      this.currentColor = toHsl(color);
-      // prvent upadtion picker slider for causing
-      // echo udationg to the current color value
-      this.preventEcho = true;
-
-      if (this.mode === 'wheel') {
-        var r = (100 - this.currentColor.lum) * (this.diameter / 200);
-        var radius = this.diameter / 2;
-        var coords = getCartesianCoords(r, this.currentColor.hue / 360);
-        this.cursor = { x: coords.x + radius, y: coords.y + radius };
-        this.currentSat = this.currentColor.sat;
-      }
-
-      if (this.mode === 'square') {
-        var x = (this.currentColor.sat / 100) * width;
-        var y = ((100 - this.currentColor.lum) / 100) * height;
-        this.cursor = { x: x, y: y };
-        this.currentHue = this.currentColor.hue;
-      }
-    },
-    updateCursorPosition: function updateCursorPosition (ref) {
-      var x = ref.x;
-      var y = ref.y;
-
-      var ref$1 = this.pickerRect;
-      var left = ref$1.left;
-      var top = ref$1.top;
-      var width = ref$1.width;
-      var height = ref$1.height;
-      var normalized = {
-        x: Math.min(Math.max(x - left, 0), width),
-        y: Math.min(Math.max(y - top, 0), height)
-      };
-
-      if (
-        this.mode === 'wheel'&&
-        !this.ctx.isPointInPath(this.circle.path, normalized.x, normalized.y)
-      ) {
-        return;
-      }
-
-      this.cursor = normalized;
-      this.updateColor();
-    },
-    // select color and update it to verte component
-    // this function calls when the color changed from the picker
-    updateColor: function updateColor (muted) {
-      if ( muted === void 0 ) muted = false;
-
-      if (this.preventEcho) {
-        this.preventEcho = false;
-        return;
-      }
-
-      this.currentColor = this.getCanvasColor();
-      this.preventUpdating = true;
-      this.$emit('change', this.currentColor);
-      this.$emit('input', this.currentColor);
-    },
-    updateWheelColors: function updateWheelColors () {
-      var this$1 = this;
-
-      if (!this.circle) { return; }
-      var ref = this.pickerRect;
-      var width = ref.width;
-      var height = ref.height;
-
-      var x = this.circle.xCords;
-      var y = this.circle.yCords;
-      var radius = this.circle.radius;
-      var sat = this.satSlider ? this.currentSat : 100;
-      this.ctx.clearRect(0, 0, width, height);
-
-      for (var angle = 0; angle < 360; angle += 1) {
-        var gradient = this$1.ctx.createRadialGradient(x, y, 0, x, y, radius);
-        var startAngle = (angle - 2) * Math.PI / 180;
-        var endAngle = (angle + 2) * Math.PI / 180;
-
-        this$1.ctx.beginPath();
-        this$1.ctx.moveTo(x, y);
-        this$1.ctx.arc(x, y, radius, startAngle, endAngle);
-        this$1.ctx.closePath();
-
-        gradient.addColorStop(0, ("hsl(" + angle + ", " + sat + "%, 100%)"));
-        gradient.addColorStop(0.5, ("hsl(" + angle + ", " + sat + "%, 50%)"));
-        gradient.addColorStop(1, ("hsl(" + angle + ", " + sat + "%, 0%)"));
-        this$1.ctx.fillStyle = gradient;
-        this$1.ctx.fill();
-      }
-    },
-    updateSquareColors: function updateSquareColors () {
-      var ref = this.pickerRect;
-      var width = ref.width;
-      var height = ref.height;
-      this.ctx.clearRect(0, 0, width, height);
-
-      this.ctx.fillStyle = "hsl(" + (this.currentHue) + ", 100%, 50%)";
-      this.ctx.fillRect(0, 0, width, height);
-
-      var grdBlack = this.ctx.createLinearGradient(0, 0, width, 0);
-      grdBlack.addColorStop(0, "hsl(0, 0%, 50%)");
-      grdBlack.addColorStop(1, "hsla(0, 0%, 50%, 0)");
-      this.ctx.fillStyle = grdBlack;
-      this.ctx.fillRect(0, 0, width, height);
-
-      var grdWhite = this.ctx.createLinearGradient(0, 0, 0, height);
-      grdWhite.addColorStop(0, "hsl(0, 0%, 100%)");
-      grdWhite.addColorStop(0.5, "hsla(0, 0%, 100%, 0)");
-      grdWhite.addColorStop(0.5, "hsla(0, 0%, 0%, 0)");
-      grdWhite.addColorStop(1, "hsl(0, 0%, 0%) ");
-      this.ctx.fillStyle = grdWhite;
-      this.ctx.fillRect(0, 0, width, height);
-    },
-    getCanvasColor: function getCanvasColor () {
-      var ref = this.cursor;
-      var x = ref.x;
-      var y = ref.y;
-      var sat = 0;
-      var lum = 0;
-      var hue = 0;
-
-      if (this.mode === 'wheel') {
-        var radius = this.diameter / 2;
-        var xShitft = x - radius;
-        var yShitft = (y - radius) * -1;
-        var ref$1 = getPolarCoords(xShitft, yShitft);
-        var r = ref$1.r;
-        var theta = ref$1.theta;
-        lum = (radius - r) * 100 / radius;
-        hue = !~Math.sign(theta) ? -theta : 360 - theta;
-        sat = this.currentSat;
-      }
-
-      if (this.mode === 'square') {
-        var ref$2 = this.pickerRect;
-        var width = ref$2.width;
-        var height = ref$2.height;
-        sat = x * 100 / width;
-        lum = 100 - (y * 100 / height);
-        hue = this.currentHue;
-      }
-    
-      return new Colors.HslColor({
-        alpha: this.alpha,
-        hue: Math.round(hue),
-        sat: Math.round(sat),
-        lum: Math.round(lum)
-      });
-    },
-    handleSelect: function handleSelect (event) {
-      var this$1 = this;
-
-      event.preventDefault();
-      this.pickerRect = this.$refs.canvas.getBoundingClientRect();
-      this.updateCursorPosition(getEventCords(event));
-      var tempFunc = function (evnt) {
-        window.requestAnimationFrame(function () {
-          this$1.updateCursorPosition(getEventCords(evnt));
-        });
-      };
-      var handleRelase = function () {
-        document.removeEventListener('mousemove', tempFunc);
-        document.removeEventListener('touchmove', tempFunc);
-        document.removeEventListener('mouseup', handleRelase);
-        document.removeEventListener('touchend', handleRelase);
-      };
-      document.addEventListener('mousemove', tempFunc);
-      document.addEventListener('touchmove', tempFunc);
-      document.addEventListener('mouseup', handleRelase);
-      document.addEventListener('touchend', handleRelase);
-    }
-  },
-  mounted: function mounted () {
-    var this$1 = this;
-
-    this.pickerRect = this.$refs.canvas.getBoundingClientRect();
-    if (this.mode === 'wheel') {
-      this.initWheel();
-    }
-    if (this.mode === 'square') {
-      this.initSquare();
-    }
-    this.$nextTick(function () {
-      this$1.handleValue(this$1.value);
-    });
-  }
-};
-
-/* script */
-            var __vue_script__$1 = script$1;
-/* template */
-var __vue_render__$1 = function() {
-  var _vm = this;
-  var _h = _vm.$createElement;
-  var _c = _vm._self._c || _h;
-  return _c(
-    "div",
-    {
-      ref: "picker",
-      staticClass: "verte-picker",
-      class: "verte-picker--" + _vm.mode
-    },
-    [
-      _c("div", { ref: "origin", staticClass: "verte-picker__origin" }, [
-        _c("canvas", {
-          ref: "canvas",
-          staticClass: "verte-picker__canvas",
-          on: { mousedown: _vm.handleSelect, touchstart: _vm.handleSelect }
-        }),
-        _c("div", {
-          ref: "cursor",
-          staticClass: "verte-picker__cursor",
-          style:
-            "transform: translate3d(" +
-            _vm.cursor.x +
-            "px, " +
-            _vm.cursor.y +
-            "px, 0)"
-        })
-      ]),
-      _vm.mode === "square"
-        ? _c("slider", {
-            staticClass: "verte-picker__slider",
-            attrs: {
-              gradient: [
-                "#f00",
-                "#ff0",
-                "#0f0",
-                "#0ff",
-                "#00f",
-                "#f0f",
-                "#f00"
-              ],
-              editable: false,
-              max: 360
-            },
-            model: {
-              value: _vm.currentHue,
-              callback: function($$v) {
-                _vm.currentHue = $$v;
-              },
-              expression: "currentHue"
-            }
-          })
-        : _vm._e(),
-      _vm.mode === "wheel"
-        ? _c("slider", {
-            staticClass: "verte-picker__slider",
-            attrs: {
-              gradient: [
-                "hsl(" +
-                  _vm.currentColor.hue +
-                  ",0%," +
-                  _vm.currentColor.lum +
-                  "%)",
-                "hsl(" +
-                  _vm.currentColor.hue +
-                  ",100%," +
-                  _vm.currentColor.lum +
-                  "%)"
-              ],
-              editable: false,
-              max: 100
-            },
-            model: {
-              value: _vm.currentSat,
-              callback: function($$v) {
-                _vm.currentSat = $$v;
-              },
-              expression: "currentSat"
-            }
-          })
-        : _vm._e()
-    ],
-    1
-  )
-};
-var __vue_staticRenderFns__$1 = [];
-__vue_render__$1._withStripped = true;
-
-  /* style */
-  var __vue_inject_styles__$1 = undefined;
-  /* scoped */
-  var __vue_scope_id__$1 = undefined;
-  /* module identifier */
-  var __vue_module_identifier__$1 = undefined;
-  /* functional template */
-  var __vue_is_functional_template__$1 = false;
-  /* component normalizer */
-  function __vue_normalize__$1(
-    template, style, script,
-    scope, functional, moduleIdentifier,
-    createInjector, createInjectorSSR
-  ) {
-    var component = (typeof script === 'function' ? script.options : script) || {};
-
-    {
-      component.__file = "/mnt/c/Users/Abdelrahman/Projects/verte/src/components/Picker.vue";
-    }
-
-    if (!component.render) {
-      component.render = template.render;
-      component.staticRenderFns = template.staticRenderFns;
-      component._compiled = true;
-
-      if (functional) { component.functional = true; }
-    }
-
-    component._scopeId = scope;
-
-    return component
-  }
-  /* style inject */
-  function __vue_create_injector__$1() {
-    var head = document.head || document.getElementsByTagName('head')[0];
-    var styles = __vue_create_injector__$1.styles || (__vue_create_injector__$1.styles = {});
-    var isOldIE =
-      typeof navigator !== 'undefined' &&
-      /msie [6-9]\\b/.test(navigator.userAgent.toLowerCase());
-
-    return function addStyle(id, css) {
-      if (document.querySelector('style[data-vue-ssr-id~="' + id + '"]')) { return } // SSR styles are present.
-
-      var group = isOldIE ? css.media || 'default' : id;
-      var style = styles[group] || (styles[group] = { ids: [], parts: [], element: undefined });
-
-      if (!style.ids.includes(id)) {
-        var code = css.source;
-        var index = style.ids.length;
-
-        style.ids.push(id);
-
-        if (isOldIE) {
-          style.element = style.element || document.querySelector('style[data-group=' + group + ']');
-        }
-
-        if (!style.element) {
-          var el = style.element = document.createElement('style');
-          el.type = 'text/css';
-
-          if (css.media) { el.setAttribute('media', css.media); }
-          if (isOldIE) {
-            el.setAttribute('data-group', group);
-            el.setAttribute('data-next-index', '0');
-          }
-
-          head.appendChild(el);
-        }
-
-        if (isOldIE) {
-          index = parseInt(style.element.getAttribute('data-next-index'));
-          style.element.setAttribute('data-next-index', index + 1);
-        }
-
-        if (style.element.styleSheet) {
-          style.parts.push(code);
-          style.element.styleSheet.cssText = style.parts
-            .filter(Boolean)
-            .join('\n');
-        } else {
-          var textNode = document.createTextNode(code);
-          var nodes = style.element.childNodes;
-          if (nodes[index]) { style.element.removeChild(nodes[index]); }
-          if (nodes.length) { style.element.insertBefore(textNode, nodes[index]); }
-          else { style.element.appendChild(textNode); }
-        }
-      }
-    }
-  }
-  /* style inject SSR */
-  
-
-  
-  var Picker = __vue_normalize__$1(
-    { render: __vue_render__$1, staticRenderFns: __vue_staticRenderFns__$1 },
-    __vue_inject_styles__$1,
-    __vue_script__$1,
-    __vue_scope_id__$1,
-    __vue_is_functional_template__$1,
-    __vue_module_identifier__$1,
-    __vue_create_injector__$1,
-    undefined
-  );
-
-var MAX_COLOR_HISTROY = 6;
-var Vue;
-var store;
-
-function initStore (_Vue, opts) {
-  if (store) {
-    return store;
-  }
-
-  opts = opts || {};
-  var recentColors = opts.recentColors;
-  var onRecentColorsChange = opts.onRecentColorsChange;
-
-  Vue = _Vue;
-  store = new Vue({
-    data: function () { return ({
-      recentColors: recentColors || newArray(6, getRandomColor)
-    }); },
-    methods: {
-      addRecentColor: function addRecentColor (newColor) {
-        if (this.recentColors.includes(newColor)) {
-          return;
-        }
-
-        if (this.recentColors.length >= MAX_COLOR_HISTROY) {
-          this.recentColors.pop();
-        }
-
-        this.recentColors.unshift(newColor);
-        if (onRecentColorsChange) {
-          onRecentColorsChange(this.recentColors);
-        }
-      }
-    }
-  });
-
-  return store;
-}
-
-//
-
-var script$2 = {
-  name: 'Verte',
-  components: {
-    Picker: Picker,
-    Slider: Slider
-  },
-  props: {
-    picker: {
-      type: String,
-      default: 'square',
-      validator: makeListValidator('picker', ['wheel', 'square'])
-    },
-    value: {
-      type: String,
-      default: '#000'
-    },
-    model: {
-      type: String,
-      default: 'hsl',
-      validator: makeListValidator('model', ['rgb', 'hex', 'hsl'])
-    },
-    display: {
-      type: String,
-      default: 'picker',
-      validator: makeListValidator('display', ['picker', 'widget'])
-    },
-    menuPosition: {
-      type: String,
-      default: 'bottom',
-      validator: makeListValidator('menuPosition', ['top', 'bottom', 'left', 'right', 'center'])
-    },
-    showHistory: {
-      type: Boolean,
-      default: true
-    },
-    colorHistory: {
-      type: Array,
-      default: null
-    },
-    enableAlpha: {
-      type: Boolean,
-      default: true
-    },
-    rgbSliders: {
-      type: Boolean,
-      default: false
-    },
-    draggable: {
-      type: Boolean,
-      default: true
-    }
-  },
-  data: function () { return ({
-    isMenuActive: true,
-    isLoading: true,
-    rgb: toRgb('#000'),
-    hex: toHex('#000'),
-    hsl: toHsl('#000'),
-    delta: { x: 0, y: 0 },
-    currentModel: '',
-    internalColorHistory: []
-  }); },
-  computed: {
-    $_verteStore: function $_verteStore () {
-      // Should return the store singleton instance.
-      return initStore();
-    },
-    historySource: function historySource () {
-      if (this.colorHistory) {
-        return this.internalColorHistory;
-      }
-
-      return this.$_verteStore.recentColors;
-    },
-    currentColor: {
-      get: function get () {
-        if (!this[this.model] && "development" !== 'production') {
-          warn(("You are using a non-supported color model: \"" + (this.model) + "\", the supported models are: \"rgb\", \"hsl\" and \"hex\"."));
-          return "rgb(0, 0, 0)";
-        }
-
-        return this[this.model].toString();
-      },
-      set: function set (val) {
-        this.selectColor(val);
-      }
-    },
-    alpha: {
-      get: function get () {
-        if (!this[this.model]) {
-          return 1;
-        }
-
-        if (isNaN(this[this.model].alpha)) {
-          return 1;
-        }
-
-        return this[this.model].alpha;
-      },
-      set: function set (val) {
-        this[this.model].alpha = val;
-        this.selectColor(this[this.model]);
-      }
-    },
-    menuOnly: function menuOnly () {
-      return this.display === 'widget';
-    }
-  },
-  watch: {
-    value: function value (val, oldVal) {
-      if (val === oldVal || val === this.currentColor) { return; }
-
-      // value was updated externally.
-      this.selectColor(val);
-    },
-    rgb: {
-      handler: function handler (val) {
-        this.hex = toHex(val.toString());
-        this.$emit('input', this.currentColor);
-      },
-      deep: true
-    },
-    colorHistory: function colorHistory (val) {
-      if (this.internalColorHistory !== val) {
-        this.internalColorHistory = [].concat( val );
-      }
-    }
-  },
-  beforeCreate: function beforeCreate () {
-    // initialize the store early, _base is the vue constructor.
-    initStore(this.$options._base);
-  },
-  // When used as a target for Vue.use
-  install: function install (Vue, opts) {
-    initStore(Vue, opts);
-    Vue.component('Verte', this); // install self
-  },
-  created: function created () {
-    if (this.colorHistory) {
-      this.internalColorHistory = [].concat( this.colorHistory );
-    }
-
-    this.selectColor(this.value || '#000', true);
-    this.currentModel = this.model;
-  },
-  mounted: function mounted () {
-    var this$1 = this;
-
-    // give sliders time to
-    // calculate its visible width
-    this.$nextTick(function () {
-      this$1.isLoading = false;
-      if (this$1.menuOnly) { return; }
-      this$1.isMenuActive = false;
-    });
-  },
-  methods: {
-    selectColor: function selectColor (color, muted) {
-      if ( muted === void 0 ) muted = false;
-
-      if (!isValidColor(color)) { return; }
-
-      this.rgb = toRgb(color);
-      this.hex = toHex(color);
-      this.hsl = toHsl(color);
-
-      if (muted) { return; }
-      this.$emit('input', this.currentColor);
-    },
-    switchModel: function switchModel () {
-      var models = ['hex', 'rgb', 'hsl'];
-      var indx = models.indexOf(this.currentModel);
-      this.currentModel = models[indx + 1] || models[0];
-    },
-    handleMenuDrag: function handleMenuDrag (event) {
-      var this$1 = this;
-
-      if (event.button === 2) { return; }
-      event.preventDefault();
-
-      var lastMove = Object.assign({}, this.delta);
-      var startPosition = getEventCords(event);
-
-      var handleDragging = function (evnt) {
-        window.requestAnimationFrame(function () {
-          var endPosition = getEventCords(evnt);
-
-          this$1.delta.x = lastMove.x + endPosition.x - startPosition.x;
-          this$1.delta.y = lastMove.y + endPosition.y - startPosition.y;
-        });
-      };
-      var handleRelase = function () {
-        document.removeEventListener('mousemove', handleDragging);
-        document.removeEventListener('mouseup', handleRelase);
-        document.removeEventListener('touchmove', handleDragging);
-        document.removeEventListener('touchup', handleRelase);
-      };
-      document.addEventListener('mousemove', handleDragging);
-      document.addEventListener('mouseup', handleRelase);
-      document.addEventListener('touchmove', handleDragging);
-      document.addEventListener('touchup', handleRelase);
-    },
-    submit: function submit () {
-      this.$emit('beforeSubmit', this.currentColor);
-      this.addColorToHistory(this.currentColor);
-      this.$emit('input', this.currentColor);
-      this.$emit('submit', this.currentColor);
-    },
-    addColorToHistory: function addColorToHistory (color) {
-      if (this.colorHistory) {
-        if (this.internalColorHistory.length >= MAX_COLOR_HISTROY) {
-          this.internalColorHistory.pop();
-        }
-
-        this.internalColorHistory.unshift(color);
-        this.$emit('update:colorHistory', this.internalColorHistory);
-        return;
-      }
-
-      this.$_verteStore.addRecentColor(this.currentColor);
-    },
-    inputChanged: function inputChanged (event, value) {
-      var el = event.target;
-      if (this.currentModel === 'hex') {
-        this.selectColor(el.value);
-        return;
-      }
-      var normalized = Math.min(Math.max(el.value, el.min), el.max);
-      this[this.currentModel][value] = normalized;
-      this.selectColor(this[this.currentModel]);
-    },
-    toggleMenu: function toggleMenu () {
-      if (this.isMenuActive) {
-        this.closeMenu();
-        return;
-      }
-      this.openMenu();
-    },
-    closeMenu: function closeMenu () {
-      this.isMenuActive = false;
-      document.removeEventListener('mousedown', this.closeCallback);
-      this.$emit('close', this.currentColor);
-    },
-    openMenu: function openMenu () {
-      var this$1 = this;
-
-      this.isMenuActive = true;
-      this.closeCallback = function (evnt) {
-        if (
-          !isElementClosest(evnt.target, this$1.$refs.menu) &&
-          !isElementClosest(evnt.target, this$1.$refs.guide)
-        ) {
-          this$1.closeMenu();
-        }
-      };
-      document.addEventListener('mousedown', this.closeCallback);
-    }
-  }
-};
-
-/* script */
-            var __vue_script__$2 = script$2;
-/* template */
-var __vue_render__$2 = function() {
-  var _vm = this;
-  var _h = _vm.$createElement;
-  var _c = _vm._self._c || _h;
-  return _c(
-    "div",
-    { staticClass: "verte", class: { "verte--loading": _vm.isLoading } },
-    [
-      !_vm.menuOnly
-        ? _c(
-            "button",
-            {
-              ref: "guide",
-              staticClass: "verte__guide",
-              style:
-                "color: " +
-                _vm.currentColor +
-                "; fill: " +
-                _vm.currentColor +
-                ";",
-              attrs: { type: "button" },
-              on: { click: _vm.toggleMenu }
-            },
-            [
-              _vm._t("default", [
-                _c(
-                  "svg",
-                  {
-                    staticClass: "verte__icon",
-                    attrs: { viewBox: "0 0 24 24" }
-                  },
-                  [
-                    _c(
-                      "pattern",
-                      {
-                        attrs: {
-                          id: "checkerboard",
-                          width: "6",
-                          height: "6",
-                          patternUnits: "userSpaceOnUse",
-                          fill: "FFF"
-                        }
-                      },
-                      [
-                        _c("rect", {
-                          attrs: {
-                            fill: "#7080707f",
-                            x: "0",
-                            width: "3",
-                            height: "3",
-                            y: "0"
-                          }
-                        }),
-                        _c("rect", {
-                          attrs: {
-                            fill: "#7080707f",
-                            x: "3",
-                            width: "3",
-                            height: "3",
-                            y: "3"
-                          }
-                        })
-                      ]
-                    ),
-                    _c("circle", {
-                      attrs: {
-                        cx: "12",
-                        cy: "12",
-                        r: "12",
-                        fill: "url(#checkerboard)"
-                      }
-                    }),
-                    _c("circle", { attrs: { cx: "12", cy: "12", r: "12" } })
-                  ]
-                )
-              ])
-            ],
-            2
-          )
-        : _vm._e(),
-      _c(
-        "div",
-        {
-          staticClass: "verte__menu-origin",
-          class: [
-            "verte__menu-origin--" + _vm.menuPosition,
-            {
-              "verte__menu-origin--static": _vm.menuOnly,
-              "verte__menu-origin--active": _vm.isMenuActive
-            }
-          ]
-        },
-        [
-          _c(
-            "div",
-            {
-              ref: "menu",
-              staticClass: "verte__menu",
-              style:
-                "transform: translate(" +
-                _vm.delta.x +
-                "px, " +
-                _vm.delta.y +
-                "px)",
-              attrs: { tabindex: "-1" }
-            },
-            [
-              !_vm.menuOnly
-                ? _c(
-                    "button",
-                    {
-                      staticClass: "verte__close",
-                      attrs: { type: "button" },
-                      on: { click: _vm.closeMenu }
-                    },
-                    [
-                      _c(
-                        "svg",
-                        {
-                          staticClass: "verte__icon verte__icon--small",
-                          attrs: { viewBox: "0 0 24 24" }
-                        },
-                        [
-                          _c("title", [_vm._v("Close Icon")]),
-                          _c("path", {
-                            attrs: {
-                              d:
-                                "M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
-                            }
-                          })
-                        ]
-                      )
-                    ]
-                  )
-                : _vm._e(),
-              _vm.draggable && !_vm.menuOnly
-                ? _c("div", {
-                    staticClass: "verte__draggable",
-                    on: {
-                      mousedown: _vm.handleMenuDrag,
-                      touchstart: _vm.handleMenuDrag
-                    }
-                  })
-                : _vm._e(),
-              _c("Picker", {
-                attrs: { mode: _vm.picker, alpha: _vm.alpha },
-                model: {
-                  value: _vm.currentColor,
-                  callback: function($$v) {
-                    _vm.currentColor = $$v;
-                  },
-                  expression: "currentColor"
-                }
-              }),
-              _c(
-                "div",
-                { staticClass: "verte__controller" },
-                [
-                  _vm.enableAlpha
-                    ? _c("Slider", {
-                        attrs: {
-                          gradient: [
-                            "rgba(" +
-                              _vm.rgb.red +
-                              ", " +
-                              _vm.rgb.green +
-                              ", " +
-                              _vm.rgb.blue +
-                              ", 0)",
-                            "rgba(" +
-                              _vm.rgb.red +
-                              ", " +
-                              _vm.rgb.green +
-                              ", " +
-                              _vm.rgb.blue +
-                              ", 1)"
-                          ],
-                          min: 0,
-                          max: 1,
-                          step: 0.01,
-                          editable: false
-                        },
-                        model: {
-                          value: _vm.alpha,
-                          callback: function($$v) {
-                            _vm.alpha = $$v;
-                          },
-                          expression: "alpha"
-                        }
-                      })
-                    : _vm._e(),
-                  _vm.rgbSliders
-                    ? [
-                        _c("Slider", {
-                          attrs: {
-                            gradient: [
-                              "rgb(0," +
-                                _vm.rgb.green +
-                                "," +
-                                _vm.rgb.blue +
-                                ")",
-                              "rgb(255," +
-                                _vm.rgb.green +
-                                "," +
-                                _vm.rgb.blue +
-                                ")"
-                            ]
-                          },
-                          model: {
-                            value: _vm.rgb.red,
-                            callback: function($$v) {
-                              _vm.$set(_vm.rgb, "red", $$v);
-                            },
-                            expression: "rgb.red"
-                          }
-                        }),
-                        _c("Slider", {
-                          attrs: {
-                            gradient: [
-                              "rgb(" + _vm.rgb.red + ",0," + _vm.rgb.blue + ")",
-                              "rgb(" +
-                                _vm.rgb.red +
-                                ",255," +
-                                _vm.rgb.blue +
-                                ")"
-                            ]
-                          },
-                          model: {
-                            value: _vm.rgb.green,
-                            callback: function($$v) {
-                              _vm.$set(_vm.rgb, "green", $$v);
-                            },
-                            expression: "rgb.green"
-                          }
-                        }),
-                        _c("Slider", {
-                          attrs: {
-                            gradient: [
-                              "rgb(" +
-                                _vm.rgb.red +
-                                "," +
-                                _vm.rgb.green +
-                                ",0)",
-                              "rgb(" +
-                                _vm.rgb.red +
-                                "," +
-                                _vm.rgb.green +
-                                ",255)"
-                            ]
-                          },
-                          model: {
-                            value: _vm.rgb.blue,
-                            callback: function($$v) {
-                              _vm.$set(_vm.rgb, "blue", $$v);
-                            },
-                            expression: "rgb.blue"
-                          }
-                        })
-                      ]
-                    : _vm._e(),
-                  _c(
-                    "div",
-                    { staticClass: "verte__inputs" },
-                    [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "verte__model",
-                          attrs: { type: "button" },
-                          on: { click: _vm.switchModel }
-                        },
-                        [_vm._v(_vm._s(_vm.currentModel))]
-                      ),
-                      _vm.currentModel === "hsl"
-                        ? [
-                            _c("input", {
-                              staticClass: "verte__input",
-                              attrs: { type: "number", max: "360", min: "0" },
-                              domProps: { value: _vm.hsl.hue },
-                              on: {
-                                change: function($event) {
-                                  _vm.inputChanged($event, "hue");
-                                }
-                              }
-                            }),
-                            _c("input", {
-                              staticClass: "verte__input",
-                              attrs: { type: "number", min: "0", max: "100" },
-                              domProps: { value: _vm.hsl.sat },
-                              on: {
-                                change: function($event) {
-                                  _vm.inputChanged($event, "sat");
-                                }
-                              }
-                            }),
-                            _c("input", {
-                              staticClass: "verte__input",
-                              attrs: { type: "number", min: "0", max: "100" },
-                              domProps: { value: _vm.hsl.lum },
-                              on: {
-                                change: function($event) {
-                                  _vm.inputChanged($event, "lum");
-                                }
-                              }
-                            })
-                          ]
-                        : _vm._e(),
-                      _vm.currentModel === "rgb"
-                        ? [
-                            _c("input", {
-                              staticClass: "verte__input",
-                              attrs: { type: "number", min: "0", max: "255" },
-                              domProps: { value: _vm.rgb.red },
-                              on: {
-                                change: function($event) {
-                                  _vm.inputChanged($event, "red");
-                                }
-                              }
-                            }),
-                            _c("input", {
-                              staticClass: "verte__input",
-                              attrs: { type: "number", min: "0", max: "255" },
-                              domProps: { value: _vm.rgb.green },
-                              on: {
-                                change: function($event) {
-                                  _vm.inputChanged($event, "green");
-                                }
-                              }
-                            }),
-                            _c("input", {
-                              staticClass: "verte__input",
-                              attrs: { type: "number", min: "0", max: "255" },
-                              domProps: { value: _vm.rgb.blue },
-                              on: {
-                                change: function($event) {
-                                  _vm.inputChanged($event, "blue");
-                                }
-                              }
-                            })
-                          ]
-                        : _vm._e(),
-                      _vm.currentModel === "hex"
-                        ? [
-                            _c("input", {
-                              staticClass: "verte__input",
-                              attrs: { type: "text" },
-                              domProps: { value: _vm.hex },
-                              on: {
-                                change: function($event) {
-                                  _vm.inputChanged($event, "hex");
-                                }
-                              }
-                            })
-                          ]
-                        : _vm._e(),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "verte__submit",
-                          attrs: { type: "button" },
-                          on: { click: _vm.submit }
-                        },
-                        [
-                          _c("title", [_vm._v("Submit Icon")]),
-                          _c(
-                            "svg",
-                            {
-                              staticClass: "verte__icon",
-                              attrs: { viewBox: "0 0 24 24" }
-                            },
-                            [
-                              _c("path", {
-                                attrs: {
-                                  d:
-                                    "M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
-                                }
-                              })
-                            ]
-                          )
-                        ]
-                      )
-                    ],
-                    2
-                  ),
-                  _vm.showHistory
-                    ? _c(
-                        "div",
-                        { ref: "recent", staticClass: "verte__recent" },
-                        _vm._l(_vm.historySource, function(clr) {
-                          return _c("a", {
-                            staticClass: "verte__recent-color",
-                            style: "color: " + clr,
-                            attrs: { role: "button", href: "#" },
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault();
-                                _vm.selectColor(clr);
-                              }
-                            }
-                          })
-                        })
-                      )
-                    : _vm._e()
-                ],
-                2
-              )
-            ],
-            1
-          )
-        ]
-      )
-    ]
-  )
-};
-var __vue_staticRenderFns__$2 = [];
-__vue_render__$2._withStripped = true;
-
-  /* style */
-  var __vue_inject_styles__$2 = undefined;
-  /* scoped */
-  var __vue_scope_id__$2 = undefined;
-  /* module identifier */
-  var __vue_module_identifier__$2 = undefined;
-  /* functional template */
-  var __vue_is_functional_template__$2 = false;
-  /* component normalizer */
-  function __vue_normalize__$2(
-    template, style, script,
-    scope, functional, moduleIdentifier,
-    createInjector, createInjectorSSR
-  ) {
-    var component = (typeof script === 'function' ? script.options : script) || {};
-
-    {
-      component.__file = "/mnt/c/Users/Abdelrahman/Projects/verte/src/components/Verte.vue";
-    }
-
-    if (!component.render) {
-      component.render = template.render;
-      component.staticRenderFns = template.staticRenderFns;
-      component._compiled = true;
-
-      if (functional) { component.functional = true; }
-    }
-
-    component._scopeId = scope;
-
-    return component
-  }
-  /* style inject */
-  function __vue_create_injector__$2() {
-    var head = document.head || document.getElementsByTagName('head')[0];
-    var styles = __vue_create_injector__$2.styles || (__vue_create_injector__$2.styles = {});
-    var isOldIE =
-      typeof navigator !== 'undefined' &&
-      /msie [6-9]\\b/.test(navigator.userAgent.toLowerCase());
-
-    return function addStyle(id, css) {
-      if (document.querySelector('style[data-vue-ssr-id~="' + id + '"]')) { return } // SSR styles are present.
-
-      var group = isOldIE ? css.media || 'default' : id;
-      var style = styles[group] || (styles[group] = { ids: [], parts: [], element: undefined });
-
-      if (!style.ids.includes(id)) {
-        var code = css.source;
-        var index = style.ids.length;
-
-        style.ids.push(id);
-
-        if (isOldIE) {
-          style.element = style.element || document.querySelector('style[data-group=' + group + ']');
-        }
-
-        if (!style.element) {
-          var el = style.element = document.createElement('style');
-          el.type = 'text/css';
-
-          if (css.media) { el.setAttribute('media', css.media); }
-          if (isOldIE) {
-            el.setAttribute('data-group', group);
-            el.setAttribute('data-next-index', '0');
-          }
-
-          head.appendChild(el);
-        }
-
-        if (isOldIE) {
-          index = parseInt(style.element.getAttribute('data-next-index'));
-          style.element.setAttribute('data-next-index', index + 1);
-        }
-
-        if (style.element.styleSheet) {
-          style.parts.push(code);
-          style.element.styleSheet.cssText = style.parts
-            .filter(Boolean)
-            .join('\n');
-        } else {
-          var textNode = document.createTextNode(code);
-          var nodes = style.element.childNodes;
-          if (nodes[index]) { style.element.removeChild(nodes[index]); }
-          if (nodes.length) { style.element.insertBefore(textNode, nodes[index]); }
-          else { style.element.appendChild(textNode); }
-        }
-      }
-    }
-  }
-  /* style inject SSR */
-  
-
-  
-  var Verte = __vue_normalize__$2(
-    { render: __vue_render__$2, staticRenderFns: __vue_staticRenderFns__$2 },
-    __vue_inject_styles__$2,
-    __vue_script__$2,
-    __vue_scope_id__$2,
-    __vue_is_functional_template__$2,
-    __vue_module_identifier__$2,
-    __vue_create_injector__$2,
-    undefined
-  );
-
-/* harmony default export */ __webpack_exports__["default"] = (Verte);
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-blob-json-csv/dist/VueBlobJsonCsv.common.js":
 /*!**********************************************************************!*\
   !*** ./node_modules/vue-blob-json-csv/dist/VueBlobJsonCsv.common.js ***!
@@ -177063,6 +174515,52 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/calendar/ColorPicker.vue?vue&type=template&id=6aae05aa&scoped=true&":
+/*!***********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/calendar/ColorPicker.vue?vue&type=template&id=6aae05aa&scoped=true& ***!
+  \***********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "picker-main" }, [
+    _c(
+      "div",
+      { staticClass: "color-picker" },
+      _vm._l(_vm.colors, function(theme, index) {
+        var _obj
+        return _c("div", {
+          key: index,
+          staticClass: "color",
+          class:
+            ((_obj = { selected: _vm.color === theme }),
+            (_obj[theme] = theme),
+            _obj),
+          on: {
+            click: function($event) {
+              return _vm.selectColor(theme)
+            }
+          }
+        })
+      }),
+      0
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/calendar/calendar.vue?vue&type=template&id=f116d698&scoped=true&":
 /*!********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/calendar/calendar.vue?vue&type=template&id=f116d698&scoped=true& ***!
@@ -177281,54 +174779,13 @@ var render = function() {
               _c(
                 "div",
                 {
-                  staticClass: "back_color_container",
-                  staticStyle: { display: "flex" }
-                },
-                [
-                  _c("verte", {
-                    attrs: {
-                      model: "rgb",
-                      picker: "square",
-                      menuPosition: "left"
-                    },
-                    model: {
-                      value: _vm.event.back_color,
-                      callback: function($$v) {
-                        _vm.$set(_vm.event, "back_color", $$v)
-                      },
-                      expression: "event.back_color"
-                    }
-                  })
-                ],
-                1
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "color-picker" } }, [
-                _vm._v("Pick a color for event text:")
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
                   staticClass: "text_color_container",
                   staticStyle: { display: "flex" }
                 },
                 [
-                  _c("verte", {
-                    attrs: {
-                      model: "rgb",
-                      picker: "square",
-                      menuPosition: "left"
-                    },
-                    model: {
-                      value: _vm.event.text_color,
-                      callback: function($$v) {
-                        _vm.$set(_vm.event, "text_color", $$v)
-                      },
-                      expression: "event.text_color"
-                    }
+                  _c("color-picker", {
+                    attrs: { color: _vm.event.cssClass },
+                    on: { colorPicked: _vm.selectColor }
                   })
                 ],
                 1
@@ -212380,6 +209837,93 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_info_vue_vue_type_template_id_420edb27___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_info_vue_vue_type_template_id_420edb27___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/calendar/ColorPicker.vue":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/calendar/ColorPicker.vue ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ColorPicker_vue_vue_type_template_id_6aae05aa_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ColorPicker.vue?vue&type=template&id=6aae05aa&scoped=true& */ "./resources/js/components/calendar/ColorPicker.vue?vue&type=template&id=6aae05aa&scoped=true&");
+/* harmony import */ var _ColorPicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ColorPicker.vue?vue&type=script&lang=js& */ "./resources/js/components/calendar/ColorPicker.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _ColorPicker_vue_vue_type_style_index_0_id_6aae05aa_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ColorPicker.vue?vue&type=style&index=0&id=6aae05aa&scoped=true&lang=css& */ "./resources/js/components/calendar/ColorPicker.vue?vue&type=style&index=0&id=6aae05aa&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _ColorPicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ColorPicker_vue_vue_type_template_id_6aae05aa_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ColorPicker_vue_vue_type_template_id_6aae05aa_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "6aae05aa",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/calendar/ColorPicker.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/calendar/ColorPicker.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/calendar/ColorPicker.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ColorPicker.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/calendar/ColorPicker.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/calendar/ColorPicker.vue?vue&type=style&index=0&id=6aae05aa&scoped=true&lang=css&":
+/*!*******************************************************************************************************************!*\
+  !*** ./resources/js/components/calendar/ColorPicker.vue?vue&type=style&index=0&id=6aae05aa&scoped=true&lang=css& ***!
+  \*******************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_style_index_0_id_6aae05aa_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./ColorPicker.vue?vue&type=style&index=0&id=6aae05aa&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/calendar/ColorPicker.vue?vue&type=style&index=0&id=6aae05aa&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_style_index_0_id_6aae05aa_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_style_index_0_id_6aae05aa_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_style_index_0_id_6aae05aa_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_style_index_0_id_6aae05aa_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_style_index_0_id_6aae05aa_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/calendar/ColorPicker.vue?vue&type=template&id=6aae05aa&scoped=true&":
+/*!*****************************************************************************************************!*\
+  !*** ./resources/js/components/calendar/ColorPicker.vue?vue&type=template&id=6aae05aa&scoped=true& ***!
+  \*****************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_template_id_6aae05aa_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./ColorPicker.vue?vue&type=template&id=6aae05aa&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/calendar/ColorPicker.vue?vue&type=template&id=6aae05aa&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_template_id_6aae05aa_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_template_id_6aae05aa_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
