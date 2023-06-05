@@ -66,11 +66,42 @@
             errors.description[0]
           }}</span>
         </div>
-        
+
         <div class="form-group">
           <label for="color-picker">Pick a color for event:</label>
-          <div class="text_color_container" style="display: flex">
-            <color-picker @colorPicked="selectColor" :color="event.cssClass" />
+          <!-- Red - Holiday- F44336
+Blue - Interview-#2196F3
+Green - Meeting#4CAF50
+Yellow - Other #FFEB3B-->
+          <div class="event-color-container">
+            <div
+              class="event-color red"
+              @click="setEventColor('holiday')"
+              :class="{ 'color-clicked': event.type == 'holiday' }"
+            >
+              Holiday
+            </div>
+            <div
+              class="event-color blue"
+              @click="setEventColor('interview')"
+              :class="{ 'color-clicked': event.type == 'interview' }"
+            >
+              Interview
+            </div>
+            <div
+              class="event-color green"
+              @click="setEventColor('metting')"
+              :class="{ 'color-clicked': event.type == 'metting' }"
+            >
+              Metting
+            </div>
+            <div
+              class="event-color yellow"
+              @click="setEventColor('other')"
+              :class="{ 'color-clicked': event.type == 'other' }"
+            >
+              Other
+            </div>
           </div>
         </div>
       </div>
@@ -100,7 +131,7 @@
 import FullCalendar from "@fullcalendar/vue";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import ColorPicker from './ColorPicker';
+import ColorPicker from "./ColorPicker";
 export default {
   components: {
     ColorPicker,
@@ -109,12 +140,12 @@ export default {
   data() {
     return {
       event: {
+        type: "",
         back_color: "rgb(104,22,22)",
         text_color: "rgb(255,255,255)",
         title: "",
         start: "",
         end: "",
-        cssClass: '',
         description: "",
       },
 
@@ -154,14 +185,37 @@ export default {
           this.$Progress.fail();
         });
     },
-
-    selectColor(color){
-      this.event = {
-        ...this.event,
-        cssClass: color,
-        back_color:color,
+    setEventColor(temp) {
+      // Red - Holiday #F44336
+      // Blue - Interview #2196F3
+      // Green - Meeting #4CAF50
+      // Yellow - Other #FFEB3B
+      if (temp === "holiday") {
+        this.event.type = "holiday";
+        this.event.back_color = "#F44336";
+      } else if (temp === "interview") {
+        this.event.back_color = "#2196F3";
+        this.event.type = "interview";
+      } else if (temp === "metting") {
+        this.event.back_color = "#4CAF50";
+        this.event.type = "metting";
+      } else if (temp === "other") {
+        this.event.back_color = "#FFEB3B";
+        this.event.type = "other";
+      } else {
+        this.event.back_color = "#eee";
+        this.event.type = "nothing";
       }
+      console.log(this.event.back_color);
+      console.log(this.event.type);
     },
+    // selectColor(color){
+    //   this.event = {
+    //     ...this.event,
+    //     cssClass: color,
+    //     back_color:color,
+    //   }
+    // },
     showAddModal(date) {
       this.modalForName = "Add Event";
       // Vue.set(this.modalForName,"Add Unit");
@@ -238,9 +292,28 @@ export default {
           // console.log(response.data.unit)
           Vue.set(this.event, "title", response.data.event.title);
           Vue.set(this.event, "start", response.data.event.start);
-          Vue.set(this.event, "cssClass", response.data.event.back_color);
-          Vue.set(this.event, "back_color", response.data.event.back_color);
-          Vue.set(this.event, "text_color", response.data.event.text_color);
+          // Vue.set(this.event, "cssClass", response.data.event.back_color);
+
+          let temp=response.data.event.back_color;
+          if (temp === "#F44336") {
+            Vue.set(this.event, "type", "holiday");
+            Vue.set(this.event, "back_color", "#F44336");
+          } else if (temp === "#2196F3") {
+            Vue.set(this.event, "type", "interview");
+            Vue.set(this.event, "back_color", "#2196F3");
+          } else if (temp === "#4CAF50") {
+            Vue.set(this.event, "type", "metting");
+            Vue.set(this.event, "back_color", "#4CAF50");
+          } else if (temp === "#FFEB3B") {
+            Vue.set(this.event, "type", "other");
+            Vue.set(this.event, "back_color", "#FFEB3B");
+          } else {
+            Vue.set(this.event, "type", "nothing");
+            Vue.set(this.event, "back_color", "#eee");
+          }
+
+          // Vue.set(this.event, "back_color", response.data.event.back_color);
+          // Vue.set(this.event, "text_color", response.data.event.text_color);
           Vue.set(this.event, "end", response.data.event.end);
           Vue.set(this.event, "description", response.data.event.description);
 
@@ -362,19 +435,19 @@ export default {
   border-radius: 15px;
 }
 .red {
-  background: rgb(235, 77, 77) !important;
+  background: #f44336 !important;
   color: whitesmoke !important;
 }
 .blue {
-  background: rgb(59, 59, 163) !important;
+  background: #2196f3 !important;
   color: whitesmoke !important;
 }
-.orange {
-  background: orange !important;
-  color: white !important;
+.yellow {
+  background: #ffeb3b !important;
+  color: black !important;
 }
 .green {
-  background: rgb(49, 155, 49) !important;
+  background: #4caf50 !important;
   color: white !important;
 }
 .blue,
@@ -387,5 +460,22 @@ export default {
 }
 .event-item {
   padding: 2px 0 2px 4px !important;
+}
+.event-color {
+  padding: 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  /* padding-right: 35px; */
+  /* padding-left: 35px; */
+  font-weight: bold;
+}
+.event-color-container {
+  display: flex;
+  justify-content: space-between;
+}
+.color-clicked {
+  color: red;
+  border: 2px solid #040f15;
+  box-shadow: 2px 3px 9px -2px #000;
 }
 </style>

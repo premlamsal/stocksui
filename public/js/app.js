@@ -16799,6 +16799,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ColorPicker',
   props: ['color'],
@@ -16829,12 +16831,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fullcalendar/daygrid */ "./node_modules/@fullcalendar/daygrid/index.js");
 /* harmony import */ var _fullcalendar_interaction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fullcalendar/interaction */ "./node_modules/@fullcalendar/interaction/index.js");
 /* harmony import */ var _ColorPicker__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ColorPicker */ "./resources/js/components/calendar/ColorPicker.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -16946,12 +16973,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       event: {
+        type: "",
         back_color: "rgb(104,22,22)",
         text_color: "rgb(255,255,255)",
         title: "",
         start: "",
         end: "",
-        cssClass: '',
         description: ""
       },
       modalForName: "",
@@ -16990,12 +17017,38 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this.$Progress.fail();
       });
     },
-    selectColor: function selectColor(color) {
-      this.event = _objectSpread({}, this.event, {
-        cssClass: color,
-        back_color: color
-      });
+    setEventColor: function setEventColor(temp) {
+      // Red - Holiday #F44336
+      // Blue - Interview #2196F3
+      // Green - Meeting #4CAF50
+      // Yellow - Other #FFEB3B
+      if (temp === "holiday") {
+        this.event.type = "holiday";
+        this.event.back_color = "#F44336";
+      } else if (temp === "interview") {
+        this.event.back_color = "#2196F3";
+        this.event.type = "interview";
+      } else if (temp === "metting") {
+        this.event.back_color = "#4CAF50";
+        this.event.type = "metting";
+      } else if (temp === "other") {
+        this.event.back_color = "#FFEB3B";
+        this.event.type = "other";
+      } else {
+        this.event.back_color = "#eee";
+        this.event.type = "nothing";
+      }
+
+      console.log(this.event.back_color);
+      console.log(this.event.type);
     },
+    // selectColor(color){
+    //   this.event = {
+    //     ...this.event,
+    //     cssClass: color,
+    //     back_color:color,
+    //   }
+    // },
     showAddModal: function showAddModal(date) {
       this.modalForName = "Add Event"; // Vue.set(this.modalForName,"Add Unit");
 
@@ -17066,10 +17119,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios.get("/api/event/" + id).then(function (response) {
         // console.log(response.data.unit)
         Vue.set(_this2.event, "title", response.data.event.title);
-        Vue.set(_this2.event, "start", response.data.event.start);
-        Vue.set(_this2.event, "cssClass", response.data.event.back_color);
-        Vue.set(_this2.event, "back_color", response.data.event.back_color);
-        Vue.set(_this2.event, "text_color", response.data.event.text_color);
+        Vue.set(_this2.event, "start", response.data.event.start); // Vue.set(this.event, "cssClass", response.data.event.back_color);
+
+        var temp = response.data.event.back_color;
+
+        if (temp === "#F44336") {
+          Vue.set(_this2.event, "type", "holiday");
+          Vue.set(_this2.event, "back_color", "#F44336");
+        } else if (temp === "#2196F3") {
+          Vue.set(_this2.event, "type", "interview");
+          Vue.set(_this2.event, "back_color", "#2196F3");
+        } else if (temp === "#4CAF50") {
+          Vue.set(_this2.event, "type", "metting");
+          Vue.set(_this2.event, "back_color", "#4CAF50");
+        } else if (temp === "#FFEB3B") {
+          Vue.set(_this2.event, "type", "other");
+          Vue.set(_this2.event, "back_color", "#FFEB3B");
+        } else {
+          Vue.set(_this2.event, "type", "nothing");
+          Vue.set(_this2.event, "back_color", "#eee");
+        } // Vue.set(this.event, "back_color", response.data.event.back_color);
+        // Vue.set(this.event, "text_color", response.data.event.text_color);
+
+
         Vue.set(_this2.event, "end", response.data.event.end);
         Vue.set(_this2.event, "description", response.data.event.description);
         Vue.set(_this2.event, "id", id); //to send id to the update controller
@@ -94083,7 +94155,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.verte[data-v-f116d698] {\n  border: 2px solid #9e9e9e;\n  border-radius: 15px;\n}\n.red[data-v-f116d698] {\n  background: rgb(235, 77, 77) !important;\n  color: whitesmoke !important;\n}\n.blue[data-v-f116d698] {\n  background: rgb(59, 59, 163) !important;\n  color: whitesmoke !important;\n}\n.orange[data-v-f116d698] {\n  background: orange !important;\n  color: white !important;\n}\n.green[data-v-f116d698] {\n  background: rgb(49, 155, 49) !important;\n  color: white !important;\n}\n.blue[data-v-f116d698],\n.orange[data-v-f116d698],\n.red[data-v-f116d698],\n.green[data-v-f116d698] {\n  font-size: 13px;\n  font-weight: 500;\n  text-transform: capitalize;\n}\n.event-item[data-v-f116d698] {\n  padding: 2px 0 2px 4px !important;\n}\n", ""]);
+exports.push([module.i, "\n.verte[data-v-f116d698] {\n  border: 2px solid #9e9e9e;\n  border-radius: 15px;\n}\n.red[data-v-f116d698] {\n  background: #f44336 !important;\n  color: whitesmoke !important;\n}\n.blue[data-v-f116d698] {\n  background: #2196f3 !important;\n  color: whitesmoke !important;\n}\n.yellow[data-v-f116d698] {\n  background: #ffeb3b !important;\n  color: black !important;\n}\n.green[data-v-f116d698] {\n  background: #4caf50 !important;\n  color: white !important;\n}\n.blue[data-v-f116d698],\n.orange[data-v-f116d698],\n.red[data-v-f116d698],\n.green[data-v-f116d698] {\n  font-size: 13px;\n  font-weight: 500;\n  text-transform: capitalize;\n}\n.event-item[data-v-f116d698] {\n  padding: 2px 0 2px 4px !important;\n}\n.event-color[data-v-f116d698] {\n  padding: 20px;\n  border-radius: 30px;\n  cursor: pointer;\n  /* padding-right: 35px; */\n  /* padding-left: 35px; */\n  font-weight: bold;\n}\n.event-color-container[data-v-f116d698] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n}\n.color-clicked[data-v-f116d698] {\n  color: red;\n  border: 2px solid #040f15;\n  box-shadow: 2px 3px 9px -2px #000;\n}\n", ""]);
 
 // exports
 
@@ -174778,20 +174850,63 @@ var render = function() {
                 _vm._v("Pick a color for event:")
               ]),
               _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "text_color_container",
-                  staticStyle: { display: "flex" }
-                },
-                [
-                  _c("color-picker", {
-                    attrs: { color: _vm.event.cssClass },
-                    on: { colorPicked: _vm.selectColor }
-                  })
-                ],
-                1
-              )
+              _c("div", { staticClass: "event-color-container" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "event-color red",
+                    class: { "color-clicked": _vm.event.type == "holiday" },
+                    on: {
+                      click: function($event) {
+                        return _vm.setEventColor("holiday")
+                      }
+                    }
+                  },
+                  [_vm._v("\n              Holiday\n            ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "event-color blue",
+                    class: { "color-clicked": _vm.event.type == "interview" },
+                    on: {
+                      click: function($event) {
+                        return _vm.setEventColor("interview")
+                      }
+                    }
+                  },
+                  [_vm._v("\n              Interview\n            ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "event-color green",
+                    class: { "color-clicked": _vm.event.type == "metting" },
+                    on: {
+                      click: function($event) {
+                        return _vm.setEventColor("metting")
+                      }
+                    }
+                  },
+                  [_vm._v("\n              Metting\n            ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "event-color yellow",
+                    class: { "color-clicked": _vm.event.type == "other" },
+                    on: {
+                      click: function($event) {
+                        return _vm.setEventColor("other")
+                      }
+                    }
+                  },
+                  [_vm._v("\n              Other\n            ")]
+                )
+              ])
             ])
           ]),
           _vm._v(" "),

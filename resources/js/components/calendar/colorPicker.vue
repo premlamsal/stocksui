@@ -2,7 +2,9 @@
     <div class="picker-main"> 
       <!-- <h4 class="header">Select event theme</h4> -->
       <div class="color-picker">
-        <div class="color" v-for="(theme, index) in colors" :key="index" @click="selectColor(theme)" :class="{selected: color === theme, [theme]: theme}"></div>
+
+        <div class="color" v-for="(theme, index) in colors" :key="index" @click="selectColor(theme)" :class="{selected: color === theme, [theme]: theme}">
+        </div>
       </div>
     </div>
   </template>
