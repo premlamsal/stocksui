@@ -50,7 +50,7 @@ class EventController extends Controller
 
             'back_color' => 'required',
 
-            'text_color' => 'required',
+            // 'text_color' => 'required',
 
 
 
@@ -108,7 +108,7 @@ class EventController extends Controller
 
             'back_color' => 'required',
 
-            'text_color' => 'required',
+            // 'text_color' => 'required',
 
         ]);
 
