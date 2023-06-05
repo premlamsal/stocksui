@@ -16,8 +16,10 @@ class CreateEventsTable extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
-            $table->date('date')->nullable();
+            $table->text('description')->nullable();
             $table->date('start')->nullable();
+            $table->string('back_color')->nullable();
+            $table->string('text_color')->nullable();
             $table->date('end')->nullable();
             $table->unsignedBigInteger('store_id');
             $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');

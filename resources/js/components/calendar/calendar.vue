@@ -30,17 +30,63 @@
         </div>
 
         <div class="form-group">
-          <label for="Date">Date:</label>
+          <label for="Start">Start Date</label>
 
           <date-picker
-            v-model="event.date"
+            v-model="event.start"
             :config="options"
             :class="['form-control']"
           ></date-picker>
 
-          <span v-if="errors.date" :class="['errorText']">{{
-            errors.date[0]
+          <span v-if="errors.start" :class="['errorText']">{{
+            errors.start[0]
           }}</span>
+        </div>
+        <div class="form-group">
+          <label for="End">End Date</label>
+
+          <date-picker
+            v-model="event.end"
+            :config="options"
+            :class="['form-control']"
+          ></date-picker>
+
+          <span v-if="errors.end" :class="['errorText']">{{
+            errors.end[0]
+          }}</span>
+        </div>
+
+        <div class="form-group">
+          <label for="Description">Description:</label>
+          <textarea
+            v-model="event.description"
+            :class="['form-control']"
+          ></textarea>
+          <span v-if="errors.description" :class="['errorText']">{{
+            errors.description[0]
+          }}</span>
+        </div>
+        <div class="form-group">
+          <label for="color-picker">Pick a color for event:</label>
+          <div class="back_color_container" style="display: flex">
+            <verte
+              v-model="event.back_color"
+              model="rgb"
+              picker="square"
+              menuPosition="left"
+            ></verte>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="color-picker">Pick a color for event text:</label>
+          <div class="text_color_container" style="display: flex">
+            <verte
+              v-model="event.text_color"
+              model="rgb"
+              picker="square"
+              menuPosition="left"
+            ></verte>
+          </div>
         </div>
       </div>
       <b-button class="btn-primary mt-3" block @click="callFunc">{{
@@ -69,14 +115,23 @@
 import FullCalendar from "@fullcalendar/vue";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
-
+import "verte/dist/verte.css";
+import Verte from "verte";
 export default {
   components: {
+    Verte,
     FullCalendar, // make the <FullCalendar> tag available
   },
   data() {
     return {
-      event: {},
+      event: {
+        back_color: "rgb(104,22,22)",
+        text_color: "rgb(255,255,255)",
+        title: "",
+        start: "",
+        end: "",
+        description: "",
+      },
 
       modalForName: "",
       modalForCode: 0,
@@ -114,13 +169,19 @@ export default {
           this.$Progress.fail();
         });
     },
+
     showAddModal() {
       this.modalForName = "Add Event";
       // Vue.set(this.modalForName,"Add Unit");
       this.modalForCode = 0; //0 for add
 
       this.event.title = "";
-      this.event.date = "";
+      this.event.start = "";
+      this.event.end = "";
+      this.event.description = "";
+      this.event.back_color = "";
+      this.event.text_color = "";
+
       this.errors = ""; //clearing errors
 
       // Vue.set(this.modalForCode,0);
@@ -147,7 +208,12 @@ export default {
           currObj.$bvModal.hide("bv-modal-add-event");
 
           currObj.event.title = "";
-          currObj.event.date = "";
+          currObj.event.start = "";
+          currObj.event.end = "";
+          currObj.event.back_color = "";
+          currObj.event.text_color = "";
+
+          currObj.event.description = "";
 
           currObj.errors = ""; //clearing errors
           currObj.$Progress.finish();
@@ -175,7 +241,17 @@ export default {
         .then((response) => {
           // console.log(response.data.unit)
           Vue.set(this.event, "title", response.data.event.title);
-          Vue.set(this.event, "date", response.data.event.date);
+          Vue.set(this.event, "start", response.data.event.start);
+          
+          Vue.set(this.event, "back_color", response.data.event.back_color);
+          Vue.set(this.event, "text_color", response.data.event.text_color);
+          Vue.set(this.event, "end", response.data.event.end);
+          Vue.set(
+            this.event,
+            "description",
+            response.data.event.description
+          );
+
           Vue.set(this.event, "id", id); //to send id to the update controller
           this.$Progress.finish();
         })
@@ -190,7 +266,11 @@ export default {
       let formData = new FormData();
       formData.append("_method", "PUT"); //add this otherwise data won't pass to backend
       formData.append("title", this.event.title);
-      formData.append("date", this.event.date);
+      formData.append("start", this.event.start);
+      formData.append("back_color", this.event.back_color);
+      formData.append("text_color", this.event.text_color);
+      formData.append("end", this.event.end);
+      formData.append("description", this.event.description);
       formData.append("id", this.event.id);
 
       axios
@@ -204,7 +284,11 @@ export default {
           currObj.$bvModal.hide("bv-modal-add-event");
 
           currObj.event.title = "";
-          currObj.event.date = "";
+          currObj.event.start = "";
+          currObj.event.end = "";
+          currObj.event.back_color = "";
+          currObj.event.text_color = "";
+          currObj.event.description = "";
           currObj.event.id = "";
           currObj.$Progress.finish();
           currObj.fetchEvents();
@@ -279,4 +363,9 @@ export default {
   },
 };
 </script>
-  
+<style scoped>
+.verte {
+  border: 2px solid #9e9e9e;
+  border-radius: 15px;
+}
+</style>
