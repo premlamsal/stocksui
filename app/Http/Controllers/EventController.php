@@ -42,7 +42,16 @@ class EventController extends Controller
 
             'title'    => 'required|regex:/^[\pL\s\-]+$/u',
 
-            'date' => 'required|date|max:200',
+            'start' => 'required',
+
+            'end' => 'required',
+
+            'description' => 'required',
+
+            'back_color' => 'required',
+
+            'text_color' => 'required',
+
 
 
         ]);
@@ -91,7 +100,15 @@ class EventController extends Controller
 
             'title'    => 'required|regex:/^[\pL\s\-]+$/u',
 
-            'date' => 'required',
+            'start' => 'required',
+
+            'end' => 'required',
+
+            'description' => 'required',
+
+            'back_color' => 'required',
+
+            'text_color' => 'required',
 
         ]);
 
