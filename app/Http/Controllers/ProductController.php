@@ -161,7 +161,7 @@ class ProductController extends Controller
         $product->name = $request->input('name');
         $product->product_cat_id = $request->input('product_cat_id');
         $product->unit = $request->input('unit');
-        if ($request->input('low_stock_alert_active')===true) {
+        if ($request->input('low_stock_alert_active')==='true') {
             $product->low_stock_alert_active = true;
             $product->low_stock_alert_quantity = $request->input('low_stock_alert_quantity');
         } else {
