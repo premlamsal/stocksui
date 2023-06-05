@@ -20,7 +20,7 @@ class CreatePickListsTable extends Migration
             $table->date('sailing_date')->nullable();
             $table->date('picked_date')->nullable();
             $table->date('date')->nullable();
-            $table->date('date_ordered')->nullable();
+            $table->date('date_requested')->nullable();
             $table->string('picked_by')->nullable();
             $table->string('checked_by')->nullable();
             $table->string('missing')->nullable();
