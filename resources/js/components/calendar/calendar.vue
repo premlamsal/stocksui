@@ -72,7 +72,7 @@
           <!-- Red - Holiday- F44336
 Blue - Interview-#2196F3
 Green - Meeting#4CAF50
-Yellow - Other #FFEB3B-->
+Yellow - Other #ff9800-->
           <div class="event-color-container">
             <div
               class="event-color red"
@@ -96,7 +96,7 @@ Yellow - Other #FFEB3B-->
               Metting
             </div>
             <div
-              class="event-color yellow"
+              class="event-color orange"
               @click="setEventColor('other')"
               :class="{ 'color-clicked': event.type == 'other' }"
             >
@@ -189,7 +189,7 @@ export default {
       // Red - Holiday #F44336
       // Blue - Interview #2196F3
       // Green - Meeting #4CAF50
-      // Yellow - Other #FFEB3B
+      // Yellow - Other #ff9800
       if (temp === "holiday") {
         this.event.type = "holiday";
         this.event.back_color = "#F44336";
@@ -200,7 +200,7 @@ export default {
         this.event.back_color = "#4CAF50";
         this.event.type = "metting";
       } else if (temp === "other") {
-        this.event.back_color = "#FFEB3B";
+        this.event.back_color = "#ff9800";
         this.event.type = "other";
       } else {
         this.event.back_color = "#eee";
@@ -304,9 +304,9 @@ export default {
           } else if (temp === "#4CAF50") {
             Vue.set(this.event, "type", "metting");
             Vue.set(this.event, "back_color", "#4CAF50");
-          } else if (temp === "#FFEB3B") {
+          } else if (temp === "#ff9800") {
             Vue.set(this.event, "type", "other");
-            Vue.set(this.event, "back_color", "#FFEB3B");
+            Vue.set(this.event, "back_color", "#ff9800");
           } else {
             Vue.set(this.event, "type", "nothing");
             Vue.set(this.event, "back_color", "#eee");
@@ -442,9 +442,9 @@ export default {
   background: #2196f3 !important;
   color: whitesmoke !important;
 }
-.yellow {
-  background: #ffeb3b !important;
-  color: black !important;
+.orange {
+  background: #FF9800 !important;
+  color: whitesmoke !important;
 }
 .green {
   background: #4caf50 !important;
@@ -473,6 +473,7 @@ export default {
   display: flex;
   justify-content: space-between;
 }
+
 .color-clicked {
   color: red;
   border: 2px solid #040f15;

@@ -17021,7 +17021,7 @@ __webpack_require__.r(__webpack_exports__);
       // Red - Holiday #F44336
       // Blue - Interview #2196F3
       // Green - Meeting #4CAF50
-      // Yellow - Other #FFEB3B
+      // Yellow - Other #ff9800
       if (temp === "holiday") {
         this.event.type = "holiday";
         this.event.back_color = "#F44336";
@@ -17032,7 +17032,7 @@ __webpack_require__.r(__webpack_exports__);
         this.event.back_color = "#4CAF50";
         this.event.type = "metting";
       } else if (temp === "other") {
-        this.event.back_color = "#FFEB3B";
+        this.event.back_color = "#ff9800";
         this.event.type = "other";
       } else {
         this.event.back_color = "#eee";
@@ -17132,9 +17132,9 @@ __webpack_require__.r(__webpack_exports__);
         } else if (temp === "#4CAF50") {
           Vue.set(_this2.event, "type", "metting");
           Vue.set(_this2.event, "back_color", "#4CAF50");
-        } else if (temp === "#FFEB3B") {
+        } else if (temp === "#ff9800") {
           Vue.set(_this2.event, "type", "other");
-          Vue.set(_this2.event, "back_color", "#FFEB3B");
+          Vue.set(_this2.event, "back_color", "#ff9800");
         } else {
           Vue.set(_this2.event, "type", "nothing");
           Vue.set(_this2.event, "back_color", "#eee");
@@ -94155,7 +94155,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.verte[data-v-f116d698] {\n  border: 2px solid #9e9e9e;\n  border-radius: 15px;\n}\n.red[data-v-f116d698] {\n  background: #f44336 !important;\n  color: whitesmoke !important;\n}\n.blue[data-v-f116d698] {\n  background: #2196f3 !important;\n  color: whitesmoke !important;\n}\n.yellow[data-v-f116d698] {\n  background: #ffeb3b !important;\n  color: black !important;\n}\n.green[data-v-f116d698] {\n  background: #4caf50 !important;\n  color: white !important;\n}\n.blue[data-v-f116d698],\n.orange[data-v-f116d698],\n.red[data-v-f116d698],\n.green[data-v-f116d698] {\n  font-size: 13px;\n  font-weight: 500;\n  text-transform: capitalize;\n}\n.event-item[data-v-f116d698] {\n  padding: 2px 0 2px 4px !important;\n}\n.event-color[data-v-f116d698] {\n  padding: 20px;\n  border-radius: 30px;\n  cursor: pointer;\n  /* padding-right: 35px; */\n  /* padding-left: 35px; */\n  font-weight: bold;\n}\n.event-color-container[data-v-f116d698] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n}\n.color-clicked[data-v-f116d698] {\n  color: red;\n  border: 2px solid #040f15;\n  box-shadow: 2px 3px 9px -2px #000;\n}\n", ""]);
+exports.push([module.i, "\n.verte[data-v-f116d698] {\n  border: 2px solid #9e9e9e;\n  border-radius: 15px;\n}\n.red[data-v-f116d698] {\n  background: #f44336 !important;\n  color: whitesmoke !important;\n}\n.blue[data-v-f116d698] {\n  background: #2196f3 !important;\n  color: whitesmoke !important;\n}\n.orange[data-v-f116d698] {\n  background: #FF9800 !important;\n  color: whitesmoke !important;\n}\n.green[data-v-f116d698] {\n  background: #4caf50 !important;\n  color: white !important;\n}\n.blue[data-v-f116d698],\n.orange[data-v-f116d698],\n.red[data-v-f116d698],\n.green[data-v-f116d698] {\n  font-size: 13px;\n  font-weight: 500;\n  text-transform: capitalize;\n}\n.event-item[data-v-f116d698] {\n  padding: 2px 0 2px 4px !important;\n}\n.event-color[data-v-f116d698] {\n  padding: 20px;\n  border-radius: 30px;\n  cursor: pointer;\n  /* padding-right: 35px; */\n  /* padding-left: 35px; */\n  font-weight: bold;\n}\n.event-color-container[data-v-f116d698] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n}\n.color-clicked[data-v-f116d698] {\n  color: red;\n  border: 2px solid #040f15;\n  box-shadow: 2px 3px 9px -2px #000;\n}\n", ""]);
 
 // exports
 
@@ -174896,7 +174896,7 @@ var render = function() {
                 _c(
                   "div",
                   {
-                    staticClass: "event-color yellow",
+                    staticClass: "event-color orange",
                     class: { "color-clicked": _vm.event.type == "other" },
                     on: {
                       click: function($event) {

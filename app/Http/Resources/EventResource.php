@@ -21,7 +21,6 @@ class EventResource extends JsonResource
             'end' => $this->end,
             'description' => $this->description,
             'backgroundColor' => $this->back_color,
-            // 'textColor' => $this->text_color,
         ];
     }
 }
