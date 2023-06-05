@@ -70,13 +70,13 @@ class ProductController extends Controller
         $product->product_cat_id = $request->input('product_cat_id');
         $product->unit = $request->input('unit');
         $product->description = $request->input('description');
-        $product->opening_stock = $request->input('opening_stock');
-        $product->low_stock_alert_quantity = $request->input('low_stock_alert_quantity');
 
-        if ($request->input('low_stock_alert_active')) {
+        if ($request->input('low_stock_alert_active')===true) {
             $product->low_stock_alert_active = true;
+            $product->low_stock_alert_quantity = $request->input('low_stock_alert_quantity');
         } else {
             $product->low_stock_alert_active = false;
+            $product->low_stock_alert_quantity = 0;
         }
         $product->store_id = $store_id;
         $product->custom_product_id = $new_count_product_id; //asign new increase product custom id
@@ -161,13 +161,14 @@ class ProductController extends Controller
         $product->name = $request->input('name');
         $product->product_cat_id = $request->input('product_cat_id');
         $product->unit = $request->input('unit');
-        if ($request->input('low_stock_alert_active')) {
+        if ($request->input('low_stock_alert_active')===true) {
             $product->low_stock_alert_active = true;
+            $product->low_stock_alert_quantity = $request->input('low_stock_alert_quantity');
         } else {
             $product->low_stock_alert_active = false;
+            $product->low_stock_alert_quantity = 0;
         }
         $product->description = $request->input('description');
-        $product->low_stock_alert_quantity = $request->input('low_stock_alert_quantity');
 
 
         if ($request->hasFile('image')) {
