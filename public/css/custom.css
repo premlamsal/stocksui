@@ -249,3 +249,7 @@ a.fc-col-header-cell-cushion{
 a.fc-daygrid-day-number{
     color: #163373;
 }
+a.fc-event{
+  padding: 2px;
+  font-size: 15px;
+}
