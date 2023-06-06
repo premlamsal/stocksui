@@ -243,3 +243,9 @@ input.checkbox {width: 25px;height: 20px;}
     display: flex;
     /* justify-content: space-between; */
 }
+a.fc-col-header-cell-cushion{
+    color: #163373;
+}
+a.fc-daygrid-day-number{
+    color: #163373;
+}

@@ -17,10 +17,10 @@ class CreateEventsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->text('description')->nullable();
-            $table->date('start')->nullable();
+            $table->string('start')->nullable();
             $table->string('back_color')->nullable();
             $table->string('text_color')->nullable();
-            $table->date('end')->nullable();
+            $table->string('end')->nullable();
             $table->unsignedBigInteger('store_id');
             $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
             $table->timestamps();

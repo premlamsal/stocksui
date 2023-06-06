@@ -512,4 +512,8 @@ export default {
 .event-color:active {
   transform: translateY(4px);
 }
+table.fc-col-header a{
+color: #000 !important;
+}
+
 </style>
