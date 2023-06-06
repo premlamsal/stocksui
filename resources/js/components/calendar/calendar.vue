@@ -173,7 +173,7 @@ export default {
       modalForCode: 0,
       errors: [],
       options: {
-        format: "YYYY-MM-DD hh:mm:ss",
+        format: "YYYY-MM-DD hh:mm:ss a",
         useCurrent: true,
         showClear: true,
         showClose: true,
