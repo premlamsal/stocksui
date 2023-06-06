@@ -13,7 +13,9 @@
 
 
 
-Auth::routes(['verify' => true,'register'=>false]);
+// Auth::routes(['verify' => true,'register'=>false]);
+Auth::routes(['verify' => true]);
+
 
 Route::get('/', 'HomeController@dashboard');
 

@@ -42,6 +42,7 @@
             errors.start[0]
           }}</span>
         </div>
+
         <div class="form-group">
           <label for="End">End Date</label>
 
@@ -121,7 +122,14 @@ Yellow - Other #ff9800-->
         </h6>
       </div> -->
       <div class="card-body">
-        <FullCalendar :options="calendarOptions" />
+        <FullCalendar
+          :options="calendarOptions"
+          :header="{
+            left: 'prev, next today',
+            center: 'title',
+            right: 'dayGridMonth, timeGridWeek, timeGridDay, listWeek',
+          }"
+        />
       </div>
     </div>
   </div>
@@ -130,10 +138,15 @@ Yellow - Other #ff9800-->
   <script>
 import FullCalendar from "@fullcalendar/vue";
 import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import ColorPicker from "./ColorPicker";
+import moment from "moment";
 export default {
   components: {
+    timeGridPlugin,
+    dayGridPlugin,
+    interactionPlugin,
     ColorPicker,
     FullCalendar, // make the <FullCalendar> tag available
   },
@@ -153,16 +166,23 @@ export default {
       modalForCode: 0,
       errors: [],
       options: {
-        format: "YYYY-MM-DD",
+        format: "YYYY-MM-DD hh:mm:ss",
         useCurrent: true,
         showClear: true,
         showClose: true,
       },
       calendarOptions: {
-        plugins: [dayGridPlugin, interactionPlugin],
+        headerToolbar: {
+          left: "prev,next today",
+          center: "title",
+          right: "dayGridMonth,timeGridWeek,timeGridDay",
+        },
+        plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
         initialView: "dayGridMonth",
         dateClick: this.handleDateClick,
         eventClick: this.handleEventClick,
+        // dayMaxEvents: true,
+        weekends: true,
         events: [],
       },
     };
@@ -245,7 +265,13 @@ export default {
         // console.log("Edit Unit");
       }
     },
+
     addEvent() {
+      this.event.start = moment(this.event.start).format();
+      this.event.end = moment(this.event.end).format();
+
+      // console.log(moment(date).format());
+
       this.$Progress.start();
       let currObj = this;
       axios
@@ -294,7 +320,7 @@ export default {
           Vue.set(this.event, "start", response.data.event.start);
           // Vue.set(this.event, "cssClass", response.data.event.back_color);
 
-          let temp=response.data.event.back_color;
+          let temp = response.data.event.back_color;
           if (temp === "#F44336") {
             Vue.set(this.event, "type", "holiday");
             Vue.set(this.event, "back_color", "#F44336");
@@ -443,7 +469,7 @@ export default {
   color: whitesmoke !important;
 }
 .orange {
-  background: #FF9800 !important;
+  background: #ff9800 !important;
   color: whitesmoke !important;
 }
 .green {
@@ -468,6 +494,7 @@ export default {
   /* padding-right: 35px; */
   /* padding-left: 35px; */
   font-weight: bold;
+  transition: all 0.2s ease-out;
 }
 .event-color-container {
   display: flex;
@@ -476,7 +503,13 @@ export default {
 
 .color-clicked {
   color: red;
+
   border: 2px solid #040f15;
   box-shadow: 2px 3px 9px -2px #000;
+}
+.event-color:hover {
+}
+.event-color:active {
+  transform: translateY(4px);
 }
 </style>
