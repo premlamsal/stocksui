@@ -109,6 +109,13 @@ Yellow - Other #ff9800-->
       <b-button class="btn-primary mt-3" block @click="callFunc">{{
         modalForName
       }}</b-button>
+      <b-button
+        class="btn-danger mt-3"
+        block
+        @click="deleteEvent(event.id)"
+        v-if="modalForCode"
+        >Delete this event</b-button
+      >
     </b-modal>
     <!-- add event modal end-->
 
@@ -413,6 +420,15 @@ export default {
               currObj.status = response.data.status;
               currObj.$Progress.finish();
               currObj.$swal("Info", currObj.output, currObj.status);
+              currObj.$bvModal.hide("bv-modal-add-event");
+
+              currObj.event.title = "";
+              currObj.event.start = "";
+              currObj.event.end = "";
+              currObj.event.back_color = "";
+              currObj.event.text_color = "";
+              currObj.event.description = "";
+              currObj.event.id = "";
               currObj.fetchEvents();
             })
             .catch(function (error) {
@@ -512,8 +528,7 @@ export default {
 .event-color:active {
   transform: translateY(4px);
 }
-table.fc-col-header a{
-color: #000 !important;
+table.fc-col-header a {
+  color: #000 !important;
 }
-
 </style>

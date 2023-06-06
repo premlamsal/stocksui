@@ -18194,6 +18194,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -18456,6 +18463,14 @@ __webpack_require__.r(__webpack_exports__);
             currObj.status = response.data.status;
             currObj.$Progress.finish();
             currObj.$swal("Info", currObj.output, currObj.status);
+            currObj.$bvModal.hide("bv-modal-add-event");
+            currObj.event.title = "";
+            currObj.event.start = "";
+            currObj.event.end = "";
+            currObj.event.back_color = "";
+            currObj.event.text_color = "";
+            currObj.event.description = "";
+            currObj.event.id = "";
             currObj.fetchEvents();
           })["catch"](function (error) {
             currObj.$Progress.fail();
@@ -95404,7 +95419,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.verte[data-v-f116d698] {\n  border: 2px solid #9e9e9e;\n  border-radius: 15px;\n}\n.red[data-v-f116d698] {\n  background: #f44336 !important;\n  color: whitesmoke !important;\n}\n.blue[data-v-f116d698] {\n  background: #2196f3 !important;\n  color: whitesmoke !important;\n}\n.orange[data-v-f116d698] {\n  background: #ff9800 !important;\n  color: whitesmoke !important;\n}\n.green[data-v-f116d698] {\n  background: #4caf50 !important;\n  color: white !important;\n}\n.blue[data-v-f116d698],\n.orange[data-v-f116d698],\n.red[data-v-f116d698],\n.green[data-v-f116d698] {\n  font-size: 13px;\n  font-weight: 500;\n  text-transform: capitalize;\n}\n.event-item[data-v-f116d698] {\n  padding: 2px 0 2px 4px !important;\n}\n.event-color[data-v-f116d698] {\n  padding: 20px;\n  border-radius: 30px;\n  cursor: pointer;\n  /* padding-right: 35px; */\n  /* padding-left: 35px; */\n  font-weight: bold;\n  -webkit-transition: all 0.2s ease-out;\n  transition: all 0.2s ease-out;\n}\n.event-color-container[data-v-f116d698] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n}\n.color-clicked[data-v-f116d698] {\n  color: red;\n\n  border: 2px solid #040f15;\n  box-shadow: 2px 3px 9px -2px #000;\n}\n.event-color[data-v-f116d698]:hover {\n}\n.event-color[data-v-f116d698]:active {\n  -webkit-transform: translateY(4px);\n          transform: translateY(4px);\n}\ntable.fc-col-header a[data-v-f116d698]{\ncolor: #000 !important;\n}\n\n", ""]);
+exports.push([module.i, "\n.verte[data-v-f116d698] {\n  border: 2px solid #9e9e9e;\n  border-radius: 15px;\n}\n.red[data-v-f116d698] {\n  background: #f44336 !important;\n  color: whitesmoke !important;\n}\n.blue[data-v-f116d698] {\n  background: #2196f3 !important;\n  color: whitesmoke !important;\n}\n.orange[data-v-f116d698] {\n  background: #ff9800 !important;\n  color: whitesmoke !important;\n}\n.green[data-v-f116d698] {\n  background: #4caf50 !important;\n  color: white !important;\n}\n.blue[data-v-f116d698],\n.orange[data-v-f116d698],\n.red[data-v-f116d698],\n.green[data-v-f116d698] {\n  font-size: 13px;\n  font-weight: 500;\n  text-transform: capitalize;\n}\n.event-item[data-v-f116d698] {\n  padding: 2px 0 2px 4px !important;\n}\n.event-color[data-v-f116d698] {\n  padding: 20px;\n  border-radius: 30px;\n  cursor: pointer;\n  /* padding-right: 35px; */\n  /* padding-left: 35px; */\n  font-weight: bold;\n  -webkit-transition: all 0.2s ease-out;\n  transition: all 0.2s ease-out;\n}\n.event-color-container[data-v-f116d698] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n}\n.color-clicked[data-v-f116d698] {\n  color: red;\n\n  border: 2px solid #040f15;\n  box-shadow: 2px 3px 9px -2px #000;\n}\n.event-color[data-v-f116d698]:hover {\n}\n.event-color[data-v-f116d698]:active {\n  -webkit-transform: translateY(4px);\n          transform: translateY(4px);\n}\ntable.fc-col-header a[data-v-f116d698] {\n  color: #000 !important;\n}\n", ""]);
 
 // exports
 
@@ -176167,7 +176182,23 @@ var render = function() {
               on: { click: _vm.callFunc }
             },
             [_vm._v(_vm._s(_vm.modalForName))]
-          )
+          ),
+          _vm._v(" "),
+          _vm.modalForCode
+            ? _c(
+                "b-button",
+                {
+                  staticClass: "btn-danger mt-3",
+                  attrs: { block: "" },
+                  on: {
+                    click: function($event) {
+                      return _vm.deleteEvent(_vm.event.id)
+                    }
+                  }
+                },
+                [_vm._v("Delete this event")]
+              )
+            : _vm._e()
         ],
         1
       ),
