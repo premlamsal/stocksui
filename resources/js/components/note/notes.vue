@@ -76,7 +76,7 @@
                   <th>Title</th>
                   <th>Description</th>
                   <th>Created By</th>
-                  <th>Created_at</th>
+                  <th>Created At</th>
                   <th>Modify</th>
                 </tr>
               </thead>

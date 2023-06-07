@@ -271,3 +271,10 @@ a.fc-daygrid-dot-event .fc-daygrid-event-dot{
     color: var(--favgold) !important;
     text-transform: capitalize;
   }
+  .btn-danger {
+    background-color: red;
+    color: #FFFFFF;
+}
+.btn-danger:hover{
+    background-color: red;
+}

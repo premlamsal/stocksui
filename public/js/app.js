@@ -179953,7 +179953,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Created By")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Created_at")]),
+        _c("th", [_vm._v("Created At")]),
         _vm._v(" "),
         _c("th", [_vm._v("Modify")])
       ])
