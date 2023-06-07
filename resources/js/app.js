@@ -204,6 +204,19 @@ let routes = [
         }
       }
   },
+   //purchase routes
+   {
+    path: '/notes',
+    name: 'notes',
+    component: require('./components/note/notes.vue').default,
+   
+     beforeEnter(to, from, next) {
+        let hasAccess = store.getters.permissions
+        if (hasAccess.includes('view_notes') || hasAccess.includes('all')) {
+          next()
+        }
+      }
+  },
 
    
 

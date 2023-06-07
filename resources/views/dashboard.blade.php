@@ -36,7 +36,7 @@
     <div id="app">
         <div class="wrapper ">
             <div class="sidebar" data-color="black" data-active-color="danger">
-               
+
 
                 <div class="sidebar-wrapper">
                     <ul class="nav">
@@ -63,6 +63,14 @@
                                 <router-link to="/categories" aria-expanded="false">
                                     <i class="nc-icon nc-bullet-list-67"></i>
                                     <span>Categories</span>
+                                </router-link>
+                            </li>
+                        @endcan
+                        @can('hasPermission', 'view_notes')
+                            <li>
+                                <router-link to="/notes" aria-expanded="false">
+                                    <i class="nc-icon nc-ruler-pencil"></i>
+                                    <span>Notes</span>
                                 </router-link>
                             </li>
                         @endcan

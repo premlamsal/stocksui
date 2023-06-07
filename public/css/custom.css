@@ -269,4 +269,5 @@ a.fc-daygrid-dot-event .fc-daygrid-event-dot{
   .fc .fc-button-primary{
     background: var(--favblue) !important;
     color: var(--favgold) !important;
+    text-transform: capitalize;
   }

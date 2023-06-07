@@ -429,3 +429,24 @@ Route::post('events/search', 'EventController@searchEvents');
 
 
 
+
+//List note
+Route::get('notes', 'NoteController@index');
+
+//Create new note
+Route::post('note', 'NoteController@store');
+
+//List single note
+Route::get('note/{id}', 'NoteController@show');
+
+//Update note
+Route::put('note', 'NoteController@update');
+
+//Delete note
+Route::delete('note/{id}', 'NoteController@destroy');
+
+//Search Notes
+Route::post('notes/search', 'NoteController@searchNotes');
+
+
+
