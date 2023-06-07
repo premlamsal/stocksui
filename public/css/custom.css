@@ -253,3 +253,20 @@ a.fc-event{
   padding: 2px;
   font-size: 15px;
 }
+
+a.fc-daygrid-dot-event .fc-daygrid-event-dot{
+    color: #000!important;
+  }
+  a.fc-daygrid-dot-event .fc-event-time{
+    color: #000!important;
+    font-weight: bold;
+  }
+  a.fc-daygrid-dot-event .fc-event-title{
+    color: #000!important;
+    font-weight: normal;
+  }
+  
+  .fc .fc-button-primary{
+    background: var(--favblue) !important;
+    color: var(--favgold) !important;
+  }

@@ -566,4 +566,5 @@ export default {
 table.fc-col-header a {
   color: #000 !important;
 }
+
 </style>
