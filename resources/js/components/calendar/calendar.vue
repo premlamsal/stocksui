@@ -179,6 +179,25 @@ export default {
         showClose: true,
       },
       calendarOptions: {
+        titleFormat: {
+          // will produce something like "Tuesday, September 18, 2018"
+          year: "numeric",
+          day: "numeric",
+          weekday: "long",
+        },
+        eventTimeFormat: {
+
+          hour: 'numeric',
+          // minute: '2-digit',
+          omitZeroMinute: true,
+          meridiem: 'short'
+          // hour: 'numeric',
+          // minute: "2-digit",
+          // second: "2-digit",
+          // hour12: true, //this also enables am or pm if true
+          // meridiem: false   this enables am or pm 
+        },
+
         headerToolbar: {
           left: "prev,next today",
           center: "title",
@@ -537,7 +556,7 @@ export default {
   color: red;
 
   border: 1px solid #040f15;
-    box-shadow: 2px 6px 0px -2px #000;
+  box-shadow: 2px 6px 0px -2px #000;
 }
 .event-color:hover {
 }
