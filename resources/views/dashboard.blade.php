@@ -84,6 +84,15 @@
                             </li>
                         @endcan
 
+                        @can('hasPermission', 'view_taskboard')
+                            <li>
+                                <router-link to="/taskboard" aria-expanded="false">
+                                    <i class="nc-icon nc-palette"></i>
+                                    <span>Taskboard</span>
+                                </router-link>
+                            </li>
+                        @endcan
+
                         @can('hasPermission', 'view_purchases')
                             <li>
                                 <router-link to="/purchases" aria-expanded="false">

@@ -204,7 +204,6 @@ let routes = [
         }
       }
   },
-   //purchase routes
    {
     path: '/notes',
     name: 'notes',
@@ -213,6 +212,19 @@ let routes = [
      beforeEnter(to, from, next) {
         let hasAccess = store.getters.permissions
         if (hasAccess.includes('view_notes') || hasAccess.includes('all')) {
+          next()
+        }
+      }
+  },
+
+  {
+    path: '/taskboard',
+    name: 'taskboard',
+    component: require('./components/taskboard/taskboard.vue').default,
+   
+     beforeEnter(to, from, next) {
+        let hasAccess = store.getters.permissions
+        if (hasAccess.includes('view_taskboard') || hasAccess.includes('all')) {
           next()
         }
       }

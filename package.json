@@ -46,6 +46,8 @@
         "vue-progressbar": "^0.7.5",
         "vue-router": "^3.4.5",
         "vue-sweetalert2": "^3.0.8",
-        "vuex": "^3.5.1"
+        "vuex": "^3.5.1",
+        "vue": "^2.6.11",
+        "vuedraggable": "^2.23.2"
     }
 }
