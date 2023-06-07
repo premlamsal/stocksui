@@ -274,8 +274,8 @@ export default {
     },
 
     addEvent() {
-      this.event.start = moment(this.event.start).format();
-      this.event.end = moment(this.event.end).format();
+      // this.event.start = moment(this.event.start).format();
+      // this.event.end = moment(this.event.end).format();
 
       // console.log(moment(date).format());
 
@@ -360,6 +360,9 @@ export default {
     },
     updateEvent() {
       this.$Progress.start();
+      // this.event.start = moment(this.event.start).format();
+      // this.event.end = moment(this.event.end).format();
+
       let currObj = this;
       let formData = new FormData();
       formData.append("_method", "PUT"); //add this otherwise data won't pass to backend
