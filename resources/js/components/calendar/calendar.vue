@@ -212,6 +212,10 @@ export default {
           this.$Progress.fail();
         });
     },
+    removeEventColor() {
+      this.event.type = "";
+      this.event.back_color = "";
+    },
     setEventColor(temp) {
       // Red - Holiday #F44336
       // Blue - Interview #2196F3
@@ -244,6 +248,7 @@ export default {
     //   }
     // },
     showAddModal(date) {
+      this.removeEventColor();
       this.modalForName = "Add Event";
       // Vue.set(this.modalForName,"Add Unit");
       this.modalForCode = 0; //0 for add
@@ -314,6 +319,8 @@ export default {
     },
     editEvent(id) {
       this.$Progress.start();
+      this.removeEventColor();
+
       let currObj = this;
       this.modalForName = "Edit Event";
       this.modalForCode = 1; // 1 for Edit
@@ -392,6 +399,8 @@ export default {
           currObj.event.description = "";
           currObj.event.id = "";
           currObj.$Progress.finish();
+          currObj.removeEventColor();
+
           currObj.fetchEvents();
         })
         .catch(function (error) {
@@ -432,6 +441,8 @@ export default {
               currObj.event.text_color = "";
               currObj.event.description = "";
               currObj.event.id = "";
+              currObj.removeEventColor();
+
               currObj.fetchEvents();
             })
             .catch(function (error) {
@@ -508,14 +519,16 @@ export default {
 }
 .event-color {
   padding: 20px;
-  border-radius: 30px;
+  /* border-radius: 30px; */
   cursor: pointer;
   /* padding-right: 35px; */
   /* padding-left: 35px; */
   font-weight: bold;
-  transition: all 0.2s ease-out;
+  border: 1px solid #040f15;
+  /* transition: all 0.2s ease-out; */
 }
 .event-color-container {
+  margin-top: 10px;
   display: flex;
   justify-content: space-between;
 }
@@ -523,8 +536,8 @@ export default {
 .color-clicked {
   color: red;
 
-  border: 2px solid #040f15;
-  box-shadow: 2px 3px 9px -2px #000;
+  border: 1px solid #040f15;
+    box-shadow: 2px 6px 0px -2px #000;
 }
 .event-color:hover {
 }

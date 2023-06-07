@@ -18270,6 +18270,10 @@ __webpack_require__.r(__webpack_exports__);
         _this.$Progress.fail();
       });
     },
+    removeEventColor: function removeEventColor() {
+      this.event.type = "";
+      this.event.back_color = "";
+    },
     setEventColor: function setEventColor(temp) {
       // Red - Holiday #F44336
       // Blue - Interview #2196F3
@@ -18303,6 +18307,7 @@ __webpack_require__.r(__webpack_exports__);
     //   }
     // },
     showAddModal: function showAddModal(date) {
+      this.removeEventColor();
       this.modalForName = "Add Event"; // Vue.set(this.modalForName,"Add Unit");
 
       this.modalForCode = 0; //0 for add
@@ -18365,6 +18370,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       this.$Progress.start();
+      this.removeEventColor();
       var currObj = this;
       this.modalForName = "Edit Event";
       this.modalForCode = 1; // 1 for Edit
@@ -18437,6 +18443,7 @@ __webpack_require__.r(__webpack_exports__);
         currObj.event.description = "";
         currObj.event.id = "";
         currObj.$Progress.finish();
+        currObj.removeEventColor();
         currObj.fetchEvents();
       })["catch"](function (error) {
         currObj.$Progress.fail();
@@ -18473,6 +18480,7 @@ __webpack_require__.r(__webpack_exports__);
             currObj.event.text_color = "";
             currObj.event.description = "";
             currObj.event.id = "";
+            currObj.removeEventColor();
             currObj.fetchEvents();
           })["catch"](function (error) {
             currObj.$Progress.fail();
@@ -95421,7 +95429,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.verte[data-v-f116d698] {\n  border: 2px solid #9e9e9e;\n  border-radius: 15px;\n}\n.red[data-v-f116d698] {\n  background: #f44336 !important;\n  color: whitesmoke !important;\n}\n.blue[data-v-f116d698] {\n  background: #2196f3 !important;\n  color: whitesmoke !important;\n}\n.orange[data-v-f116d698] {\n  background: #ff9800 !important;\n  color: whitesmoke !important;\n}\n.green[data-v-f116d698] {\n  background: #4caf50 !important;\n  color: white !important;\n}\n.blue[data-v-f116d698],\n.orange[data-v-f116d698],\n.red[data-v-f116d698],\n.green[data-v-f116d698] {\n  font-size: 13px;\n  font-weight: 500;\n  text-transform: capitalize;\n}\n.event-item[data-v-f116d698] {\n  padding: 2px 0 2px 4px !important;\n}\n.event-color[data-v-f116d698] {\n  padding: 20px;\n  border-radius: 30px;\n  cursor: pointer;\n  /* padding-right: 35px; */\n  /* padding-left: 35px; */\n  font-weight: bold;\n  -webkit-transition: all 0.2s ease-out;\n  transition: all 0.2s ease-out;\n}\n.event-color-container[data-v-f116d698] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n}\n.color-clicked[data-v-f116d698] {\n  color: red;\n\n  border: 2px solid #040f15;\n  box-shadow: 2px 3px 9px -2px #000;\n}\n.event-color[data-v-f116d698]:hover {\n}\n.event-color[data-v-f116d698]:active {\n  -webkit-transform: translateY(4px);\n          transform: translateY(4px);\n}\ntable.fc-col-header a[data-v-f116d698] {\n  color: #000 !important;\n}\n", ""]);
+exports.push([module.i, "\n.verte[data-v-f116d698] {\n  border: 2px solid #9e9e9e;\n  border-radius: 15px;\n}\n.red[data-v-f116d698] {\n  background: #f44336 !important;\n  color: whitesmoke !important;\n}\n.blue[data-v-f116d698] {\n  background: #2196f3 !important;\n  color: whitesmoke !important;\n}\n.orange[data-v-f116d698] {\n  background: #ff9800 !important;\n  color: whitesmoke !important;\n}\n.green[data-v-f116d698] {\n  background: #4caf50 !important;\n  color: white !important;\n}\n.blue[data-v-f116d698],\n.orange[data-v-f116d698],\n.red[data-v-f116d698],\n.green[data-v-f116d698] {\n  font-size: 13px;\n  font-weight: 500;\n  text-transform: capitalize;\n}\n.event-item[data-v-f116d698] {\n  padding: 2px 0 2px 4px !important;\n}\n.event-color[data-v-f116d698] {\n  padding: 20px;\n  /* border-radius: 30px; */\n  cursor: pointer;\n  /* padding-right: 35px; */\n  /* padding-left: 35px; */\n  font-weight: bold;\n  border: 1px solid #040f15;\n  /* transition: all 0.2s ease-out; */\n}\n.event-color-container[data-v-f116d698] {\n  margin-top: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n}\n.color-clicked[data-v-f116d698] {\n  color: red;\n\n  border: 1px solid #040f15;\n    box-shadow: 2px 6px 0px -2px #000;\n}\n.event-color[data-v-f116d698]:hover {\n}\n.event-color[data-v-f116d698]:active {\n  -webkit-transform: translateY(4px);\n          transform: translateY(4px);\n}\ntable.fc-col-header a[data-v-f116d698] {\n  color: #000 !important;\n}\n", ""]);
 
 // exports
 
