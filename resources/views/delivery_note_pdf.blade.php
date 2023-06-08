@@ -104,79 +104,64 @@
 <body>
     <div class="head-title">
         <h1 class="text-center m-0 p-0">Delivery Note</h1>
-    </div>
-    <div class="add-detail mt-10">
-        <div class="w-50 float-left mt-10">
-            <p class="m-0 pt-5 text-bold w-100">Delivery Note Id - <span
-                    class="gray-color">#{{ $delivery_note->custom_delivery_note_id }}</span></p>
-            <p class="m-0 pt-5 text-bold w-100">Delivery Note Date - <span class="gray-color">22-01-2023</span></p>
-        </div>
-        <div class="w-50 float-left logo mt-10">
-            <img src="https://techsolutionstuff.com/frontTheme/assets/img/logo_200_60_dark.png" alt="Logo">
-        </div>
-        <div style="clear: both;"></div>
-    </div>
-    <div class="table-section bill-tbl w-100 mt-10">
-        <table class="table w-100 mt-10">
-            <tr>
-                <th class="w-50">Suppliers Details</th>
-            </tr>
-            <tr>
-                <td>
-                    <div class="box-text">
-                        <p>{{ $delivery_note->supplier_name }}</p>
-                        <p>{{ $delivery_note->supplier->address }}</p>
-                        <p>{{ $delivery_note->supplier->phone }}</p>
-                    </div>
-                </td>
-                <td>
 
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div class="table-section bill-tbl w-100 mt-10">
-        <table class="table w-100 mt-10">
-            <tr>
-                <th class="w-50">Product ID</th>
-                <th class="w-50">Product Name</th>
-                <th class="w-50">Qty</th>
-                <th class="w-50">Unit</th>
-                <th class="w-50">Price</th>
-                <th class="w-50">Subtotal</th>
-            </tr>
-            <tr>
 
-            </tr>
-            @foreach ($delivery_note->delivery_note_detail as $dn_items)
-            <tr>
-                <td>{{ $dn_items->product->custom_product_id }}</td>
-                <td>{{ $dn_items->name }}</td>
-                <td>{{ $dn_items->quantity }}</td>
-                <td>{{ $dn_items->product->unit }}</td>
-                <td>{{ $dn_items->price }}</td>
-                <td>{{ $dn_items->line_total }}</td>
+        <div class="add-detail mt-10">
+            <div class="w-50 float-left mt-10">
+                <p class="m-0 pt-5 text-bold w-100">Delivery Note Id - <span
+                        class="gray-color">#{{ $delivery_note->custom_delivery_note_id }}</span></p>
+                <p class="m-0 pt-5 text-bold w-100">Delivery Note Date - <span class="gray-color">22-01-2023</span></p>
+            </div>
+            
+            <div style="clear: both;"></div>
+        </div>
+        <div class="table-section bill-tbl w-100 mt-10">
+
+            <div class="box-text">
+                <h5>Supplier Details</h5>
+                <p>{{ $delivery_note->supplier_name }}</p>
+                <p>{{ $delivery_note->supplier->address }}</p>
+                <p>{{ $delivery_note->supplier->phone }}</p>
+            </div>
+
+        </div>
+        <div class="table-section bill-tbl w-100 mt-10">
+            <table class="table w-100 mt-10">
+                <tr>
+                    <th class="w-50">Product ID</th>
+                    <th class="w-50">Product Name</th>
+                    <th class="w-50">Qty</th>
+                    <th class="w-50">Unit</th>
+                    <th class="w-50">Price</th>
+                    <th class="w-50">Subtotal</th>
                 </tr>
-            @endforeach
-            <tr align="center">
+                @foreach ($delivery_note->deliveryNoteDetail as $dn_items)
+                    <tr>
+                        <td>{{ $dn_items->product->custom_product_id }}</td>
+                        <td>{{ $dn_items->product_name }}</td>
+                        <td>{{ $dn_items->quantity }}</td>
+                        <td>{{ $dn_items->product->unit }}</td>
+                        <td>{{ $dn_items->price }}</td>
+                        <td>{{ $dn_items->line_total }}</td>
+                    </tr>
+                @endforeach
 
 
-            <tr>
-                <td colspan="7">
-                    <div class="total-part">
-                        <div class="total-left w-85 float-left" align="right">
-                            <p>Sub Total</p>
-                            <p>Total Payable</p>
+                    <td colspan="7">
+                        <div class="total-part">
+                            <div class="total-left w-85 float-left" align="right">
+                                <p>Sub Total</p>
+                                <p>Total Payable</p>
+                            </div>
+                            <div class="total-right w-15 float-left text-bold" align="right">
+                                <p>{{ $delivery_note->sub_total }}</p>
+                                <p>{{ $delivery_note->grand_total }}</p>
+                            </div>
+                            <div style="clear: both;"></div>
                         </div>
-                        <div class="total-right w-15 float-left text-bold" align="right">
-                            <p>{{ $delivery_note->sub_total }}</p>
-                            <p>{{ $delivery_note->grand_total }}</p>
-                        </div>
-                        <div style="clear: both;"></div>
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
 
 </html>

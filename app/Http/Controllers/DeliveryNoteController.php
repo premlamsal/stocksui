@@ -306,13 +306,16 @@ class DeliveryNoteController extends Controller
         $store_id = $user->stores[0]->id;
         // Get delivery_note
 
-        $delivery_note = DeliveryNote::where('store_id', $store_id)->with('deliveryNoteDetail.product')->with('supplier')->findOrFail($id);
+        $delivery_note = DeliveryNote::where('id',$id)->with('deliveryNoteDetail')->where('store_id', $store_id)->first();
 
+      
+        // $dn = json_decode($dnn, true);
+        // print($delivery_note->deliveryNoteDetail);
 
-        // return response()->json([
-        //     'msg' => $delivery_note,
-        //     'status' => 'error',
-        // ], 200);
+            // return response()->json([
+            //             'msg' =>,
+            //             'status' => 'success',
+            //         ], 200);
 
         $pdf = \PDF::loadView('delivery_note_pdf', ['delivery_note'=>$delivery_note]);
         $pdf->setOption(['dpi' => 150, 'defaultFont' => 'sans-serif']);

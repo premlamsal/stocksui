@@ -42,7 +42,7 @@ class ProductController extends Controller
             'name' => 'required|string|max:200',
             'description' => 'required|string|max:1000',
             'price' => 'string|max:1000',
-            'low_stock_alert_active' => 'numeric',
+            'low_stock_alert_active' => 'required',
             'low_stock_alert_quantity' => 'required|string|max:1000',
             'product_cat_id' => 'required|numeric ',
             'unit' => 'required|string|max:40 ',

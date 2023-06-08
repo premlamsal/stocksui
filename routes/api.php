@@ -403,7 +403,7 @@ Route::get('picklist/{id}', 'PickListController@show');
 
 Route::delete('picklist/{id}', 'PickListController@destroy');
 
-Route::get('picklistspdf/{id}', 'PickListController@pdfdownload');
+Route::get('picklistpdf/{id}', 'PickListController@pdfdownload');
 
 
 //calendar + event
