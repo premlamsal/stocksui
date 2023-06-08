@@ -430,16 +430,16 @@ export default {
           console.log(error);
         });
     },
-    async updateDataInBackend() {
+     updateDataInBackend: _.debounce(function () {
       try {
-        await axios.post("/api/update-tasks", {
+         axios.post("/api/update-tasks", {
           data: JSON.stringify(this.meroTasks),
         });
         console.log("Data updated in the backend successfully!");
       } catch (error) {
         console.error("Failed to update data in the backend:", error);
       }
-    },
+    },900),
     apicall() {
       axios
         .post(`https://jsonplaceholder.typicode.com/users`, this.meroTasks)
@@ -452,8 +452,10 @@ export default {
       const temp_log_data = log_data;
 
       console.log(temp_log_data);
-
+      // var that = this;
       this.updateDataInBackend();
+        // setTimeout(function() { that.updateDataInBackend }, 5000);
+      
       // console.log(temp_log_data.element.id);
     },
 

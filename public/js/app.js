@@ -27179,19 +27179,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.umd.js");
-/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _fullcalendar_core_internal_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fullcalendar/core/internal-common */ "./node_modules/@fullcalendar/core/internal-common.js");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.umd.js");
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _fullcalendar_core_internal_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fullcalendar/core/internal-common */ "./node_modules/@fullcalendar/core/internal-common.js");
 //
 //
 //
@@ -27489,7 +27481,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   name: "kanban-board",
   components: {
     //import draggable as a component
-    draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_1___default.a
+    draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_0___default.a
   },
   data: function data() {
     return {
@@ -27606,7 +27598,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     getTasks: function getTasks() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/tasks").then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/tasks").then(function (response) {
         var data = response.data.data.tasks;
         console.log(JSON.parse(data));
         _this.meroTasks = JSON.parse(data);
@@ -27615,48 +27607,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         console.log(error);
       });
     },
-    updateDataInBackend: function () {
-      var _updateDataInBackend = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.prev = 0;
-                _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/update-tasks", {
-                  data: JSON.stringify(this.meroTasks)
-                });
-
-              case 3:
-                console.log("Data updated in the backend successfully!");
-                _context.next = 9;
-                break;
-
-              case 6:
-                _context.prev = 6;
-                _context.t0 = _context["catch"](0);
-                console.error("Failed to update data in the backend:", _context.t0);
-
-              case 9:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this, [[0, 6]]);
-      }));
-
-      function updateDataInBackend() {
-        return _updateDataInBackend.apply(this, arguments);
+    updateDataInBackend: _.debounce(function () {
+      try {
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/update-tasks", {
+          data: JSON.stringify(this.meroTasks)
+        });
+        console.log("Data updated in the backend successfully!");
+      } catch (error) {
+        console.error("Failed to update data in the backend:", error);
       }
-
-      return updateDataInBackend;
-    }(),
+    }, 900),
     apicall: function apicall() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("https://jsonplaceholder.typicode.com/users", this.meroTasks).then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("https://jsonplaceholder.typicode.com/users", this.meroTasks).then(function (res) {
         var persons = res.data;
 
         _this2.setState({
@@ -27666,8 +27630,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     log: function log(log_data) {
       var temp_log_data = log_data;
-      console.log(temp_log_data);
-      this.updateDataInBackend(); // console.log(temp_log_data.element.id);
+      console.log(temp_log_data); // var that = this;
+
+      this.updateDataInBackend(); // setTimeout(function() { that.updateDataInBackend }, 5000);
+      // console.log(temp_log_data.element.id);
     },
     //add new tasks method
     add: function add() {
@@ -96488,7 +96454,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* light stylings for the kanban columns */\n.kanban-column {\n  min-height: 300px;\n}\n.status-head-container {\n  margin-top: 20px;\n  display: -webkit-box;\n  display: flex;\n  justify-content: space-around;\n  background: #673ab7;\n  color: wheat;\n}\n.custom-row {\n  display: -webkit-box;\n  display: flex;\n  justify-content: space-around;\n}\n.row-bar h5 {\n  text-align: center;\n  color: white;\n  letter-spacing: 10px;\n}\n/* .status-head-container{\n  position: fixed;\n    z-index: 222222;\n    background: #00BCD4;\n    color: white;\n    top: 0;\n    right: 0;\n    left: 0;\n} */\n.task-tittle {\n  font-weight: bold;\n  font-size: 13px;\n}\n.alert-secondary {\n  color: #383d41 !important;\n  background-color: #e2e3e517 !important;\n  border: 0 !important;\n  box-shadow: 1px 1px 7px 1px #eee !important;\n}\n.list-group-item {\n  margin-bottom: 10px !important;\n  padding: 0.25rem 0.25rem !important;\n}\n.task-body {\n  font-size: 12px;\n}\n.task-body p {\n  margin: 0;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* light stylings for the kanban columns */\n.kanban-column {\n  min-height: 300px;\n}\n.status-head-container {\n  margin-top: 20px;\n  display: -webkit-box;\n  display: flex;\n  justify-content: space-around;\n  background: #673ab7;\n  color: wheat;\n}\n.custom-row {\n  display: -webkit-box;\n  display: flex;\n  justify-content: space-around;\n}\n.row-bar h5 {\n  text-align: center;\n  color: white;\n  letter-spacing: 10px;\n}\n/* .status-head-container{\n  position: fixed;\n    z-index: 222222;\n    background: #00BCD4;\n    color: white;\n    top: 0;\n    right: 0;\n    left: 0;\n} */\n.task-tittle {\n  font-weight: bold;\n  font-size: 13px;\n}\n.alert-secondary {\n  color: #383d41 !important;\n  background-color: #e2e3e517 !important;\n  border: 0 !important;\n  box-shadow: 1px 1px 7px 1px #eee !important;\n}\n.list-group-item {\n  margin-bottom: 10px !important;\n  padding: 0.25rem 0.25rem !important;\n}\n.task-body {\n  font-size: 12px;\n}\n.task-body p {\n  margin: 0;\n}\n", ""]);
 
 // exports
 
