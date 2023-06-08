@@ -347,14 +347,15 @@ export default {
         .get(page_url)
         .then(function (response) {
           vm.categories = response.data.data;
-          vm.arrayKeys = Object.keys(vm.categories[0]);
+          // vm.arrayKeys = Object.keys(vm.categories[0]);
           console.log(vm.arrayKeys);
           // console.log(response.data);
           if (vm.categories.length != null) {
             vm.makePagination(response.data.meta, response.data.links);
-            vm.isLoading = "";
             vm.$Progress.finish();
           }
+          vm.isLoading = "";
+
         })
         .catch(function (error) {
           vm.$Progress.fail();
