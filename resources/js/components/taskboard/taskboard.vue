@@ -291,6 +291,7 @@
 //import draggable
 import draggable from "vuedraggable";
 import axios from "axios";
+import { dA } from '@fullcalendar/core/internal-common';
 
 export default {
   name: "kanban-board",
@@ -372,137 +373,38 @@ export default {
       meroTasks: {
         toDo: {
           priorityHIGH: [
-            {
-              id: 1,
-              title: "Hello I am first",
-              content:
-                "Contrary to popular belief, Lorem Ipsum is not simply random text.",
-            },
-            {
-              id: 2,
-              title: "Hello I am second",
-              content:
-                "Contrary to popular belief, Lorem Ipsum is not simply random text.",
-            },
+           {}
           ],
           priorityMED: [
-            {
-              id: 3,
-              title: "Hello I am third",
-              content:
-                "Contrary to popular belief, Lorem Ipsum is not simply random text.",
-            },
-            {
-              id: 4,
-              title: "Hello I am forth",
-              content:
-                "Contrary to popular belief, Lorem Ipsum is not simply random text.",
-            },
+            {}
           ],
 
           priorityLOW: [
-            {
-              id: 5,
-              title: "Hello I am fifth",
-              content:
-                "Contrary to popular belief, Lorem Ipsum is not simply random text.",
-            },
-            {
-              id: 6,
-              title: "Hello I am sixth",
-              content:
-                "Contrary to popular belief, Lorem Ipsum is not simply random text.",
-            },
+            {}
           ],
         },
         arrInProgress: {
           priorityHIGH: [
-            {
-              id: 7,
-              title: "Hello I am seven",
-              content:
-                "Contrary to popular belief, Lorem Ipsum is not simply random text.",
-            },
-            {
-              id: 8,
-              title: "Hello I am 8",
-              content:
-                "Contrary to popular belief, Lorem Ipsum is not simply random text.",
-            },
+            {}
           ],
           priorityMED: [
-            {
-              id: 9,
-              title: "Hello I am 9",
-              content:
-                "Contrary to popular belief, Lorem Ipsum is not simply random text.",
-            },
-            {
-              id: 4,
-              title: "Hello I am 10",
-              content:
-                "Contrary to popular belief, Lorem Ipsum is not simply random text.",
-            },
+            {}
           ],
 
           priorityLOW: [
-            {
-              id: 10,
-              title: "Hello I am 11",
-              content:
-                "Contrary to popular belief, Lorem Ipsum is not simply random text.",
-            },
-            {
-              id: 11,
-              title: "Hello I am 12",
-              content:
-                "Contrary to popular belief, Lorem Ipsum is not simply random text.",
-            },
+            {}
           ],
         },
         arrDone: {
           priorityHIGH: [
-            {
-              id: 11,
-              title: "Hello I am 12",
-              content:
-                "Contrary to popular belief, Lorem Ipsum is not simply random text.",
-            },
-            {
-              id: 12,
-              title: "Hello I am 13",
-              content:
-                "Contrary to popular belief, Lorem Ipsum is not simply random text.",
-            },
+            {}
           ],
           priorityMED: [
-            {
-              id: 13,
-              title: "Hello I am 14",
-              content:
-                "Contrary to popular belief, Lorem Ipsum is not simply random text.",
-            },
-            {
-              id: 14,
-              title: "Hello I am 15",
-              content:
-                "Contrary to popular belief, Lorem Ipsum is not simply random text.",
-            },
+            {}
           ],
 
           priorityLOW: [
-            {
-              id: 15,
-              title: "Hello I am 16",
-              content:
-                "Contrary to popular belief, Lorem Ipsum is not simply random text.",
-            },
-            {
-              id: 16,
-              title: "Hello I am 17",
-              content:
-                "Contrary to popular belief, Lorem Ipsum is not simply random text.",
-            },
+          {}
           ],
         },
       },
@@ -519,7 +421,43 @@ export default {
     //   return this.items.filter((item) => item.list === 2);
     // },
   },
+  watch: {
+    // meroTasks: {
+    //   deep: true,
+    //   handler(newData) {
+    //     // Perform an API call to update the data in the Laravel backend
+    //     this.updateDataInBackend(newData);
+    //   },
+    // },
+  },
+  created(){
+
+    this.getTasks();
+  },
   methods: {
+    getTasks(){
+      axios.get('/api/tasks')
+      .then(response=>{
+        const data=(response.data.data.tasks)
+
+        console.log(JSON.parse(data));
+        this.meroTasks=JSON.parse(data);
+        Vue.set(this.meroTasks,JSON.parse(data));
+        
+
+      })
+      .catch(error=>{
+        console.log(error);
+      })
+    },
+    async updateDataInBackend() {
+      try {
+        await axios.post('/api/update-tasks', { data: JSON.stringify(this.meroTasks) });
+        console.log('Data updated in the backend successfully!');
+      } catch (error) {
+        console.error('Failed to update data in the backend:', error);
+      }
+    },
     apicall() {
       axios
         .post(`https://jsonplaceholder.typicode.com/users`, this.meroTasks)
@@ -533,6 +471,7 @@ export default {
 
       console.log(temp_log_data);
 
+      this.updateDataInBackend();
       // console.log(temp_log_data.element.id);
     },
 

@@ -450,3 +450,9 @@ Route::post('notes/search', 'NoteController@searchNotes');
 
 
 
+
+
+Route::post('update-tasks', 'TaskBoardController@updateTasks');
+
+Route::get('tasks', 'TaskBoardController@tasks');
+
