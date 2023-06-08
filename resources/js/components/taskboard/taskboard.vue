@@ -1,5 +1,5 @@
 <template>
-    <div style="background:#fff;border-radius:10px">
+  <div style="background: #fff; border-radius: 10px">
     <div class="outside-status-head-container">
       <div class="status-head-container">
         <div class="status-head">
@@ -291,7 +291,7 @@
 //import draggable
 import draggable from "vuedraggable";
 import axios from "axios";
-import { dA } from '@fullcalendar/core/internal-common';
+import { dA } from "@fullcalendar/core/internal-common";
 
 export default {
   name: "kanban-board",
@@ -372,40 +372,22 @@ export default {
       // ],
       meroTasks: {
         toDo: {
-          priorityHIGH: [
-           {}
-          ],
-          priorityMED: [
-            {}
-          ],
+          priorityHIGH: [{}],
+          priorityMED: [{}],
 
-          priorityLOW: [
-            {}
-          ],
+          priorityLOW: [{}],
         },
         arrInProgress: {
-          priorityHIGH: [
-            {}
-          ],
-          priorityMED: [
-            {}
-          ],
+          priorityHIGH: [{}],
+          priorityMED: [{}],
 
-          priorityLOW: [
-            {}
-          ],
+          priorityLOW: [{}],
         },
         arrDone: {
-          priorityHIGH: [
-            {}
-          ],
-          priorityMED: [
-            {}
-          ],
+          priorityHIGH: [{}],
+          priorityMED: [{}],
 
-          priorityLOW: [
-          {}
-          ],
+          priorityLOW: [{}],
         },
       },
     };
@@ -430,32 +412,32 @@ export default {
     //   },
     // },
   },
-  created(){
-
+  created() {
     this.getTasks();
   },
   methods: {
-    getTasks(){
-      axios.get('/api/tasks')
-      .then(response=>{
-        const data=(response.data.data.tasks)
+    getTasks() {
+      axios
+        .get("/api/tasks")
+        .then((response) => {
+          const data = response.data.data.tasks;
 
-        console.log(JSON.parse(data));
-        this.meroTasks=JSON.parse(data);
-        Vue.set(this.meroTasks,JSON.parse(data));
-        
-
-      })
-      .catch(error=>{
-        console.log(error);
-      })
+          console.log(JSON.parse(data));
+          this.meroTasks = JSON.parse(data);
+          Vue.set(this.meroTasks, JSON.parse(data));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
     async updateDataInBackend() {
       try {
-        await axios.post('/api/update-tasks', { data: JSON.stringify(this.meroTasks) });
-        console.log('Data updated in the backend successfully!');
+        await axios.post("/api/update-tasks", {
+          data: JSON.stringify(this.meroTasks),
+        });
+        console.log("Data updated in the backend successfully!");
       } catch (error) {
-        console.error('Failed to update data in the backend:', error);
+        console.error("Failed to update data in the backend:", error);
       }
     },
     apicall() {
