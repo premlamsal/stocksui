@@ -27183,7 +27183,73 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _fullcalendar_core_internal_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fullcalendar/core/internal-common */ "./node_modules/@fullcalendar/core/internal-common.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -27476,7 +27542,6 @@ __webpack_require__.r(__webpack_exports__);
 //import draggable
 
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "kanban-board",
   components: {
@@ -27485,8 +27550,15 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      modalForName: "",
+      modalForCode: 0,
+      errors: [],
       // for new tasks
-      newTask: "",
+      task: {
+        id: "",
+        title: "",
+        content: ""
+      },
       // 4 arrays to keep track of our 4 statuses
       // toDo: [
       //   {
@@ -27556,19 +27628,19 @@ __webpack_require__.r(__webpack_exports__);
       // ],
       meroTasks: {
         toDo: {
-          priorityHIGH: [{}],
-          priorityMED: [{}],
-          priorityLOW: [{}]
+          priorityHIGH: [],
+          priorityMED: [],
+          priorityLOW: []
         },
         arrInProgress: {
-          priorityHIGH: [{}],
-          priorityMED: [{}],
-          priorityLOW: [{}]
+          priorityHIGH: [],
+          priorityMED: [],
+          priorityLOW: []
         },
         arrDone: {
-          priorityHIGH: [{}],
-          priorityMED: [{}],
-          priorityLOW: [{}]
+          priorityHIGH: [],
+          priorityMED: [],
+          priorityLOW: []
         }
       }
     };
@@ -27599,10 +27671,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/tasks").then(function (response) {
-        var data = response.data.data.tasks;
-        console.log(JSON.parse(data));
-        _this.meroTasks = JSON.parse(data);
-        Vue.set(_this.meroTasks, JSON.parse(data));
+        var data = JSON.parse(response.data.data.tasks);
+        _this.meroTasks = data; // Vue.set(this.meroTasks, JSON.parse(data));
       })["catch"](function (error) {
         console.log(error);
       });
@@ -27610,13 +27680,147 @@ __webpack_require__.r(__webpack_exports__);
     updateDataInBackend: _.debounce(function () {
       try {
         axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/update-tasks", {
-          data: JSON.stringify(this.meroTasks)
+          data: this.meroTasks
         });
         console.log("Data updated in the backend successfully!");
       } catch (error) {
         console.error("Failed to update data in the backend:", error);
       }
     }, 900),
+    showAddModal: function showAddModal() {
+      this.modalForName = "Add Task"; // Vue.set(this.modalForName,"Add ");
+
+      this.modalForCode = 0; //0 for add
+
+      this.task.title = "";
+      this.task.content = "";
+      this.errors = ""; //clearing errors
+      // Vue.set(this.modalForCode,0);
+
+      this.$bvModal.show("bv-modal-add-task");
+    },
+    callFunc: function callFunc() {
+      if (this.modalForCode == 0) {
+        this.addTask(); // console.log("Add ");
+      } else if (this.modalForCode == 1) {
+        this.updateTask(); // console.log("Edit ");
+      }
+    },
+    addTask: function addTask() {
+      this.$Progress.start();
+      var pushTask = {
+        id: Date.now(),
+        title: this.task.title,
+        content: this.task.content
+      };
+      this.meroTasks.toDo.priorityHIGH.push(pushTask);
+      this.$bvModal.hide("bv-modal-add-task");
+      this.updateDataInBackend(); // let currObj = this;
+      // axios.post('/api/task', this.task)
+      //   .then(function(response) {
+      //     currObj.output = response.data.msg;
+      //     currObj.status = response.data.status;
+      //     currObj.$swal('Info', currObj.output, currObj.status);
+      //     currObj.$bvModal.hide('bv-modal-add-task');
+      //     currObj.task.title = '';
+      //     currObj.task.content = '';
+      //     currObj.errors = ''; //clearing errors
+      //     currObj.$Progress.finish();
+      //     currObj.fetchSuppliers();
+      //   })
+      //   .catch(function(error) {
+      //     currObj.$Progress.fail();
+      //     if (error.response.status == 422) {
+      //       currObj.validationErrors = error.response.data.errors;
+      //       currObj.errors = currObj.validationErrors;
+      //       // console.log(currObj.errors);
+      //     }
+      //   });
+    },
+    editTask: function editTask(id, title, content) {
+      this.$Progress.start();
+      this.modalForName = "Edit Task";
+      this.modalForCode = 1; // 1 for Edit
+
+      this.$bvModal.show("bv-modal-add-task");
+      this.errors = ""; //clearing errors
+
+      Vue.set(this.task, "id", id);
+      Vue.set(this.task, "title", title);
+      Vue.set(this.task, "content", content);
+    },
+    updateTask: function updateTask() {
+      this.$Progress.start(); // Assuming you have the ID of the task you want to edit and the updated data
+
+      var taskId = this.task.id;
+      var updatedTaskData = {
+        // Updated properties of the task
+        title: this.task.title,
+        content: this.task.content
+      }; // Find the task in the 'meroTasks' data structure
+
+      for (var categoryKey in this.meroTasks) {
+        var category = this.meroTasks[categoryKey];
+
+        for (var priorityKey in category) {
+          var priority = category[priorityKey];
+          var foundTask = priority.find(function (task) {
+            return task.id === taskId;
+          });
+
+          if (foundTask) {
+            // Update the data within the found task object
+            Object.assign(foundTask, updatedTaskData); // Optionally, you can trigger any necessary updates or save the changes to a database
+
+            console.log(this.meroTasks);
+            break; // Exit the loop since the task has been found
+          }
+        }
+      }
+
+      this.updateDataInBackend();
+    },
+    deleteSupplier: function deleteSupplier(id) {
+      this.$Progress.start();
+      var currObj = this;
+      this.$swal({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(function (result) {// if (result.value) {
+        //   axios.delete('/api/supplier/' + id)
+        //     .then(function(response) {
+        //       currObj.output = response.data.msg;
+        //       currObj.status = response.data.status;
+        //       // alert(currObj.status);
+        //       let index_to_delete = currObj.suppliers.findIndex(supplier => supplier.id === id)
+        //       currObj.suppliers.splice(index_to_delete,1);
+        //       currObj.$Progress.finish();
+        //       // alert(currObj.status);
+        //       currObj.$swal("Info", currObj.output, currObj.status);
+        //     }).catch(function(error) {
+        //       currObj.$Progress.fail();
+        //       // currObj.output=error;
+        //       // console.log(currObj.output);
+        //     })
+        // }
+      });
+    },
+    //end of deleteUnit()
+    hasPermission: function hasPermission(action) {
+      var permissions_from_store = this.$store.getters.permissions;
+
+      if (permissions_from_store.includes(action) || permissions_from_store.includes("all")) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    //has permision
     apicall: function apicall() {
       var _this2 = this;
 
@@ -96454,7 +96658,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* light stylings for the kanban columns */\n.kanban-column {\n  min-height: 300px;\n}\n.status-head-container {\n  margin-top: 20px;\n  display: -webkit-box;\n  display: flex;\n  justify-content: space-around;\n  background: #673ab7;\n  color: wheat;\n}\n.custom-row {\n  display: -webkit-box;\n  display: flex;\n  justify-content: space-around;\n}\n.row-bar h5 {\n  text-align: center;\n  color: white;\n  letter-spacing: 10px;\n}\n/* .status-head-container{\n  position: fixed;\n    z-index: 222222;\n    background: #00BCD4;\n    color: white;\n    top: 0;\n    right: 0;\n    left: 0;\n} */\n.task-tittle {\n  font-weight: bold;\n  font-size: 13px;\n}\n.alert-secondary {\n  color: #383d41 !important;\n  background-color: #e2e3e517 !important;\n  border: 0 !important;\n  box-shadow: 1px 1px 7px 1px #eee !important;\n}\n.list-group-item {\n  margin-bottom: 10px !important;\n  padding: 0.25rem 0.25rem !important;\n}\n.task-body {\n  font-size: 12px;\n}\n.task-body p {\n  margin: 0;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* light stylings for the kanban columns */\n.kanban-column {\n  min-height: 300px;\n}\n.status-head-container {\n  margin-top: 20px;\n  display: -webkit-box;\n  display: flex;\n  justify-content: space-around;\n  background: #673ab7;\n  color: wheat;\n}\n.custom-row {\n  display: -webkit-box;\n  display: flex;\n  justify-content: space-around;\n}\n.row-bar h5 {\n  text-align: center;\n  color: white;\n  letter-spacing: 10px;\n}\n/* .status-head-container{\n  position: fixed;\n    z-index: 222222;\n    background: #00BCD4;\n    color: white;\n    top: 0;\n    right: 0;\n    left: 0;\n} */\n.task-tittle {\n  font-weight: bold;\n  font-size: 13px;\n}\n.alert-secondary {\n  color: #383d41 !important;\n  background-color: #e2e3e517 !important;\n  border: 0 !important;\n  box-shadow: 1px 1px 7px 1px #eee !important;\n}\n.list-group-item {\n  margin-bottom: 10px !important;\n  padding: 0.25rem 0.25rem !important;\n}\n.task-body {\n  font-size: 12px;\n}\n.task-body p {\n  margin: 0;\n}\n", ""]);
 
 // exports
 
@@ -193766,372 +193970,671 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticStyle: { background: "#fff", "border-radius": "10px" } },
     [
-      _vm._m(0),
+      _vm.hasPermission("add_task")
+        ? _c(
+            "p",
+            { staticClass: "mb-4" },
+            [
+              _c(
+                "b-button",
+                {
+                  staticClass: "btn btn-success",
+                  staticStyle: { "margin-top": "8px" },
+                  attrs: { id: "show-btn" },
+                  on: {
+                    click: function($event) {
+                      return _vm.showAddModal()
+                    }
+                  }
+                },
+                [
+                  _c("span", { staticClass: "fa fa-plus-circle" }),
+                  _vm._v(" Add New Task")
+                ]
+              )
+            ],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
-      _vm._m(1),
+      _c(
+        "b-modal",
+        {
+          attrs: { id: "bv-modal-add-task", "hide-footer": "" },
+          scopedSlots: _vm._u([
+            {
+              key: "modal-title",
+              fn: function() {
+                return [
+                  _c("span", { staticClass: "text-primary" }, [
+                    _vm._v(_vm._s(_vm.modalForName))
+                  ])
+                ]
+              },
+              proxy: true
+            }
+          ])
+        },
+        [
+          _vm._v(" "),
+          _c("div", { staticClass: "d-block" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.task.id,
+                    expression: "task.id"
+                  }
+                ],
+                attrs: { type: "hidden" },
+                domProps: { value: _vm.task.id },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.task, "id", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "Title" } }, [_vm._v("Title:")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.task.title,
+                    expression: "task.title"
+                  }
+                ],
+                class: ["form-control"],
+                attrs: { type: "text" },
+                domProps: { value: _vm.task.title },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.task, "title", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors.title
+                ? _c("span", { class: ["errorText"] }, [
+                    _vm._v(_vm._s(_vm.errors.title[0]))
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "Phone" } }, [_vm._v("Content:")]),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.task.content,
+                    expression: "task.content"
+                  }
+                ],
+                class: ["form-control"],
+                domProps: { value: _vm.task.content },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.task, "content", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors.content
+                ? _c("span", { class: ["errorText"] }, [
+                    _vm._v(_vm._s(_vm.errors.content[0]))
+                  ])
+                : _vm._e()
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "b-button",
+            {
+              staticClass: "btn-primary mt-3",
+              attrs: { block: "" },
+              on: { click: _vm.callFunc }
+            },
+            [_vm._v(_vm._s(_vm.modalForName))]
+          )
+        ],
+        1
+      ),
       _vm._v(" "),
-      _c("div", { staticClass: "row mt-2 custom-row" }, [
-        _c("div", { staticClass: "col-3" }, [
-          _c(
-            "div",
-            { staticClass: "p-2 alert alert-secondary" },
-            [
+      _c(
+        "div",
+        { staticStyle: { background: "#fff", "border-radius": "10px" } },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _vm._m(1),
+          _vm._v(" "),
+          _c("div", { staticClass: "row mt-2 custom-row" }, [
+            _c("div", { staticClass: "col-3" }, [
               _c(
-                "draggable",
-                {
-                  staticClass: "list-group kanban-column",
-                  attrs: {
-                    list: _vm.meroTasks.toDo.priorityHIGH,
-                    group: "one"
-                  },
-                  on: { change: _vm.log }
-                },
-                _vm._l(_vm.meroTasks.toDo.priorityHIGH, function(element) {
-                  return _c("div", { key: element.id }, [
-                    _c("div", { staticClass: "list-group-item" }, [
-                      _c("div", { staticClass: "task-tittle" }, [
-                        _vm._v(
-                          "\n                " +
-                            _vm._s(element.title) +
-                            "\n              "
+                "div",
+                { staticClass: "p-2 alert alert-secondary" },
+                [
+                  _c(
+                    "draggable",
+                    {
+                      staticClass: "list-group kanban-column",
+                      attrs: {
+                        list: _vm.meroTasks.toDo.priorityHIGH,
+                        group: "one"
+                      },
+                      on: { change: _vm.log }
+                    },
+                    _vm._l(_vm.meroTasks.toDo.priorityHIGH, function(element) {
+                      return _c("div", { key: element.id }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "list-group-item",
+                            on: {
+                              click: function($event) {
+                                return _vm.editTask(
+                                  element.id,
+                                  element.title,
+                                  element.content
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("div", { staticClass: "task-tittle" }, [
+                              _vm._v(
+                                "\n                  " +
+                                  _vm._s(element.title) +
+                                  "\n                "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "task-body" }, [
+                              _c("p", [_vm._v(_vm._s(element.content))])
+                            ])
+                          ]
                         )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "task-body" }, [
-                        _c("p", [_vm._v(_vm._s(element.content))])
                       ])
-                    ])
-                  ])
-                }),
-                0
+                    }),
+                    0
+                  )
+                ],
+                1
               )
-            ],
-            1
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-3" }, [
-          _c(
-            "div",
-            { staticClass: "p-2 alert alert-secondary" },
-            [
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-3" }, [
               _c(
-                "draggable",
-                {
-                  staticClass: "list-group kanban-column",
-                  attrs: {
-                    list: _vm.meroTasks.arrInProgress.priorityHIGH,
-                    group: "one"
-                  },
-                  on: { change: _vm.log }
-                },
-                _vm._l(_vm.meroTasks.arrInProgress.priorityHIGH, function(
-                  element
-                ) {
-                  return _c("div", { key: element.id }, [
-                    _c("div", { staticClass: "list-group-item" }, [
-                      _c("div", { staticClass: "task-tittle" }, [
-                        _vm._v(
-                          "\n                " +
-                            _vm._s(element.title) +
-                            "\n              "
+                "div",
+                { staticClass: "p-2 alert alert-secondary" },
+                [
+                  _c(
+                    "draggable",
+                    {
+                      staticClass: "list-group kanban-column",
+                      attrs: {
+                        list: _vm.meroTasks.arrInProgress.priorityHIGH,
+                        group: "one"
+                      },
+                      on: { change: _vm.log }
+                    },
+                    _vm._l(_vm.meroTasks.arrInProgress.priorityHIGH, function(
+                      element
+                    ) {
+                      return _c("div", { key: element.id }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "list-group-item",
+                            on: {
+                              click: function($event) {
+                                return _vm.editTask(
+                                  element.id,
+                                  element.title,
+                                  element.content
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("div", { staticClass: "task-tittle" }, [
+                              _vm._v(
+                                "\n                  " +
+                                  _vm._s(element.title) +
+                                  "\n                "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "task-body" }, [
+                              _c("p", [_vm._v(_vm._s(element.content))])
+                            ])
+                          ]
                         )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "task-body" }, [
-                        _c("p", [_vm._v(_vm._s(element.content))])
                       ])
-                    ])
-                  ])
-                }),
-                0
+                    }),
+                    0
+                  )
+                ],
+                1
               )
-            ],
-            1
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-3" }, [
-          _c(
-            "div",
-            { staticClass: "p-2 alert alert-secondary" },
-            [
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-3" }, [
               _c(
-                "draggable",
-                {
-                  staticClass: "list-group kanban-column",
-                  attrs: {
-                    list: _vm.meroTasks.arrDone.priorityHIGH,
-                    group: "one"
-                  },
-                  on: { change: _vm.log }
-                },
-                _vm._l(_vm.meroTasks.arrDone.priorityHIGH, function(element) {
-                  return _c("div", { key: element.id }, [
-                    _c("div", { staticClass: "list-group-item" }, [
-                      _c("div", { staticClass: "task-tittle" }, [
-                        _vm._v(
-                          "\n                " +
-                            _vm._s(element.title) +
-                            "\n              "
+                "div",
+                { staticClass: "p-2 alert alert-secondary" },
+                [
+                  _c(
+                    "draggable",
+                    {
+                      staticClass: "list-group kanban-column",
+                      attrs: {
+                        list: _vm.meroTasks.arrDone.priorityHIGH,
+                        group: "one"
+                      },
+                      on: { change: _vm.log }
+                    },
+                    _vm._l(_vm.meroTasks.arrDone.priorityHIGH, function(
+                      element
+                    ) {
+                      return _c("div", { key: element.id }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "list-group-item",
+                            on: {
+                              click: function($event) {
+                                return _vm.editTask(
+                                  element.id,
+                                  element.title,
+                                  element.content
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("div", { staticClass: "task-tittle" }, [
+                              _vm._v(
+                                "\n                  " +
+                                  _vm._s(element.title) +
+                                  "\n                "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "task-body" }, [
+                              _c("p", [_vm._v(_vm._s(element.content))])
+                            ])
+                          ]
                         )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "task-body" }, [
-                        _c("p", [_vm._v(_vm._s(element.content))])
                       ])
-                    ])
-                  ])
-                }),
-                0
+                    }),
+                    0
+                  )
+                ],
+                1
               )
-            ],
-            1
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _vm._m(2),
-      _vm._v(" "),
-      _c("div", { staticClass: "row mt-2 custom-row" }, [
-        _c("div", { staticClass: "col-3" }, [
-          _c(
-            "div",
-            { staticClass: "p-2 alert alert-secondary" },
-            [
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(2),
+          _vm._v(" "),
+          _c("div", { staticClass: "row mt-2 custom-row" }, [
+            _c("div", { staticClass: "col-3" }, [
               _c(
-                "draggable",
-                {
-                  staticClass: "list-group kanban-column",
-                  attrs: { list: _vm.meroTasks.toDo.priorityMED, group: "one" }
-                },
-                _vm._l(_vm.meroTasks.toDo.priorityMED, function(element) {
-                  return _c("div", { key: element.id }, [
-                    _c("div", { staticClass: "list-group-item" }, [
-                      _c("div", { staticClass: "task-tittle" }, [
-                        _vm._v(
-                          "\n                " +
-                            _vm._s(element.title) +
-                            "\n              "
+                "div",
+                { staticClass: "p-2 alert alert-secondary" },
+                [
+                  _c(
+                    "draggable",
+                    {
+                      staticClass: "list-group kanban-column",
+                      attrs: {
+                        list: _vm.meroTasks.toDo.priorityMED,
+                        group: "one"
+                      }
+                    },
+                    _vm._l(_vm.meroTasks.toDo.priorityMED, function(element) {
+                      return _c("div", { key: element.id }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "list-group-item",
+                            on: {
+                              click: function($event) {
+                                return _vm.editTask(
+                                  element.id,
+                                  element.title,
+                                  element.content
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("div", { staticClass: "task-tittle" }, [
+                              _vm._v(
+                                "\n                  " +
+                                  _vm._s(element.title) +
+                                  "\n                "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "task-body" }, [
+                              _c("p", [_vm._v(_vm._s(element.content))])
+                            ])
+                          ]
                         )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "task-body" }, [
-                        _c("p", [_vm._v(_vm._s(element.content))])
                       ])
-                    ])
-                  ])
-                }),
-                0
+                    }),
+                    0
+                  )
+                ],
+                1
               )
-            ],
-            1
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-3" }, [
-          _c(
-            "div",
-            { staticClass: "p-2 alert alert-secondary" },
-            [
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-3" }, [
               _c(
-                "draggable",
-                {
-                  staticClass: "list-group kanban-column",
-                  attrs: {
-                    list: _vm.meroTasks.arrInProgress.priorityMED,
-                    group: "one"
-                  },
-                  on: { change: _vm.log }
-                },
-                _vm._l(_vm.meroTasks.arrInProgress.priorityMED, function(
-                  element
-                ) {
-                  return _c("div", { key: element.id }, [
-                    _c("div", { staticClass: "list-group-item" }, [
-                      _c("div", { staticClass: "task-tittle" }, [
-                        _vm._v(
-                          "\n                " +
-                            _vm._s(element.title) +
-                            "\n              "
+                "div",
+                { staticClass: "p-2 alert alert-secondary" },
+                [
+                  _c(
+                    "draggable",
+                    {
+                      staticClass: "list-group kanban-column",
+                      attrs: {
+                        list: _vm.meroTasks.arrInProgress.priorityMED,
+                        group: "one"
+                      },
+                      on: { change: _vm.log }
+                    },
+                    _vm._l(_vm.meroTasks.arrInProgress.priorityMED, function(
+                      element
+                    ) {
+                      return _c("div", { key: element.id }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "list-group-item",
+                            on: {
+                              click: function($event) {
+                                return _vm.editTask(
+                                  element.id,
+                                  element.title,
+                                  element.content
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("div", { staticClass: "task-tittle" }, [
+                              _vm._v(
+                                "\n                  " +
+                                  _vm._s(element.title) +
+                                  "\n                "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "task-body" }, [
+                              _c("p", [_vm._v(_vm._s(element.content))])
+                            ])
+                          ]
                         )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "task-body" }, [
-                        _c("p", [_vm._v(_vm._s(element.content))])
                       ])
-                    ])
-                  ])
-                }),
-                0
+                    }),
+                    0
+                  )
+                ],
+                1
               )
-            ],
-            1
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-3" }, [
-          _c(
-            "div",
-            { staticClass: "p-2 alert alert-secondary" },
-            [
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-3" }, [
               _c(
-                "draggable",
-                {
-                  staticClass: "list-group kanban-column",
-                  attrs: {
-                    list: _vm.meroTasks.arrDone.priorityMED,
-                    group: "one"
-                  },
-                  on: { change: _vm.log }
-                },
-                _vm._l(_vm.meroTasks.arrDone.priorityMED, function(element) {
-                  return _c("div", { key: element.id }, [
-                    _c("div", { staticClass: "list-group-item" }, [
-                      _c("div", { staticClass: "task-tittle" }, [
-                        _vm._v(
-                          "\n                " +
-                            _vm._s(element.title) +
-                            "\n              "
+                "div",
+                { staticClass: "p-2 alert alert-secondary" },
+                [
+                  _c(
+                    "draggable",
+                    {
+                      staticClass: "list-group kanban-column",
+                      attrs: {
+                        list: _vm.meroTasks.arrDone.priorityMED,
+                        group: "one"
+                      },
+                      on: { change: _vm.log }
+                    },
+                    _vm._l(_vm.meroTasks.arrDone.priorityMED, function(
+                      element
+                    ) {
+                      return _c("div", { key: element.id }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "list-group-item",
+                            on: {
+                              click: function($event) {
+                                return _vm.editTask(
+                                  element.id,
+                                  element.title,
+                                  element.content
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("div", { staticClass: "task-tittle" }, [
+                              _vm._v(
+                                "\n                  " +
+                                  _vm._s(element.title) +
+                                  "\n                "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "task-body" }, [
+                              _c("p", [_vm._v(_vm._s(element.content))])
+                            ])
+                          ]
                         )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "task-body" }, [
-                        _c("p", [_vm._v(_vm._s(element.content))])
                       ])
-                    ])
-                  ])
-                }),
-                0
+                    }),
+                    0
+                  )
+                ],
+                1
               )
-            ],
-            1
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _vm._m(3),
-      _vm._v(" "),
-      _c("div", { staticClass: "row mt-2 custom-row" }, [
-        _c("div", { staticClass: "col-3" }, [
-          _c(
-            "div",
-            { staticClass: "p-2 alert alert-secondary" },
-            [
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(3),
+          _vm._v(" "),
+          _c("div", { staticClass: "row mt-2 custom-row" }, [
+            _c("div", { staticClass: "col-3" }, [
               _c(
-                "draggable",
-                {
-                  staticClass: "list-group kanban-column",
-                  attrs: { list: _vm.meroTasks.toDo.priorityLOW, group: "one" },
-                  on: { change: _vm.log }
-                },
-                _vm._l(_vm.meroTasks.toDo.priorityLOW, function(element) {
-                  return _c("div", { key: element.id }, [
-                    _c("div", { staticClass: "list-group-item" }, [
-                      _c("div", { staticClass: "task-tittle" }, [
-                        _vm._v(
-                          "\n                " +
-                            _vm._s(element.title) +
-                            "\n              "
+                "div",
+                { staticClass: "p-2 alert alert-secondary" },
+                [
+                  _c(
+                    "draggable",
+                    {
+                      staticClass: "list-group kanban-column",
+                      attrs: {
+                        list: _vm.meroTasks.toDo.priorityLOW,
+                        group: "one"
+                      },
+                      on: { change: _vm.log }
+                    },
+                    _vm._l(_vm.meroTasks.toDo.priorityLOW, function(element) {
+                      return _c("div", { key: element.id }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "list-group-item",
+                            on: {
+                              click: function($event) {
+                                return _vm.editTask(
+                                  element.id,
+                                  element.title,
+                                  element.content
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("div", { staticClass: "task-tittle" }, [
+                              _vm._v(
+                                "\n                  " +
+                                  _vm._s(element.title) +
+                                  "\n                "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "task-body" }, [
+                              _c("p", [_vm._v(_vm._s(element.content))])
+                            ])
+                          ]
                         )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "task-body" }, [
-                        _c("p", [_vm._v(_vm._s(element.content))])
                       ])
-                    ])
-                  ])
-                }),
-                0
+                    }),
+                    0
+                  )
+                ],
+                1
               )
-            ],
-            1
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-3" }, [
-          _c(
-            "div",
-            { staticClass: "p-2 alert alert-secondary" },
-            [
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-3" }, [
               _c(
-                "draggable",
-                {
-                  staticClass: "list-group kanban-column",
-                  attrs: {
-                    list: _vm.meroTasks.arrInProgress.priorityLOW,
-                    group: "one"
-                  },
-                  on: { change: _vm.log }
-                },
-                _vm._l(_vm.meroTasks.arrInProgress.priorityLOW, function(
-                  element
-                ) {
-                  return _c("div", { key: element.id }, [
-                    _c("div", { staticClass: "list-group-item" }, [
-                      _c("div", { staticClass: "task-tittle" }, [
-                        _vm._v(
-                          "\n                " +
-                            _vm._s(element.title) +
-                            "\n              "
+                "div",
+                { staticClass: "p-2 alert alert-secondary" },
+                [
+                  _c(
+                    "draggable",
+                    {
+                      staticClass: "list-group kanban-column",
+                      attrs: {
+                        list: _vm.meroTasks.arrInProgress.priorityLOW,
+                        group: "one"
+                      },
+                      on: { change: _vm.log }
+                    },
+                    _vm._l(_vm.meroTasks.arrInProgress.priorityLOW, function(
+                      element
+                    ) {
+                      return _c("div", { key: element.id }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "list-group-item",
+                            on: {
+                              click: function($event) {
+                                return _vm.editTask(
+                                  element.id,
+                                  element.title,
+                                  element.content
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("div", { staticClass: "task-tittle" }, [
+                              _vm._v(
+                                "\n                  " +
+                                  _vm._s(element.title) +
+                                  "\n                "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "task-body" }, [
+                              _c("p", [_vm._v(_vm._s(element.content))])
+                            ])
+                          ]
                         )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "task-body" }, [
-                        _c("p", [_vm._v(_vm._s(element.content))])
                       ])
-                    ])
-                  ])
-                }),
-                0
+                    }),
+                    0
+                  )
+                ],
+                1
               )
-            ],
-            1
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-3" }, [
-          _c(
-            "div",
-            { staticClass: "p-2 alert alert-secondary" },
-            [
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-3" }, [
               _c(
-                "draggable",
-                {
-                  staticClass: "list-group kanban-column",
-                  attrs: {
-                    list: _vm.meroTasks.arrDone.priorityLOW,
-                    group: "one"
-                  },
-                  on: { change: _vm.log }
-                },
-                _vm._l(_vm.meroTasks.arrDone.priorityLOW, function(element) {
-                  return _c("div", { key: element.id }, [
-                    _c("div", { staticClass: "list-group-item" }, [
-                      _c("div", { staticClass: "task-tittle" }, [
-                        _vm._v(
-                          "\n                " +
-                            _vm._s(element.title) +
-                            "\n              "
+                "div",
+                { staticClass: "p-2 alert alert-secondary" },
+                [
+                  _c(
+                    "draggable",
+                    {
+                      staticClass: "list-group kanban-column",
+                      attrs: {
+                        list: _vm.meroTasks.arrDone.priorityLOW,
+                        group: "one"
+                      },
+                      on: { change: _vm.log }
+                    },
+                    _vm._l(_vm.meroTasks.arrDone.priorityLOW, function(
+                      element
+                    ) {
+                      return _c("div", { key: element.id }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "list-group-item",
+                            on: {
+                              click: function($event) {
+                                return _vm.editTask(
+                                  element.id,
+                                  element.title,
+                                  element.content
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("div", { staticClass: "task-tittle" }, [
+                              _vm._v(
+                                "\n                  " +
+                                  _vm._s(element.title) +
+                                  "\n                "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "task-body" }, [
+                              _c("p", [_vm._v(_vm._s(element.content))])
+                            ])
+                          ]
                         )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "task-body" }, [
-                        _c("p", [_vm._v(_vm._s(element.content))])
                       ])
-                    ])
-                  ])
-                }),
-                0
+                    }),
+                    0
+                  )
+                ],
+                1
               )
-            ],
-            1
-          )
-        ])
-      ])
-    ]
+            ])
+          ])
+        ]
+      )
+    ],
+    1
   )
 }
 var staticRenderFns = [

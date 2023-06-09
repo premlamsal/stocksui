@@ -9,7 +9,8 @@ class TaskBoardController extends Controller
 {
     public function updateTasks(Request $request)
     {
-        $updatedData = $request->input('data');
+        $updatedData =$request->input('data');
+
         // Perform the necessary database updates using the $updatedData
 
         $TaskBoard=TaskBoard::findOrFail(1);
