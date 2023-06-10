@@ -278,3 +278,10 @@ a.fc-daygrid-dot-event .fc-daygrid-event-dot{
 .btn-danger:hover{
     background-color: red;
 }
+.text-primary{
+    color: #000!important;
+}
+.btn-primary:focus{
+    background: var(--favblue) !important;
+    color: var(--favgold) !important;
+}

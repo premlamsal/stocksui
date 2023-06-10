@@ -42,7 +42,7 @@
         block
         @click="deleteTask(task.id)"
         v-if="modalForCode"
-        >Delete this event</b-button
+        >Delete this Task</b-button
       >
     </b-modal>
 

@@ -194137,7 +194137,7 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._v("Delete this event")]
+                [_vm._v("Delete this Task")]
               )
             : _vm._e()
         ],
