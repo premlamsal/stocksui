@@ -27539,6 +27539,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 //import draggable
 
 
@@ -27557,7 +27565,7 @@ __webpack_require__.r(__webpack_exports__);
       task: {
         id: "",
         title: "",
-        content: ""
+        description: ""
       },
       // 4 arrays to keep track of our 4 statuses
       // toDo: [
@@ -27670,21 +27678,33 @@ __webpack_require__.r(__webpack_exports__);
     getTasks: function getTasks() {
       var _this = this;
 
+      this.$Progress.start();
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/tasks").then(function (response) {
-        var data = JSON.parse(response.data.data.tasks);
-        _this.meroTasks = data; // Vue.set(this.meroTasks, JSON.parse(data));
+        if (response.data.data.tasks) {
+          var data = JSON.parse(response.data.data.tasks);
+          _this.meroTasks = data;
+        }
+
+        _this.$Progress.finish(); // Vue.set(this.meroTasks, JSON.parse(data));
+
       })["catch"](function (error) {
         console.log(error);
+
+        _this.$Progress.fail();
       });
     },
     updateDataInBackend: _.debounce(function () {
+      this.$Progress.start();
+
       try {
         axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/update-tasks", {
           data: this.meroTasks
         });
+        this.$Progress.finish();
         console.log("Data updated in the backend successfully!");
       } catch (error) {
         console.error("Failed to update data in the backend:", error);
+        this.$Progress.fail();
       }
     }, 900),
     showAddModal: function showAddModal() {
@@ -27693,7 +27713,7 @@ __webpack_require__.r(__webpack_exports__);
       this.modalForCode = 0; //0 for add
 
       this.task.title = "";
-      this.task.content = "";
+      this.task.description = "";
       this.errors = ""; //clearing errors
       // Vue.set(this.modalForCode,0);
 
@@ -27711,33 +27731,14 @@ __webpack_require__.r(__webpack_exports__);
       var pushTask = {
         id: Date.now(),
         title: this.task.title,
-        content: this.task.content
+        description: this.task.description
       };
       this.meroTasks.toDo.priorityHIGH.push(pushTask);
       this.$bvModal.hide("bv-modal-add-task");
-      this.updateDataInBackend(); // let currObj = this;
-      // axios.post('/api/task', this.task)
-      //   .then(function(response) {
-      //     currObj.output = response.data.msg;
-      //     currObj.status = response.data.status;
-      //     currObj.$swal('Info', currObj.output, currObj.status);
-      //     currObj.$bvModal.hide('bv-modal-add-task');
-      //     currObj.task.title = '';
-      //     currObj.task.content = '';
-      //     currObj.errors = ''; //clearing errors
-      //     currObj.$Progress.finish();
-      //     currObj.fetchSuppliers();
-      //   })
-      //   .catch(function(error) {
-      //     currObj.$Progress.fail();
-      //     if (error.response.status == 422) {
-      //       currObj.validationErrors = error.response.data.errors;
-      //       currObj.errors = currObj.validationErrors;
-      //       // console.log(currObj.errors);
-      //     }
-      //   });
+      this.updateDataInBackend();
+      this.$Progress.finish();
     },
-    editTask: function editTask(id, title, content) {
+    editTask: function editTask(id, title, description) {
       this.$Progress.start();
       this.modalForName = "Edit Task";
       this.modalForCode = 1; // 1 for Edit
@@ -27747,7 +27748,8 @@ __webpack_require__.r(__webpack_exports__);
 
       Vue.set(this.task, "id", id);
       Vue.set(this.task, "title", title);
-      Vue.set(this.task, "content", content);
+      Vue.set(this.task, "description", description);
+      this.$Progress.finish();
     },
     updateTask: function updateTask() {
       this.$Progress.start(); // Assuming you have the ID of the task you want to edit and the updated data
@@ -27756,7 +27758,7 @@ __webpack_require__.r(__webpack_exports__);
       var updatedTaskData = {
         // Updated properties of the task
         title: this.task.title,
-        content: this.task.content
+        description: this.task.description
       }; // Find the task in the 'meroTasks' data structure
 
       for (var categoryKey in this.meroTasks) {
@@ -27779,8 +27781,12 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.updateDataInBackend();
+      this.$bvModal.hide("bv-modal-add-task");
+      this.$Progress.finish();
     },
-    deleteSupplier: function deleteSupplier(id) {
+    deleteTask: function deleteTask(id) {
+      var _this2 = this;
+
       this.$Progress.start();
       var currObj = this;
       this.$swal({
@@ -27791,23 +27797,37 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "Yes, delete it!"
-      }).then(function (result) {// if (result.value) {
-        //   axios.delete('/api/supplier/' + id)
-        //     .then(function(response) {
-        //       currObj.output = response.data.msg;
-        //       currObj.status = response.data.status;
-        //       // alert(currObj.status);
-        //       let index_to_delete = currObj.suppliers.findIndex(supplier => supplier.id === id)
-        //       currObj.suppliers.splice(index_to_delete,1);
-        //       currObj.$Progress.finish();
-        //       // alert(currObj.status);
-        //       currObj.$swal("Info", currObj.output, currObj.status);
-        //     }).catch(function(error) {
-        //       currObj.$Progress.fail();
-        //       // currObj.output=error;
-        //       // console.log(currObj.output);
-        //     })
-        // }
+      }).then(function (result) {
+        if (result.value) {
+          (function () {
+            // Assuming you have the ID of the task you want to delete
+            var taskId = id; // Find and delete the task from the 'meroTasks' data structure
+
+            for (var categoryKey in _this2.meroTasks) {
+              var category = _this2.meroTasks[categoryKey];
+
+              for (var priorityKey in category) {
+                var priority = category[priorityKey];
+                var taskIndex = priority.findIndex(function (task) {
+                  return task.id === taskId;
+                });
+
+                if (taskIndex !== -1) {
+                  // Remove the task from the priority array
+                  priority.splice(taskIndex, 1); // Optionally, you can trigger any necessary updates or save the changes to a database
+
+                  break; // Exit the loop since the task has been deleted
+                }
+              }
+            }
+
+            _this2.updateDataInBackend();
+
+            _this2.$bvModal.hide("bv-modal-add-task");
+
+            _this2.$Progress.finish();
+          })();
+        }
       });
     },
     //end of deleteUnit()
@@ -27821,17 +27841,6 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     //has permision
-    apicall: function apicall() {
-      var _this2 = this;
-
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("https://jsonplaceholder.typicode.com/users", this.meroTasks).then(function (res) {
-        var persons = res.data;
-
-        _this2.setState({
-          persons: persons
-        });
-      });
-    },
     log: function log(log_data) {
       var temp_log_data = log_data;
       console.log(temp_log_data); // var that = this;
@@ -96658,7 +96667,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* light stylings for the kanban columns */\n.kanban-column {\n  min-height: 300px;\n}\n.status-head-container {\n  margin-top: 20px;\n  display: -webkit-box;\n  display: flex;\n  justify-content: space-around;\n  background: #673ab7;\n  color: wheat;\n}\n.custom-row {\n  display: -webkit-box;\n  display: flex;\n  justify-content: space-around;\n}\n.row-bar h5 {\n  text-align: center;\n  color: white;\n  letter-spacing: 10px;\n}\n/* .status-head-container{\n  position: fixed;\n    z-index: 222222;\n    background: #00BCD4;\n    color: white;\n    top: 0;\n    right: 0;\n    left: 0;\n} */\n.task-tittle {\n  font-weight: bold;\n  font-size: 13px;\n}\n.alert-secondary {\n  color: #383d41 !important;\n  background-color: #e2e3e517 !important;\n  border: 0 !important;\n  box-shadow: 1px 1px 7px 1px #eee !important;\n}\n.list-group-item {\n  margin-bottom: 10px !important;\n  padding: 0.25rem 0.25rem !important;\n}\n.task-body {\n  font-size: 12px;\n}\n.task-body p {\n  margin: 0;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* light stylings for the kanban columns */\n.kanban-column {\n  min-height: 300px;\n}\n.status-head-container {\n  margin-top: 20px;\n  display: -webkit-box;\n  display: flex;\n  justify-content: space-around;\n  background: #673ab7;\n  color: wheat;\n}\n.custom-row {\n  display: -webkit-box;\n  display: flex;\n  justify-content: space-around;\n}\n.row-bar h5 {\n  text-align: center;\n  color: white;\n  letter-spacing: 10px;\n}\n/* .status-head-container{\n  position: fixed;\n    z-index: 222222;\n    background: #00BCD4;\n    color: white;\n    top: 0;\n    right: 0;\n    left: 0;\n} */\n.task-tittle {\n  font-weight: bold;\n  font-size: 13px;\n}\n.alert-secondary {\n  color: #383d41 !important;\n  background-color: #e2e3e517 !important;\n  border: 0 !important;\n  box-shadow: 1px 1px 7px 1px #eee !important;\n}\n.list-group-item {\n  margin-bottom: 10px !important;\n  padding: 0.25rem 0.25rem !important;\n}\n.task-body {\n  font-size: 12px;\n}\n.task-body p {\n  margin: 0;\n}\n", ""]);
 
 // exports
 
@@ -194073,32 +194082,34 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "Phone" } }, [_vm._v("Content:")]),
+              _c("label", { attrs: { for: "Phone" } }, [
+                _vm._v("Description:")
+              ]),
               _vm._v(" "),
               _c("textarea", {
                 directives: [
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.task.content,
-                    expression: "task.content"
+                    value: _vm.task.description,
+                    expression: "task.description"
                   }
                 ],
                 class: ["form-control"],
-                domProps: { value: _vm.task.content },
+                domProps: { value: _vm.task.description },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.task, "content", $event.target.value)
+                    _vm.$set(_vm.task, "description", $event.target.value)
                   }
                 }
               }),
               _vm._v(" "),
-              _vm.errors.content
+              _vm.errors.description
                 ? _c("span", { class: ["errorText"] }, [
-                    _vm._v(_vm._s(_vm.errors.content[0]))
+                    _vm._v(_vm._s(_vm.errors.description[0]))
                   ])
                 : _vm._e()
             ])
@@ -194112,7 +194123,23 @@ var render = function() {
               on: { click: _vm.callFunc }
             },
             [_vm._v(_vm._s(_vm.modalForName))]
-          )
+          ),
+          _vm._v(" "),
+          _vm.modalForCode
+            ? _c(
+                "b-button",
+                {
+                  staticClass: "btn-danger mt-3",
+                  attrs: { block: "" },
+                  on: {
+                    click: function($event) {
+                      return _vm.deleteTask(_vm.task.id)
+                    }
+                  }
+                },
+                [_vm._v("Delete this event")]
+              )
+            : _vm._e()
         ],
         1
       ),
@@ -194152,7 +194179,7 @@ var render = function() {
                                 return _vm.editTask(
                                   element.id,
                                   element.title,
-                                  element.content
+                                  element.description
                                 )
                               }
                             }
@@ -194167,7 +194194,7 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "task-body" }, [
-                              _c("p", [_vm._v(_vm._s(element.content))])
+                              _c("p", [_vm._v(_vm._s(element.description))])
                             ])
                           ]
                         )
@@ -194208,7 +194235,7 @@ var render = function() {
                                 return _vm.editTask(
                                   element.id,
                                   element.title,
-                                  element.content
+                                  element.description
                                 )
                               }
                             }
@@ -194223,7 +194250,7 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "task-body" }, [
-                              _c("p", [_vm._v(_vm._s(element.content))])
+                              _c("p", [_vm._v(_vm._s(element.description))])
                             ])
                           ]
                         )
@@ -194264,7 +194291,7 @@ var render = function() {
                                 return _vm.editTask(
                                   element.id,
                                   element.title,
-                                  element.content
+                                  element.description
                                 )
                               }
                             }
@@ -194279,7 +194306,7 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "task-body" }, [
-                              _c("p", [_vm._v(_vm._s(element.content))])
+                              _c("p", [_vm._v(_vm._s(element.description))])
                             ])
                           ]
                         )
@@ -194321,7 +194348,7 @@ var render = function() {
                                 return _vm.editTask(
                                   element.id,
                                   element.title,
-                                  element.content
+                                  element.description
                                 )
                               }
                             }
@@ -194336,7 +194363,7 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "task-body" }, [
-                              _c("p", [_vm._v(_vm._s(element.content))])
+                              _c("p", [_vm._v(_vm._s(element.description))])
                             ])
                           ]
                         )
@@ -194377,7 +194404,7 @@ var render = function() {
                                 return _vm.editTask(
                                   element.id,
                                   element.title,
-                                  element.content
+                                  element.description
                                 )
                               }
                             }
@@ -194392,7 +194419,7 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "task-body" }, [
-                              _c("p", [_vm._v(_vm._s(element.content))])
+                              _c("p", [_vm._v(_vm._s(element.description))])
                             ])
                           ]
                         )
@@ -194433,7 +194460,7 @@ var render = function() {
                                 return _vm.editTask(
                                   element.id,
                                   element.title,
-                                  element.content
+                                  element.description
                                 )
                               }
                             }
@@ -194448,7 +194475,7 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "task-body" }, [
-                              _c("p", [_vm._v(_vm._s(element.content))])
+                              _c("p", [_vm._v(_vm._s(element.description))])
                             ])
                           ]
                         )
@@ -194491,7 +194518,7 @@ var render = function() {
                                 return _vm.editTask(
                                   element.id,
                                   element.title,
-                                  element.content
+                                  element.description
                                 )
                               }
                             }
@@ -194506,7 +194533,7 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "task-body" }, [
-                              _c("p", [_vm._v(_vm._s(element.content))])
+                              _c("p", [_vm._v(_vm._s(element.description))])
                             ])
                           ]
                         )
@@ -194547,7 +194574,7 @@ var render = function() {
                                 return _vm.editTask(
                                   element.id,
                                   element.title,
-                                  element.content
+                                  element.description
                                 )
                               }
                             }
@@ -194562,7 +194589,7 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "task-body" }, [
-                              _c("p", [_vm._v(_vm._s(element.content))])
+                              _c("p", [_vm._v(_vm._s(element.description))])
                             ])
                           ]
                         )
@@ -194603,7 +194630,7 @@ var render = function() {
                                 return _vm.editTask(
                                   element.id,
                                   element.title,
-                                  element.content
+                                  element.description
                                 )
                               }
                             }
@@ -194618,7 +194645,7 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "task-body" }, [
-                              _c("p", [_vm._v(_vm._s(element.content))])
+                              _c("p", [_vm._v(_vm._s(element.description))])
                             ])
                           ]
                         )

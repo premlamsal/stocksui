@@ -26,16 +26,24 @@
         </div>
 
         <div class="form-group">
-          <label for="Phone">Content:</label>
-          <textarea v-model="task.content" :class="['form-control']"></textarea>
-          <span v-if="errors.content" :class="['errorText']">{{
-            errors.content[0]
+          <label for="Phone">Description:</label>
+          <textarea v-model="task.description" :class="['form-control']"></textarea>
+          <span v-if="errors.description" :class="['errorText']">{{
+            errors.description[0]
           }}</span>
         </div>
       </div>
       <b-button class="btn-primary mt-3" block @click="callFunc">{{
         modalForName
       }}</b-button>
+
+      <b-button
+        class="btn-danger mt-3"
+        block
+        @click="deleteTask(task.id)"
+        v-if="modalForCode"
+        >Delete this event</b-button
+      >
     </b-modal>
 
     <div style="background: #fff; border-radius: 10px">
@@ -74,14 +82,14 @@
               >
                 <div
                   class="list-group-item"
-                  @click="editTask(element.id, element.title, element.content)"
+                  @click="editTask(element.id, element.title, element.description)"
                 >
                   <!-- <h4>HIGH</h4> -->
                   <div class="task-tittle">
                     {{ element.title }}
                   </div>
                   <div class="task-body">
-                    <p>{{ element.content }}</p>
+                    <p>{{ element.description }}</p>
                   </div>
                 </div>
               </div>
@@ -105,14 +113,14 @@
               >
                 <div
                   class="list-group-item"
-                  @click="editTask(element.id, element.title, element.content)"
+                  @click="editTask(element.id, element.title, element.description)"
                 >
                   <!-- <h4>HIGH</h4> -->
                   <div class="task-tittle">
                     {{ element.title }}
                   </div>
                   <div class="task-body">
-                    <p>{{ element.content }}</p>
+                    <p>{{ element.description }}</p>
                   </div>
                 </div>
               </div>
@@ -135,14 +143,14 @@
               >
                 <div
                   class="list-group-item"
-                  @click="editTask(element.id, element.title, element.content)"
+                  @click="editTask(element.id, element.title, element.description)"
                 >
                   <!-- <h4>HIGH</h4> -->
                   <div class="task-tittle">
                     {{ element.title }}
                   </div>
                   <div class="task-body">
-                    <p>{{ element.content }}</p>
+                    <p>{{ element.description }}</p>
                   </div>
                 </div>
               </div>
@@ -171,7 +179,7 @@
               >
                 <div
                   class="list-group-item"
-                  @click="editTask(element.id, element.title, element.content)"
+                  @click="editTask(element.id, element.title, element.description)"
                 >
                   <!-- <h4>MED</h4> -->
 
@@ -179,7 +187,7 @@
                     {{ element.title }}
                   </div>
                   <div class="task-body">
-                    <p>{{ element.content }}</p>
+                    <p>{{ element.description }}</p>
                   </div>
                 </div>
               </div>
@@ -203,7 +211,7 @@
               >
                 <div
                   class="list-group-item"
-                  @click="editTask(element.id, element.title, element.content)"
+                  @click="editTask(element.id, element.title, element.description)"
                 >
                   <!-- <h4>MED</h4> -->
 
@@ -211,7 +219,7 @@
                     {{ element.title }}
                   </div>
                   <div class="task-body">
-                    <p>{{ element.content }}</p>
+                    <p>{{ element.description }}</p>
                   </div>
                 </div>
               </div>
@@ -234,14 +242,14 @@
               >
                 <div
                   class="list-group-item"
-                  @click="editTask(element.id, element.title, element.content)"
+                  @click="editTask(element.id, element.title, element.description)"
                 >
                   <!-- <h4>MED</h4> -->
                   <div class="task-tittle">
                     {{ element.title }}
                   </div>
                   <div class="task-body">
-                    <p>{{ element.content }}</p>
+                    <p>{{ element.description }}</p>
                   </div>
                 </div>
               </div>
@@ -271,7 +279,7 @@
               >
                 <div
                   class="list-group-item"
-                  @click="editTask(element.id, element.title, element.content)"
+                  @click="editTask(element.id, element.title, element.description)"
                 >
                   <!-- <h4>LOW</h4> -->
 
@@ -279,7 +287,7 @@
                     {{ element.title }}
                   </div>
                   <div class="task-body">
-                    <p>{{ element.content }}</p>
+                    <p>{{ element.description }}</p>
                   </div>
                 </div>
               </div>
@@ -303,7 +311,7 @@
               >
                 <div
                   class="list-group-item"
-                  @click="editTask(element.id, element.title, element.content)"
+                  @click="editTask(element.id, element.title, element.description)"
                 >
                   <!-- <h4>LOW</h4> -->
 
@@ -311,7 +319,7 @@
                     {{ element.title }}
                   </div>
                   <div class="task-body">
-                    <p>{{ element.content }}</p>
+                    <p>{{ element.description }}</p>
                   </div>
                 </div>
               </div>
@@ -334,14 +342,14 @@
               >
                 <div
                   class="list-group-item"
-                  @click="editTask(element.id, element.title, element.content)"
+                  @click="editTask(element.id, element.title, element.description)"
                 >
                   <!-- <h4>LOW</h4> -->
                   <div class="task-tittle">
                     {{ element.title }}
                   </div>
                   <div class="task-body">
-                    <p>{{ element.content }}</p>
+                    <p>{{ element.description }}</p>
                   </div>
                 </div>
               </div>
@@ -374,7 +382,7 @@ export default {
       task: {
         id: "",
         title: "",
-        content: "",
+        description: "",
       },
       // 4 arrays to keep track of our 4 statuses
       // toDo: [
@@ -490,27 +498,42 @@ export default {
   },
   methods: {
     getTasks() {
+      this.$Progress.start();
+
       axios
         .get("/api/tasks")
         .then((response) => {
-          const data = JSON.parse(response.data.data.tasks);
+          if (response.data.data.tasks) {
+            const data = JSON.parse(response.data.data.tasks);
+            this.meroTasks = data;
+          }
+          this.$Progress.finish();
 
-          this.meroTasks = data;
           // Vue.set(this.meroTasks, JSON.parse(data));
         })
         .catch((error) => {
           console.log(error);
+      this.$Progress.fail();
+
         });
+
     },
     updateDataInBackend: _.debounce(function () {
+      this.$Progress.start();
+
       try {
         axios.post("/api/update-tasks", {
           data: this.meroTasks,
         });
+      this.$Progress.finish();
+
         console.log("Data updated in the backend successfully!");
       } catch (error) {
         console.error("Failed to update data in the backend:", error);
+      this.$Progress.fail();
+
       }
+
     }, 900),
     showAddModal() {
       this.modalForName = "Add Task";
@@ -518,7 +541,7 @@ export default {
       this.modalForCode = 0; //0 for add
 
       this.task.title = "";
-      this.task.content = "";
+      this.task.description = "";
 
       this.errors = ""; //clearing errors
 
@@ -540,39 +563,17 @@ export default {
       const pushTask = {
         id: Date.now(),
         title: this.task.title,
-        content: this.task.content,
+        description: this.task.description,
       };
 
       this.meroTasks.toDo.priorityHIGH.push(pushTask);
       this.$bvModal.hide("bv-modal-add-task");
       this.updateDataInBackend();
-      // let currObj = this;
-      // axios.post('/api/task', this.task)
-      //   .then(function(response) {
-      //     currObj.output = response.data.msg;
-      //     currObj.status = response.data.status;
-      //     currObj.$swal('Info', currObj.output, currObj.status);
+      this.$Progress.finish();
 
-      //     currObj.$bvModal.hide('bv-modal-add-task');
-
-      //     currObj.task.title = '';
-      //     currObj.task.content = '';
-      //     currObj.errors = ''; //clearing errors
-      //     currObj.$Progress.finish();
-
-      //     currObj.fetchSuppliers();
-
-      //   })
-      //   .catch(function(error) {
-      //     currObj.$Progress.fail();
-      //     if (error.response.status == 422) {
-      //       currObj.validationErrors = error.response.data.errors;
-      //       currObj.errors = currObj.validationErrors;
-      //       // console.log(currObj.errors);
-      //     }
-      //   });
+   
     },
-    editTask(id, title, content) {
+    editTask(id, title, description) {
       this.$Progress.start();
       this.modalForName = "Edit Task";
       this.modalForCode = 1; // 1 for Edit
@@ -581,7 +582,9 @@ export default {
 
       Vue.set(this.task, "id", id);
       Vue.set(this.task, "title", title);
-      Vue.set(this.task, "content", content);
+      Vue.set(this.task, "description", description);
+      this.$Progress.finish();
+
     },
 
     updateTask() {
@@ -592,7 +595,7 @@ export default {
       const updatedTaskData = {
         // Updated properties of the task
         title: this.task.title,
-        content: this.task.content,
+        description: this.task.description,
       };
 
       // Find the task in the 'meroTasks' data structure
@@ -615,9 +618,12 @@ export default {
       }
 
       this.updateDataInBackend();
+      this.$bvModal.hide("bv-modal-add-task");
+      this.$Progress.finish();
+
     },
 
-    deleteSupplier(id) {
+    deleteTask(id) {
       this.$Progress.start();
       let currObj = this;
       this.$swal({
@@ -629,23 +635,35 @@ export default {
         cancelButtonColor: "#d33",
         confirmButtonText: "Yes, delete it!",
       }).then((result) => {
-        // if (result.value) {
-        //   axios.delete('/api/supplier/' + id)
-        //     .then(function(response) {
-        //       currObj.output = response.data.msg;
-        //       currObj.status = response.data.status;
-        //       // alert(currObj.status);
-        //       let index_to_delete = currObj.suppliers.findIndex(supplier => supplier.id === id)
-        //       currObj.suppliers.splice(index_to_delete,1);
-        //       currObj.$Progress.finish();
-        //       // alert(currObj.status);
-        //       currObj.$swal("Info", currObj.output, currObj.status);
-        //     }).catch(function(error) {
-        //       currObj.$Progress.fail();
-        //       // currObj.output=error;
-        //       // console.log(currObj.output);
-        //     })
-        // }
+        if (result.value) {
+          // Assuming you have the ID of the task you want to delete
+          const taskId = id;
+
+          // Find and delete the task from the 'meroTasks' data structure
+          for (const categoryKey in this.meroTasks) {
+            const category = this.meroTasks[categoryKey];
+
+            for (const priorityKey in category) {
+              const priority = category[priorityKey];
+
+              const taskIndex = priority.findIndex(
+                (task) => task.id === taskId
+              );
+
+              if (taskIndex !== -1) {
+                // Remove the task from the priority array
+                priority.splice(taskIndex, 1);
+                // Optionally, you can trigger any necessary updates or save the changes to a database
+
+                break; // Exit the loop since the task has been deleted
+              }
+            }
+          }
+          this.updateDataInBackend();
+         this.$bvModal.hide("bv-modal-add-task");
+         this.$Progress.finish();
+
+        }
       });
     }, //end of deleteUnit()
     hasPermission(action) {
@@ -661,14 +679,6 @@ export default {
       }
     }, //has permision
 
-    apicall() {
-      axios
-        .post(`https://jsonplaceholder.typicode.com/users`, this.meroTasks)
-        .then((res) => {
-          const persons = res.data;
-          this.setState({ persons });
-        });
-    },
     log(log_data) {
       const temp_log_data = log_data;
 
