@@ -566,7 +566,7 @@ export default {
         description: this.task.description,
       };
 
-      this.meroTasks.toDo.priorityHIGH.push(pushTask);
+      this.meroTasks.toDo.priorityLOW.push(pushTask);
       this.$bvModal.hide("bv-modal-add-task");
       this.updateDataInBackend();
       this.$Progress.finish();
@@ -707,7 +707,7 @@ export default {
 <style>
 /* light stylings for the kanban columns */
 .kanban-column {
-  min-height: 300px;
+  /* min-height: 60px; */
 }
 .status-head-container {
   margin-top: 20px;
