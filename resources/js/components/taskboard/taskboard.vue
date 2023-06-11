@@ -711,10 +711,11 @@ export default {
 }
 .status-head-container {
   margin-top: 20px;
-  display: flex;
-  justify-content: space-around;
-  background: #673ab7;
-  color: wheat;
+    display: -webkit-box;
+    display: flex;
+    justify-content: space-around;
+    background: #163373;
+    color: #ffd602;
 }
 .custom-row {
   display: flex;
@@ -745,13 +746,17 @@ export default {
   box-shadow: 1px 1px 7px 1px #eee !important;
 }
 .list-group-item {
-  margin-bottom: 10px !important;
-  padding: 0.25rem 0.25rem !important;
+  margin: 4px !important;
+    padding: 0.25rem 0.25rem !important;
 }
 .task-body {
   font-size: 12px;
 }
 .task-body p {
   margin: 0;
+}
+{
+  background: var(--favblue);
+    color: var(--favgold) !important;
 }
 </style>
