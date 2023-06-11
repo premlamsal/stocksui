@@ -1,5 +1,7 @@
 <template>
   <div>
+      <!-- Page Heading -->
+      <h1 class="h3 mb-2 text-gray-800">Taskboard</h1>
     <p class="mb-4" v-if="hasPermission('add_task')">
       <b-button
         id="show-btn"
@@ -50,19 +52,19 @@
       <div class="outside-status-head-container">
         <div class="status-head-container">
           <div class="status-head">
-            <h5>Todos</h5>
+            <h5>TO DO</h5>
           </div>
           <div class="status-head">
-            <h5>In Progress</h5>
+            <h5>IN PROGRESS</h5>
           </div>
           <div class="status-head">
-            <h5>Done</h5>
+            <h5>COMPLETED</h5>
           </div>
         </div>
       </div>
       <div class="row-bar-contianer">
-        <div class="row-bar">
-          <h5 style="background: #f44336">HIGH</h5>
+        <div class="row-bar"> 
+          <h5 style="background: #f44336">HIGH PRIORITY</h5>
         </div>
       </div>
       <div class="row mt-2 custom-row">
@@ -160,7 +162,7 @@
       </div>
       <div class="row-bar-contianer">
         <div class="row-bar">
-          <h5 style="background: #ffc107">MED</h5>
+          <h5 style="background: #ffc107">MEDIUM PRIORITY</h5>
         </div>
       </div>
       <div class="row mt-2 custom-row">
@@ -259,7 +261,7 @@
       </div>
       <div class="row-bar-contianer">
         <div class="row-bar">
-          <h5 style="background: #4caf50">LOW</h5>
+          <h5 style="background: #4caf50">LOW PRIORITY</h5>
         </div>
       </div>
       <div class="row mt-2 custom-row">
@@ -724,7 +726,9 @@ export default {
 .row-bar h5 {
   text-align: center;
   color: white;
-  letter-spacing: 10px;
+  font-size: 14px;
+  
+  /* letter-spacing: 10px; */
 }
 /* .status-head-container{
   position: fixed;
@@ -755,8 +759,5 @@ export default {
 .task-body p {
   margin: 0;
 }
-{
-  background: var(--favblue);
-    color: var(--favgold) !important;
-}
+
 </style>

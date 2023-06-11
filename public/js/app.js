@@ -27547,6 +27547,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 //import draggable
 
 
@@ -96667,7 +96669,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* light stylings for the kanban columns */\n.kanban-column {\n  /* min-height: 60px; */\n}\n.status-head-container {\n  margin-top: 20px;\n    display: -webkit-box;\n    display: flex;\n    justify-content: space-around;\n    background: #163373;\n    color: #ffd602;\n}\n.custom-row {\n  display: -webkit-box;\n  display: flex;\n  justify-content: space-around;\n}\n.row-bar h5 {\n  text-align: center;\n  color: white;\n  letter-spacing: 10px;\n}\n/* .status-head-container{\n  position: fixed;\n    z-index: 222222;\n    background: #00BCD4;\n    color: white;\n    top: 0;\n    right: 0;\n    left: 0;\n} */\n.task-tittle {\n  font-weight: bold;\n  font-size: 13px;\n}\n.alert-secondary {\n  color: #383d41 !important;\n  background-color: #e2e3e517 !important;\n  border: 0 !important;\n  box-shadow: 1px 1px 7px 1px #eee !important;\n}\n.list-group-item {\n  margin: 4px !important;\n    padding: 0.25rem 0.25rem !important;\n}\n.task-body {\n  font-size: 12px;\n}\n.task-body p {\n  margin: 0;\n}\n{\n  background: var(--favblue);\n    color: var(--favgold) !important;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* light stylings for the kanban columns */\n.kanban-column {\n  /* min-height: 60px; */\n}\n.status-head-container {\n  margin-top: 20px;\n    display: -webkit-box;\n    display: flex;\n    justify-content: space-around;\n    background: #163373;\n    color: #ffd602;\n}\n.custom-row {\n  display: -webkit-box;\n  display: flex;\n  justify-content: space-around;\n}\n.row-bar h5 {\n  text-align: center;\n  color: white;\n  font-size: 14px;\n  \n  /* letter-spacing: 10px; */\n}\n/* .status-head-container{\n  position: fixed;\n    z-index: 222222;\n    background: #00BCD4;\n    color: white;\n    top: 0;\n    right: 0;\n    left: 0;\n} */\n.task-tittle {\n  font-weight: bold;\n  font-size: 13px;\n}\n.alert-secondary {\n  color: #383d41 !important;\n  background-color: #e2e3e517 !important;\n  border: 0 !important;\n  box-shadow: 1px 1px 7px 1px #eee !important;\n}\n.list-group-item {\n  margin: 4px !important;\n    padding: 0.25rem 0.25rem !important;\n}\n.task-body {\n  font-size: 12px;\n}\n.task-body p {\n  margin: 0;\n}\n\n", ""]);
 
 // exports
 
@@ -193980,6 +193982,8 @@ var render = function() {
   return _c(
     "div",
     [
+      _c("h1", { staticClass: "h3 mb-2 text-gray-800" }, [_vm._v("Taskboard")]),
+      _vm._v(" "),
       _vm.hasPermission("add_task")
         ? _c(
             "p",
@@ -194672,14 +194676,16 @@ var staticRenderFns = [
     return _c("div", { staticClass: "outside-status-head-container" }, [
       _c("div", { staticClass: "status-head-container" }, [
         _c("div", { staticClass: "status-head" }, [
-          _c("h5", [_vm._v("Todos")])
+          _c("h5", [_vm._v("TO DO")])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "status-head" }, [
-          _c("h5", [_vm._v("In Progress")])
+          _c("h5", [_vm._v("IN PROGRESS")])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "status-head" }, [_c("h5", [_vm._v("Done")])])
+        _c("div", { staticClass: "status-head" }, [
+          _c("h5", [_vm._v("COMPLETED")])
+        ])
       ])
     ])
   },
@@ -194689,7 +194695,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row-bar-contianer" }, [
       _c("div", { staticClass: "row-bar" }, [
-        _c("h5", { staticStyle: { background: "#f44336" } }, [_vm._v("HIGH")])
+        _c("h5", { staticStyle: { background: "#f44336" } }, [
+          _vm._v("HIGH PRIORITY")
+        ])
       ])
     ])
   },
@@ -194699,7 +194707,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row-bar-contianer" }, [
       _c("div", { staticClass: "row-bar" }, [
-        _c("h5", { staticStyle: { background: "#ffc107" } }, [_vm._v("MED")])
+        _c("h5", { staticStyle: { background: "#ffc107" } }, [
+          _vm._v("MEDIUM PRIORITY")
+        ])
       ])
     ])
   },
@@ -194709,7 +194719,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row-bar-contianer" }, [
       _c("div", { staticClass: "row-bar" }, [
-        _c("h5", { staticStyle: { background: "#4caf50" } }, [_vm._v("LOW")])
+        _c("h5", { staticStyle: { background: "#4caf50" } }, [
+          _vm._v("LOW PRIORITY")
+        ])
       ])
     ])
   }
