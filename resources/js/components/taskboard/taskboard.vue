@@ -726,6 +726,7 @@ export default {
 .row-bar h5 {
   text-align: center;
   color: white;
+  padding-right: 67px;
   font-size: 14px;
   
   /* letter-spacing: 10px; */
