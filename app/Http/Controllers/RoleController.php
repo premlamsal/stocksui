@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Permission as ResourcesPermission;
 use App\Http\Resources\Role as RoleResource;
 use App\Permission;
 use App\Role;
@@ -188,7 +189,7 @@ class RoleController extends Controller
 
         $searchKey = $request->input('searchQuery');
         if ($searchKey != '') {
-            return PermissionResource::collection(Permission::where('store_id', $store_id)->where('short_name', 'like', '%' . $searchKey . '%')->where('store_id', $store_id)->paginate(8));
+            return ResourcesPermission::collection(Permission::where('store_id', $store_id)->where('short_name', 'like', '%' . $searchKey . '%')->where('store_id', $store_id)->paginate(8));
         } else {
             return response()->json([
                 'msg'    => 'Error while retriving Permissions. No Data Supplied as key.',

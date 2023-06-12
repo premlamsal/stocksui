@@ -46,10 +46,10 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="view_delivery_notess"
+              value="view_delivery_notes"
               v-model="checkedPermissions"
             />
-            <label class="form-check-label" for="view_delivery_notess">
+            <label class="form-check-label" for="view_delivery_notes">
               Delivery Note
             </label>
           </div>
@@ -166,10 +166,10 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="add_delivery_notes"
+              value="add_delivery_note"
               v-model="checkedPermissions"
             />
-            <label class="form-check-label" for="add_delivery_notes">
+            <label class="form-check-label" for="add_delivery_note">
               Delivery Note
             </label>
           </div>
@@ -285,10 +285,10 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="edit_delivery_notes"
+              value="edit_delivery_note"
               v-model="checkedPermissions"
             />
-            <label class="form-check-label" for="edit_delivery_notes">
+            <label class="form-check-label" for="edit_delivery_note">
               Delivery Note
             </label>
           </div>
@@ -405,10 +405,10 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="delete_delivery_notes"
+              value="delete_delivery_note"
               v-model="checkedPermissions"
             />
-            <label class="form-check-label" for="delete_delivery_notes">
+            <label class="form-check-label" for="delete_delivery_note">
               Delivery Note
             </label>
           </div>
@@ -525,10 +525,10 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="show_delivery_notes"
+              value="show_delivery_note"
               v-model="checkedPermissions"
             />
-            <label class="form-check-label" for="show_delivery_notes">
+            <label class="form-check-label" for="show_delivery_note">
               Delivery Note
             </label>
           </div>
@@ -645,10 +645,10 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="search_delivery_notes"
+              value="search_delivery_note"
               v-model="checkedPermissions"
             />
-            <label class="form-check-label" for="search_delivery_notes">
+            <label class="form-check-label" for="search_delivery_note">
               Delivery Note
             </label>
           </div>

@@ -219,7 +219,7 @@ class PickListController extends Controller
     public function pdfdownload($id)
     {
 
-        $this->authorize('hasPermission', 'show_pick_list');
+        $this->authorize('hasPermission', 'download_pick_list');
 
         $user = User::findOrFail(Auth::user()->id);
 
@@ -241,6 +241,9 @@ class PickListController extends Controller
     }
     public function destroy($id)
     {
+
+        $this->authorize('hasPermission', 'delete_pick_list');
+
 
         $user = User::findOrFail(Auth::user()->id);
 

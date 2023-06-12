@@ -165,18 +165,11 @@ class SupplierController extends Controller
 
         $supplier = Supplier::where('id', $id)->where('store_id', $store_id)->first();
         if ($supplier->delete()) {
-            $SupplierTransaction = SupplierTransaction::where('customer_id', $supplier->id)->where('transaction_type', 'opening_balance')->first();
-            if ($SupplierTransaction->delete()) {
-                return response()->json([
-                    'msg' => 'successfully Deleted',
-                    'status' => 'success',
-                ]);
-            } else {
-                return response()->json([
-                    'msg' => 'Error while deleting Supplier transaction',
-                    'status' => 'error',
-                ]);
-            }
+            return response()->json([
+                'msg' => 'successfully Deleted',
+                'status' => 'success',
+            ]);
+           
         } else {
             return response()->json([
                 'msg'    => 'Error while deleting data',

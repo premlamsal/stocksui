@@ -299,7 +299,7 @@ class DeliveryNoteController extends Controller
     public function pdfdownload($id)
     {
 
-        $this->authorize('hasPermission', 'show_delivery_note');
+        $this->authorize('hasPermission', 'download_delivery_note');
 
         $user = User::findOrFail(Auth::user()->id);
 
@@ -325,6 +325,8 @@ class DeliveryNoteController extends Controller
     }
     public function destroy($id)
     {
+        
+        $this->authorize('hasPermission', 'delete_delivery_note');
 
         $user = User::findOrFail(Auth::user()->id);
 

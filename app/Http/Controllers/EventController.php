@@ -61,9 +61,9 @@ class EventController extends Controller
 
         $event->title = $request->input('title');
 
-        $event->start = Carbon::parse( $request->input('start'));
+        $event->start = Carbon::parse($request->input('start'));
 
-        $event->end = Carbon::parse( $request->input('end'));
+        $event->end = Carbon::parse($request->input('end'));
         $event->description = $request->input('description');
         $event->back_color = $request->input('back_color');
         $event->text_color = $request->input('text_color');
@@ -120,9 +120,9 @@ class EventController extends Controller
 
         $event->title = $request->input('title');
 
-        $event->start = Carbon::parse( $request->input('start'));
+        $event->start = Carbon::parse($request->input('start'));
 
-        $event->end = Carbon::parse( $request->input('end'));
+        $event->end = Carbon::parse($request->input('end'));
         $event->description = $request->input('description');
         $event->back_color = $request->input('back_color');
         $event->text_color = $request->input('text_color');

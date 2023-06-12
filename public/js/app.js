@@ -184615,10 +184615,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "view_delivery_notess" },
+                  attrs: { type: "checkbox", value: "view_delivery_notes" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "view_delivery_notess") >
+                      ? _vm._i(_vm.checkedPermissions, "view_delivery_notes") >
                         -1
                       : _vm.checkedPermissions
                   },
@@ -184628,7 +184628,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "view_delivery_notess",
+                        var $$v = "view_delivery_notes",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -184650,7 +184650,7 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "view_delivery_notess" }
+                    attrs: { for: "view_delivery_notes" }
                   },
                   [_vm._v("\n            Delivery Note\n          ")]
                 )
@@ -185191,11 +185191,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "add_delivery_notes" },
+                  attrs: { type: "checkbox", value: "add_delivery_note" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "add_delivery_notes") >
-                        -1
+                      ? _vm._i(_vm.checkedPermissions, "add_delivery_note") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -185204,7 +185203,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "add_delivery_notes",
+                        var $$v = "add_delivery_note",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -185226,7 +185225,7 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "add_delivery_notes" }
+                    attrs: { for: "add_delivery_note" }
                   },
                   [_vm._v("\n            Delivery Note\n          ")]
                 )
@@ -185766,10 +185765,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "edit_delivery_notes" },
+                  attrs: { type: "checkbox", value: "edit_delivery_note" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "edit_delivery_notes") >
+                      ? _vm._i(_vm.checkedPermissions, "edit_delivery_note") >
                         -1
                       : _vm.checkedPermissions
                   },
@@ -185779,7 +185778,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "edit_delivery_notes",
+                        var $$v = "edit_delivery_note",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -185801,7 +185800,7 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "edit_delivery_notes" }
+                    attrs: { for: "edit_delivery_note" }
                   },
                   [_vm._v("\n            Delivery Note\n          ")]
                 )
@@ -186342,13 +186341,11 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "delete_delivery_notes" },
+                  attrs: { type: "checkbox", value: "delete_delivery_note" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(
-                          _vm.checkedPermissions,
-                          "delete_delivery_notes"
-                        ) > -1
+                      ? _vm._i(_vm.checkedPermissions, "delete_delivery_note") >
+                        -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -186357,7 +186354,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "delete_delivery_notes",
+                        var $$v = "delete_delivery_note",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -186379,7 +186376,7 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "delete_delivery_notes" }
+                    attrs: { for: "delete_delivery_note" }
                   },
                   [_vm._v("\n            Delivery Note\n          ")]
                 )
@@ -186920,10 +186917,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "show_delivery_notes" },
+                  attrs: { type: "checkbox", value: "show_delivery_note" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "show_delivery_notes") >
+                      ? _vm._i(_vm.checkedPermissions, "show_delivery_note") >
                         -1
                       : _vm.checkedPermissions
                   },
@@ -186933,7 +186930,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "show_delivery_notes",
+                        var $$v = "show_delivery_note",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -186955,7 +186952,7 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "show_delivery_notes" }
+                    attrs: { for: "show_delivery_note" }
                   },
                   [_vm._v("\n            Delivery Note\n          ")]
                 )
@@ -187496,13 +187493,11 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "search_delivery_notes" },
+                  attrs: { type: "checkbox", value: "search_delivery_note" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(
-                          _vm.checkedPermissions,
-                          "search_delivery_notes"
-                        ) > -1
+                      ? _vm._i(_vm.checkedPermissions, "search_delivery_note") >
+                        -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -187511,7 +187506,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "search_delivery_notes",
+                        var $$v = "search_delivery_note",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -187533,7 +187528,7 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "search_delivery_notes" }
+                    attrs: { for: "search_delivery_note" }
                   },
                   [_vm._v("\n            Delivery Note\n          ")]
                 )

@@ -32,7 +32,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
-        // $this->authorize('hasPermission','add_product');
+        $this->authorize('hasPermission','add_product');
 
         $user = User::findOrFail(Auth::user()->id);
 
