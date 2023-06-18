@@ -40,7 +40,7 @@
             </div>
             <div class="col-sm-4">
               <div class="form-group">
-                <label>Notes</label>
+                <label></label>
                 <textarea v-model="info.note" class="form-control"></textarea>
                 <span v-if="errors['info.note']" :class="['errorText']">{{
                   errors["info.note"][0]
@@ -48,7 +48,7 @@
               </div>
               <div class="row">
                 <div class="col-sm-6">
-                  <label>Weekly Order Date</label>
+                  <label>Date Order Requested</label>
                   <date-picker
                     v-model="info.date_order_requested"
                     :config="options"
@@ -77,7 +77,7 @@
 
           <div class="weeklyorder">
             <div class="weeklyorder-head">
-              <div class="row">
+              <div class="row" style="text-align:center">
                 <div class="col-md-2">
                   <h6>SHELF CODE</h6>
                 </div>
@@ -85,15 +85,18 @@
                   <h6>Product Name</h6>
                 </div>
                 <div class="col-md-2">
-                  <h6>Quanity</h6>
+                  <h6>Quantity</h6>
                 </div>
 
                 <div class="col-md-2">
                   <h6>Picked</h6>
                 </div>
-
                 <div class="col-md-2">
-                  <h6>Action</h6>
+                  <h6>Checked</h6>
+                </div>
+
+                <div class="col-md-1">
+                  <h6>Remove</h6>
                 </div>
               </div>
             </div>
@@ -175,8 +178,19 @@
                         }"
                       />
                     </div>
-
                     <div class="col-md-2">
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter the checked"
+                        v-model="item.checked"
+                        :class="{
+                          'is-invalid': errors['item.' + index + '.checked'],
+                        }"
+                      />
+                    </div>
+
+                    <div class="col-md-1">
                       <button
                         href
                         class="btn btn-danger"
@@ -280,8 +294,19 @@
                         }"
                       />
                     </div>
-
                     <div class="col-md-2">
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter the checked"
+                        v-model="item.checked"
+                        :class="{
+                          'is-invalid': errors['item.' + index + '.checked'],
+                        }"
+                      />
+                    </div>
+
+                    <div class="col-md-1">
                       <button
                         href
                         class="btn btn-danger"
@@ -391,8 +416,20 @@
                         }"
                       />
                     </div>
-
                     <div class="col-md-2">
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter the checked"
+                        v-model="item.checked"
+                        :class="{
+                          'is-invalid': errors['item.' + index + '.checked'],
+                        }"
+                      />
+                    </div>
+
+
+                    <div class="col-md-1">
                       <button
                         href
                         class="btn btn-danger"
@@ -690,16 +727,6 @@ export default {
         // },
       ],
 
-      cloneItems: [
-        {
-          product_name: "",
-          picked: "0",
-          quantity: "1",
-          line_total: "",
-          changed: false,
-          product: {},
-        },
-      ],
       weeklyorder_number: "",
       info: {},
       preItemNameC: [
@@ -783,9 +810,7 @@ export default {
     };
   },
   created() {
-    this.pushDefaultProductNameToC();
-    this.pushDefaultProductNameToM();
-    this.pushDefaultProductNameToD();
+    
 
     this.fetchWeeklyOrders();
     // this.fetchStore();
@@ -796,9 +821,10 @@ export default {
       this.preItemNameC.forEach((element) => {
         this.cleaning_products.push({
           product_name: element,
-          picked: "0",
+          picked: "",
           quantity: "1",
-          line_total: "",
+          checked:"Checked?",
+
           changed: true,
         });
       });
@@ -807,9 +833,11 @@ export default {
       this.preItemNameM.forEach((element) => {
         this.miscellaneous.push({
           product_name: element,
-          picked: "0",
+          picked: "",
           quantity: "1",
           line_total: "",
+          checked:"Checked?",
+
           changed: true,
         });
       });
@@ -818,9 +846,10 @@ export default {
       this.preItemNameD.forEach((element) => {
         this.documentations.push({
           product_name: element,
-          picked: "0",
+          picked: "",
           quantity: "1",
-          line_total: "",
+          checked:"Checked?",
+
           changed: true,
         });
       });
@@ -1018,6 +1047,17 @@ export default {
     },
 
     showAddModal() {
+      this.cleaning_products=[]
+      this.miscellaneous=[]
+      this.documentations=[]
+      this.info.note=`Communication / Crockery 
+Tableware etc 
+Requirements`;
+    this.pushDefaultProductNameToC();
+    this.pushDefaultProductNameToM();
+    this.pushDefaultProductNameToD();
+
+
       this.modalForName = "Add WeeklyOrder";
       // Vue.set(this.modalForName,"Add WeeklyOrder");
       this.modalForCode = 0; //0 for add
@@ -1071,9 +1111,6 @@ export default {
 
     editWeeklyOrder(id) {
       this.$Progress.start();
-      this.clearWeeklyOrderInput();
-      let matches;
-      let tempIDS = "";
       let currObj = this;
       this.modalForName = "Edit WeeklyOrder";
       this.modalForCode = 1; // 1 for Edit
@@ -1084,17 +1121,7 @@ export default {
         .then(function (response) {
           Vue.set(currObj.info, "weeklyorder_no", response.data.weeklyorder.id),
             Vue.set(currObj.info, "note", response.data.weeklyorder.note),
-            Vue.set(
-              currObj.info,
-              "custom_weeklyorder_id",
-              response.data.weeklyorder.custom_weeklyorder_id
-            ),
-            Vue.set(currObj.info, "title", response.data.weeklyorder.title),
-            Vue.set(
-              currObj.info,
-              "supplier_id",
-              response.data.weeklyorder.supplier_id
-            ),
+         
             Vue.set(
               currObj.info,
               "boat_name",
@@ -1109,34 +1136,28 @@ export default {
               currObj.info,
               "date_order_requested",
               response.data.weeklyorder.date_order_requested
-            ),
-            (tempIDS = response.data.weeklyorder.weeklyorder_reference_id),
-            (tempIDS = tempIDS.split("-")),
-            Vue.set(currObj.info, "weeklyorder_reference_number", tempIDS[2]),
-            // console.log(tempIDS[2])
-            currObj.clickSearchSuggestion(
-              response.data.weeklyorder.supplier_id,
-              response.data.weeklyorder.boat_name
-            ),
-            Vue.set(
-              currObj.info,
-              "weeklyorder",
-              response.data.weeklyorder.delivery_date
-            ),
-            Vue.set(currObj.info, "status", response.data.weeklyorder.status);
-          let cleaning_products = response.data.weeklyorder.weeklyorder_detail;
+            );
+          
+          let cp = response.data.weeklyorder.weekly_order_detail_c
+          let m = response.data.weeklyorder.weekly_order_detail_m
+          let d = response.data.weeklyorder.weekly_order_detail_d
+          currObj.cleaning_products=[]
+          currObj.miscellaneous=[]
+          currObj.documentations=[]
 
-          // veu.set will make data reactive and updated
-          // Vue.set(currObj, "cleaning_products",cleaning_products),
-          // Vue.set(currObj, "cloneItems",cleaning_products),
-
-          for (let i = 0; i < cleaning_products.length; i++) {
-            currObj.cleaning_products[i] = cleaning_products[i];
-          }
-          for (let i = 0; i < cleaning_products.length; i++) {
-            currObj.cloneItems[i] = cleaning_products[i];
+          
+          for (let i = 0; i < cp.length; i++) {
+            currObj.cleaning_products[i] = cp[i];
           }
 
+          for (let i = 0; i < m.length; i++) {
+            currObj.miscellaneous[i] = m[i];
+          }
+
+          for (let i = 0; i < d.length; i++) {
+            currObj.documentations[i] = d[i];
+          }
+         
           currObj.$Progress.finish();
         })
         .catch(function (error) {

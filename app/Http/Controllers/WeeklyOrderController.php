@@ -18,7 +18,6 @@ class WeeklyOrderController extends Controller
     {
 
         $this->middleware('auth:api');
-
     }
     public function index()
     {
@@ -28,7 +27,7 @@ class WeeklyOrderController extends Controller
 
         $store_id = $user->stores[0]->id;
 
-        return WeeklyOrderResource::collection(WeeklyOrder::where('store_id',$store_id)->with('WeeklyOrderDetailC')->with('WeeklyOrderDetailM')->with('WeeklyOrderDetailD')->paginate(8));
+        return WeeklyOrderResource::collection(WeeklyOrder::where('store_id', $store_id)->with('WeeklyOrderDetailC')->with('WeeklyOrderDetailM')->with('WeeklyOrderDetailD')->paginate(8));
     }
     public function store(Request $request)
     {
@@ -44,7 +43,7 @@ class WeeklyOrderController extends Controller
             'info.boat_name' => 'required | string |max:200',
             'info.date_order_requested' => 'required ',
             'info.delivery_date' => 'required',
-            'info.note'=>'required',
+            'info.note' => 'required',
         ]);
 
         $data = $request->info;
@@ -52,8 +51,8 @@ class WeeklyOrderController extends Controller
 
 
 
-           //collecting data
-           $items_cp = collect($request->cp)->transform(function ($item) {
+        //collecting data
+        $items_cp = collect($request->cp)->transform(function ($item) {
             return new WeeklyOrderDetailC($item);
         });
         $items_m = collect($request->m)->transform(function ($item) {
@@ -62,9 +61,9 @@ class WeeklyOrderController extends Controller
         $items_d = collect($request->d)->transform(function ($item) {
             return new WeeklyOrderDetailD($item);
         });
-       
 
-        
+
+
         $weekly_order = WeeklyOrder::create($data);
         $weekly_order->WeeklyOrderDetailC()->saveMany($items_cp);
         $weekly_order->WeeklyOrderDetailM()->saveMany($items_m);
@@ -72,9 +71,6 @@ class WeeklyOrderController extends Controller
 
 
         $jsonResponse = ['msg' => 'Successfully created weekly order', 'status' => 'success'];
-
-
-
     }
     public function update(Request $request)
     {
@@ -82,6 +78,25 @@ class WeeklyOrderController extends Controller
 
     public function show($id)
     {
+        $this->authorize('hasPermission', 'show_weekly_order');
+
+        $user = User::findOrFail(Auth::user()->id);
+
+        $store_id = $user->stores[0]->id;
+
+        $weekly_order = WeeklyOrder::where('id', $id)->where('store_id', $store_id)->with('WeeklyOrderDetailC')->with('WeeklyOrderDetailM')->with('WeeklyOrderDetailD')->first();
+
+        if ($weekly_order) {
+            return response()->json([
+                'weeklyorder' => $weekly_order,
+                'status' => 'success',
+            ]);
+        } else {
+            return response()->json([
+                'msg' => 'Error while retriving Customer',
+                'status' => 'error',
+            ]);
+        }
     }
     public function delete($id)
     {

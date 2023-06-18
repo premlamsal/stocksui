@@ -29101,6 +29101,43 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //custom toggle button
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -29131,14 +29168,6 @@ __webpack_require__.r(__webpack_exports__);
         //   changed: false,
         // },
       ],
-      cloneItems: [{
-        product_name: "",
-        picked: "0",
-        quantity: "1",
-        line_total: "",
-        changed: false,
-        product: {}
-      }],
       weeklyorder_number: "",
       info: {},
       preItemNameC: ["Washing-Up Liquid", "Toilet Duck", "Washroom Wipes", "Multi Surface Spray", "Dettoli Wipes", "Bathroom & Shower Spray", "Window Cleaner Spray", "Fuurniture Polish", "Brasso", "Carpet Cleaner", "Dishwasher Detergent (SL)", "Dishwasher Rinse Aide (SL)", "Henry Hoover Bags", "Floor Cleaner (Concentrate SL)", "Cleaning Cloths (x50)", "Sponge Scouter (X10)", "Vileda Mop Head", "Air Freshner", "Liquid Hand Soap (SL)", "Conditioner (SL)", "Hair and Body Shampoo (SL)", "Tissues", "Toilet Roll (24pk)", "Blue Tork Roll", "Kitchen Roll", "Swing Bin Liner (45l to 200 roll)", "Cabin Bin Liner (3l-20pk)", "Black Bin Bags(200box)"],
@@ -29169,9 +29198,6 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    this.pushDefaultProductNameToC();
-    this.pushDefaultProductNameToM();
-    this.pushDefaultProductNameToD();
     this.fetchWeeklyOrders(); // this.fetchStore();
   },
   methods: {
@@ -29181,9 +29207,9 @@ __webpack_require__.r(__webpack_exports__);
       this.preItemNameC.forEach(function (element) {
         _this.cleaning_products.push({
           product_name: element,
-          picked: "0",
+          picked: "",
           quantity: "1",
-          line_total: "",
+          checked: "Checked?",
           changed: true
         });
       });
@@ -29194,9 +29220,10 @@ __webpack_require__.r(__webpack_exports__);
       this.preItemNameM.forEach(function (element) {
         _this2.miscellaneous.push({
           product_name: element,
-          picked: "0",
+          picked: "",
           quantity: "1",
           line_total: "",
+          checked: "Checked?",
           changed: true
         });
       });
@@ -29207,9 +29234,9 @@ __webpack_require__.r(__webpack_exports__);
       this.preItemNameD.forEach(function (element) {
         _this3.documentations.push({
           product_name: element,
-          picked: "0",
+          picked: "",
           quantity: "1",
-          line_total: "",
+          checked: "Checked?",
           changed: true
         });
       });
@@ -29377,6 +29404,13 @@ __webpack_require__.r(__webpack_exports__);
       this.pagination = pagination;
     },
     showAddModal: function showAddModal() {
+      this.cleaning_products = [];
+      this.miscellaneous = [];
+      this.documentations = [];
+      this.info.note = "Communication / Crockery \nTableware etc \nRequirements";
+      this.pushDefaultProductNameToC();
+      this.pushDefaultProductNameToM();
+      this.pushDefaultProductNameToD();
       this.modalForName = "Add WeeklyOrder"; // Vue.set(this.modalForName,"Add WeeklyOrder");
 
       this.modalForCode = 0; //0 for add
@@ -29424,9 +29458,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     editWeeklyOrder: function editWeeklyOrder(id) {
       this.$Progress.start();
-      this.clearWeeklyOrderInput();
-      var matches;
-      var tempIDS = "";
       var currObj = this;
       this.modalForName = "Edit WeeklyOrder";
       this.modalForCode = 1; // 1 for Edit
@@ -29435,18 +29466,24 @@ __webpack_require__.r(__webpack_exports__);
       currObj.errors = ""; //clearing errors
 
       axios.get("/api/weeklyorder/" + id).then(function (response) {
-        Vue.set(currObj.info, "weeklyorder_no", response.data.weeklyorder.id), Vue.set(currObj.info, "note", response.data.weeklyorder.note), Vue.set(currObj.info, "custom_weeklyorder_id", response.data.weeklyorder.custom_weeklyorder_id), Vue.set(currObj.info, "title", response.data.weeklyorder.title), Vue.set(currObj.info, "supplier_id", response.data.weeklyorder.supplier_id), Vue.set(currObj.info, "boat_name", response.data.weeklyorder.boat_name), Vue.set(currObj.info, "delivery_date", response.data.weeklyorder.delivery_date), Vue.set(currObj.info, "date_order_requested", response.data.weeklyorder.date_order_requested), tempIDS = response.data.weeklyorder.weeklyorder_reference_id, tempIDS = tempIDS.split("-"), Vue.set(currObj.info, "weeklyorder_reference_number", tempIDS[2]), // console.log(tempIDS[2])
-        currObj.clickSearchSuggestion(response.data.weeklyorder.supplier_id, response.data.weeklyorder.boat_name), Vue.set(currObj.info, "weeklyorder", response.data.weeklyorder.delivery_date), Vue.set(currObj.info, "status", response.data.weeklyorder.status);
-        var cleaning_products = response.data.weeklyorder.weeklyorder_detail; // veu.set will make data reactive and updated
-        // Vue.set(currObj, "cleaning_products",cleaning_products),
-        // Vue.set(currObj, "cloneItems",cleaning_products),
+        Vue.set(currObj.info, "weeklyorder_no", response.data.weeklyorder.id), Vue.set(currObj.info, "note", response.data.weeklyorder.note), Vue.set(currObj.info, "boat_name", response.data.weeklyorder.boat_name), Vue.set(currObj.info, "delivery_date", response.data.weeklyorder.delivery_date), Vue.set(currObj.info, "date_order_requested", response.data.weeklyorder.date_order_requested);
+        var cp = response.data.weeklyorder.weekly_order_detail_c;
+        var m = response.data.weeklyorder.weekly_order_detail_m;
+        var d = response.data.weeklyorder.weekly_order_detail_d;
+        currObj.cleaning_products = [];
+        currObj.miscellaneous = [];
+        currObj.documentations = [];
 
-        for (var i = 0; i < cleaning_products.length; i++) {
-          currObj.cleaning_products[i] = cleaning_products[i];
+        for (var i = 0; i < cp.length; i++) {
+          currObj.cleaning_products[i] = cp[i];
         }
 
-        for (var _i = 0; _i < cleaning_products.length; _i++) {
-          currObj.cloneItems[_i] = cleaning_products[_i];
+        for (var _i = 0; _i < m.length; _i++) {
+          currObj.miscellaneous[_i] = m[_i];
+        }
+
+        for (var _i2 = 0; _i2 < d.length; _i2++) {
+          currObj.documentations[_i2] = d[_i2];
         }
 
         currObj.$Progress.finish();
@@ -196816,7 +196853,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "col-sm-4" }, [
                   _c("div", { staticClass: "form-group" }, [
-                    _c("label", [_vm._v("Notes")]),
+                    _c("label"),
                     _vm._v(" "),
                     _c("textarea", {
                       directives: [
@@ -196851,7 +196888,7 @@ var render = function() {
                       "div",
                       { staticClass: "col-sm-6" },
                       [
-                        _c("label", [_vm._v("Weekly Order Date")]),
+                        _c("label", [_vm._v("Date Order Requested")]),
                         _vm._v(" "),
                         _c("date-picker", {
                           class: ["form-control"],
@@ -196912,27 +196949,38 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "weeklyorder" }, [
                 _c("div", { staticClass: "weeklyorder-head" }, [
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-md-2" }, [
-                      _c("h6", [_vm._v("SHELF CODE")])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-3" }, [
-                      _c("h6", [_vm._v("Product Name")])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-2" }, [
-                      _c("h6", [_vm._v("Quanity")])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-2" }, [
-                      _c("h6", [_vm._v("Picked")])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-2" }, [
-                      _c("h6", [_vm._v("Action")])
-                    ])
-                  ])
+                  _c(
+                    "div",
+                    {
+                      staticClass: "row",
+                      staticStyle: { "text-align": "center" }
+                    },
+                    [
+                      _c("div", { staticClass: "col-md-2" }, [
+                        _c("h6", [_vm._v("SHELF CODE")])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-3" }, [
+                        _c("h6", [_vm._v("Product Name")])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-2" }, [
+                        _c("h6", [_vm._v("Quantity")])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-2" }, [
+                        _c("h6", [_vm._v("Picked")])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-2" }, [
+                        _c("h6", [_vm._v("Checked")])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-1" }, [
+                        _c("h6", [_vm._v("Remove")])
+                      ])
+                    ]
+                  )
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "weeklyorder-body" }, [
@@ -197139,6 +197187,41 @@ var render = function() {
                               ]),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-md-2" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: item.checked,
+                                      expression: "item.checked"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  class: {
+                                    "is-invalid":
+                                      _vm.errors["item." + index + ".checked"]
+                                  },
+                                  attrs: {
+                                    type: "text",
+                                    placeholder: "Enter the checked"
+                                  },
+                                  domProps: { value: item.checked },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        item,
+                                        "checked",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-md-1" }, [
                                 _c(
                                   "button",
                                   {
@@ -197385,6 +197468,41 @@ var render = function() {
                               ]),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-md-2" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: item.checked,
+                                      expression: "item.checked"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  class: {
+                                    "is-invalid":
+                                      _vm.errors["item." + index + ".checked"]
+                                  },
+                                  attrs: {
+                                    type: "text",
+                                    placeholder: "Enter the checked"
+                                  },
+                                  domProps: { value: item.checked },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        item,
+                                        "checked",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-md-1" }, [
                                 _c(
                                   "button",
                                   {
@@ -197637,6 +197755,41 @@ var render = function() {
                               ]),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-md-2" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: item.checked,
+                                      expression: "item.checked"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  class: {
+                                    "is-invalid":
+                                      _vm.errors["item." + index + ".checked"]
+                                  },
+                                  attrs: {
+                                    type: "text",
+                                    placeholder: "Enter the checked"
+                                  },
+                                  domProps: { value: item.checked },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        item,
+                                        "checked",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-md-1" }, [
                                 _c(
                                   "button",
                                   {

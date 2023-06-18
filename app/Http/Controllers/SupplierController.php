@@ -192,7 +192,7 @@ class SupplierController extends Controller
 
         $purchase_amount=Purchase::where('store_id',$store_id)->where('supplier_id',$id)->sum('grand_total');
 
-        if ($supplier->save()) {
+        if ($supplier) {
             return response()->json([
                 'supplier' => $supplier,
                 'purchase_amount'=>$purchase_amount,
