@@ -1111,6 +1111,8 @@ Requirements`;
 
     editWeeklyOrder(id) {
       this.$Progress.start();
+    
+
       let currObj = this;
       this.modalForName = "Edit WeeklyOrder";
       this.modalForCode = 1; // 1 for Edit
@@ -1132,6 +1134,11 @@ Requirements`;
               "delivery_date",
               response.data.weeklyorder.delivery_date
             ),
+            Vue.set(
+              currObj.info,
+              "date_order_requested",
+              response.data.weeklyorder.date_order_requested
+            );
             Vue.set(
               currObj.info,
               "date_order_requested",
@@ -1173,7 +1180,9 @@ Requirements`;
       axios
         .put("/api/weeklyorder", {
           info: this.info,
-          cleaning_products: this.cleaning_products,
+          cp: this.cleaning_products,
+          m: this.miscellaneous,
+          d: this.documentations,
           id: this.info.weeklyorder_no,
         })
         .then(function (response) {
@@ -1181,10 +1190,10 @@ Requirements`;
           currObj.status = response.data.status;
           currObj.$swal("Info", currObj.output, currObj.status);
           currObj.$bvModal.hide("bv-modal-add-weeklyorder");
-          currObj.clearWeeklyOrderInput();
-
           currObj.fetchWeeklyOrders();
-
+          currObj.cleaning_products=[]
+          currObj.miscellaneous=[]
+          currObj.documentations=[]
           // currObj.errors = '';//clearing errors
         })
         .catch(function (error) {

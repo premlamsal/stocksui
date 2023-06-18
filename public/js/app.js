@@ -29467,6 +29467,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get("/api/weeklyorder/" + id).then(function (response) {
         Vue.set(currObj.info, "weeklyorder_no", response.data.weeklyorder.id), Vue.set(currObj.info, "note", response.data.weeklyorder.note), Vue.set(currObj.info, "boat_name", response.data.weeklyorder.boat_name), Vue.set(currObj.info, "delivery_date", response.data.weeklyorder.delivery_date), Vue.set(currObj.info, "date_order_requested", response.data.weeklyorder.date_order_requested);
+        Vue.set(currObj.info, "date_order_requested", response.data.weeklyorder.date_order_requested);
         var cp = response.data.weeklyorder.weekly_order_detail_c;
         var m = response.data.weeklyorder.weekly_order_detail_m;
         var d = response.data.weeklyorder.weekly_order_detail_d;
@@ -29500,15 +29501,19 @@ __webpack_require__.r(__webpack_exports__);
       var currObj = this;
       axios.put("/api/weeklyorder", {
         info: this.info,
-        cleaning_products: this.cleaning_products,
+        cp: this.cleaning_products,
+        m: this.miscellaneous,
+        d: this.documentations,
         id: this.info.weeklyorder_no
       }).then(function (response) {
         currObj.output = response.data.msg;
         currObj.status = response.data.status;
         currObj.$swal("Info", currObj.output, currObj.status);
         currObj.$bvModal.hide("bv-modal-add-weeklyorder");
-        currObj.clearWeeklyOrderInput();
-        currObj.fetchWeeklyOrders(); // currObj.errors = '';//clearing errors
+        currObj.fetchWeeklyOrders();
+        currObj.cleaning_products = [];
+        currObj.miscellaneous = [];
+        currObj.documentations = []; // currObj.errors = '';//clearing errors
       })["catch"](function (error) {
         if (error.response.status == 422) {
           currObj.validationErrors = error.response.data.errors;

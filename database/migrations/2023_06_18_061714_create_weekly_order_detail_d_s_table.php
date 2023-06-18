@@ -15,11 +15,11 @@ class CreateWeeklyOrderDetailDSTable extends Migration
     {
         Schema::create('weekly_order_detail_d_s', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('shelf_code');
+            $table->string('shelf_code')->nullable();
             $table->string('product_name');
             $table->string('checked')->nullable();
             $table->decimal('quantity');
-            $table->decimal('picked');
+            $table->decimal('picked')->nullable();
             $table->unsignedBigInteger('weekly_order_id');
             $table->foreign('weekly_order_id')->references('id')->on('weekly_orders')->onDelete('cascade');
             $table->timestamps();
