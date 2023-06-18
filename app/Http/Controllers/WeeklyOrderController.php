@@ -147,7 +147,29 @@ class WeeklyOrderController extends Controller
             ]);
         }
     }
-    public function delete($id)
+    public function destroy($id)
     {
+        $user = User::findOrFail(Auth::user()->id);
+
+        $store_id = $user->stores[0]->id;
+        // Get Purchase
+        $weekly_order = WeeklyOrder::where('id', $id)->where('store_id', $store_id)->first();
+
+        WeeklyOrderDetailC::where('weekly_order_id', $id)->delete();
+        WeeklyOrderDetailM::where('weekly_order_id', $id)->delete();
+        WeeklyOrderDetailD::where('weekly_order_id', $id)->delete();
+
+        if ($weekly_order->delete()) {
+
+            return response()->json([
+                'msg' => 'successfully Deleted',
+                'status' => 'success',
+            ]);
+        } else {
+            return response()->json([
+                'msg' => 'Delete Failed',
+                'status' => 'error',
+            ]);
+        }
     }
 }
