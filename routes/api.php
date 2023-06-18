@@ -456,3 +456,18 @@ Route::post('update-tasks', 'TaskBoardController@updateTasks');
 
 Route::get('tasks', 'TaskBoardController@tasks');
 
+
+
+Route::get('weeklyorders', 'WeeklyOrderController@index');
+
+Route::post('weeklyorder', 'WeeklyOrderController@store');
+
+Route::put('weeklyorder', 'WeeklyOrderController@update');
+
+Route::get('weeklyorder/{id}', 'WeeklyOrderController@show');
+
+Route::delete('weeklyorder/{id}', 'WeeklyOrderController@destroy');
+
+
+
+

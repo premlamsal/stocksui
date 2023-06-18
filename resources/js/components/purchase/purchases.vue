@@ -88,7 +88,7 @@
               </div>
               <div class="col-sm-4">
                 <div class="form-group">
-                  <label></label>
+                  <label>Notes</label>
                   <textarea v-model="info.note" class="form-control"></textarea>
                   <span v-if="errors['info.note']" :class="['errorText']">{{
                     errors["info.note"][0]

@@ -274,6 +274,7 @@ a.fc-daygrid-dot-event .fc-daygrid-event-dot{
   .btn-danger {
     background-color: red;
     color: #FFFFFF;
+    margin: 0px;
 }
 .btn-danger:hover{
     background-color: red;

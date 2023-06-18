@@ -230,6 +230,20 @@ let routes = [
       }
   },
 
+
+  {
+    path: '/weekly-orders',
+    name: 'weeklyorders',
+    component: require('./components/weeklyorder/weeklyorders.vue').default,
+   
+     beforeEnter(to, from, next) {
+        let hasAccess = store.getters.permissions
+        if (hasAccess.includes('view_weekly_orders') || hasAccess.includes('all')) {
+          next()
+        }
+      }
+  },
+
    
 
 
