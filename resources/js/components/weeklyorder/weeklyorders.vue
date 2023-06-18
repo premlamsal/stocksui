@@ -1411,5 +1411,10 @@ h3.head-pip {
   font-size: 15px;
   text-align: center;
 }
+
+textarea.form-control {
+    height: 106px;
+    max-height: none;
+}
 </style>
   
