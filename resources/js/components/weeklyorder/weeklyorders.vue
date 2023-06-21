@@ -691,6 +691,7 @@
 </template>
   
   <script>
+import Vue from 'vue';
 //custom toggle button
 import ToggleButton from "../widgets/ToggleButton";
 
@@ -1050,9 +1051,9 @@ export default {
       this.cleaning_products=[]
       this.miscellaneous=[]
       this.documentations=[]
-      this.info.note=`Communication / Crockery 
-Tableware etc 
-Requirements`;
+      // this.info.note=`Communication / Crockery /nTableware etc /nRequirements`;
+      const note=`Communication Crockery\nTableware etc\nRequirements `
+      Vue.set(this.info,'note',note);
     this.pushDefaultProductNameToC();
     this.pushDefaultProductNameToM();
     this.pushDefaultProductNameToD();

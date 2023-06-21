@@ -28445,7 +28445,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _widgets_ToggleButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../widgets/ToggleButton */ "./resources/js/components/widgets/ToggleButton.vue");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _widgets_ToggleButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../widgets/ToggleButton */ "./resources/js/components/widgets/ToggleButton.vue");
 //
 //
 //
@@ -29138,11 +29140,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//custom toggle button
+ //custom toggle button
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    ToggleButton: _widgets_ToggleButton__WEBPACK_IMPORTED_MODULE_0__["default"]
+    ToggleButton: _widgets_ToggleButton__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
@@ -29264,7 +29267,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("api/store").then(function (response) {
         // Vue.set(currObj.store, "id", response.data.store.id);
         currObj.store.id = response.data.store.id;
-        Vue.set(currObj.store, "weeklyorder_id_count", response.data.store.weeklyorder_id_count);
+        vue__WEBPACK_IMPORTED_MODULE_0___default.a.set(currObj.store, "weeklyorder_id_count", response.data.store.weeklyorder_id_count);
         currObj.weeklyorder_number = currObj.store.weeklyorder_id_count.split("-");
         currObj.weeklyorder_number[1] = parseInt(currObj.weeklyorder_number[1]) + 1;
         currObj.weeklyorder_number = currObj.weeklyorder_number.join("-");
@@ -29406,8 +29409,10 @@ __webpack_require__.r(__webpack_exports__);
     showAddModal: function showAddModal() {
       this.cleaning_products = [];
       this.miscellaneous = [];
-      this.documentations = [];
-      this.info.note = "Communication / Crockery \nTableware etc \nRequirements";
+      this.documentations = []; // this.info.note=`Communication / Crockery /nTableware etc /nRequirements`;
+
+      var note = "Communication Crockery\nTableware etc\nRequirements ";
+      vue__WEBPACK_IMPORTED_MODULE_0___default.a.set(this.info, 'note', note);
       this.pushDefaultProductNameToC();
       this.pushDefaultProductNameToM();
       this.pushDefaultProductNameToD();
@@ -29466,8 +29471,8 @@ __webpack_require__.r(__webpack_exports__);
       currObj.errors = ""; //clearing errors
 
       axios.get("/api/weeklyorder/" + id).then(function (response) {
-        Vue.set(currObj.info, "weeklyorder_no", response.data.weeklyorder.id), Vue.set(currObj.info, "note", response.data.weeklyorder.note), Vue.set(currObj.info, "boat_name", response.data.weeklyorder.boat_name), Vue.set(currObj.info, "delivery_date", response.data.weeklyorder.delivery_date), Vue.set(currObj.info, "date_order_requested", response.data.weeklyorder.date_order_requested);
-        Vue.set(currObj.info, "date_order_requested", response.data.weeklyorder.date_order_requested);
+        vue__WEBPACK_IMPORTED_MODULE_0___default.a.set(currObj.info, "weeklyorder_no", response.data.weeklyorder.id), vue__WEBPACK_IMPORTED_MODULE_0___default.a.set(currObj.info, "note", response.data.weeklyorder.note), vue__WEBPACK_IMPORTED_MODULE_0___default.a.set(currObj.info, "boat_name", response.data.weeklyorder.boat_name), vue__WEBPACK_IMPORTED_MODULE_0___default.a.set(currObj.info, "delivery_date", response.data.weeklyorder.delivery_date), vue__WEBPACK_IMPORTED_MODULE_0___default.a.set(currObj.info, "date_order_requested", response.data.weeklyorder.date_order_requested);
+        vue__WEBPACK_IMPORTED_MODULE_0___default.a.set(currObj.info, "date_order_requested", response.data.weeklyorder.date_order_requested);
         var cp = response.data.weeklyorder.weekly_order_detail_c;
         var m = response.data.weeklyorder.weekly_order_detail_m;
         var d = response.data.weeklyorder.weekly_order_detail_d;

@@ -133,7 +133,7 @@
         }
 
         .head-right {
-            width: 480px;
+            width: 460px;
             position: absolute;
             right:0;
             bottom: 0;
@@ -165,27 +165,23 @@
                         Boat Name:
                     </div>
                     <div class="boat-name-box">
-                        Boat Name here
+                       {{$weeklyorder->boat_name}}
                     </div>
                 </div>
             </div>
             <div class="head-right">
                 <div class="note-box">
-                    Communication / Crockery
-                    <br />
-                    Tableware etc
-                    <br />
-                    Requirements
+                   {{$weeklyorder->note}}
                 </div>
 
                 <div class="date-box-container">
                     <div class="date-box-order">
                         <div class="date-label">Date Order Requested:</div>
-                        <div class="date">insert date here</div>
+                        <div class="date">{{$weeklyorder->date_order_requested}}</div>
                     </div>
                     <div class="date-box-delivery">
                         <div class="date-label">Delivery Date:</div>
-                        <div class="date">insert date here</div>
+                        <div class="date">{{$weeklyorder->delivery_date}}</div>
                     </div>
                 </div>
             </div>
