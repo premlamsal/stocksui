@@ -35,6 +35,7 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            text-align: center;
         }
 
         th,
