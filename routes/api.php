@@ -468,6 +468,7 @@ Route::get('weeklyorder/{id}', 'WeeklyOrderController@show');
 
 Route::delete('weeklyorder/{id}', 'WeeklyOrderController@destroy');
 
+Route::get('weeklyorderpdf/{id}', 'WeeklyOrderController@pdfdownload');
 
 
 

@@ -29209,7 +29209,7 @@ __webpack_require__.r(__webpack_exports__);
           product_name: element,
           picked: "",
           quantity: "1",
-          checked: "Checked?",
+          checked: "   Yes    |      No",
           changed: true
         });
       });
@@ -29223,7 +29223,7 @@ __webpack_require__.r(__webpack_exports__);
           picked: "",
           quantity: "1",
           line_total: "",
-          checked: "Checked?",
+          checked: "   Yes    |      No",
           changed: true
         });
       });
@@ -29236,7 +29236,7 @@ __webpack_require__.r(__webpack_exports__);
           product_name: element,
           picked: "",
           quantity: "1",
-          checked: "Checked?",
+          checked: "   Yes    |      No",
           changed: true
         });
       });

@@ -11,6 +11,7 @@ use App\WeeklyOrderDetailD;
 use App\WeeklyOrderDetailM;
 use Illuminate\Http\Request;
 use Auth;
+use Spatie\Browsershot\Browsershot;
 
 class WeeklyOrderController extends Controller
 {
@@ -171,5 +172,55 @@ class WeeklyOrderController extends Controller
                 'status' => 'error',
             ]);
         }
+    }
+
+    public function pdfdownload($id)
+    {
+
+        $this->authorize('hasPermission', 'download_weeklyorder');
+
+        $user = User::findOrFail(Auth::user()->id);
+
+        $store_id = $user->stores[0]->id;
+        // Get pick_list
+
+        $weekly_order = WeeklyOrder::where('store_id', $store_id)->with('WeeklyOrderDetailC')->with('WeeklyOrderDetailM')->with('WeeklyOrderDetailD')->findOrFail($id);
+
+
+        // return response()->json([
+        //     'msg' => $pick_list,
+        //     'status' => 'error',
+        // ], 200);
+
+        $path= 'img/logo1.png';
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $data = file_get_contents($path);
+        $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+
+        $pdf = \PDF::loadView('weekly_order_pdf', ['weeklyorder' => $weekly_order,'image'=>$base64]);
+        $pdf->setOption(['dpi' => 150, 'defaultFont' => 'sans-serif','isRemoteEnabled'=>true]);
+        $pdf->setPaper('a4', 'portrait');
+        return $pdf->output();
+    }
+    public function pdfdownload2($id)
+    {
+
+        $this->authorize('hasPermission', 'download_weeklyorder');
+
+        $user = User::findOrFail(Auth::user()->id);
+
+        $store_id = $user->stores[0]->id;
+        // Get pick_list
+
+        $weekly_order = WeeklyOrder::where('store_id', $store_id)->with('WeeklyOrderDetailC')->with('WeeklyOrderDetailM')->with('WeeklyOrderDetailD')->findOrFail($id);
+
+
+      $data=  Browsershot::url('https://google.com')->pdf();
+
+
+        return response()->json([
+            'data' => $data,
+            'status' => 'error',
+        ], 200);
     }
 }

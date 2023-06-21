@@ -823,7 +823,7 @@ export default {
           product_name: element,
           picked: "",
           quantity: "1",
-          checked:"Checked?",
+          checked:"   Yes    |      No",
 
           changed: true,
         });
@@ -836,7 +836,7 @@ export default {
           picked: "",
           quantity: "1",
           line_total: "",
-          checked:"Checked?",
+          checked:"   Yes    |      No",
 
           changed: true,
         });
@@ -848,7 +848,7 @@ export default {
           product_name: element,
           picked: "",
           quantity: "1",
-          checked:"Checked?",
+          checked:"   Yes    |      No",
 
           changed: true,
         });
