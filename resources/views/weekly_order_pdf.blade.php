@@ -133,7 +133,7 @@
         }
 
         .head-right {
-            width: 460px;
+            width: 450px;
             position: absolute;
             right:0;
             bottom: 0;
@@ -171,7 +171,8 @@
             </div>
             <div class="head-right">
                 <div class="note-box">
-                   {{$weeklyorder->note}}
+                    <p style="white-space: pre-wrap;padding:0;margin:0;">{{$weeklyorder->note}}</p>
+
                 </div>
 
                 <div class="date-box-container">
@@ -202,9 +203,10 @@
             @foreach ($weeklyorder->WeeklyOrderDetailC as$item)
             <tr>
                 <td>{{$item->shelf_code}}</td>
-                <td>{{$item->product_name}}</td>
+                <td style="width:400px">{{$item->product_name}}</td>
 
-                <td>{{$item->quantity}}</td>
+                <td>{{floatval($item->quantity)}}</td>
+
 
                 <td>
                     <div class="custom-checkbox-container">
@@ -234,9 +236,11 @@
             @foreach ($weeklyorder->WeeklyOrderDetailM as$item)
             <tr>
                 <td>{{$item->shelf_code}}</td>
-                <td>{{$item->product_name}}</td>
+                <td style="width:400px">{{$item->product_name}}</td>
 
-                <td>{{$item->quantity}}</td>
+
+                <td>{{floatval($item->quantity)}}</td>
+
 
                 <td>
                     <div class="custom-checkbox-container">
@@ -266,9 +270,11 @@
             @foreach ($weeklyorder->WeeklyOrderDetailD as$item)
             <tr>
                 <td>{{$item->shelf_code}}</td>
-                <td>{{$item->product_name}}</td>
+                <td style="width:400px">{{$item->product_name}}</td>
 
-                <td>{{$item->quantity}}</td>
+
+                <td>{{floatval($item->quantity)}}</td>
+
 
                 <td>
                     <div class="custom-checkbox-container">
