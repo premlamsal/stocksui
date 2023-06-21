@@ -152,6 +152,7 @@
 </head>
 
 <body>
+    <div style="text-align: center">Weekly Order :: # {{$weeklyorder->id}}</div>
     <div class="header-container">
         <div class="header">
 
@@ -199,27 +200,25 @@
                 <th>Product Name</th>
                 <th>Quantity</th>
                 <th>Picked</th>
+                <th>Checked</th>
             </tr>
+           
+            @foreach ($weeklyorder->WeeklyOrderDetailC as$item)
             <tr>
-                <td>A1</td>
-                <td>Cleaner 1</td>
-                <td>5</td>
+                <td>{{$item->shelf_code}}</td>
+                <td>{{$item->product_name}}</td>
+
+                <td>{{$item->quantity}}</td>
+
                 <td>
                     <div class="custom-checkbox-container">
                         <div class="custom-checkbox"></div>
                     </div>
                 </td>
+                <td>Yes | No</td>
+
             </tr>
-            <tr>
-                <td>B2</td>
-                <td>Cleaner 2</td>
-                <td>3</td>
-                <td>
-                    <div class="custom-checkbox-container">
-                        <div class="custom-checkbox"></div>
-                    </div>
-                </td>
-            </tr>
+            @endforeach
             <!-- Add more rows with data here -->
         </table>
     </div>
@@ -232,27 +231,26 @@
                 <th>Product Name</th>
                 <th>Quantity</th>
                 <th>Picked</th>
+                <th>Checked</th>
+
             </tr>
+           
+            @foreach ($weeklyorder->WeeklyOrderDetailM as$item)
             <tr>
-                <td>C3</td>
-                <td>Misc 1</td>
-                <td>2</td>
+                <td>{{$item->shelf_code}}</td>
+                <td>{{$item->product_name}}</td>
+
+                <td>{{$item->quantity}}</td>
+
                 <td>
                     <div class="custom-checkbox-container">
                         <div class="custom-checkbox"></div>
                     </div>
                 </td>
+                <td>Yes | No</td>
+
             </tr>
-            <tr>
-                <td>D4</td>
-                <td>Misc 2</td>
-                <td>1</td>
-                <td>
-                    <div class="custom-checkbox-container">
-                        <div class="custom-checkbox"></div>
-                    </div>
-                </td>
-            </tr>
+            @endforeach
             <!-- Add more rows with data here -->
         </table>
     </div>
@@ -265,27 +263,28 @@
                 <th>Product Name</th>
                 <th>Quantity</th>
                 <th>Picked</th>
+                <th>Checked</th>
+
             </tr>
+
+            @foreach ($weeklyorder->WeeklyOrderDetailD as$item)
             <tr>
-                <td>E5</td>
-                <td>Document 1</td>
-                <td>10</td>
+                <td>{{$item->shelf_code}}</td>
+                <td>{{$item->product_name}}</td>
+
+                <td>{{$item->quantity}}</td>
+
                 <td>
                     <div class="custom-checkbox-container">
                         <div class="custom-checkbox"></div>
                     </div>
                 </td>
+                <td>Yes | No</td>
+
             </tr>
-            <tr>
-                <td>F6</td>
-                <td>Document 2</td>
-                <td>5</td>
-                <td>
-                    <div class="custom-checkbox-container">
-                        <div class="custom-checkbox"></div>
-                    </div>
-                </td>
-            </tr>
+            @endforeach
+           
+          
             <!-- Add more rows with data here -->
         </table>
     </div>

@@ -35,7 +35,6 @@
         "cxlt-vue2-toastr": "^1.1.1",
         "html2pdf.js": "^0.10.1",
         "moment": "^2.29.4",
-        "puppeteer": "^20.7.3",
         "verte": "^0.0.12",
         "vue": "^2.6.11",
         "vue-blob-json-csv": "^0.1.7",
