@@ -20563,6 +20563,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 //custom toggle button
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -28448,6 +28450,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _widgets_ToggleButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../widgets/ToggleButton */ "./resources/js/components/widgets/ToggleButton.vue");
+//
 //
 //
 //
@@ -184889,50 +184892,17 @@ var render = function() {
                           _c("td", [
                             _vm._v(
                               "\n                " +
-                                _vm._s(
-                                  _vm._f("moment")(
-                                    deliverynote.delivery_note_date,
-                                    "from",
-                                    "now"
-                                  )
-                                ) +
+                                _vm._s(deliverynote.delivery_note_date) +
                                 "\n              "
                             )
                           ]),
                           _vm._v(" "),
                           _c("td", [
-                            deliverynote.delivery_note_date ===
-                            deliverynote.due_date
-                              ? _c(
-                                  "span",
-                                  { staticClass: "bg-danger text-white p-2" },
-                                  [
-                                    _vm._v(
-                                      _vm._s(
-                                        _vm._f("moment")(
-                                          deliverynote.due_date,
-                                          "from",
-                                          "now"
-                                        )
-                                      )
-                                    )
-                                  ]
-                                )
-                              : _c(
-                                  "span",
-                                  { staticClass: "bg-success text-white p-2" },
-                                  [
-                                    _vm._v(
-                                      _vm._s(
-                                        _vm._f("moment")(
-                                          deliverynote.due_date,
-                                          "from",
-                                          "now"
-                                        )
-                                      )
-                                    )
-                                  ]
-                                )
+                            _vm._v(
+                              "\n\n                " +
+                                _vm._s(deliverynote.due_date) +
+                                "\n              "
+                            )
                           ]),
                           _vm._v(" "),
                           _c("td", [
@@ -197986,50 +197956,17 @@ var render = function() {
                           _c("td", [
                             _vm._v(
                               "\n                " +
-                                _vm._s(
-                                  _vm._f("moment")(
-                                    weeklyorder.date_order_requested,
-                                    "from",
-                                    "now"
-                                  )
-                                ) +
+                                _vm._s(weeklyorder.date_order_requested) +
                                 "\n              "
                             )
                           ]),
                           _vm._v(" "),
                           _c("td", [
-                            weeklyorder.date_order_requested ===
-                            weeklyorder.delivery_date
-                              ? _c(
-                                  "span",
-                                  { staticClass: "bg-danger text-white p-2" },
-                                  [
-                                    _vm._v(
-                                      _vm._s(
-                                        _vm._f("moment")(
-                                          weeklyorder.delivery_date,
-                                          "from",
-                                          "now"
-                                        )
-                                      )
-                                    )
-                                  ]
-                                )
-                              : _c(
-                                  "span",
-                                  { staticClass: "bg-success text-white p-2" },
-                                  [
-                                    _vm._v(
-                                      _vm._s(
-                                        _vm._f("moment")(
-                                          weeklyorder.delivery_date,
-                                          "from",
-                                          "now"
-                                        )
-                                      )
-                                    )
-                                  ]
-                                )
+                            _vm._v(
+                              "\n                " +
+                                _vm._s(weeklyorder.delivery_date) +
+                                "\n              "
+                            )
                           ]),
                           _vm._v(" "),
                           _c("td", [

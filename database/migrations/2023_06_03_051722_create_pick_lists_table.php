@@ -17,10 +17,10 @@ class CreatePickListsTable extends Migration
             $table->bigIncrements('id');
 
             $table->string('custom_pick_list_id')->nullable();
-            $table->date('sailing_date')->nullable();
-            $table->date('picked_date')->nullable();
-            $table->date('date')->nullable();
-            $table->date('date_requested')->nullable();
+            $table->string('sailing_date')->nullable();
+            $table->string('picked_date')->nullable();
+            $table->string('date')->nullable();
+            $table->string('date_requested')->nullable();
             $table->string('picked_by')->nullable();
             $table->string('checked_by')->nullable();
             $table->string('missing')->nullable();

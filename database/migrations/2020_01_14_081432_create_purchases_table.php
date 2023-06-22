@@ -16,8 +16,8 @@ class CreatePurchasesTable extends Migration
         Schema::create('purchases', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('custom_purchase_id')->nullable();
-            $table->date('purchase_date');
-            $table->date('due_date');
+            $table->string('purchase_date');
+            $table->string('due_date');
             $table->string('image')->nullable();
             $table->string('note');
             $table->unsignedBigInteger('supplier_id');

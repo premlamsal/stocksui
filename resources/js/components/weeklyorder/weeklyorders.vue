@@ -566,17 +566,18 @@
                 <td>{{ weeklyorder.id }}</td>
                 <td>{{ weeklyorder.boat_name }}</td>
                 <td>
-                  {{ weeklyorder.date_order_requested | moment("from", "now") }}
+                  {{ weeklyorder.date_order_requested}}
                 </td>
                 <td>
-                  <span
+                  <!-- <span
                     v-if="weeklyorder.date_order_requested === weeklyorder.delivery_date"
                     class="bg-danger text-white p-2"
-                    >{{ weeklyorder.delivery_date | moment("from", "now") }}</span
+                    >{{  | moment("from", "now") }}</span
                   >
                   <span v-else class="bg-success text-white p-2">{{
                     weeklyorder.delivery_date | moment("from", "now")
-                  }}</span>
+                  }}</span> -->
+                  {{ weeklyorder.delivery_date }}
                 </td>
 
                 <!--

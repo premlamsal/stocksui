@@ -16,8 +16,8 @@ class CreateDeliveryNotesTable extends Migration
         Schema::create('delivery_notes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('custom_delivery_note_id')->nullable();
-            $table->date('delivery_note_date');
-            $table->date('due_date');
+            $table->string('delivery_note_date');
+            $table->string('due_date');
             $table->string('image')->nullable();
             $table->string('note');
             $table->unsignedBigInteger('supplier_id');

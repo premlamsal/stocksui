@@ -399,19 +399,21 @@
                 <td>Rs. {{ deliverynote.grand_total }}</td>
                 <td>{{ deliverynote.supplier_name }}</td>
                 <td>
-                  {{ deliverynote.delivery_note_date | moment("from", "now") }}
+                  {{ deliverynote.delivery_note_date }}
                 </td>
                 <td>
-                  <span
+                  <!-- <span
                     v-if="
                       deliverynote.delivery_note_date === deliverynote.due_date
                     "
                     class="bg-danger text-white p-2"
                     >{{ deliverynote.due_date | moment("from", "now") }}</span
-                  >
-                  <span v-else class="bg-success text-white p-2">{{
-                    deliverynote.due_date | moment("from", "now")
-                  }}</span>
+                  > -->
+                  <!-- <span v-else class="bg-success text-white p-2"></span> -->
+
+                  {{
+                    deliverynote.due_date
+                  }}
                 </td>
 
                 <!--
