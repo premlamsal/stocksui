@@ -185466,7 +185466,7 @@ var render = function() {
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(note.user.name))]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(note.created_at))]),
+                          _c("td", [_vm._v(_vm._s(note.date))]),
                           _vm._v(" "),
                           _c("td", [
                             _vm.hasPermission("edit_note")

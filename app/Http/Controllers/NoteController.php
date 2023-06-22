@@ -53,6 +53,10 @@ class NoteController extends Controller
         $note->title = $request->input('title');
 
         $note->description = $request->input('description');
+        // $note->date=Carbon::now()->format('d-m-Y H:i:s');
+        
+        $note->date=Carbon::now()->format('d-m-Y');
+
         $note->created_at = Carbon::now();
         $note->updated_at = Carbon::now();
         $note->user_id = $user->id;

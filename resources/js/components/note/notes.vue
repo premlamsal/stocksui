@@ -86,7 +86,7 @@
                   <td class="cursor">{{note.title}}</td>
                   <td>{{note.description}}</td>
                   <td>{{note.user.name}}</td>
-                  <td>{{note.created_at}}</td>
+                  <td>{{note.date}}</td>
                   <td>
                     <button class="btn btn-success custom_btn_table" @click=editNote(note.id) v-if="hasPermission('edit_note')"><span class="fa fa-edit custom_icon_table"></span></button>
                     <button class="btn btn-danger custom_btn_table" @click=deleteNote(note.id) v-if="hasPermission('delete_note')"><span class="fa fa-trash custom_icon_table"></span></button>
