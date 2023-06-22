@@ -18231,7 +18231,7 @@ __webpack_require__.r(__webpack_exports__);
       modalForCode: 0,
       errors: [],
       options: {
-        format: "YYYY-MM-DD hh:mm:ss a",
+        format: "DD-MM-YYYY hh:mm:ss a",
         useCurrent: true,
         showClear: true,
         showClose: true
@@ -20598,7 +20598,7 @@ __webpack_require__.r(__webpack_exports__);
       tempCustomDeliveryNoteID: "",
       showProductSuggestion: false,
       options: {
-        format: "YYYY-MM-DD",
+        format: "DD-MM-YYYY",
         useCurrent: true,
         showClear: true,
         showClose: true
@@ -23133,7 +23133,7 @@ __webpack_require__.r(__webpack_exports__);
       tempCustomPickListID: "",
       showProductSuggestion: false,
       options: {
-        format: "YYYY-MM-DD",
+        format: "DD-MM-YYYY",
         useCurrent: true,
         showClear: true,
         showClose: true
@@ -24829,7 +24829,7 @@ __webpack_require__.r(__webpack_exports__);
       tempCustomPurchaseID: "",
       showProductSuggestion: false,
       options: {
-        format: "YYYY-MM-DD",
+        format: "DD-MM-YYYY",
         useCurrent: true,
         showClear: true,
         showClose: true
@@ -29183,7 +29183,7 @@ __webpack_require__.r(__webpack_exports__);
       tempCustomWeeklyOrderID: "",
       showProductSuggestion: false,
       options: {
-        format: "YYYY-MM-DD",
+        format: "DD-MM-YYYY",
         useCurrent: true,
         showClear: true,
         showClose: true

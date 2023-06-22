@@ -568,7 +568,7 @@ export default {
       tempCustomDeliveryNoteID: "",
       showProductSuggestion: false,
       options: {
-        format: "YYYY-MM-DD",
+        format: "DD-MM-YYYY",
         useCurrent: true,
         showClear: true,
         showClose: true,
