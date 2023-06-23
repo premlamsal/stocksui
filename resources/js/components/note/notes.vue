@@ -26,7 +26,6 @@
             errors.title[0]
           }}</span>
         </div>
-<<<<<<< HEAD
 
         <div class="form-group">
           <label for="Description">Description:</label>
@@ -37,7 +36,6 @@
           <span v-if="errors.description" :class="['errorText']">{{
             errors.description[0]
           }}</span>
-=======
         <b-button class="btn-primary mt-3" block @click="callFunc">{{modalForName}}</b-button>
       </b-modal>
       <!-- add unit modal end-->
@@ -120,7 +118,6 @@
         </div>
         <div class="errorDivEmptyData" v-else>
           No Data Found
->>>>>>> 5e9693f13e4666ab278013aad35240231e0e427f
         </div>
       </div>
       <b-button class="btn-primary mt-3" block @click="callFunc">{{

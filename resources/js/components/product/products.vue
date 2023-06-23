@@ -149,7 +149,6 @@
         <!-- <div v-if="isLoading">{{isLoading}}</div> -->
         <!-- <p>As per {{new Date().toLocaleString()}}</p> -->
         <!-- <span>{{isLoading}}</span> -->
-<<<<<<< HEAD
         <div class="export-block">
           <template>
             <vue-blob-json-csv
@@ -210,9 +209,7 @@
             </div>
           </div>
         </div>
-=======
      
->>>>>>> 5e9693f13e4666ab278013aad35240231e0e427f
 
         <div class="searchTable">
           <!-- Topbar Search -->

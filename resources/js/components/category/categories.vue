@@ -58,7 +58,6 @@
         <div class="text-center" v-if="isLoading == 'Loading all Data'">
           <b-spinner variant="success" label="Spinning"></b-spinner>
         </div>
-<<<<<<< HEAD
         <div class="export-block">
           <template>
             <vue-blob-json-csv
@@ -120,9 +119,7 @@
           </div>
         </div>
 
-=======
       
->>>>>>> 5e9693f13e4666ab278013aad35240231e0e427f
         <div class="searchTable">
           <!-- Topbar Search -->
           <!-- <div class="input-group"> -->
