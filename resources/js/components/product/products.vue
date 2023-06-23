@@ -149,25 +149,7 @@
         <!-- <div v-if="isLoading">{{isLoading}}</div> -->
         <!-- <p>As per {{new Date().toLocaleString()}}</p> -->
         <!-- <span>{{isLoading}}</span> -->
-        <div class="export-block">
-          <template>
-            <vue-blob-json-csv
-              @success="handleSuccessExportCSV"
-              @error="handleErrorExportCSV"
-              file-type="csv"
-              file-name="prdoucts"
-              :fields="products_export_fileds"
-              :data="products"
-            >
-              <!-- <button class="btn btn-warning-success"><i class="fa fa-file-excel-o" aria-hidden="true"></i></button> -->
-              <img
-                src="img/icon-red-csv.png"
-                class="icon-red-csv-export"
-                alt="Export data to CSV"
-              />
-            </vue-blob-json-csv>
-          </template>
-        </div>
+     
 
         <div class="searchTable">
           <!-- Topbar Search -->
