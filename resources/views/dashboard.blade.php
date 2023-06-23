@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="{{ asset('img/a.svg') }}">
+    <link rel="icon" type="image/png" href="{{ asset('img/logo1.png') }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
         name='viewport' />
@@ -194,7 +194,7 @@
                 <div class="logo">
                     <a href="#" class="simple-text logo-mini">
                         <div class="logo-image-small">
-                            <img src="{{ asset('img/a.svg') }}">
+                            <img src="{{ asset('img/logo1.png') }}">
                         </div>
                     </a>
                     <a href="/" class="simple-text logo-normal">
@@ -320,7 +320,7 @@
                             </nav>
                             <div class="credits ml-auto">
                                 <span class="copyright">
-                                    ©Made with <i class="fa fa-heart heart"></i> by Prem Lamsal
+                                    {{-- ©Made with <i class="fa fa-heart heart"></i> by Prem Lamsal --}}
                                 </span>
                             </div>
                         </div>
