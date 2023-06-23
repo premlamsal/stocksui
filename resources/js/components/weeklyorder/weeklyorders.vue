@@ -67,9 +67,11 @@
                     :config="options"
                     :class="['form-control']"
                   ></date-picker>
-                  <span v-if="errors['info.delivery_date']" :class="['errorText']">{{
-                    errors["info.delivery_date"][0]
-                  }}</span>
+                  <span
+                    v-if="errors['info.delivery_date']"
+                    :class="['errorText']"
+                    >{{ errors["info.delivery_date"][0] }}</span
+                  >
                 </div>
               </div>
             </div>
@@ -77,7 +79,7 @@
 
           <div class="weeklyorder">
             <div class="weeklyorder-head">
-              <div class="row" style="text-align:center">
+              <div class="row" style="text-align: center">
                 <div class="col-md-2">
                   <h6>SHELF CODE</h6>
                 </div>
@@ -169,6 +171,7 @@
 
                     <div class="col-md-2">
                       <input
+                        disabled
                         type="text"
                         class="form-control"
                         placeholder="Enter the picked"
@@ -180,6 +183,7 @@
                     </div>
                     <div class="col-md-2">
                       <input
+                        disabled
                         type="text"
                         class="form-control"
                         placeholder="Enter the checked"
@@ -285,6 +289,7 @@
 
                     <div class="col-md-2">
                       <input
+                        disabled
                         type="text"
                         class="form-control"
                         placeholder="Enter the picked"
@@ -296,6 +301,7 @@
                     </div>
                     <div class="col-md-2">
                       <input
+                        disabled
                         type="text"
                         class="form-control"
                         placeholder="Enter the checked"
@@ -407,6 +413,7 @@
 
                     <div class="col-md-2">
                       <input
+                        disabled
                         type="text"
                         class="form-control"
                         placeholder="Enter the picked"
@@ -418,6 +425,7 @@
                     </div>
                     <div class="col-md-2">
                       <input
+                        disabled
                         type="text"
                         class="form-control"
                         placeholder="Enter the checked"
@@ -427,7 +435,6 @@
                         }"
                       />
                     </div>
-
 
                     <div class="col-md-1">
                       <button
@@ -566,7 +573,7 @@
                 <td>{{ weeklyorder.id }}</td>
                 <td>{{ weeklyorder.boat_name }}</td>
                 <td>
-                  {{ weeklyorder.date_order_requested}}
+                  {{ weeklyorder.date_order_requested }}
                 </td>
                 <td>
                   <!-- <span
@@ -592,11 +599,11 @@
 
                 <td>
                   <button
-                    class="btn btn-outline-primary custom_btn_table"
+                    class="btn btn-danger custom_btn_table"
                     v-if="hasPermission('show_weeklyorder')"
                     @click="downloadWeeklyOrderPDF(weeklyorder.id)"
                   >
-                    <span class="fa fa-align-justify custom_icon_table"></span>
+                    <span class="fa fa-file-pdf-o custom_icon_table"></span>
                   </button>
                   <button
                     class="btn btn-outline-success custom_btn_table"
@@ -692,7 +699,7 @@
 </template>
   
   <script>
-import Vue from 'vue';
+import Vue from "vue";
 //custom toggle button
 import ToggleButton from "../widgets/ToggleButton";
 
@@ -812,8 +819,6 @@ export default {
     };
   },
   created() {
-    
-
     this.fetchWeeklyOrders();
     // this.fetchStore();
   },
@@ -823,9 +828,9 @@ export default {
       this.preItemNameC.forEach((element) => {
         this.cleaning_products.push({
           product_name: element,
-          picked: "",
+          picked: "   Yes    |      No",
           quantity: "1",
-          checked:"   Yes    |      No",
+          checked: "   Yes    |      No",
 
           changed: true,
         });
@@ -835,10 +840,10 @@ export default {
       this.preItemNameM.forEach((element) => {
         this.miscellaneous.push({
           product_name: element,
-          picked: "",
+          picked: "   Yes    |      No",
           quantity: "1",
           line_total: "",
-          checked:"   Yes    |      No",
+          checked: "   Yes    |      No",
 
           changed: true,
         });
@@ -848,19 +853,15 @@ export default {
       this.preItemNameD.forEach((element) => {
         this.documentations.push({
           product_name: element,
-          picked: "",
+          picked: "   Yes    |      No",
           quantity: "1",
-          checked:"   Yes    |      No",
+          checked: "   Yes    |      No",
 
           changed: true,
         });
       });
     },
-    clearWeeklyOrderInput() {
-   
-
-      
-    },
+    clearWeeklyOrderInput() {},
     downloadWeeklyOrderPDF(id) {
       console.log("download-btn-pressed");
       axios
@@ -912,11 +913,12 @@ export default {
     addNewLineC() {
       this.cleaning_products.push({
         product_name: "",
-        picked: "0",
+
+        picked: "   Yes    |      No",
         quantity: "1",
-        product: {
-          custom_product_id: "",
-        },
+        line_total: "",
+        checked: "   Yes    |      No",
+
         line_total: "",
         changed: false,
       });
@@ -924,11 +926,11 @@ export default {
     addNewLineM() {
       this.miscellaneous.push({
         product_name: "",
-        picked: "0",
+
+        picked: "   Yes    |      No",
         quantity: "1",
-        product: {
-          custom_product_id: "",
-        },
+        line_total: "",
+        checked: "   Yes    |      No",
         line_total: "",
         changed: false,
       });
@@ -936,11 +938,11 @@ export default {
     addNewLineD() {
       this.documentations.push({
         product_name: "",
-        picked: "0",
+
+        picked: "   Yes    |      No",
         quantity: "1",
-        product: {
-          custom_product_id: "",
-        },
+        line_total: "",
+        checked: "   Yes    |      No",
         line_total: "",
         changed: false,
       });
@@ -1049,16 +1051,15 @@ export default {
     },
 
     showAddModal() {
-      this.cleaning_products=[]
-      this.miscellaneous=[]
-      this.documentations=[]
+      this.cleaning_products = [];
+      this.miscellaneous = [];
+      this.documentations = [];
       // this.info.note=`Communication / Crockery /nTableware etc /nRequirements`;
-      const note=`Communication Crockery\nTableware etc\nRequirements `
-      Vue.set(this.info,'note',note);
-    this.pushDefaultProductNameToC();
-    this.pushDefaultProductNameToM();
-    this.pushDefaultProductNameToD();
-
+      const note = `Communication Crockery\nTableware etc\nRequirements `;
+      Vue.set(this.info, "note", note);
+      this.pushDefaultProductNameToC();
+      this.pushDefaultProductNameToM();
+      this.pushDefaultProductNameToD();
 
       this.modalForName = "Add WeeklyOrder";
       // Vue.set(this.modalForName,"Add WeeklyOrder");
@@ -1113,7 +1114,6 @@ export default {
 
     editWeeklyOrder(id) {
       this.$Progress.start();
-    
 
       let currObj = this;
       this.modalForName = "Edit WeeklyOrder";
@@ -1125,7 +1125,6 @@ export default {
         .then(function (response) {
           Vue.set(currObj.info, "weeklyorder_no", response.data.weeklyorder.id),
             Vue.set(currObj.info, "note", response.data.weeklyorder.note),
-         
             Vue.set(
               currObj.info,
               "boat_name",
@@ -1141,20 +1140,19 @@ export default {
               "date_order_requested",
               response.data.weeklyorder.date_order_requested
             );
-            Vue.set(
-              currObj.info,
-              "date_order_requested",
-              response.data.weeklyorder.date_order_requested
-            );
-          
-          let cp = response.data.weeklyorder.weekly_order_detail_c
-          let m = response.data.weeklyorder.weekly_order_detail_m
-          let d = response.data.weeklyorder.weekly_order_detail_d
-          currObj.cleaning_products=[]
-          currObj.miscellaneous=[]
-          currObj.documentations=[]
+          Vue.set(
+            currObj.info,
+            "date_order_requested",
+            response.data.weeklyorder.date_order_requested
+          );
 
-          
+          let cp = response.data.weeklyorder.weekly_order_detail_c;
+          let m = response.data.weeklyorder.weekly_order_detail_m;
+          let d = response.data.weeklyorder.weekly_order_detail_d;
+          currObj.cleaning_products = [];
+          currObj.miscellaneous = [];
+          currObj.documentations = [];
+
           for (let i = 0; i < cp.length; i++) {
             currObj.cleaning_products[i] = cp[i];
           }
@@ -1166,7 +1164,7 @@ export default {
           for (let i = 0; i < d.length; i++) {
             currObj.documentations[i] = d[i];
           }
-         
+
           currObj.$Progress.finish();
         })
         .catch(function (error) {
@@ -1193,9 +1191,9 @@ export default {
           currObj.$swal("Info", currObj.output, currObj.status);
           currObj.$bvModal.hide("bv-modal-add-weeklyorder");
           currObj.fetchWeeklyOrders();
-          currObj.cleaning_products=[]
-          currObj.miscellaneous=[]
-          currObj.documentations=[]
+          currObj.cleaning_products = [];
+          currObj.miscellaneous = [];
+          currObj.documentations = [];
           // currObj.errors = '';//clearing errors
         })
         .catch(function (error) {
@@ -1415,8 +1413,8 @@ h3.head-pip {
 }
 
 textarea.form-control {
-    height: 106px;
-    max-height: none;
+  height: 106px;
+  max-height: none;
 }
 </style>
   

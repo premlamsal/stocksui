@@ -91,10 +91,10 @@ Yellow - Other #ff9800-->
             </div>
             <div
               class="event-color green"
-              @click="setEventColor('metting')"
-              :class="{ 'color-clicked': event.type == 'metting' }"
+              @click="setEventColor('meeting')"
+              :class="{ 'color-clicked': event.type == 'meeting' }"
             >
-              Metting
+              Meeting
             </div>
             <div
               class="event-color orange"
@@ -246,9 +246,9 @@ export default {
       } else if (temp === "interview") {
         this.event.back_color = "#2196F3";
         this.event.type = "interview";
-      } else if (temp === "metting") {
+      } else if (temp === "meeting") {
         this.event.back_color = "#4CAF50";
-        this.event.type = "metting";
+        this.event.type = "meeting";
       } else if (temp === "other") {
         this.event.back_color = "#ff9800";
         this.event.type = "other";
@@ -361,7 +361,7 @@ export default {
             Vue.set(this.event, "type", "interview");
             Vue.set(this.event, "back_color", "#2196F3");
           } else if (temp === "#4CAF50") {
-            Vue.set(this.event, "type", "metting");
+            Vue.set(this.event, "type", "meeting");
             Vue.set(this.event, "back_color", "#4CAF50");
           } else if (temp === "#ff9800") {
             Vue.set(this.event, "type", "other");

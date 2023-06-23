@@ -18302,9 +18302,9 @@ __webpack_require__.r(__webpack_exports__);
       } else if (temp === "interview") {
         this.event.back_color = "#2196F3";
         this.event.type = "interview";
-      } else if (temp === "metting") {
+      } else if (temp === "meeting") {
         this.event.back_color = "#4CAF50";
-        this.event.type = "metting";
+        this.event.type = "meeting";
       } else if (temp === "other") {
         this.event.back_color = "#ff9800";
         this.event.type = "other";
@@ -18409,7 +18409,7 @@ __webpack_require__.r(__webpack_exports__);
           Vue.set(_this2.event, "type", "interview");
           Vue.set(_this2.event, "back_color", "#2196F3");
         } else if (temp === "#4CAF50") {
-          Vue.set(_this2.event, "type", "metting");
+          Vue.set(_this2.event, "type", "meeting");
           Vue.set(_this2.event, "back_color", "#4CAF50");
         } else if (temp === "#ff9800") {
           Vue.set(_this2.event, "type", "other");
@@ -28450,6 +28450,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _widgets_ToggleButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../widgets/ToggleButton */ "./resources/js/components/widgets/ToggleButton.vue");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -29213,7 +29222,7 @@ __webpack_require__.r(__webpack_exports__);
       this.preItemNameC.forEach(function (element) {
         _this.cleaning_products.push({
           product_name: element,
-          picked: "",
+          picked: "   Yes    |      No",
           quantity: "1",
           checked: "   Yes    |      No",
           changed: true
@@ -29226,7 +29235,7 @@ __webpack_require__.r(__webpack_exports__);
       this.preItemNameM.forEach(function (element) {
         _this2.miscellaneous.push({
           product_name: element,
-          picked: "",
+          picked: "   Yes    |      No",
           quantity: "1",
           line_total: "",
           checked: "   Yes    |      No",
@@ -29240,7 +29249,7 @@ __webpack_require__.r(__webpack_exports__);
       this.preItemNameD.forEach(function (element) {
         _this3.documentations.push({
           product_name: element,
-          picked: "",
+          picked: "   Yes    |      No",
           quantity: "1",
           checked: "   Yes    |      No",
           changed: true
@@ -29280,41 +29289,38 @@ __webpack_require__.r(__webpack_exports__);
     },
     //
     addNewLineC: function addNewLineC() {
-      this.cleaning_products.push({
+      var _this$cleaning_produc;
+
+      this.cleaning_products.push((_this$cleaning_produc = {
         product_name: "",
-        picked: "0",
+        picked: "   Yes    |      No",
         quantity: "1",
-        product: {
-          custom_product_id: ""
-        },
         line_total: "",
-        changed: false
-      });
+        checked: "   Yes    |      No"
+      }, _defineProperty(_this$cleaning_produc, "line_total", ""), _defineProperty(_this$cleaning_produc, "changed", false), _this$cleaning_produc));
     },
     // end of add new line
     addNewLineM: function addNewLineM() {
-      this.miscellaneous.push({
+      var _this$miscellaneous$p;
+
+      this.miscellaneous.push((_this$miscellaneous$p = {
         product_name: "",
-        picked: "0",
+        picked: "   Yes    |      No",
         quantity: "1",
-        product: {
-          custom_product_id: ""
-        },
         line_total: "",
-        changed: false
-      });
+        checked: "   Yes    |      No"
+      }, _defineProperty(_this$miscellaneous$p, "line_total", ""), _defineProperty(_this$miscellaneous$p, "changed", false), _this$miscellaneous$p));
     },
     addNewLineD: function addNewLineD() {
-      this.documentations.push({
+      var _this$documentations$;
+
+      this.documentations.push((_this$documentations$ = {
         product_name: "",
-        picked: "0",
+        picked: "   Yes    |      No",
         quantity: "1",
-        product: {
-          custom_product_id: ""
-        },
         line_total: "",
-        changed: false
-      });
+        checked: "   Yes    |      No"
+      }, _defineProperty(_this$documentations$, "line_total", ""), _defineProperty(_this$documentations$, "changed", false), _this$documentations$));
     },
     removeLineC: function removeLineC(index) {
       // this.weeklyorders.remove();
@@ -29415,7 +29421,7 @@ __webpack_require__.r(__webpack_exports__);
       this.documentations = []; // this.info.note=`Communication / Crockery /nTableware etc /nRequirements`;
 
       var note = "Communication Crockery\nTableware etc\nRequirements ";
-      vue__WEBPACK_IMPORTED_MODULE_0___default.a.set(this.info, 'note', note);
+      vue__WEBPACK_IMPORTED_MODULE_0___default.a.set(this.info, "note", note);
       this.pushDefaultProductNameToC();
       this.pushDefaultProductNameToM();
       this.pushDefaultProductNameToD();
@@ -97945,7 +97951,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.weeklyorder[data-v-1a0a9d5a] {\n  margin-top: 5em;\n}\n.weeklyorder-body[data-v-1a0a9d5a] {\n  margin-top: 2em;\n  padding: 8px;\n}\n.weeklyorder-head[data-v-1a0a9d5a] {\n  padding: 1em;\n  /*border-bottom: 1px solid #eee;*/\n  background: var(--favblue);\n  color: var(--favgold);\n  box-shadow: 1px 7px 17px -12px;\n}\n.weeklyorder-foot[data-v-1a0a9d5a] {\n  margin-top: 1em;\n  padding: 2em;\n  border-top: 1px solid #eee;\n}\n.datetime-picker[data-v-1a0a9d5a] {\n}\n.datetime-picker input[data-v-1a0a9d5a] {\n  display: block;\n  width: 100%;\n  height: calc(1.5em + 0.75rem + 2px);\n  padding: 0.375rem 0.75rem;\n  font-size: 1rem;\n  font-weight: 400;\n  line-height: 1.5;\n  color: #495057;\n  background-color: #fff;\n  background-clip: padding-box;\n  border: 1px solid #ced4da;\n  border-radius: 0.25rem;\n  -webkit-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n}\n.supplier-search-suggestion[data-v-1a0a9d5a] {\n  background: #fff;\n  position: absolute;\n  overflow-y: scroll;\n  height: auto;\n  max-height: 9em;\n  color: #000;\n  border: 1px solid #e2dfdf;\n  border-top: 0px;\n  width: 100%;\n  box-shadow: 1px 7px 17px -12px;\n  border-radius: 4px;\n}\n.supplier-search-suggestion-inner[data-v-1a0a9d5a] {\n  padding: 1px;\n  border-top: 1px solid #d6d6d6;\n}\n.supplier-search-suggestion-inner ul[data-v-1a0a9d5a] {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n.supplier-search-suggestion-inner li[data-v-1a0a9d5a] {\n  cursor: pointer;\n  padding: 10px;\n}\n.supplier-search-suggestion-inner li[data-v-1a0a9d5a]:hover {\n  background: #007bff;\n  color: #fff;\n}\n.supplier-search-suggestion[data-v-1a0a9d5a]::-webkit-scrollbar-track {\n  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);\n  background-color: #f5f5f5;\n}\n.supplier-search-suggestion[data-v-1a0a9d5a]::-webkit-scrollbar {\n  width: 6px;\n  background-color: #f5f5f5;\n}\n.supplier-search-suggestion[data-v-1a0a9d5a]::-webkit-scrollbar-thumb {\n  background-color: #000000;\n}\n.product-search-suggestion-weeklyorder[data-v-1a0a9d5a] {\n  position: absolute;\n  /* background: #f4f3ef; */\n  width: 100%;\n  color: #212120;\n  /* padding-right: 12px; */\n  overflow-y: scroll;\n  max-height: 9em;\n  z-index: 1;\n  box-shadow: 1px 7px 17px -12px;\n  border-radius: 4px;\n}\n.product-search-suggestion-weeklyorder ul[data-v-1a0a9d5a] {\n  list-style: none;\n  margin: 0px;\n  padding: 0px;\n}\n.product-search-suggestion-weeklyorder ul li[data-v-1a0a9d5a] {\n  padding: 10px;\n  cursor: pointer;\n  background: #f4f3ef;\n}\n.product-search-suggestion-weeklyorder ul li[data-v-1a0a9d5a]:hover {\n  background: #51cbce;\n  color: white;\n}\n.product-search-suggestion-weeklyorder[data-v-1a0a9d5a]::-webkit-scrollbar-track {\n  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);\n  background-color: #f5f5f5;\n}\n.product-search-suggestion-weeklyorder[data-v-1a0a9d5a]::-webkit-scrollbar {\n  width: 6px;\n  background-color: #f5f5f5;\n}\n.product-search-suggestion-weeklyorder[data-v-1a0a9d5a]::-webkit-scrollbar-thumb {\n  background-color: #000000;\n}\n.row.wk_order_row[data-v-1a0a9d5a] {\n  border: 1px solid #eee;\n  padding: 9px;\n  font-size: 16px;\n  margin: 12px;\n}\nh3.head-pip[data-v-1a0a9d5a] {\n  /* background: var(--favblue); */\n  /* color: var(--favgold); */\n  padding: 9px;\n  font-size: 15px;\n  text-align: center;\n}\ntextarea.form-control[data-v-1a0a9d5a] {\n    height: 106px;\n    max-height: none;\n}\n", ""]);
+exports.push([module.i, "\n.weeklyorder[data-v-1a0a9d5a] {\n  margin-top: 5em;\n}\n.weeklyorder-body[data-v-1a0a9d5a] {\n  margin-top: 2em;\n  padding: 8px;\n}\n.weeklyorder-head[data-v-1a0a9d5a] {\n  padding: 1em;\n  /*border-bottom: 1px solid #eee;*/\n  background: var(--favblue);\n  color: var(--favgold);\n  box-shadow: 1px 7px 17px -12px;\n}\n.weeklyorder-foot[data-v-1a0a9d5a] {\n  margin-top: 1em;\n  padding: 2em;\n  border-top: 1px solid #eee;\n}\n.datetime-picker[data-v-1a0a9d5a] {\n}\n.datetime-picker input[data-v-1a0a9d5a] {\n  display: block;\n  width: 100%;\n  height: calc(1.5em + 0.75rem + 2px);\n  padding: 0.375rem 0.75rem;\n  font-size: 1rem;\n  font-weight: 400;\n  line-height: 1.5;\n  color: #495057;\n  background-color: #fff;\n  background-clip: padding-box;\n  border: 1px solid #ced4da;\n  border-radius: 0.25rem;\n  -webkit-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n}\n.supplier-search-suggestion[data-v-1a0a9d5a] {\n  background: #fff;\n  position: absolute;\n  overflow-y: scroll;\n  height: auto;\n  max-height: 9em;\n  color: #000;\n  border: 1px solid #e2dfdf;\n  border-top: 0px;\n  width: 100%;\n  box-shadow: 1px 7px 17px -12px;\n  border-radius: 4px;\n}\n.supplier-search-suggestion-inner[data-v-1a0a9d5a] {\n  padding: 1px;\n  border-top: 1px solid #d6d6d6;\n}\n.supplier-search-suggestion-inner ul[data-v-1a0a9d5a] {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n.supplier-search-suggestion-inner li[data-v-1a0a9d5a] {\n  cursor: pointer;\n  padding: 10px;\n}\n.supplier-search-suggestion-inner li[data-v-1a0a9d5a]:hover {\n  background: #007bff;\n  color: #fff;\n}\n.supplier-search-suggestion[data-v-1a0a9d5a]::-webkit-scrollbar-track {\n  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);\n  background-color: #f5f5f5;\n}\n.supplier-search-suggestion[data-v-1a0a9d5a]::-webkit-scrollbar {\n  width: 6px;\n  background-color: #f5f5f5;\n}\n.supplier-search-suggestion[data-v-1a0a9d5a]::-webkit-scrollbar-thumb {\n  background-color: #000000;\n}\n.product-search-suggestion-weeklyorder[data-v-1a0a9d5a] {\n  position: absolute;\n  /* background: #f4f3ef; */\n  width: 100%;\n  color: #212120;\n  /* padding-right: 12px; */\n  overflow-y: scroll;\n  max-height: 9em;\n  z-index: 1;\n  box-shadow: 1px 7px 17px -12px;\n  border-radius: 4px;\n}\n.product-search-suggestion-weeklyorder ul[data-v-1a0a9d5a] {\n  list-style: none;\n  margin: 0px;\n  padding: 0px;\n}\n.product-search-suggestion-weeklyorder ul li[data-v-1a0a9d5a] {\n  padding: 10px;\n  cursor: pointer;\n  background: #f4f3ef;\n}\n.product-search-suggestion-weeklyorder ul li[data-v-1a0a9d5a]:hover {\n  background: #51cbce;\n  color: white;\n}\n.product-search-suggestion-weeklyorder[data-v-1a0a9d5a]::-webkit-scrollbar-track {\n  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);\n  background-color: #f5f5f5;\n}\n.product-search-suggestion-weeklyorder[data-v-1a0a9d5a]::-webkit-scrollbar {\n  width: 6px;\n  background-color: #f5f5f5;\n}\n.product-search-suggestion-weeklyorder[data-v-1a0a9d5a]::-webkit-scrollbar-thumb {\n  background-color: #000000;\n}\n.row.wk_order_row[data-v-1a0a9d5a] {\n  border: 1px solid #eee;\n  padding: 9px;\n  font-size: 16px;\n  margin: 12px;\n}\nh3.head-pip[data-v-1a0a9d5a] {\n  /* background: var(--favblue); */\n  /* color: var(--favgold); */\n  padding: 9px;\n  font-size: 15px;\n  text-align: center;\n}\ntextarea.form-control[data-v-1a0a9d5a] {\n  height: 106px;\n  max-height: none;\n}\n", ""]);
 
 // exports
 
@@ -182334,14 +182340,14 @@ var render = function() {
                   "div",
                   {
                     staticClass: "event-color green",
-                    class: { "color-clicked": _vm.event.type == "metting" },
+                    class: { "color-clicked": _vm.event.type == "meeting" },
                     on: {
                       click: function($event) {
-                        return _vm.setEventColor("metting")
+                        return _vm.setEventColor("meeting")
                       }
                     }
                   },
-                  [_vm._v("\n              Metting\n            ")]
+                  [_vm._v("\n              Meeting\n            ")]
                 ),
                 _vm._v(" "),
                 _c(
@@ -197147,6 +197153,7 @@ var render = function() {
                                       _vm.errors["item." + index + ".picked"]
                                   },
                                   attrs: {
+                                    disabled: "",
                                     type: "text",
                                     placeholder: "Enter the picked"
                                   },
@@ -197182,6 +197189,7 @@ var render = function() {
                                       _vm.errors["item." + index + ".checked"]
                                   },
                                   attrs: {
+                                    disabled: "",
                                     type: "text",
                                     placeholder: "Enter the checked"
                                   },
@@ -197428,6 +197436,7 @@ var render = function() {
                                       _vm.errors["item." + index + ".picked"]
                                   },
                                   attrs: {
+                                    disabled: "",
                                     type: "text",
                                     placeholder: "Enter the picked"
                                   },
@@ -197463,6 +197472,7 @@ var render = function() {
                                       _vm.errors["item." + index + ".checked"]
                                   },
                                   attrs: {
+                                    disabled: "",
                                     type: "text",
                                     placeholder: "Enter the checked"
                                   },
@@ -197715,6 +197725,7 @@ var render = function() {
                                       _vm.errors["item." + index + ".picked"]
                                   },
                                   attrs: {
+                                    disabled: "",
                                     type: "text",
                                     placeholder: "Enter the picked"
                                   },
@@ -197750,6 +197761,7 @@ var render = function() {
                                       _vm.errors["item." + index + ".checked"]
                                   },
                                   attrs: {
+                                    disabled: "",
                                     type: "text",
                                     placeholder: "Enter the checked"
                                   },
@@ -197975,7 +197987,7 @@ var render = function() {
                                   "button",
                                   {
                                     staticClass:
-                                      "btn btn-outline-primary custom_btn_table",
+                                      "btn btn-danger custom_btn_table",
                                     on: {
                                       click: function($event) {
                                         return _vm.downloadWeeklyOrderPDF(
@@ -197987,7 +197999,7 @@ var render = function() {
                                   [
                                     _c("span", {
                                       staticClass:
-                                        "fa fa-align-justify custom_icon_table"
+                                        "fa fa-file-pdf-o custom_icon_table"
                                     })
                                   ]
                                 )
