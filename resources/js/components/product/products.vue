@@ -155,7 +155,7 @@
               @success="handleSuccessExportCSV"
               @error="handleErrorExportCSV"
               file-type="csv"
-              file-name="prdoucts"
+              file-name="products"
               :fields="products_export_fileds"
               :data="products"
             >
@@ -167,6 +167,47 @@
               />
             </vue-blob-json-csv>
           </template>
+
+          <template>
+            <img
+              src="img/pdf.png"
+              class="icon-red-pdf-export"
+              alt="Export data to pdf"
+              style="width: 41px; cursor: pointer"
+              @click="exportToPDF()"
+            />
+          </template>
+
+          <div
+            class="bowlpdf"
+            style="visibility: hidden; position: absolute"
+            v-if="showbowlpdf"
+          >
+            <div class="element-pdf" id="element-to-convert">
+              <h3>Products</h3>
+              <p>Exported on Date : {{ currentDateTime }}</p>
+              <table
+                class="table table-striped table-bordered"
+                width="100%"
+                cellspacing="0"
+              >
+                <thead>
+                  <tr>
+                    <template v-for="arrayKey in arrayKeys">
+                      <th>{{ arrayKey }}</th>
+                    </template>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="product in products" v-bind:key="product.id">
+                    <template v-for="arrayKey in arrayKeys">
+                      <td>{{ product[arrayKey] }}</td>
+                    </template>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
 
         <div class="searchTable">
@@ -324,6 +365,8 @@
 </template>
 
 <script>
+import html2pdf from "html2pdf.js";
+
 export default {
   data() {
     return {
@@ -364,11 +407,23 @@ export default {
 
       imagePreview: "",
 
+      showbowlpdf: true,
+      arrayKeys: [
+        "custom_product_id",
+        "product_name",
+        // "low_stock_alert_quantity",
+        "unit",
+        "category_name",
+        "description",
+      ],
+      currentDateTime: "",
+
       products_export_fileds: [
         "custom_product_id",
-        "name",
-        "cp",
-        "sp",
+        "product_name",
+        // "low_stock_alert_quantity",
+        "unit",
+        "category_name",
         "description",
       ],
     };
@@ -389,6 +444,39 @@ export default {
     },
     handleErrorExportCSV() {
       console.log("errorExport");
+    },
+
+    exportToPDF() {
+      this.showbowlpdf = true;
+      this.getDateTime();
+
+      setTimeout(() => {
+        html2pdf(document.getElementById("element-to-convert"), {
+          margin: 5,
+          filename: "exported.pdf",
+        });
+      }, 1000);
+
+      setTimeout(() => {
+        this.showbowlpdf = false;
+      }, 1000);
+    },
+    getDateTime() {
+      var currentdate = new Date();
+      var datetime =
+        "Last Sync: " +
+        currentdate.getDate() +
+        "/" +
+        (currentdate.getMonth() + 1) +
+        "/" +
+        currentdate.getFullYear() +
+        " @ " +
+        currentdate.getHours() +
+        ":" +
+        currentdate.getMinutes() +
+        ":" +
+        currentdate.getSeconds();
+      this.currentDateTime = datetime;
     },
     //methods codes here
     fetchCategories(page_url) {
@@ -585,14 +673,14 @@ export default {
           currObj.$bvModal.hide("bv-modal-add-product");
 
           currObj.product.name = "";
-          currObj.product.low_stock_alert_active =false;
+          currObj.product.low_stock_alert_active = false;
 
           currObj.product.product_cat_id = "";
           (currObj.product.unit = ""),
             (currObj.product.address = ""),
             (currObj.product.low_stock_alert_quantity = ""),
             (currObj.product.phone = ""),
-          currObj.product.description = "";
+            (currObj.product.description = "");
 
           currObj.setAvtarUploadImage();
 
@@ -675,8 +763,11 @@ export default {
       formData.append("_method", "PUT"); //add this otherwise data won't pass to backend
       formData.append("id", this.product.id);
       formData.append("name", this.product.name);
-      formData.append("low_stock_alert_active", this.product.low_stock_alert_active);
-      
+      formData.append(
+        "low_stock_alert_active",
+        this.product.low_stock_alert_active
+      );
+
       formData.append("product_cat_id", this.product.product_cat_id);
       formData.append("unit", this.product.unit);
       // formData.append('opening_stock',this.product.opening_stock);

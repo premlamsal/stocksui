@@ -18817,6 +18817,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -18828,12 +18834,12 @@ __webpack_require__.r(__webpack_exports__);
       modalForName: "",
       modalForCode: 0,
       searchTableKey: "",
-      showbowlpdf: false,
+      showbowlpdf: true,
+      arrayKeys: ["id", "name", "description"],
       currentDateTime: "",
       errors: [],
       pagination: {},
       isLoading: "",
-      arrayKeys: [],
       categories_export_fileds: ["name", "description"]
     };
   },
@@ -19210,6 +19216,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var html2pdf_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! html2pdf.js */ "./node_modules/html2pdf.js/dist/html2pdf.js");
+/* harmony import */ var html2pdf_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(html2pdf_js__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -19356,6 +19364,48 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -19370,7 +19420,10 @@ __webpack_require__.r(__webpack_exports__);
       pagination: {},
       isLoading: '',
       // store_id: 3 ,
-      contacts_export_fileds: ["name", "email", "phone", "company"]
+      showbowlpdf: true,
+      arrayKeys: ["name", "email", "phone", "company", "role"],
+      currentDateTime: "",
+      contacts_export_fileds: ["name", "email", "Phone", "company", "role"]
     };
   },
   created: function created() {
@@ -19416,6 +19469,26 @@ __webpack_require__.r(__webpack_exports__);
     },
     handleErrorExportCSV: function handleErrorExportCSV() {
       console.log("errorExport");
+    },
+    exportToPDF: function exportToPDF() {
+      var _this = this;
+
+      this.showbowlpdf = true;
+      this.getDateTime();
+      setTimeout(function () {
+        html2pdf_js__WEBPACK_IMPORTED_MODULE_0___default()(document.getElementById("element-to-convert"), {
+          margin: 5,
+          filename: "exported.pdf"
+        });
+      }, 1000);
+      setTimeout(function () {
+        _this.showbowlpdf = false;
+      }, 1000);
+    },
+    getDateTime: function getDateTime() {
+      var currentdate = new Date();
+      var datetime = "Last Sync: " + currentdate.getDate() + "/" + (currentdate.getMonth() + 1) + "/" + currentdate.getFullYear() + " @ " + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
+      this.currentDateTime = datetime;
     },
     makePagination: function makePagination(meta, links) {
       var pagination = {
@@ -19482,7 +19555,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     editContact: function editContact(id) {
-      var _this = this;
+      var _this2 = this;
 
       this.$Progress.start();
       var currObj = this;
@@ -19494,17 +19567,17 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/contact/' + id).then(function (response) {
         // console.log(response.data.unit)
-        Vue.set(_this.contact, 'name', response.data.contact.name);
-        Vue.set(_this.contact, 'email', response.data.contact.email);
-        Vue.set(_this.contact, 'role', response.data.contact.role);
-        Vue.set(_this.contact, 'company', response.data.contact.company);
-        Vue.set(_this.contact, 'phone', response.data.contact.phone);
-        Vue.set(_this.contact, 'id', id); //to send id to the update controller 
+        Vue.set(_this2.contact, 'name', response.data.contact.name);
+        Vue.set(_this2.contact, 'email', response.data.contact.email);
+        Vue.set(_this2.contact, 'role', response.data.contact.role);
+        Vue.set(_this2.contact, 'company', response.data.contact.company);
+        Vue.set(_this2.contact, 'phone', response.data.contact.phone);
+        Vue.set(_this2.contact, 'id', id); //to send id to the update controller 
 
-        _this.$Progress.finish();
+        _this2.$Progress.finish();
       })["catch"](function (error) {
         // console.log(error)
-        _this.$Progress.fail();
+        _this2.$Progress.fail();
       });
     },
     updateContact: function updateContact() {
@@ -21086,6 +21159,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var html2pdf_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! html2pdf.js */ "./node_modules/html2pdf.js/dist/html2pdf.js");
+/* harmony import */ var html2pdf_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(html2pdf_js__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -21215,6 +21290,135 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -21224,12 +21428,15 @@ __webpack_require__.r(__webpack_exports__);
       //for form single unit data
       modalForName: "",
       modalForCode: 0,
-      searchTableKey: '',
+      searchTableKey: "",
       errors: [],
       pagination: {},
-      isLoading: '',
+      isLoading: "",
       // store_id: 3 ,
-      notes_export_fileds: ["title", "description", "created_at"]
+      showbowlpdf: true,
+      arrayKeys: ["id", "title", "description", "created_at", "created_by"],
+      currentDateTime: "",
+      notes_export_fileds: ["title", "description", "created_at", "created_by"]
     };
   },
   created: function created() {
@@ -21246,7 +21453,7 @@ __webpack_require__.r(__webpack_exports__);
       this.isLoading = "Loading all Data";
       var vm = this; // current pointer instance while going inside the another functional instance
 
-      page_url = page_url || 'api/notes';
+      page_url = page_url || "api/notes";
       axios.get(page_url).then(function (response) {
         vm.notes = response.data.data;
 
@@ -21255,11 +21462,11 @@ __webpack_require__.r(__webpack_exports__);
           vm.$Progress.finish();
         }
 
-        vm.isLoading = '';
+        vm.isLoading = "";
       })["catch"](function (error) {
         // console.log();
         vm.$Progress.fail();
-      }); //above and below code provide same result but above code need current instance pointer for value assignmnent 
+      }); //above and below code provide same result but above code need current instance pointer for value assignmnent
       //below code donot need current pointer to be save becasue it execute in current block rather then another block that need previous pointer.
       // axios.get('/api/notes')
       // .then(response=>{
@@ -21275,6 +21482,26 @@ __webpack_require__.r(__webpack_exports__);
     },
     handleErrorExportCSV: function handleErrorExportCSV() {
       console.log("errorExport");
+    },
+    exportToPDF: function exportToPDF() {
+      var _this = this;
+
+      this.showbowlpdf = true;
+      this.getDateTime();
+      setTimeout(function () {
+        html2pdf_js__WEBPACK_IMPORTED_MODULE_0___default()(document.getElementById("element-to-convert"), {
+          margin: 5,
+          filename: "exported.pdf"
+        });
+      }, 1000);
+      setTimeout(function () {
+        _this.showbowlpdf = false;
+      }, 1000);
+    },
+    getDateTime: function getDateTime() {
+      var currentdate = new Date();
+      var datetime = "Last Sync: " + currentdate.getDate() + "/" + (currentdate.getMonth() + 1) + "/" + currentdate.getFullYear() + " @ " + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
+      this.currentDateTime = datetime;
     },
     makePagination: function makePagination(meta, links) {
       var pagination = {
@@ -21294,14 +21521,14 @@ __webpack_require__.r(__webpack_exports__);
     showAddModal: function showAddModal() {
       this.modalForName = "Add Note"; // Vue.set(this.modalForName,"Add Unit");
 
-      this.modalForCode = 0; //0 for add 
+      this.modalForCode = 0; //0 for add
 
-      this.note.title = '';
-      this.note.description = '';
-      this.errors = ''; //clearing errors
+      this.note.title = "";
+      this.note.description = "";
+      this.errors = ""; //clearing errors
       // Vue.set(this.modalForCode,0);
 
-      this.$bvModal.show('bv-modal-add-note');
+      this.$bvModal.show("bv-modal-add-note");
     },
     callFunc: function callFunc() {
       if (this.modalForCode == 0) {
@@ -21313,14 +21540,14 @@ __webpack_require__.r(__webpack_exports__);
     addNote: function addNote() {
       this.$Progress.start();
       var currObj = this;
-      axios.post('/api/note', this.note).then(function (response) {
+      axios.post("/api/note", this.note).then(function (response) {
         currObj.output = response.data.msg;
         currObj.status = response.data.status;
-        currObj.$swal('Info', currObj.output, currObj.status);
-        currObj.$bvModal.hide('bv-modal-add-note');
-        currObj.note.title = '';
-        currObj.note.description = '';
-        currObj.errors = ''; //clearing errors
+        currObj.$swal("Info", currObj.output, currObj.status);
+        currObj.$bvModal.hide("bv-modal-add-note");
+        currObj.note.title = "";
+        currObj.note.description = "";
+        currObj.errors = ""; //clearing errors
 
         currObj.$Progress.finish();
         currObj.fetchNotes();
@@ -21334,46 +21561,46 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     editNote: function editNote(id) {
-      var _this = this;
+      var _this2 = this;
 
       this.$Progress.start();
       var currObj = this;
       this.modalForName = "Edit Note";
       this.modalForCode = 1; // 1 for Edit
 
-      this.$bvModal.show('bv-modal-add-note');
-      currObj.errors = ''; //clearing errors
+      this.$bvModal.show("bv-modal-add-note");
+      currObj.errors = ""; //clearing errors
 
-      axios.get('/api/note/' + id).then(function (response) {
+      axios.get("/api/note/" + id).then(function (response) {
         // console.log(response.data.unit)
-        Vue.set(_this.note, 'id', response.data.note.id);
-        Vue.set(_this.note, 'title', response.data.note.title);
-        Vue.set(_this.note, 'description', response.data.note.description);
+        Vue.set(_this2.note, "id", response.data.note.id);
+        Vue.set(_this2.note, "title", response.data.note.title);
+        Vue.set(_this2.note, "description", response.data.note.description);
 
-        _this.$Progress.finish();
+        _this2.$Progress.finish();
       })["catch"](function (error) {
         // console.log(error)
-        _this.$Progress.fail();
+        _this2.$Progress.fail();
       });
     },
     updateNote: function updateNote() {
       this.$Progress.start();
       var currObj = this;
       var formData = new FormData();
-      formData.append('_method', 'PUT'); //add this otherwise data won't pass to backend
+      formData.append("_method", "PUT"); //add this otherwise data won't pass to backend
 
-      formData.append('title', this.note.title);
-      formData.append('description', this.note.description);
-      formData.append('id', this.note.id);
-      axios.post('/api/note', formData).then(function (response) {
+      formData.append("title", this.note.title);
+      formData.append("description", this.note.description);
+      formData.append("id", this.note.id);
+      axios.post("/api/note", formData).then(function (response) {
         currObj.output = response.data.msg;
         currObj.status = response.data.status; // alert(currObj.status);
 
-        currObj.$swal('Info', currObj.output, currObj.status);
-        currObj.$bvModal.hide('bv-modal-add-note');
-        currObj.note.title = '';
-        currObj.note.description = '';
-        currObj.errors = ''; //clearing errors
+        currObj.$swal("Info", currObj.output, currObj.status);
+        currObj.$bvModal.hide("bv-modal-add-note");
+        currObj.note.title = "";
+        currObj.note.description = "";
+        currObj.errors = ""; //clearing errors
 
         currObj.$Progress.finish();
         currObj.fetchNotes();
@@ -21390,16 +21617,16 @@ __webpack_require__.r(__webpack_exports__);
       this.$Progress.start();
       var currObj = this;
       this.$swal({
-        title: 'Are you sure?',
+        title: "Are you sure?",
         text: "You won't be able to revert this!",
-        type: 'warning',
+        type: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
       }).then(function (result) {
         if (result.value) {
-          axios["delete"]('/api/note/' + id).then(function (response) {
+          axios["delete"]("/api/note/" + id).then(function (response) {
             currObj.output = response.data.msg;
             currObj.status = response.data.status; // alert(currObj.status);
 
@@ -21424,13 +21651,13 @@ __webpack_require__.r(__webpack_exports__);
     autoCompleteTable: function autoCompleteTable() {
       this.searchTableKey = this.searchTableKey.toLowerCase();
 
-      if (this.searchTableKey != '') {
-        this.isLoading = 'Loading Data...';
+      if (this.searchTableKey != "") {
+        this.isLoading = "Loading Data...";
         var currObj = this;
-        axios.post('/api/notes/search', {
+        axios.post("/api/notes/search", {
           searchQuery: this.searchTableKey
         }).then(function (response) {
-          currObj.isLoading = '';
+          currObj.isLoading = "";
           currObj.notes = response.data.data;
 
           if (response.data.data == "") {
@@ -21441,12 +21668,12 @@ __webpack_require__.r(__webpack_exports__);
           // currObj.status=response.data.status;
 
 
-          currObj.errors = ''; //clearing errors
+          currObj.errors = ""; //clearing errors
         })["catch"](function (error) {
-          if (error.response.status == '422') {
+          if (error.response.status == "422") {
             currObj.validationErrors = error.response.data.errors;
             currObj.errors = currObj.validationErrors;
-            currObj.isLoading = 'Load Failed...'; // console.log(currObj.errors);
+            currObj.isLoading = "Load Failed..."; // console.log(currObj.errors);
           }
         });
       } else {
@@ -21458,7 +21685,7 @@ __webpack_require__.r(__webpack_exports__);
     hasPermission: function hasPermission(action) {
       var permissions_from_store = this.$store.getters.permissions;
 
-      if (permissions_from_store.includes(action) || permissions_from_store.includes('all')) {
+      if (permissions_from_store.includes(action) || permissions_from_store.includes("all")) {
         return true;
       } else {
         return false;
@@ -23545,6 +23772,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var html2pdf_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! html2pdf.js */ "./node_modules/html2pdf.js/dist/html2pdf.js");
+/* harmony import */ var html2pdf_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(html2pdf_js__WEBPACK_IMPORTED_MODULE_0__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 //
@@ -23872,6 +24101,48 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     var _ref;
@@ -23898,7 +24169,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       units: [],
       //contains all the retrived units from the database
       categories: []
-    }, _defineProperty(_ref, "errors", []), _defineProperty(_ref, "pagination", {}), _defineProperty(_ref, "file", ""), _defineProperty(_ref, "selectedFile", ""), _defineProperty(_ref, "imagePreview", ""), _defineProperty(_ref, "products_export_fileds", ["custom_product_id", "name", "cp", "sp", "description"]), _ref;
+    }, _defineProperty(_ref, "errors", []), _defineProperty(_ref, "pagination", {}), _defineProperty(_ref, "file", ""), _defineProperty(_ref, "selectedFile", ""), _defineProperty(_ref, "imagePreview", ""), _defineProperty(_ref, "showbowlpdf", true), _defineProperty(_ref, "arrayKeys", ["custom_product_id", "product_name", // "low_stock_alert_quantity",
+    "unit", "category_name", "description"]), _defineProperty(_ref, "currentDateTime", ""), _defineProperty(_ref, "products_export_fileds", ["custom_product_id", "product_name", // "low_stock_alert_quantity",
+    "unit", "category_name", "description"]), _ref;
   },
   created: function created() {
     //this block will execute when component created
@@ -23913,6 +24186,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     handleErrorExportCSV: function handleErrorExportCSV() {
       console.log("errorExport");
+    },
+    exportToPDF: function exportToPDF() {
+      var _this = this;
+
+      this.showbowlpdf = true;
+      this.getDateTime();
+      setTimeout(function () {
+        html2pdf_js__WEBPACK_IMPORTED_MODULE_0___default()(document.getElementById("element-to-convert"), {
+          margin: 5,
+          filename: "exported.pdf"
+        });
+      }, 1000);
+      setTimeout(function () {
+        _this.showbowlpdf = false;
+      }, 1000);
+    },
+    getDateTime: function getDateTime() {
+      var currentdate = new Date();
+      var datetime = "Last Sync: " + currentdate.getDate() + "/" + (currentdate.getMonth() + 1) + "/" + currentdate.getFullYear() + " @ " + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
+      this.currentDateTime = datetime;
     },
     //methods codes here
     fetchCategories: function fetchCategories(page_url) {
@@ -24094,7 +24387,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     editProduct: function editProduct(id) {
-      var _this = this;
+      var _this2 = this;
 
       this.$Progress.start();
       var currObj = this;
@@ -24106,22 +24399,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       axios.get("/api/product/" + id).then(function (response) {
         // console.log(response.data.unit)
-        Vue.set(_this.product, "name", response.data.product.name);
+        Vue.set(_this2.product, "name", response.data.product.name);
         Vue.set(currObj.product, "description", response.data.product.description);
-        Vue.set(_this.product, "unit", response.data.product.unit);
-        Vue.set(_this.product, "low_stock_alert_active", JSON.parse(response.data.product.low_stock_alert_active));
-        Vue.set(_this.product, "low_stock_alert_quantity", response.data.product.low_stock_alert_quantity); // Vue.set(this.product, 'opening_stock', response.data.product.opening_stock);
+        Vue.set(_this2.product, "unit", response.data.product.unit);
+        Vue.set(_this2.product, "low_stock_alert_active", JSON.parse(response.data.product.low_stock_alert_active));
+        Vue.set(_this2.product, "low_stock_alert_quantity", response.data.product.low_stock_alert_quantity); // Vue.set(this.product, 'opening_stock', response.data.product.opening_stock);
 
-        Vue.set(_this.product, "product_cat_id", response.data.product.product_cat_id);
-        _this.imagePreview = response.data.product.image;
-        _this.file = response.data.product.image;
-        _this.errors = "";
-        Vue.set(_this.product, "id", id); //to send id to the update controller
+        Vue.set(_this2.product, "product_cat_id", response.data.product.product_cat_id);
+        _this2.imagePreview = response.data.product.image;
+        _this2.file = response.data.product.image;
+        _this2.errors = "";
+        Vue.set(_this2.product, "id", id); //to send id to the update controller
 
-        _this.$Progress.finish();
+        _this2.$Progress.finish();
       })["catch"](function (error) {
         // console.log(error)
-        _this.$Progress.fail();
+        _this2.$Progress.fail();
       });
     },
     updateProduct: function updateProduct() {
@@ -26753,6 +27046,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var html2pdf_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! html2pdf.js */ "./node_modules/html2pdf.js/dist/html2pdf.js");
+/* harmony import */ var html2pdf_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(html2pdf_js__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -27010,6 +27305,48 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -27024,7 +27361,10 @@ __webpack_require__.r(__webpack_exports__);
       pagination: {},
       isLoading: "",
       // store_id: 3 ,
-      suppliers_export_fileds: ["name", "address", "phone", "details"]
+      showbowlpdf: true,
+      arrayKeys: ["name", "address", "phone", "details", "contact_person"],
+      currentDateTime: "",
+      suppliers_export_fileds: ["name", "address", "phone", "details", "contact_person"]
     };
   },
   created: function created() {
@@ -27070,6 +27410,26 @@ __webpack_require__.r(__webpack_exports__);
     },
     handleErrorExportCSV: function handleErrorExportCSV() {
       console.log("errorExport");
+    },
+    exportToPDF: function exportToPDF() {
+      var _this = this;
+
+      this.showbowlpdf = true;
+      this.getDateTime();
+      setTimeout(function () {
+        html2pdf_js__WEBPACK_IMPORTED_MODULE_0___default()(document.getElementById("element-to-convert"), {
+          margin: 5,
+          filename: "exported.pdf"
+        });
+      }, 1000);
+      setTimeout(function () {
+        _this.showbowlpdf = false;
+      }, 1000);
+    },
+    getDateTime: function getDateTime() {
+      var currentdate = new Date();
+      var datetime = "Last Sync: " + currentdate.getDate() + "/" + (currentdate.getMonth() + 1) + "/" + currentdate.getFullYear() + " @ " + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
+      this.currentDateTime = datetime;
     },
     makePagination: function makePagination(meta, links) {
       var pagination = {
@@ -27136,7 +27496,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     editSupplier: function editSupplier(id) {
-      var _this = this;
+      var _this2 = this;
 
       this.$Progress.start();
       var currObj = this;
@@ -27148,17 +27508,17 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get("/api/supplier/" + id).then(function (response) {
         // console.log(response.data.unit)
-        Vue.set(_this.supplier, "name", response.data.supplier.name);
-        Vue.set(_this.supplier, "address", response.data.supplier.address);
-        Vue.set(_this.supplier, "contact_person", response.data.supplier.contact_person);
-        Vue.set(_this.supplier, "details", response.data.supplier.details);
-        Vue.set(_this.supplier, "phone", response.data.supplier.phone);
-        Vue.set(_this.supplier, "id", id); //to send id to the update controller
+        Vue.set(_this2.supplier, "name", response.data.supplier.name);
+        Vue.set(_this2.supplier, "address", response.data.supplier.address);
+        Vue.set(_this2.supplier, "contact_person", response.data.supplier.contact_person);
+        Vue.set(_this2.supplier, "details", response.data.supplier.details);
+        Vue.set(_this2.supplier, "phone", response.data.supplier.phone);
+        Vue.set(_this2.supplier, "id", id); //to send id to the update controller
 
-        _this.$Progress.finish();
+        _this2.$Progress.finish();
       })["catch"](function (error) {
         // console.log(error)
-        _this.$Progress.fail();
+        _this2.$Progress.fail();
       });
     },
     updateSupplier: function updateSupplier() {
@@ -182656,7 +183016,83 @@ var render = function() {
                     }
                   }
                 })
-              ]
+              ],
+              _vm._v(" "),
+              _vm.showbowlpdf
+                ? _c(
+                    "div",
+                    {
+                      staticClass: "bowlpdf",
+                      staticStyle: {
+                        visibility: "hidden",
+                        position: "absolute"
+                      }
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "element-pdf",
+                          attrs: { id: "element-to-convert" }
+                        },
+                        [
+                          _c("h3", [_vm._v("Categories")]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "Exported on Date : " +
+                                _vm._s(_vm.currentDateTime)
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "table",
+                            {
+                              staticClass: "table table-striped table-bordered",
+                              attrs: { width: "100%", cellspacing: "0" }
+                            },
+                            [
+                              _c("thead", [
+                                _c(
+                                  "tr",
+                                  [
+                                    _vm._l(_vm.arrayKeys, function(arrayKey) {
+                                      return [
+                                        _c("th", [_vm._v(_vm._s(arrayKey))])
+                                      ]
+                                    })
+                                  ],
+                                  2
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "tbody",
+                                _vm._l(_vm.categories, function(category) {
+                                  return _c(
+                                    "tr",
+                                    { key: category.id },
+                                    [
+                                      _vm._l(_vm.arrayKeys, function(arrayKey) {
+                                        return [
+                                          _c("td", [
+                                            _vm._v(_vm._s(category[arrayKey]))
+                                          ])
+                                        ]
+                                      })
+                                    ],
+                                    2
+                                  )
+                                }),
+                                0
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                : _vm._e()
             ],
             2
           ),
@@ -182705,73 +183141,6 @@ var render = function() {
             ])
           ])
         ]),
-        _vm._v(" "),
-        _vm.showbowlpdf
-          ? _c(
-              "div",
-              { staticClass: "bowlpdf", staticStyle: { visibility: "hidden" } },
-              [
-                _c(
-                  "div",
-                  {
-                    staticClass: "element-pdf",
-                    attrs: { id: "element-to-convert" }
-                  },
-                  [
-                    _c("h3", [_vm._v("Categories")]),
-                    _vm._v(" "),
-                    _c("p", [
-                      _vm._v(
-                        "Exported on Date : " + _vm._s(_vm.currentDateTime)
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "table",
-                      {
-                        staticClass: "table table-striped table-bordered",
-                        attrs: { width: "100%", cellspacing: "0" }
-                      },
-                      [
-                        _c("thead", [
-                          _c(
-                            "tr",
-                            [
-                              _vm._l(_vm.arrayKeys, function(arrayKey) {
-                                return [_c("th", [_vm._v(_vm._s(arrayKey))])]
-                              })
-                            ],
-                            2
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "tbody",
-                          _vm._l(_vm.categories, function(category) {
-                            return _c(
-                              "tr",
-                              { key: category.id },
-                              [
-                                _vm._l(_vm.arrayKeys, function(arrayKey) {
-                                  return [
-                                    _c("td", [
-                                      _vm._v(_vm._s(category[arrayKey]))
-                                    ])
-                                  ]
-                                })
-                              ],
-                              2
-                            )
-                          }),
-                          0
-                        )
-                      ]
-                    )
-                  ]
-                )
-              ]
-            )
-          : _vm._e(),
         _vm._v(" "),
         _vm.categories.length > 0
           ? _c("div", { staticClass: "card-body" }, [
@@ -183374,7 +183743,96 @@ var render = function() {
                     })
                   ]
                 )
-              ]
+              ],
+              _vm._v(" "),
+              [
+                _c("img", {
+                  staticClass: "icon-red-pdf-export",
+                  staticStyle: { width: "41px", cursor: "pointer" },
+                  attrs: { src: "img/pdf.png", alt: "Export data to pdf" },
+                  on: {
+                    click: function($event) {
+                      return _vm.exportToPDF()
+                    }
+                  }
+                })
+              ],
+              _vm._v(" "),
+              _vm.showbowlpdf
+                ? _c(
+                    "div",
+                    {
+                      staticClass: "bowlpdf",
+                      staticStyle: {
+                        visibility: "hidden",
+                        position: "absolute"
+                      }
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "element-pdf",
+                          attrs: { id: "element-to-convert" }
+                        },
+                        [
+                          _c("h3", [_vm._v("Contacts")]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "Exported on Date : " +
+                                _vm._s(_vm.currentDateTime)
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "table",
+                            {
+                              staticClass: "table table-striped table-bordered",
+                              attrs: { width: "100%", cellspacing: "0" }
+                            },
+                            [
+                              _c("thead", [
+                                _c(
+                                  "tr",
+                                  [
+                                    _vm._l(_vm.arrayKeys, function(arrayKey) {
+                                      return [
+                                        _c("th", [_vm._v(_vm._s(arrayKey))])
+                                      ]
+                                    })
+                                  ],
+                                  2
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "tbody",
+                                _vm._l(_vm.contacts, function(contact) {
+                                  return _c(
+                                    "tr",
+                                    { key: contact.id },
+                                    [
+                                      _vm._l(_vm.arrayKeys, function(arrayKey) {
+                                        return [
+                                          _c("td", [
+                                            _vm._v(_vm._s(contact[arrayKey]))
+                                          ])
+                                        ]
+                                      })
+                                    ],
+                                    2
+                                  )
+                                }),
+                                0
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                : _vm._e()
             ],
             2
           ),
@@ -185353,7 +185811,7 @@ var render = function() {
               staticClass: "m-0 font-weight-bold text-primary",
               staticStyle: { display: "inline-block" }
             },
-            [_vm._v("Notes")]
+            [_vm._v("\n        Notes\n      ")]
           ),
           _vm._v(" "),
           _vm.isLoading == "Loading all Data"
@@ -185398,7 +185856,96 @@ var render = function() {
                     })
                   ]
                 )
-              ]
+              ],
+              _vm._v(" "),
+              [
+                _c("img", {
+                  staticClass: "icon-red-pdf-export",
+                  staticStyle: { width: "41px", cursor: "pointer" },
+                  attrs: { src: "img/pdf.png", alt: "Export data to pdf" },
+                  on: {
+                    click: function($event) {
+                      return _vm.exportToPDF()
+                    }
+                  }
+                })
+              ],
+              _vm._v(" "),
+              _vm.showbowlpdf
+                ? _c(
+                    "div",
+                    {
+                      staticClass: "bowlpdf",
+                      staticStyle: {
+                        visibility: "hidden",
+                        position: "absolute"
+                      }
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "element-pdf",
+                          attrs: { id: "element-to-convert" }
+                        },
+                        [
+                          _c("h3", [_vm._v("Notes")]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "Exported on Date : " +
+                                _vm._s(_vm.currentDateTime)
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "table",
+                            {
+                              staticClass: "table table-striped table-bordered",
+                              attrs: { width: "100%", cellspacing: "0" }
+                            },
+                            [
+                              _c("thead", [
+                                _c(
+                                  "tr",
+                                  [
+                                    _vm._l(_vm.arrayKeys, function(arrayKey) {
+                                      return [
+                                        _c("th", [_vm._v(_vm._s(arrayKey))])
+                                      ]
+                                    })
+                                  ],
+                                  2
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "tbody",
+                                _vm._l(_vm.notes, function(note) {
+                                  return _c(
+                                    "tr",
+                                    { key: note.id },
+                                    [
+                                      _vm._l(_vm.arrayKeys, function(arrayKey) {
+                                        return [
+                                          _c("td", [
+                                            _vm._v(_vm._s(note[arrayKey]))
+                                          ])
+                                        ]
+                                      })
+                                    ],
+                                    2
+                                  )
+                                }),
+                                0
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                : _vm._e()
             ],
             2
           ),
@@ -185550,7 +186097,7 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v("First")]
+                            [_vm._v("\n                First\n              ")]
                           )
                         ]
                       ),
@@ -185574,7 +186121,11 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v("Previous")]
+                            [
+                              _vm._v(
+                                "\n                Previous\n              "
+                              )
+                            ]
                           )
                         ]
                       ),
@@ -185600,7 +186151,13 @@ var render = function() {
                                   }
                                 }
                               },
-                              [_vm._v(_vm._s(n))]
+                              [
+                                _vm._v(
+                                  "\n                " +
+                                    _vm._s(n) +
+                                    "\n              "
+                                )
+                              ]
                             )
                           ]
                         )
@@ -185625,7 +186182,7 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v("Next")]
+                            [_vm._v("\n                Next\n              ")]
                           )
                         ]
                       ),
@@ -185649,7 +186206,7 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v("Last")]
+                            [_vm._v("\n                Last\n              ")]
                           )
                         ]
                       )
@@ -185664,7 +186221,7 @@ var render = function() {
                       _vm._s(_vm.pagination.current_page) +
                       "-" +
                       _vm._s(_vm.pagination.last_page) +
-                      " Total Records: " +
+                      " Total\n          Records: " +
                       _vm._s(_vm.pagination.total_pages) +
                       "\n        "
                   )
@@ -185672,7 +186229,7 @@ var render = function() {
               ])
             ])
           : _c("div", { staticClass: "errorDivEmptyData" }, [
-              _vm._v("\n      No Data Found\n    ")
+              _vm._v("No Data Found")
             ])
       ])
     ],
@@ -191017,7 +191574,7 @@ var render = function() {
                   {
                     attrs: {
                       "file-type": "csv",
-                      "file-name": "prdoucts",
+                      "file-name": "products",
                       fields: _vm.products_export_fileds,
                       data: _vm.products
                     },
@@ -191036,7 +191593,96 @@ var render = function() {
                     })
                   ]
                 )
-              ]
+              ],
+              _vm._v(" "),
+              [
+                _c("img", {
+                  staticClass: "icon-red-pdf-export",
+                  staticStyle: { width: "41px", cursor: "pointer" },
+                  attrs: { src: "img/pdf.png", alt: "Export data to pdf" },
+                  on: {
+                    click: function($event) {
+                      return _vm.exportToPDF()
+                    }
+                  }
+                })
+              ],
+              _vm._v(" "),
+              _vm.showbowlpdf
+                ? _c(
+                    "div",
+                    {
+                      staticClass: "bowlpdf",
+                      staticStyle: {
+                        visibility: "hidden",
+                        position: "absolute"
+                      }
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "element-pdf",
+                          attrs: { id: "element-to-convert" }
+                        },
+                        [
+                          _c("h3", [_vm._v("Products")]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "Exported on Date : " +
+                                _vm._s(_vm.currentDateTime)
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "table",
+                            {
+                              staticClass: "table table-striped table-bordered",
+                              attrs: { width: "100%", cellspacing: "0" }
+                            },
+                            [
+                              _c("thead", [
+                                _c(
+                                  "tr",
+                                  [
+                                    _vm._l(_vm.arrayKeys, function(arrayKey) {
+                                      return [
+                                        _c("th", [_vm._v(_vm._s(arrayKey))])
+                                      ]
+                                    })
+                                  ],
+                                  2
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "tbody",
+                                _vm._l(_vm.products, function(product) {
+                                  return _c(
+                                    "tr",
+                                    { key: product.id },
+                                    [
+                                      _vm._l(_vm.arrayKeys, function(arrayKey) {
+                                        return [
+                                          _c("td", [
+                                            _vm._v(_vm._s(product[arrayKey]))
+                                          ])
+                                        ]
+                                      })
+                                    ],
+                                    2
+                                  )
+                                }),
+                                0
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                : _vm._e()
             ],
             2
           ),
@@ -194918,7 +195564,96 @@ var render = function() {
                     })
                   ]
                 )
-              ]
+              ],
+              _vm._v(" "),
+              [
+                _c("img", {
+                  staticClass: "icon-red-pdf-export",
+                  staticStyle: { width: "41px", cursor: "pointer" },
+                  attrs: { src: "img/pdf.png", alt: "Export data to pdf" },
+                  on: {
+                    click: function($event) {
+                      return _vm.exportToPDF()
+                    }
+                  }
+                })
+              ],
+              _vm._v(" "),
+              _vm.showbowlpdf
+                ? _c(
+                    "div",
+                    {
+                      staticClass: "bowlpdf",
+                      staticStyle: {
+                        visibility: "hidden",
+                        position: "absolute"
+                      }
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "element-pdf",
+                          attrs: { id: "element-to-convert" }
+                        },
+                        [
+                          _c("h3", [_vm._v("Suppliers")]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "Exported on Date : " +
+                                _vm._s(_vm.currentDateTime)
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "table",
+                            {
+                              staticClass: "table table-striped table-bordered",
+                              attrs: { width: "100%", cellspacing: "0" }
+                            },
+                            [
+                              _c("thead", [
+                                _c(
+                                  "tr",
+                                  [
+                                    _vm._l(_vm.arrayKeys, function(arrayKey) {
+                                      return [
+                                        _c("th", [_vm._v(_vm._s(arrayKey))])
+                                      ]
+                                    })
+                                  ],
+                                  2
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "tbody",
+                                _vm._l(_vm.suppliers, function(supplier) {
+                                  return _c(
+                                    "tr",
+                                    { key: supplier.id },
+                                    [
+                                      _vm._l(_vm.arrayKeys, function(arrayKey) {
+                                        return [
+                                          _c("td", [
+                                            _vm._v(_vm._s(supplier[arrayKey]))
+                                          ])
+                                        ]
+                                      })
+                                    ],
+                                    2
+                                  )
+                                }),
+                                0
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                : _vm._e()
             ],
             2
           ),

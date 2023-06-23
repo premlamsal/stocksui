@@ -86,6 +86,37 @@
               @click="exportToPDF()"
             />
           </template>
+
+          <div
+            class="bowlpdf"
+            style="visibility: hidden; position: absolute"
+            v-if="showbowlpdf"
+          >
+            <div class="element-pdf" id="element-to-convert">
+              <h3>Categories</h3>
+              <p>Exported on Date : {{ currentDateTime }}</p>
+              <table
+                class="table table-striped table-bordered"
+                width="100%"
+                cellspacing="0"
+              >
+                <thead>
+                  <tr>
+                    <template v-for="arrayKey in arrayKeys">
+                      <th>{{ arrayKey }}</th>
+                    </template>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="category in categories" v-bind:key="category.id">
+                    <template v-for="arrayKey in arrayKeys">
+                      <td>{{ category[arrayKey] }}</td>
+                    </template>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
 
         <div class="searchTable">
@@ -109,32 +140,7 @@
           <!-- </div> -->
         </div>
       </div>
-      <div class="bowlpdf" style="visibility: hidden" v-if="showbowlpdf">
-        <div class="element-pdf" id="element-to-convert">
-          <h3>Categories</h3>
-          <p>Exported on Date : {{ currentDateTime }}</p>
-          <table
-            class="table table-striped table-bordered"
-            width="100%"
-            cellspacing="0"
-          >
-            <thead>
-              <tr>
-                <template v-for="arrayKey in arrayKeys">
-                  <th>{{ arrayKey }}</th>
-                </template>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="category in categories" v-bind:key="category.id">
-                <template v-for="arrayKey in arrayKeys">
-                  <td>{{ category[arrayKey] }}</td>
-                </template>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+
       <div class="card-body" v-if="categories.length > 0">
         <div class="table">
           <table
@@ -282,13 +288,14 @@ export default {
 
       searchTableKey: "",
 
-      showbowlpdf: false,
+      showbowlpdf: true,
+      arrayKeys: ["id", "name", "description"],
       currentDateTime: "",
+
 
       errors: [],
       pagination: {},
       isLoading: "",
-      arrayKeys: [],
       categories_export_fileds: ["name", "description"],
     };
   },
@@ -355,7 +362,6 @@ export default {
             vm.$Progress.finish();
           }
           vm.isLoading = "";
-
         })
         .catch(function (error) {
           vm.$Progress.fail();

@@ -64,6 +64,47 @@
                 <img src="img/icon-red-csv.png" class="icon-red-csv-export" alt="Export data to CSV">
             </vue-blob-json-csv>
           </template>
+
+          <template>
+    <img
+      src="img/pdf.png"
+      class="icon-red-pdf-export"
+      alt="Export data to pdf"
+      style="width: 41px; cursor: pointer"
+      @click="exportToPDF()"
+    />
+  </template>
+
+  <div
+    class="bowlpdf"
+    style="visibility: hidden; position: absolute"
+    v-if="showbowlpdf"
+  >
+    <div class="element-pdf" id="element-to-convert">
+      <h3>Contacts</h3>
+      <p>Exported on Date : {{ currentDateTime }}</p>
+      <table
+        class="table table-striped table-bordered"
+        width="100%"
+        cellspacing="0"
+      >
+        <thead>
+          <tr>
+            <template v-for="arrayKey in arrayKeys">
+              <th>{{ arrayKey }}</th>
+            </template>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="contact in contacts" v-bind:key="contact.id">
+            <template v-for="arrayKey in arrayKeys">
+              <td>{{ contact[arrayKey] }}</td>
+            </template>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
         </div>
 
        
@@ -145,6 +186,8 @@
 </template>
 
 <script>
+import html2pdf from "html2pdf.js";
+
 export default {
 
   data() {
@@ -165,7 +208,11 @@ export default {
 
       // store_id: 3 ,
 
-      contacts_export_fileds:["name","email","phone","company"],
+      showbowlpdf: true,
+      arrayKeys: ["name","email","phone","company","role"],
+      currentDateTime: "",
+
+      contacts_export_fileds:["name","email","Phone","company","role"],
 
     }
   },
@@ -228,6 +275,38 @@ export default {
     },
     handleErrorExportCSV(){
       console.log("errorExport");
+    },
+    exportToPDF() {
+      this.showbowlpdf = true;
+      this.getDateTime();
+
+      setTimeout(() => {
+        html2pdf(document.getElementById("element-to-convert"), {
+          margin: 5,
+          filename: "exported.pdf",
+        });
+      }, 1000);
+
+      setTimeout(() => {
+        this.showbowlpdf = false;
+      }, 1000);
+    },
+    getDateTime() {
+      var currentdate = new Date();
+      var datetime =
+        "Last Sync: " +
+        currentdate.getDate() +
+        "/" +
+        (currentdate.getMonth() + 1) +
+        "/" +
+        currentdate.getFullYear() +
+        " @ " +
+        currentdate.getHours() +
+        ":" +
+        currentdate.getMinutes() +
+        ":" +
+        currentdate.getSeconds();
+      this.currentDateTime = datetime;
     },
     makePagination(meta, links) {
       let pagination = {
