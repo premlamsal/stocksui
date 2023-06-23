@@ -329,26 +329,7 @@
         <div class="text-center" v-if="isLoading == 'Loading all Data'">
           <b-spinner variant="success" label="Spinning"></b-spinner>
         </div>
-        <div class="export-block">
-          <template>
-            <vue-blob-json-csv
-              @success="handleSuccessExportCSV"
-              @error="handleErrorExportCSV"
-              file-type="csv"
-              file-name="deliverynotes"
-              :fields="deliverynotes_export_fileds"
-              :data="deliverynotes"
-            >
-              <!-- <button class="btn btn-warning-success"><i class="fa fa-file-excel-o" aria-hidden="true"></i></button> -->
-              <img
-                src="img/icon-red-csv.png"
-                class="icon-red-csv-export"
-                alt="Export data to CSV"
-              />
-            </vue-blob-json-csv>
-          </template>
-        </div>
-
+        
         <!-- {{isLoading}} -->
         <div class="searchTable">
           <!-- Topbar Search -->

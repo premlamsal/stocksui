@@ -18788,6 +18788,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+<<<<<<< HEAD
 //
 //
 //
@@ -18823,6 +18824,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+=======
+>>>>>>> 5e9693f13e4666ab278013aad35240231e0e427f
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -19350,6 +19353,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+<<<<<<< HEAD
 //
 //
 //
@@ -19406,6 +19410,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+=======
+>>>>>>> 5e9693f13e4666ab278013aad35240231e0e427f
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -20619,25 +20625,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //custom toggle button
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -21275,6 +21262,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+<<<<<<< HEAD
 //
 //
 //
@@ -21419,6 +21407,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+=======
+>>>>>>> 5e9693f13e4666ab278013aad35240231e0e427f
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -23312,24 +23302,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //custom toggle button
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -24083,6 +24055,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+<<<<<<< HEAD
 //
 //
 //
@@ -24143,6 +24116,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 
+=======
+>>>>>>> 5e9693f13e4666ab278013aad35240231e0e427f
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     var _ref;
@@ -24562,24 +24537,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _widgets_ToggleButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../widgets/ToggleButton */ "./resources/js/components/widgets/ToggleButton.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -25610,20 +25567,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -26857,8 +26800,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -27287,6 +27228,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+<<<<<<< HEAD
 //
 //
 //
@@ -27347,6 +27289,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+=======
+>>>>>>> 5e9693f13e4666ab278013aad35240231e0e427f
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -28498,21 +28442,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -28812,24 +28741,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _widgets_ToggleButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../widgets/ToggleButton */ "./resources/js/components/widgets/ToggleButton.vue");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -182974,6 +182885,7 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
+<<<<<<< HEAD
           _c(
             "div",
             { staticClass: "export-block" },
@@ -183097,6 +183009,8 @@ var render = function() {
             2
           ),
           _vm._v(" "),
+=======
+>>>>>>> 5e9693f13e4666ab278013aad35240231e0e427f
           _c("div", { staticClass: "searchTable" }, [
             _c("div", { staticClass: "input-group no-border" }, [
               _c("input", {
@@ -183714,6 +183628,7 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
+<<<<<<< HEAD
           _c(
             "div",
             { staticClass: "export-block" },
@@ -183837,6 +183752,8 @@ var render = function() {
             2
           ),
           _vm._v(" "),
+=======
+>>>>>>> 5e9693f13e4666ab278013aad35240231e0e427f
           _c("div", { staticClass: "searchTable" }, [
             _c("div", { staticClass: "input-group no-border" }, [
               _c("input", {
@@ -185246,40 +185163,6 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "export-block" },
-            [
-              [
-                _c(
-                  "vue-blob-json-csv",
-                  {
-                    attrs: {
-                      "file-type": "csv",
-                      "file-name": "deliverynotes",
-                      fields: _vm.deliverynotes_export_fileds,
-                      data: _vm.deliverynotes
-                    },
-                    on: {
-                      success: _vm.handleSuccessExportCSV,
-                      error: _vm.handleErrorExportCSV
-                    }
-                  },
-                  [
-                    _c("img", {
-                      staticClass: "icon-red-csv-export",
-                      attrs: {
-                        src: "img/icon-red-csv.png",
-                        alt: "Export data to CSV"
-                      }
-                    })
-                  ]
-                )
-              ]
-            ],
-            2
-          ),
-          _vm._v(" "),
           _c("div", { staticClass: "searchTable" }, [
             _c("div", { staticClass: "input-group no-border" }, [
               _c("input", {
@@ -185827,6 +185710,7 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
+<<<<<<< HEAD
           _c(
             "div",
             { staticClass: "export-block" },
@@ -185950,6 +185834,8 @@ var render = function() {
             2
           ),
           _vm._v(" "),
+=======
+>>>>>>> 5e9693f13e4666ab278013aad35240231e0e427f
           _c("div", { staticClass: "searchTable" }, [
             _c("div", { staticClass: "input-group no-border" }, [
               _c("input", {
@@ -190745,40 +190631,6 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "export-block" },
-            [
-              [
-                _c(
-                  "vue-blob-json-csv",
-                  {
-                    attrs: {
-                      "file-type": "csv",
-                      "file-name": "picklists",
-                      fields: _vm.picklists_export_fileds,
-                      data: _vm.picklists
-                    },
-                    on: {
-                      success: _vm.handleSuccessExportCSV,
-                      error: _vm.handleErrorExportCSV
-                    }
-                  },
-                  [
-                    _c("img", {
-                      staticClass: "icon-red-csv-export",
-                      attrs: {
-                        src: "img/icon-red-csv.png",
-                        alt: "Export data to CSV"
-                      }
-                    })
-                  ]
-                )
-              ]
-            ],
-            2
-          ),
-          _vm._v(" "),
           _c("div", { staticClass: "searchTable" }, [
             _c("div", { staticClass: "input-group no-border" }, [
               _c("input", {
@@ -191564,6 +191416,7 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
+<<<<<<< HEAD
           _c(
             "div",
             { staticClass: "export-block" },
@@ -191687,6 +191540,8 @@ var render = function() {
             2
           ),
           _vm._v(" "),
+=======
+>>>>>>> 5e9693f13e4666ab278013aad35240231e0e427f
           _c("div", { staticClass: "searchTable" }, [
             _c("div", { staticClass: "input-group no-border" }, [
               _c("input", {
@@ -192750,40 +192605,6 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "export-block" },
-            [
-              [
-                _c(
-                  "vue-blob-json-csv",
-                  {
-                    attrs: {
-                      "file-type": "csv",
-                      "file-name": "purchases",
-                      fields: _vm.purchases_export_fileds,
-                      data: _vm.purchases
-                    },
-                    on: {
-                      success: _vm.handleSuccessExportCSV,
-                      error: _vm.handleErrorExportCSV
-                    }
-                  },
-                  [
-                    _c("img", {
-                      staticClass: "icon-red-csv-export",
-                      attrs: {
-                        src: "img/icon-red-csv.png",
-                        alt: "Export data to CSV"
-                      }
-                    })
-                  ]
-                )
-              ]
-            ],
-            2
-          ),
-          _vm._v(" "),
           _c("div", { staticClass: "searchTable" }, [
             _c("div", { staticClass: "input-group no-border" }, [
               _c("input", {
@@ -193399,40 +193220,6 @@ var render = function() {
                 1
               )
             : _vm._e(),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "export-block" },
-            [
-              [
-                _c(
-                  "vue-blob-json-csv",
-                  {
-                    attrs: {
-                      "file-type": "csv",
-                      "file-name": "roles",
-                      fields: _vm.roles_export_fileds,
-                      data: _vm.roles
-                    },
-                    on: {
-                      success: _vm.handleSuccessExportCSV,
-                      error: _vm.handleErrorExportCSV
-                    }
-                  },
-                  [
-                    _c("img", {
-                      staticClass: "icon-red-csv-export",
-                      attrs: {
-                        src: "img/icon-red-csv.png",
-                        alt: "Export data to CSV"
-                      }
-                    })
-                  ]
-                )
-              ]
-            ],
-            2
-          ),
           _vm._v(" "),
           _c("div", { staticClass: "searchTable" }, [
             _c("div", { staticClass: "input-group no-border" }, [
@@ -194881,8 +194668,6 @@ var render = function() {
           _vm._v(" "),
           _c("p", [_vm._v("As per " + _vm._s(new Date().toLocaleString()))]),
           _vm._v(" "),
-          _c("div", { staticClass: "export-block" }),
-          _vm._v(" "),
           _c("div", { staticClass: "searchTable" }, [
             _c("div", { staticClass: "input-group no-border" }, [
               _c("input", {
@@ -195535,6 +195320,7 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
+<<<<<<< HEAD
           _c(
             "div",
             { staticClass: "export-block" },
@@ -195658,6 +195444,8 @@ var render = function() {
             2
           ),
           _vm._v(" "),
+=======
+>>>>>>> 5e9693f13e4666ab278013aad35240231e0e427f
           _c("div", { staticClass: "searchTable" }, [
             _c("div", { staticClass: "input-group no-border" }, [
               _c("input", {
@@ -197076,40 +196864,6 @@ var render = function() {
                 1
               )
             : _vm._e(),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "export-block" },
-            [
-              [
-                _c(
-                  "vue-blob-json-csv",
-                  {
-                    attrs: {
-                      "file-type": "csv",
-                      "file-name": "users",
-                      fields: _vm.users_export_fileds,
-                      data: _vm.users
-                    },
-                    on: {
-                      success: _vm.handleSuccessExportCSV,
-                      error: _vm.handleErrorExportCSV
-                    }
-                  },
-                  [
-                    _c("img", {
-                      staticClass: "icon-red-csv-export",
-                      attrs: {
-                        src: "img/icon-red-csv.png",
-                        alt: "Export data to CSV"
-                      }
-                    })
-                  ]
-                )
-              ]
-            ],
-            2
-          ),
           _vm._v(" "),
           _c("div", { staticClass: "searchTable" }, [
             _c("div", { staticClass: "input-group no-border" }, [
@@ -198600,40 +198354,6 @@ var render = function() {
                 1
               )
             : _vm._e(),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "export-block" },
-            [
-              [
-                _c(
-                  "vue-blob-json-csv",
-                  {
-                    attrs: {
-                      "file-type": "csv",
-                      "file-name": "weeklyorders",
-                      fields: _vm.weeklyorders_export_fileds,
-                      data: _vm.weeklyorders
-                    },
-                    on: {
-                      success: _vm.handleSuccessExportCSV,
-                      error: _vm.handleErrorExportCSV
-                    }
-                  },
-                  [
-                    _c("img", {
-                      staticClass: "icon-red-csv-export",
-                      attrs: {
-                        src: "img/icon-red-csv.png",
-                        alt: "Export data to CSV"
-                      }
-                    })
-                  ]
-                )
-              ]
-            ],
-            2
-          ),
           _vm._v(" "),
           _c("div", { staticClass: "searchTable" }, [
             _c("div", { staticClass: "input-group no-border" }, [
