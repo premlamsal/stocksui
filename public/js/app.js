@@ -23506,7 +23506,7 @@ __webpack_require__.r(__webpack_exports__);
       modalForName: "",
       modalForCode: 0,
       isLoading: "",
-      picklists_export_fileds: ["grand_total", "customer_name", "status", "date_requested"]
+      picklists_export_fileds: ["id", "ship_name", "ship_address", "sailing_date", "picked_date", "date_requested"]
     };
   },
   created: function created() {

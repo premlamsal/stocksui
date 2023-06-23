@@ -503,10 +503,13 @@ export default {
 
       isLoading: "",
       picklists_export_fileds: [
-        "grand_total",
-        "customer_name",
-        "status",
+        "id",
+        "ship_name",
+        "ship_address",
+        "sailing_date",
+        "picked_date",
         "date_requested",
+
       ],
     };
   },
