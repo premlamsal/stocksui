@@ -505,7 +505,66 @@
         <div class="text-center" v-if="isLoading == 'Loading all Data'">
           <b-spinner variant="success" label="Spinning"></b-spinner>
         </div>
-      
+        <div class="export-block">
+          <template>
+            <vue-blob-json-csv
+              @success="handleSuccessExportCSV"
+              @error="handleErrorExportCSV"
+              file-type="csv"
+              file-name="weeklyorders"
+              :fields="weeklyorders_export_fileds"
+              :data="weeklyorders"
+            >
+              <!-- <button class="btn btn-warning-success"><i class="fa fa-file-excel-o" aria-hidden="true"></i></button> -->
+              <img
+                src="img/icon-red-csv.png"
+                class="icon-red-csv-export"
+                alt="Export data to CSV"
+              />
+            </vue-blob-json-csv>
+          </template>
+
+          <template>
+    <img
+      src="img/pdf.png"
+      class="icon-red-pdf-export"
+      alt="Export data to pdf"
+      style="width: 41px; cursor: pointer"
+      @click="exportToPDF()"
+    />
+  </template>
+
+  <div
+    class="bowlpdf"
+    style="visibility: hidden; position: absolute"
+    v-if="showbowlpdf"
+  >
+    <div class="element-pdf" id="element-to-convert">
+      <h3>Weekly Orders</h3>
+      <p>Exported on Date : {{ currentDateTime }}</p>
+      <table
+        class="table table-striped table-bordered"
+        width="100%"
+        cellspacing="0"
+      >
+        <thead>
+          <tr>
+            <template v-for="arrayKey in arrayKeys">
+              <th>{{ arrayKey }}</th>
+            </template>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="weeklyorder in weeklyorders" v-bind:key="weeklyorder.id">
+            <template v-for="arrayKey in arrayKeys">
+              <td>{{ weeklyorder[arrayKey] }}</td>
+            </template>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+        </div>
 
         <!-- {{isLoading}} -->
         <div class="searchTable">
@@ -685,6 +744,8 @@ import Vue from "vue";
 //custom toggle button
 import ToggleButton from "../widgets/ToggleButton";
 
+import html2pdf from "html2pdf.js";
+
 export default {
   components: {
     ToggleButton,
@@ -792,10 +853,16 @@ export default {
       modalForCode: 0,
 
       isLoading: "",
+      showbowlpdf: true,
+      arrayKeys: [ "id",
+        "boat_name",
+        "date_order_requested",
+        "delivery_date",],
+      currentDateTime: "",
       weeklyorders_export_fileds: [
-        "grand_total",
-        "customer_name",
-        "status",
+        "id",
+        "boat_name",
+        "date_order_requested",
         "delivery_date",
       ],
     };
@@ -806,6 +873,38 @@ export default {
   },
 
   methods: {
+    exportToPDF() {
+      this.showbowlpdf = true;
+      this.getDateTime();
+
+      setTimeout(() => {
+        html2pdf(document.getElementById("element-to-convert"), {
+          margin: 5,
+          filename: "exported.pdf",
+        });
+      }, 1000);
+
+      setTimeout(() => {
+        this.showbowlpdf = false;
+      }, 1000);
+    },
+    getDateTime() {
+      var currentdate = new Date();
+      var datetime =
+        "Last Sync: " +
+        currentdate.getDate() +
+        "/" +
+        (currentdate.getMonth() + 1) +
+        "/" +
+        currentdate.getFullYear() +
+        " @ " +
+        currentdate.getHours() +
+        ":" +
+        currentdate.getMinutes() +
+        ":" +
+        currentdate.getSeconds();
+      this.currentDateTime = datetime;
+    },
     pushDefaultProductNameToC() {
       this.preItemNameC.forEach((element) => {
         this.cleaning_products.push({

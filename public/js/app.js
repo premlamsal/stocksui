@@ -28875,8 +28875,69 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _widgets_ToggleButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../widgets/ToggleButton */ "./resources/js/components/widgets/ToggleButton.vue");
+/* harmony import */ var html2pdf_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! html2pdf.js */ "./node_modules/html2pdf.js/dist/html2pdf.js");
+/* harmony import */ var html2pdf_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(html2pdf_js__WEBPACK_IMPORTED_MODULE_2__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -29562,6 +29623,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
  //custom toggle button
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     ToggleButton: _widgets_ToggleButton__WEBPACK_IMPORTED_MODULE_1__["default"]
@@ -29616,18 +29678,41 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       modalForName: "",
       modalForCode: 0,
       isLoading: "",
-      weeklyorders_export_fileds: ["grand_total", "customer_name", "status", "delivery_date"]
+      showbowlpdf: true,
+      arrayKeys: ["id", "boat_name", "date_order_requested", "delivery_date"],
+      currentDateTime: "",
+      weeklyorders_export_fileds: ["id", "boat_name", "date_order_requested", "delivery_date"]
     };
   },
   created: function created() {
     this.fetchWeeklyOrders(); // this.fetchStore();
   },
   methods: {
-    pushDefaultProductNameToC: function pushDefaultProductNameToC() {
+    exportToPDF: function exportToPDF() {
       var _this = this;
 
+      this.showbowlpdf = true;
+      this.getDateTime();
+      setTimeout(function () {
+        html2pdf_js__WEBPACK_IMPORTED_MODULE_2___default()(document.getElementById("element-to-convert"), {
+          margin: 5,
+          filename: "exported.pdf"
+        });
+      }, 1000);
+      setTimeout(function () {
+        _this.showbowlpdf = false;
+      }, 1000);
+    },
+    getDateTime: function getDateTime() {
+      var currentdate = new Date();
+      var datetime = "Last Sync: " + currentdate.getDate() + "/" + (currentdate.getMonth() + 1) + "/" + currentdate.getFullYear() + " @ " + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
+      this.currentDateTime = datetime;
+    },
+    pushDefaultProductNameToC: function pushDefaultProductNameToC() {
+      var _this2 = this;
+
       this.preItemNameC.forEach(function (element) {
-        _this.cleaning_products.push({
+        _this2.cleaning_products.push({
           product_name: element,
           picked: "   Yes    |      No",
           quantity: "1",
@@ -29637,10 +29722,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     pushDefaultProductNameToM: function pushDefaultProductNameToM() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.preItemNameM.forEach(function (element) {
-        _this2.miscellaneous.push({
+        _this3.miscellaneous.push({
           product_name: element,
           picked: "   Yes    |      No",
           quantity: "1",
@@ -29651,10 +29736,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     pushDefaultProductNameToD: function pushDefaultProductNameToD() {
-      var _this3 = this;
+      var _this4 = this;
 
       this.preItemNameD.forEach(function (element) {
-        _this3.documentations.push({
+        _this4.documentations.push({
           product_name: element,
           picked: "   Yes    |      No",
           quantity: "1",
@@ -198704,6 +198789,131 @@ var render = function() {
                 1
               )
             : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "export-block" },
+            [
+              [
+                _c(
+                  "vue-blob-json-csv",
+                  {
+                    attrs: {
+                      "file-type": "csv",
+                      "file-name": "weeklyorders",
+                      fields: _vm.weeklyorders_export_fileds,
+                      data: _vm.weeklyorders
+                    },
+                    on: {
+                      success: _vm.handleSuccessExportCSV,
+                      error: _vm.handleErrorExportCSV
+                    }
+                  },
+                  [
+                    _c("img", {
+                      staticClass: "icon-red-csv-export",
+                      attrs: {
+                        src: "img/icon-red-csv.png",
+                        alt: "Export data to CSV"
+                      }
+                    })
+                  ]
+                )
+              ],
+              _vm._v(" "),
+              [
+                _c("img", {
+                  staticClass: "icon-red-pdf-export",
+                  staticStyle: { width: "41px", cursor: "pointer" },
+                  attrs: { src: "img/pdf.png", alt: "Export data to pdf" },
+                  on: {
+                    click: function($event) {
+                      return _vm.exportToPDF()
+                    }
+                  }
+                })
+              ],
+              _vm._v(" "),
+              _vm.showbowlpdf
+                ? _c(
+                    "div",
+                    {
+                      staticClass: "bowlpdf",
+                      staticStyle: {
+                        visibility: "hidden",
+                        position: "absolute"
+                      }
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "element-pdf",
+                          attrs: { id: "element-to-convert" }
+                        },
+                        [
+                          _c("h3", [_vm._v("Weekly Orders")]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "Exported on Date : " +
+                                _vm._s(_vm.currentDateTime)
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "table",
+                            {
+                              staticClass: "table table-striped table-bordered",
+                              attrs: { width: "100%", cellspacing: "0" }
+                            },
+                            [
+                              _c("thead", [
+                                _c(
+                                  "tr",
+                                  [
+                                    _vm._l(_vm.arrayKeys, function(arrayKey) {
+                                      return [
+                                        _c("th", [_vm._v(_vm._s(arrayKey))])
+                                      ]
+                                    })
+                                  ],
+                                  2
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "tbody",
+                                _vm._l(_vm.weeklyorders, function(weeklyorder) {
+                                  return _c(
+                                    "tr",
+                                    { key: weeklyorder.id },
+                                    [
+                                      _vm._l(_vm.arrayKeys, function(arrayKey) {
+                                        return [
+                                          _c("td", [
+                                            _vm._v(
+                                              _vm._s(weeklyorder[arrayKey])
+                                            )
+                                          ])
+                                        ]
+                                      })
+                                    ],
+                                    2
+                                  )
+                                }),
+                                0
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                : _vm._e()
+            ],
+            2
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "searchTable" }, [
             _c("div", { staticClass: "input-group no-border" }, [
