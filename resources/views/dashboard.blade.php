@@ -102,14 +102,14 @@
                             </li>
                         @endcan
 
-                        @can('hasPermission', 'view_purchases')
+                        {{-- @can('hasPermission', 'view_purchases')
                             <li>
                                 <router-link to="/purchases" aria-expanded="false">
                                     <i class="nc-icon nc-basket"></i>
                                     <span>Purchase Orders</span>
                                 </router-link>
                             </li>
-                        @endcan
+                        @endcan --}}
 
 
                         @can('hasPermission', 'view_products')
@@ -138,14 +138,14 @@
                             </li>
                         @endcan
 
-                        @can('hasPermission', 'view_delivery_notes')
+                        {{-- @can('hasPermission', 'view_delivery_notes')
                             <li>
                                 <router-link to="/delivery-notes" aria-expanded="false">
                                     <i class="nc-icon nc-single-copy-04"></i>
                                     <span>Delivery Notes</span>
                                 </router-link>
                             </li>
-                        @endcan
+                        @endcan --}}
 
                         {{-- @can('hasPermission', 'view_returns')
           <li>
