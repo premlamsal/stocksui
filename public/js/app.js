@@ -21548,90 +21548,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -185971,8 +185887,617 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {}
-var staticRenderFns = []
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("h1", { staticClass: "h3 mb-2 text-gray-800" }, [_vm._v("Note")]),
+      _vm._v(" "),
+      _vm.hasPermission("add_note")
+        ? _c(
+            "p",
+            { staticClass: "mb-4" },
+            [
+              _c(
+                "b-button",
+                {
+                  staticClass: "btn btn-success",
+                  staticStyle: { "margin-top": "8px" },
+                  attrs: { id: "show-btn" },
+                  on: { click: _vm.showAddModal }
+                },
+                [
+                  _c("span", { staticClass: "fa fa-plus-circle" }),
+                  _vm._v(" Add New Note")
+                ]
+              )
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          attrs: { id: "bv-modal-add-note", "hide-footer": "" },
+          scopedSlots: _vm._u([
+            {
+              key: "modal-title",
+              fn: function() {
+                return [
+                  _c("span", { staticClass: "text-primary" }, [
+                    _vm._v(_vm._s(_vm.modalForName))
+                  ])
+                ]
+              },
+              proxy: true
+            }
+          ])
+        },
+        [
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "d-block" },
+            [
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.note.id,
+                      expression: "note.id"
+                    }
+                  ],
+                  attrs: { type: "hidden" },
+                  domProps: { value: _vm.note.id },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.note, "id", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "Title" } }, [_vm._v("Title:")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.note.title,
+                      expression: "note.title"
+                    }
+                  ],
+                  class: ["form-control"],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.note.title },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.note, "title", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm.errors.title
+                  ? _c("span", { class: ["errorText"] }, [
+                      _vm._v(_vm._s(_vm.errors.title[0]))
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "Description" } }, [
+                  _vm._v("Description:")
+                ]),
+                _vm._v(" "),
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.note.description,
+                      expression: "note.description"
+                    }
+                  ],
+                  class: ["form-control"],
+                  domProps: { value: _vm.note.description },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.note, "description", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm.errors.description
+                  ? _c("span", { class: ["errorText"] }, [
+                      _vm._v(_vm._s(_vm.errors.description[0]))
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c(
+                "b-button",
+                {
+                  staticClass: "btn-primary mt-3",
+                  attrs: { block: "" },
+                  on: { click: _vm.callFunc }
+                },
+                [_vm._v(_vm._s(_vm.modalForName))]
+              )
+            ],
+            1
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "card shadow mb-4" }, [
+        _c("div", { staticClass: "card-header py-3" }, [
+          _c(
+            "h6",
+            {
+              staticClass: "m-0 font-weight-bold text-primary",
+              staticStyle: { display: "inline-block" }
+            },
+            [_vm._v("\n        Notes\n      ")]
+          ),
+          _vm._v(" "),
+          _vm.isLoading == "Loading all Data"
+            ? _c(
+                "div",
+                { staticClass: "text-center" },
+                [
+                  _c("b-spinner", {
+                    attrs: { variant: "success", label: "Spinning" }
+                  })
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "export-block" },
+            [
+              [
+                _c(
+                  "vue-blob-json-csv",
+                  {
+                    attrs: {
+                      "file-type": "csv",
+                      "file-name": "notes",
+                      fields: _vm.notes_export_fileds,
+                      data: _vm.notes
+                    },
+                    on: {
+                      success: _vm.handleSuccessExportCSV,
+                      error: _vm.handleErrorExportCSV
+                    }
+                  },
+                  [
+                    _c("img", {
+                      staticClass: "icon-red-csv-export",
+                      attrs: {
+                        src: "img/icon-red-csv.png",
+                        alt: "Export data to CSV"
+                      }
+                    })
+                  ]
+                )
+              ],
+              _vm._v(" "),
+              [
+                _c("img", {
+                  staticClass: "icon-red-pdf-export",
+                  staticStyle: { width: "41px", cursor: "pointer" },
+                  attrs: { src: "img/pdf.png", alt: "Export data to pdf" },
+                  on: {
+                    click: function($event) {
+                      return _vm.exportToPDF()
+                    }
+                  }
+                })
+              ],
+              _vm._v(" "),
+              _vm.showbowlpdf
+                ? _c(
+                    "div",
+                    {
+                      staticClass: "bowlpdf",
+                      staticStyle: {
+                        visibility: "hidden",
+                        position: "absolute"
+                      }
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "element-pdf",
+                          attrs: { id: "element-to-convert" }
+                        },
+                        [
+                          _c("h3", [_vm._v("Notes")]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "Exported on Date : " +
+                                _vm._s(_vm.currentDateTime)
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "table",
+                            {
+                              staticClass: "table table-striped table-bordered",
+                              attrs: { width: "100%", cellspacing: "0" }
+                            },
+                            [
+                              _c("thead", [
+                                _c(
+                                  "tr",
+                                  [
+                                    _vm._l(_vm.arrayKeys, function(arrayKey) {
+                                      return [
+                                        _c("th", [_vm._v(_vm._s(arrayKey))])
+                                      ]
+                                    })
+                                  ],
+                                  2
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "tbody",
+                                _vm._l(_vm.notes, function(note) {
+                                  return _c(
+                                    "tr",
+                                    { key: note.id },
+                                    [
+                                      _vm._l(_vm.arrayKeys, function(arrayKey) {
+                                        return [
+                                          _c("td", [
+                                            _vm._v(_vm._s(note[arrayKey]))
+                                          ])
+                                        ]
+                                      })
+                                    ],
+                                    2
+                                  )
+                                }),
+                                0
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                : _vm._e()
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "searchTable" }, [
+            _c("div", { staticClass: "input-group no-border" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.searchTableKey,
+                    expression: "searchTableKey"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", value: "", placeholder: "Search..." },
+                domProps: { value: _vm.searchTableKey },
+                on: {
+                  keyup: function($event) {
+                    if (
+                      !$event.type.indexOf("key") &&
+                      _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                    ) {
+                      return null
+                    }
+                    return _vm.searchTableBtn($event)
+                  },
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.searchTableKey = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group-append" }, [
+                _c("div", { staticClass: "input-group-text" }, [
+                  _c("i", {
+                    staticClass: "nc-icon nc-zoom-split",
+                    on: { click: _vm.searchTableBtn }
+                  })
+                ])
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _vm.notes.length > 0
+          ? _c("div", { staticClass: "card-body" }, [
+              _c("div", { staticClass: "table" }, [
+                _c(
+                  "table",
+                  {
+                    staticClass: "table table-striped table-bordered",
+                    attrs: { width: "100%", cellspacing: "0" }
+                  },
+                  [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      _vm._l(_vm.notes, function(note) {
+                        return _c("tr", { key: note.id }, [
+                          _c("td", { staticClass: "cursor" }, [
+                            _vm._v(_vm._s(note.title))
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(note.description))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(note.user.name))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(note.date))]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm.hasPermission("edit_note")
+                              ? _c(
+                                  "button",
+                                  {
+                                    staticClass:
+                                      "btn btn-success custom_btn_table",
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.editNote(note.id)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("span", {
+                                      staticClass:
+                                        "fa fa-edit custom_icon_table"
+                                    })
+                                  ]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.hasPermission("delete_note")
+                              ? _c(
+                                  "button",
+                                  {
+                                    staticClass:
+                                      "btn btn-danger custom_btn_table",
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.deleteNote(note.id)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("span", {
+                                      staticClass:
+                                        "fa fa-trash custom_icon_table"
+                                    })
+                                  ]
+                                )
+                              : _vm._e()
+                          ])
+                        ])
+                      }),
+                      0
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-8" }, [
+                  _c(
+                    "ul",
+                    { staticClass: "pagination" },
+                    [
+                      _c(
+                        "li",
+                        {
+                          staticClass: "page-item",
+                          class: { disabled: !_vm.pagination.first_link }
+                        },
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "page-link",
+                              on: {
+                                click: function($event) {
+                                  return _vm.fetchNotes(
+                                    _vm.pagination.first_link
+                                  )
+                                }
+                              }
+                            },
+                            [_vm._v("\n                First\n              ")]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "li",
+                        {
+                          staticClass: "page-item",
+                          class: { disabled: !_vm.pagination.prev_link }
+                        },
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "page-link",
+                              on: {
+                                click: function($event) {
+                                  return _vm.fetchNotes(
+                                    _vm.pagination.prev_link
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                Previous\n              "
+                              )
+                            ]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm._l(_vm.pagination.last_page, function(n) {
+                        return _c(
+                          "li",
+                          {
+                            key: n,
+                            staticClass: "page-item",
+                            class: { active: _vm.pagination.current_page == n }
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "page-link",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.fetchNotes(
+                                      _vm.pagination.path_page + n
+                                    )
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                " +
+                                    _vm._s(n) +
+                                    "\n              "
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "li",
+                        {
+                          staticClass: "page-item",
+                          class: { disabled: !_vm.pagination.next_link }
+                        },
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "page-link",
+                              on: {
+                                click: function($event) {
+                                  return _vm.fetchNotes(
+                                    _vm.pagination.next_link
+                                  )
+                                }
+                              }
+                            },
+                            [_vm._v("\n                Next\n              ")]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "li",
+                        {
+                          staticClass: "page-item",
+                          class: { disabled: !_vm.pagination.last_link }
+                        },
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "page-link",
+                              on: {
+                                click: function($event) {
+                                  return _vm.fetchNotes(
+                                    _vm.pagination.last_link
+                                  )
+                                }
+                              }
+                            },
+                            [_vm._v("\n                Last\n              ")]
+                          )
+                        ]
+                      )
+                    ],
+                    2
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-4" }, [
+                  _vm._v(
+                    "\n          Page: " +
+                      _vm._s(_vm.pagination.current_page) +
+                      "-" +
+                      _vm._s(_vm.pagination.last_page) +
+                      " Total\n          Records: " +
+                      _vm._s(_vm.pagination.total_pages) +
+                      "\n        "
+                  )
+                ])
+              ])
+            ])
+          : _c("div", { staticClass: "errorDivEmptyData" }, [
+              _vm._v("No Data Found")
+            ])
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Title")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Description")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Created By")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Created At")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Modify")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
 
 
 

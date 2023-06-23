@@ -26,7 +26,6 @@
             errors.title[0]
           }}</span>
         </div>
-
         <div class="form-group">
           <label for="Description">Description:</label>
           <textarea
@@ -36,94 +35,11 @@
           <span v-if="errors.description" :class="['errorText']">{{
             errors.description[0]
           }}</span>
+          </div>
         <b-button class="btn-primary mt-3" block @click="callFunc">{{modalForName}}</b-button>
-      </b-modal>
-      <!-- add unit modal end-->
-      <!-- DataTales Example -->
-      <div class="card shadow mb-4">
-        <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary" style="display: inline-block;">Notes</h6>
-           <div class="text-center" v-if="isLoading=='Loading all Data'">
-            <b-spinner variant="success" label="Spinning"></b-spinner>
-          </div>
-          
-         
-          <!-- <span>{{isLoading}}</span> -->
-          <div class="searchTable">
-            <!-- Topbar Search -->
-            <!-- <div class="input-group"> -->
-            <div class="input-group no-border">
-              <input type="text" value="" class="form-control" placeholder="Search..." v-model="searchTableKey" @keyup.enter="searchTableBtn">
-              <div class="input-group-append">
-                <div class="input-group-text">
-                  <i class="nc-icon nc-zoom-split" @click="searchTableBtn"></i>
-                </div>
-              </div>
-            </div>
-            <!-- </div> -->
-          </div>
-        </div>
-        <div class="card-body" v-if="notes.length > 0">
-          <div class="table">
-            <table class="table table-striped table-bordered" width="100%" cellspacing="0">
-              <thead>
-                <tr>
-                  <!-- <th>ID</th> -->
-                  <th>Title</th>
-                  <th>Description</th>
-                  <th>Created By</th>
-                  <th>Created At</th>
-                  <th>Modify</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="note in notes" v-bind:key="note.id">
-                  <!-- <td>{{note.id}}</td> -->
-                  <td class="cursor">{{note.title}}</td>
-                  <td>{{note.description}}</td>
-                  <td>{{note.user.name}}</td>
-                  <td>{{note.date}}</td>
-                  <td>
-                    <button class="btn btn-success custom_btn_table" @click=editNote(note.id) v-if="hasPermission('edit_note')"><span class="fa fa-edit custom_icon_table"></span></button>
-                    <button class="btn btn-danger custom_btn_table" @click=deleteNote(note.id) v-if="hasPermission('delete_note')"><span class="fa fa-trash custom_icon_table"></span></button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="row">
-            <div class="col-md-8">
-              <ul class="pagination">
-                <li class="page-item" v-bind:class="{disabled:!pagination.first_link}">
-                  <button @click="fetchNotes(pagination.first_link)" class="page-link">First</button>
-                </li>
-                <li class="page-item" v-bind:class="{disabled:!pagination.prev_link}">
-                  <button @click="fetchNotes(pagination.prev_link)" class="page-link">Previous</button>
-                </li>
-                <li v-for="n in pagination.last_page" v-bind:key="n" class="page-item" v-bind:class="{active:pagination.current_page == n}">
-                  <button @click="fetchNotes(pagination.path_page + n)" class="page-link">{{n}}</button>
-                </li>
-                <li class="page-item" v-bind:class="{disabled:!pagination.next_link}">
-                  <button @click="fetchNotes(pagination.next_link)" class="page-link">Next</button>
-                </li>
-                <li class="page-item" v-bind:class="{disabled:!pagination.last_link}">
-                  <button @click="fetchNotes(pagination.last_link)" class="page-link">Last</button>
-                </li>
-              </ul>
-            </div>
-            <div class="col-md-4">
-              Page: {{pagination.current_page}}-{{pagination.last_page}} Total Records: {{pagination.total_pages}}
-            </div>
-          </div>
-        </div>
-        <div class="errorDivEmptyData" v-else>
-          No Data Found
-        </div>
       </div>
-      <b-button class="btn-primary mt-3" block @click="callFunc">{{
-        modalForName
-      }}</b-button>
-    </b-modal>
+      </b-modal>
+    
     <!-- add unit modal end-->
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
