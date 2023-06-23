@@ -22,7 +22,7 @@
         <div class="form-group">
           <label for="User Type">User Permission</label>
           <select class="form-control" v-model="role.permission_id">
-            <option selected="" v-for="permission in permissions" :value="permission.id" v-bind:key="permission.id">{{permission.name}}</option>
+            <option selected="" v-for="permission in permissions" :value="permission.id">{{permission.name}}</option>
           </select>
           <span v-if="errors.permission_id" :class="['errorText']">{{ errors.type[0] }}</span>
         </div>
@@ -37,7 +37,21 @@
          <div class="text-center" v-if="isLoading=='Loading all Data'">
           <b-spinner variant="success" label="Spinning"></b-spinner>
         </div>
-       
+          <div class="export-block">
+            <template>
+              <vue-blob-json-csv
+              @success="handleSuccessExportCSV"
+              @error="handleErrorExportCSV"
+              file-type="csv"
+              file-name="roles"
+              :fields="roles_export_fileds"
+              :data="roles">
+              
+              <!-- <button class="btn btn-warning-success"><i class="fa fa-file-excel-o" aria-hidden="true"></i></button> -->
+                <img src="img/icon-red-csv.png" class="icon-red-csv-export" alt="Export data to CSV">
+            </vue-blob-json-csv>
+          </template>
+        </div>
 
       
         <div class="searchTable">

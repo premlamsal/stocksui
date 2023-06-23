@@ -23442,6 +23442,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //custom toggle button
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -25184,6 +25202,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //custom toggle button
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -25705,6 +25741,20 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -28427,6 +28477,21 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -191071,6 +191136,40 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "export-block" },
+            [
+              [
+                _c(
+                  "vue-blob-json-csv",
+                  {
+                    attrs: {
+                      "file-type": "csv",
+                      "file-name": "picklists",
+                      fields: _vm.picklists_export_fileds,
+                      data: _vm.picklists
+                    },
+                    on: {
+                      success: _vm.handleSuccessExportCSV,
+                      error: _vm.handleErrorExportCSV
+                    }
+                  },
+                  [
+                    _c("img", {
+                      staticClass: "icon-red-csv-export",
+                      attrs: {
+                        src: "img/icon-red-csv.png",
+                        alt: "Export data to CSV"
+                      }
+                    })
+                  ]
+                )
+              ]
+            ],
+            2
+          ),
+          _vm._v(" "),
           _c("div", { staticClass: "searchTable" }, [
             _c("div", { staticClass: "input-group no-border" }, [
               _c("input", {
@@ -193042,6 +193141,40 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "export-block" },
+            [
+              [
+                _c(
+                  "vue-blob-json-csv",
+                  {
+                    attrs: {
+                      "file-type": "csv",
+                      "file-name": "purchases",
+                      fields: _vm.purchases_export_fileds,
+                      data: _vm.purchases
+                    },
+                    on: {
+                      success: _vm.handleSuccessExportCSV,
+                      error: _vm.handleErrorExportCSV
+                    }
+                  },
+                  [
+                    _c("img", {
+                      staticClass: "icon-red-csv-export",
+                      attrs: {
+                        src: "img/icon-red-csv.png",
+                        alt: "Export data to CSV"
+                      }
+                    })
+                  ]
+                )
+              ]
+            ],
+            2
+          ),
+          _vm._v(" "),
           _c("div", { staticClass: "searchTable" }, [
             _c("div", { staticClass: "input-group no-border" }, [
               _c("input", {
@@ -193604,7 +193737,6 @@ var render = function() {
                   return _c(
                     "option",
                     {
-                      key: permission.id,
                       attrs: { selected: "" },
                       domProps: { value: permission.id }
                     },
@@ -193658,6 +193790,40 @@ var render = function() {
                 1
               )
             : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "export-block" },
+            [
+              [
+                _c(
+                  "vue-blob-json-csv",
+                  {
+                    attrs: {
+                      "file-type": "csv",
+                      "file-name": "roles",
+                      fields: _vm.roles_export_fileds,
+                      data: _vm.roles
+                    },
+                    on: {
+                      success: _vm.handleSuccessExportCSV,
+                      error: _vm.handleErrorExportCSV
+                    }
+                  },
+                  [
+                    _c("img", {
+                      staticClass: "icon-red-csv-export",
+                      attrs: {
+                        src: "img/icon-red-csv.png",
+                        alt: "Export data to CSV"
+                      }
+                    })
+                  ]
+                )
+              ]
+            ],
+            2
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "searchTable" }, [
             _c("div", { staticClass: "input-group no-border" }, [
@@ -197299,6 +197465,40 @@ var render = function() {
                 1
               )
             : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "export-block" },
+            [
+              [
+                _c(
+                  "vue-blob-json-csv",
+                  {
+                    attrs: {
+                      "file-type": "csv",
+                      "file-name": "users",
+                      fields: _vm.users_export_fileds,
+                      data: _vm.users
+                    },
+                    on: {
+                      success: _vm.handleSuccessExportCSV,
+                      error: _vm.handleErrorExportCSV
+                    }
+                  },
+                  [
+                    _c("img", {
+                      staticClass: "icon-red-csv-export",
+                      attrs: {
+                        src: "img/icon-red-csv.png",
+                        alt: "Export data to CSV"
+                      }
+                    })
+                  ]
+                )
+              ]
+            ],
+            2
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "searchTable" }, [
             _c("div", { staticClass: "input-group no-border" }, [

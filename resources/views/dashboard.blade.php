@@ -84,14 +84,14 @@
                             </li>
                         @endcan
 
-                        {{-- @can('hasPermission', 'view_pick_lists')
+                        @can('hasPermission', 'view_pick_lists')
                             <li>
                                 <router-link to="/pick-lists" aria-expanded="false">
                                     <i class="nc-icon nc-tap-01"></i>
                                     <span>Pick List</span>
                                 </router-link>
                             </li>
-                        @endcan --}}
+                        @endcan
 
                         @can('hasPermission', 'view_taskboard')
                             <li>
