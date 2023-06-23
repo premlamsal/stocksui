@@ -192621,6 +192621,7 @@ var render = function() {
                   return _c(
                     "option",
                     {
+                      key: permission.id,
                       attrs: { selected: "" },
                       domProps: { value: permission.id }
                     },

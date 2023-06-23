@@ -22,7 +22,7 @@
         <div class="form-group">
           <label for="User Type">User Permission</label>
           <select class="form-control" v-model="role.permission_id">
-            <option selected="" v-for="permission in permissions" :value="permission.id">{{permission.name}}</option>
+            <option selected="" v-for="permission in permissions" :value="permission.id" v-bind:key="permission.id">{{permission.name}}</option>
           </select>
           <span v-if="errors.permission_id" :class="['errorText']">{{ errors.type[0] }}</span>
         </div>
