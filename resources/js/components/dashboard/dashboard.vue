@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row">
-      <div class="col-lg-3 col-md-6 col-sm-6">
+      <!-- <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
           <div class="card-body ">
             <div class="row">
@@ -29,10 +29,10 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
-          <div class="card-body ">
+          <div class="card-body">
             <div class="row">
               <div class="col-5 col-md-4">
                 <div class="icon-big text-center icon-warning">
@@ -42,18 +42,17 @@
               <div class="col-7 col-md-8">
                 <div class="numbers">
                   <p class="card-category">Contacts</p>
-                  <p class="card-title"> {{dash.contact}}
-                  </p>
+                  <p class="card-title">{{ dash.contact }}</p>
                 </div>
               </div>
             </div>
           </div>
-          <div class="card-footer ">
-            <hr>
+          <div class="card-footer">
+            <hr />
             <div class="stats">
               <router-link to="/contacts" aria-expanded="false">
                 <i class="nc-icon nc-badge"></i>
-                <span>Invoices</span>
+                <span>Contacts</span>
               </router-link>
             </div>
           </div>
@@ -61,7 +60,7 @@
       </div>
       <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
-          <div class="card-body ">
+          <div class="card-body">
             <div class="row">
               <div class="col-5 col-md-4">
                 <div class="icon-big text-center icon-warning">
@@ -71,14 +70,13 @@
               <div class="col-7 col-md-8">
                 <div class="numbers">
                   <p class="card-category">Suppliers</p>
-                  <p class="card-title">{{dash.supplier}}
-                  </p>
+                  <p class="card-title">{{ dash.supplier }}</p>
                 </div>
               </div>
             </div>
           </div>
-          <div class="card-footer ">
-            <hr>
+          <div class="card-footer">
+            <hr />
             <div class="stats">
               <router-link to="/suppliers" aria-expanded="false">
                 <i class="nc-icon nc-delivery-fast"></i>
@@ -90,25 +88,25 @@
       </div>
       <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
-          <div class="card-body ">
+          <div class="card-body">
             <div class="row">
               <div class="col-5 col-md-4">
                 <div class="icon-big text-center icon-warning">
-                  <i class="nc-icon nc-tile-56 text-primary"></i>
+                  <i class="nc-icon nc-tile-56 text-success"></i>
                 </div>
               </div>
               <div class="col-7 col-md-8">
                 <div class="numbers">
                   <p class="card-category">Products</p>
                   <p class="card-title">
-                    {{dash.product}}
+                    {{ dash.product }}
                   </p>
                 </div>
               </div>
             </div>
           </div>
-          <div class="card-footer ">
-            <hr>
+          <div class="card-footer">
+            <hr />
             <div class="stats">
               <router-link to="/products" aria-expanded="false">
                 <i class="nc-icon nc-tile-56"></i>
@@ -118,9 +116,160 @@
           </div>
         </div>
       </div>
+
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-5 col-md-4">
+                <div class="icon-big text-center icon-warning">
+                  <i class="nc-icon nc-cart-simple text-info"></i>
+                </div>
+              </div>
+              <div class="col-7 col-md-8">
+                <div class="numbers">
+                  <p class="card-category">Weekly Orders</p>
+                  <p class="card-title">
+                    {{ dash.weekly_orders }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <hr />
+            <div class="stats">
+              <router-link to="/weekly-orders" aria-expanded="false">
+                <i class="nc-icon nc-cart-simple"></i>
+                <span>Weekly Orders</span>
+              </router-link>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-5 col-md-4">
+                <div class="icon-big text-center icon-warning">
+                  <i class="nc-icon nc-ruler-pencil text-danger"></i>
+                </div>
+              </div>
+              <div class="col-7 col-md-8">
+                <div class="numbers">
+                  <p class="card-category">Notes</p>
+                  <p class="card-title">
+                    {{ dash.notes }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <hr />
+            <div class="stats">
+              <router-link to="/notes" aria-expanded="false">
+                <i class="nc-icon nc-ruler-pencil"></i>
+                <span>Notes</span>
+              </router-link>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-5 col-md-4">
+                <div class="icon-big text-center icon-warning">
+                  <i class="nc-icon nc-single-02 text-warning"></i>
+                </div>
+              </div>
+              <div class="col-7 col-md-8">
+                <div class="numbers">
+                  <p class="card-category">Users</p>
+                  <p class="card-title">
+                    {{ dash.users }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <hr />
+            <div class="stats">
+              <router-link to="/users" aria-expanded="false">
+                <i class="nc-icon nc-single-02"></i>
+                <span>Users</span>
+              </router-link>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-5 col-md-4">
+                <div class="icon-big text-center icon-warning">
+                  <i class="nc-icon nc-palette text-info"></i>
+                </div>
+              </div>
+              <div class="col-7 col-md-8">
+                <div class="numbers">
+                  <p class="card-category">Taskboard Tasks</p>
+                  <p class="card-title">
+                    {{ dash.tasks }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <hr />
+            <div class="stats">
+              <router-link to="/taskboard" aria-expanded="false">
+                <i class="nc-icon nc-palette"></i>
+                <span>Taskboard Tasks</span>
+              </router-link>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-5 col-md-4">
+                <div class="icon-big text-center icon-warning">
+                  <i class="nc-icon nc-map-big text-warning"></i>
+                </div>
+              </div>
+              <div class="col-7 col-md-8">
+                <div class="numbers">
+                  <p class="card-category">Calendar Events</p>
+                  <p class="card-title">
+                    {{ dash.events }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <hr />
+            <div class="stats">
+              <router-link to="/calendar" aria-expanded="false">
+                <i class="nc-icon nc-map-big"></i>
+                <span>Calendar Events</span>
+              </router-link>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
- 
-   <!--  <div class="row">
+
+    <!--  <div class="row">
           <div class="col-md-6">
             <div class="card ">
               <div class="card-header ">
@@ -174,18 +323,14 @@ import BarChart from "../chart/barChart";
 import LineChart from "../chart/lineChart";
 
 export default {
-
   components: {
-
     BarChart,
-    LineChart
+    LineChart,
   },
 
   data() {
-
     return {
-
-      store_id: '',
+      store_id: "",
 
       showBar: false,
       showLine: true,
@@ -193,57 +338,51 @@ export default {
       loaded: false,
 
       chartdata: {
+        labels: "",
 
-        labels: '',
+        datasets: [
+          {
+            label: "Sales over past months",
+            data: "",
+            borderWidth: 1,
+            backgroundColor: [
+              "rgb(255, 84, 64,0.6)",
+              "rgba(54, 162, 235, 0.6)",
+              "rgba(255, 206, 86, 0.6)",
+              "rgba(75, 192, 192, 0.6)",
+              "rgba(153, 102, 255, 0.6)",
+              "rgba(255, 159, 64, 0.6)",
+            ],
 
-        datasets: [{
-
-          label: 'Sales over past months',
-          data: '',
-          borderWidth: 1,
-          backgroundColor: [
-
-            "rgb(255, 84, 64,0.6)",
-            "rgba(54, 162, 235, 0.6)",
-            "rgba(255, 206, 86, 0.6)",
-            "rgba(75, 192, 192, 0.6)",
-            "rgba(153, 102, 255, 0.6)",
-            "rgba(255, 159, 64, 0.6)"
-          ],
-
-          // backgroundColor: "transparent",
-          borderColor: [
-
-            "rgba(255,99,132,1)",
-            "rgba(54, 162, 235, 1)",
-            "rgba(255, 206, 86, 1)",
-            "rgba(75, 192, 192, 1)",
-            "rgba(153, 102, 255, 1)",
-            "rgba(255, 159, 64, 1)"
-          ],
-          // pointBackgroundColor: []
-        }]
+            // backgroundColor: "transparent",
+            borderColor: [
+              "rgba(255,99,132,1)",
+              "rgba(54, 162, 235, 1)",
+              "rgba(255, 206, 86, 1)",
+              "rgba(75, 192, 192, 1)",
+              "rgba(153, 102, 255, 1)",
+              "rgba(255, 159, 64, 1)",
+            ],
+            // pointBackgroundColor: []
+          },
+        ],
       },
 
       options: {
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: false,
       },
 
       dash: [],
 
-      type: 'line',
+      type: "line",
 
-
-      before_month: '6', //default sales chart will show 6 months records
-
+      before_month: "6", //default sales chart will show 6 months records
     }; //end of return
-
   }, //end of data
 
   created() {
-
-    this.store_id = this.$cookie.get('store_id');
+    this.store_id = this.$cookie.get("store_id");
 
     // if(!this.store_id==null){
     //   this.$Progress.start();
@@ -253,81 +392,68 @@ export default {
     // else{
     //   this.$router.push({ name: 'selectStore'});
     // }
-
   },
 
-
-
   mounted() {
-
     // this.getSalesChart();
-
   },
 
   methods: {
-
     changeSalesChartType() {
-
-      if (this.type === 'line') {
-        this.showBar = false
-        this.showLine = true
-      } else if (this.type == 'bar') {
-        this.showBar = true
-        this.showLine = false
+      if (this.type === "line") {
+        this.showBar = false;
+        this.showLine = true;
+      } else if (this.type == "bar") {
+        this.showBar = true;
+        this.showLine = false;
       }
-
     },
     changeSalesChartMonth() {
       this.getSalesChart();
     },
 
     async getSalesChart() {
-      this.loaded = false
+      this.loaded = false;
       try {
-        let resp = await axios.get('/api/sales/chart/' + this.before_month)
+        let resp = await axios.get("/api/sales/chart/" + this.before_month);
 
-        this.chartdata.labels = resp.data.month
+        this.chartdata.labels = resp.data.month;
 
-        Vue.set(this.chartdata.datasets, 'data', resp.data.data)
+        Vue.set(this.chartdata.datasets, "data", resp.data.data);
 
-        this.chartdata.datasets[0].data = resp.data.data
-        this.chartdata.datasets[0].label = 'Sales Data from past ' + this.before_month + ' month(s)'
+        this.chartdata.datasets[0].data = resp.data.data;
+        this.chartdata.datasets[0].label =
+          "Sales Data from past " + this.before_month + " month(s)";
 
-        this.loaded = true
-
+        this.loaded = true;
       } catch (e) {
         // console.error(e)
         // console.log('Somthing happened');
         this.$toast.error({
-          title: 'Opps!!',
-          message: e.message.toString()
+          title: "Opps!!",
+          message: e.message.toString(),
         });
       }
     },
     fetchDash() {
-
       let currObj = this;
 
-      axios.get('/api/dashInfo')
-        .then(function(response) {
-
+      axios
+        .get("/api/dashInfo")
+        .then(function (response) {
           currObj.dash = response.data;
-
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
         });
-
-
     },
-
   },
 
   computed: {
     //use {{ currentRouteName }} in template or use directly {{ $route.name }} without using computed property
     currentRouteName() {
       return this.$route.name;
-    }
-  }
-}
+    },
+  },
+};
 </script>

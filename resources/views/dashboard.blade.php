@@ -156,7 +156,7 @@
           </li>
           @endcan --}}
 
-                        @can('hasPermission', 'view_stocks')
+                        {{-- @can('hasPermission', 'view_stocks')
                             <li>
                                 <router-link to="/stocks" aria-expanded="false">
                                     <i class="nc-icon nc-briefcase-24"></i>
@@ -164,7 +164,7 @@
                                 </router-link>
                             </li>
                         @endcan
-
+ --}}
 
 
                         @can('hasPermission', 'view_users')
@@ -222,9 +222,8 @@
 
 
                         </div>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navigation" aria-controls="navigation-index" aria-expanded="false"
-                            aria-label="Toggle navigation">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+                            aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-bar navbar-kebab"></span>
                             <span class="navbar-toggler-bar navbar-kebab"></span>
                             <span class="navbar-toggler-bar navbar-kebab"></span>
