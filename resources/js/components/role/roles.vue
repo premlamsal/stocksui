@@ -113,7 +113,7 @@
             </ul>
           </div>
           <div class="col-md-4">
-            Page: {{pagination.current_page}}-{{pagination.last_page}} Total Records: {{pagination.total_pages}}
+            Page: {{pagination.current_page}}-{{pagination.last_page}} Total Roles: {{pagination.total_pages}}
           </div>
         </div>
       </div>

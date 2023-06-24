@@ -288,7 +288,7 @@
           </div>
           <div class="col-md-4">
             Page: {{ pagination.current_page }}-{{ pagination.last_page }} Total
-            Records: {{ pagination.total_pages }}
+            Suppliers: {{ pagination.total_pages }}
           </div>
         </div>
       </div>

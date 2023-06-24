@@ -183560,7 +183560,7 @@ var render = function() {
                       _vm._s(_vm.pagination.current_page) +
                       "-" +
                       _vm._s(_vm.pagination.last_page) +
-                      " Total\n          Records: " +
+                      " Total\n          Categories: " +
                       _vm._s(_vm.pagination.total_pages) +
                       "\n        "
                   )
@@ -184306,7 +184306,7 @@ var render = function() {
                       _vm._s(_vm.pagination.current_page) +
                       "-" +
                       _vm._s(_vm.pagination.last_page) +
-                      " Total Records: " +
+                      " Total Contacts: " +
                       _vm._s(_vm.pagination.total_pages) +
                       "\n        "
                   )
@@ -185983,7 +185983,7 @@ var render = function() {
                       _vm._s(_vm.pagination.current_page) +
                       "-" +
                       _vm._s(_vm.pagination.last_page) +
-                      " Total\n          Records: " +
+                      " Total\n          Delivery Notes: " +
                       _vm._s(_vm.pagination.total_pages) +
                       "\n        "
                   )
@@ -186612,7 +186612,7 @@ var render = function() {
                       _vm._s(_vm.pagination.current_page) +
                       "-" +
                       _vm._s(_vm.pagination.last_page) +
-                      " Total\n          Records: " +
+                      " Total\n          Notes: " +
                       _vm._s(_vm.pagination.total_pages) +
                       "\n        "
                   )
@@ -190522,7 +190522,7 @@ var render = function() {
                       _vm._s(_vm.pagination.current_page) +
                       "-" +
                       _vm._s(_vm.pagination.last_page) +
-                      " Total\n          Records: " +
+                      " Total\n          Permissions: " +
                       _vm._s(_vm.pagination.total_pages) +
                       "\n        "
                   )
@@ -191478,7 +191478,7 @@ var render = function() {
                       _vm._s(_vm.pagination.current_page) +
                       "-" +
                       _vm._s(_vm.pagination.last_page) +
-                      " Total\n          Records: " +
+                      " Total\n          Pick Lists: " +
                       _vm._s(_vm.pagination.total_pages) +
                       "\n        "
                   )
@@ -192368,7 +192368,7 @@ var render = function() {
                       _vm._s(_vm.pagination.current_page) +
                       "-" +
                       _vm._s(_vm.pagination.last_page) +
-                      " Total\n          Records: " +
+                      " Total\n          Products: " +
                       _vm._s(_vm.pagination.total_pages) +
                       "\n        "
                   )
@@ -193517,7 +193517,7 @@ var render = function() {
                       _vm._s(_vm.pagination.current_page) +
                       "-" +
                       _vm._s(_vm.pagination.last_page) +
-                      " Total\n          Records: " +
+                      " Total\n          Purchase: " +
                       _vm._s(_vm.pagination.total_pages) +
                       "\n        "
                   )
@@ -194080,7 +194080,7 @@ var render = function() {
                       _vm._s(_vm.pagination.current_page) +
                       "-" +
                       _vm._s(_vm.pagination.last_page) +
-                      " Total Records: " +
+                      " Total Roles: " +
                       _vm._s(_vm.pagination.total_pages) +
                       "\n        "
                   )
@@ -195589,7 +195589,7 @@ var render = function() {
                       _vm._s(_vm.pagination.current_page) +
                       "-" +
                       _vm._s(_vm.pagination.last_page) +
-                      "\n                    Total Records: " +
+                      "\n                    Total Stocks: " +
                       _vm._s(_vm.pagination.total_pages) +
                       "\n                "
                   )
@@ -196335,7 +196335,7 @@ var render = function() {
                       _vm._s(_vm.pagination.current_page) +
                       "-" +
                       _vm._s(_vm.pagination.last_page) +
-                      " Total\n          Records: " +
+                      " Total\n          Suppliers: " +
                       _vm._s(_vm.pagination.total_pages) +
                       "\n        "
                   )
@@ -197793,7 +197793,7 @@ var render = function() {
                       _vm._s(_vm.pagination.current_page) +
                       "-" +
                       _vm._s(_vm.pagination.last_page) +
-                      " Total Records: " +
+                      " Total Users: " +
                       _vm._s(_vm.pagination.total_pages) +
                       "\n        "
                   )
@@ -199423,7 +199423,7 @@ var render = function() {
                       _vm._s(_vm.pagination.current_page) +
                       "-" +
                       _vm._s(_vm.pagination.last_page) +
-                      " Total\n          Records: " +
+                      " Total\n          Weekly Orders: " +
                       _vm._s(_vm.pagination.total_pages) +
                       "\n        "
                   )

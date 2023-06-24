@@ -291,7 +291,7 @@
                         Page: {{ pagination.current_page }}-{{
                             pagination.last_page
                         }}
-                        Total Records: {{ pagination.total_pages }}
+                        Total Stocks: {{ pagination.total_pages }}
                     </div>
                 </div>
             </div>
