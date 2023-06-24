@@ -818,7 +818,6 @@ export default {
         "Latex Gloves (Small)",
         "Plastic Ponchos",
         "Water Filters & (5 Micron)",
-        "Water Filters (5 Micron)",
         "Water Filters (20 Micron)",
       ],
       preItemNameD: [

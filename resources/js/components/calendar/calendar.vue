@@ -179,12 +179,7 @@ export default {
         showClose: true,
       },
       calendarOptions: {
-        titleFormat: {
-          // will produce something like "Tuesday, September 18, 2018"
-          year: "numeric",
-          day: "numeric",
-          weekday: "long",
-        },
+        titleFormat: { year: 'numeric', month: 'long' } ,
         eventTimeFormat: {
 
           hour: 'numeric',
@@ -472,7 +467,8 @@ export default {
     }, //end of deleteUnit()
     handleDateClick: function (arg) {
       // alert("date click! " + arg.dateStr);
-      this.showAddModal(arg.dateStr);
+      const date= moment(arg.dateStr).format("DD-MM-YYYY");;
+      this.showAddModal(date);
     },
     handleEventClick(clickInfo) {
       //   if (

@@ -18238,10 +18238,8 @@ __webpack_require__.r(__webpack_exports__);
       },
       calendarOptions: {
         titleFormat: {
-          // will produce something like "Tuesday, September 18, 2018"
-          year: "numeric",
-          day: "numeric",
-          weekday: "long"
+          year: 'numeric',
+          month: 'long'
         },
         eventTimeFormat: {
           hour: 'numeric',
@@ -18508,7 +18506,9 @@ __webpack_require__.r(__webpack_exports__);
     //end of deleteUnit()
     handleDateClick: function handleDateClick(arg) {
       // alert("date click! " + arg.dateStr);
-      this.showAddModal(arg.dateStr);
+      var date = moment__WEBPACK_IMPORTED_MODULE_5___default()(arg.dateStr).format("DD-MM-YYYY");
+      ;
+      this.showAddModal(date);
     },
     handleEventClick: function handleEventClick(clickInfo) {
       //   if (
@@ -29722,7 +29722,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       weeklyorder_number: "",
       info: {},
       preItemNameC: ["Washing-Up Liquid", "Toilet Duck", "Washroom Wipes", "Multi Surface Spray", "Dettol Wipes", "Bathroom & Shower Spray", "Window Cleaner Spray", "Furniture Polish", "Brasso", "Carpet Cleaner", "Dishwasher Detergent (5L)", "Dishwasher Rinse Aide (5L)", "Henry Hoover Bags", "Floor Cleaner (Concentrate 5L)", "Cleaning Cloths (x50)", "Sponge Scourer (X10)", "Vileda Mop Head", "Air Freshener", "Liquid Hand Soap (5L)", "Conditioner (5L)", "Hair & Body Shampoo (5L)", "Tissues", "Toilet Roll (24pk)", "Blue Tork Roll", "Kitchen Roll", "Swing Bin Line (45L, 200 roll)", "Cabin Bin Liner (3l, 20pk)", "Black Bin Bags(200 box)"],
-      preItemNameM: ["Plastic Aprons", "Latex Gloves (Large)", "Latex Cloves (Medium)", "Latex Gloves (Small)", "Plastic Ponchos", "Water Filters & (5 Micron)", "Water Filters (5 Micron)", "Water Filters (20 Micron)"],
+      preItemNameM: ["Plastic Aprons", "Latex Gloves (Large)", "Latex Cloves (Medium)", "Latex Gloves (Small)", "Plastic Ponchos", "Water Filters & (5 Micron)", "Water Filters (20 Micron)"],
       preItemNameD: ["Comp / Galley / Crew Sheet", "Daily Bar Account Sheet", "Provisions Order Form", "Chef - 10 Day Clean Schedule", "Chef - Appliance TempSheet", "Chef Daily CleaningSheet"],
       store: {},
       queryResults: [],
