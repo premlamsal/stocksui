@@ -23,13 +23,14 @@ class TaskBoardController extends Controller
 
         $TaskBoard = TaskBoard::where('id', 1)->first();
 
-        $checkTaskAvailable = false;
+        $checkTaskAvailable=false;
 
-        if ($TaskBoard) {
-            $checkTaskAvailable = true;
+        if ($TaskBoard !== null) {
+           $checkTaskAvailable=true;
         } else {
 
             $TaskBoard = new TaskBoard();
+            $TaskBoard->id = 1;
             $TaskBoard->tasks = "";
             if ($TaskBoard->save()) {
                 $checkTaskAvailable = true;
@@ -41,12 +42,12 @@ class TaskBoardController extends Controller
             $TaskBoard->tasks = $updatedData;
 
             if ($TaskBoard->save()) {
-                return response()->json(['message' => 'Tasks updated successfully']);
+                return response()->json(['message' => 'Tasks Successfully Updated!']);
             } else {
-                return response()->json(['message' => 'failed updating tasks']);
+                return response()->json(['message' => 'Failed updating Tasks']);
             }
         } else {
-            return response()->json(['message' => 'failed updating tasks.Since no tasks available']);
+            return response()->json(['message' => 'failed updating tasks. Since no tasks available']);
         }
     }
     public function tasks()
@@ -54,7 +55,7 @@ class TaskBoardController extends Controller
 
         $this->authorize('hasPermission', 'view_tasks');
 
-        $TaskBoard = TaskBoard::first();
+        $TaskBoard = TaskBoard::where('id',1)->first();
 
         return response()->json(['data' => $TaskBoard]);
     }

@@ -68,7 +68,7 @@ class NoteController extends Controller
 
 
             return response()->json([
-                'msg' => 'Note added successfully',
+                'msg' => 'Note Successfully Created!',
                 'status' => 'success',
             ]);
         } else {
@@ -115,14 +115,14 @@ class NoteController extends Controller
         if ($note->save()) {
 
             return response()->json([
-                'msg' => 'Note updated successfully',
+                'msg' => 'Note Successfully Updated!',
                 'status' => 'success',
             ]);
         } else {
 
             return response()->json([
 
-                'msg'    => 'Error while updating note',
+                'msg'    => 'Error Updating Note',
                 'status' => 'error',
             ]);
         }
@@ -141,12 +141,12 @@ class NoteController extends Controller
         $note = Note::where('id', $id)->where('store_id', $store_id)->first();
         if ($note->delete()) {
             return response()->json([
-                'msg' => 'successfully Deleted',
+                'msg' => 'Note Successfully Deleted!',
                 'status' => 'success',
             ]);
         } else {
             return response()->json([
-                'msg'    => 'Error while deleting data',
+                'msg'    => 'Error Deleting Note',
                 'status' => 'error',
             ]);
         }

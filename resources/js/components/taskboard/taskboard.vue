@@ -657,6 +657,8 @@ export default {
                 priority.splice(taskIndex, 1);
                 // Optionally, you can trigger any necessary updates or save the changes to a database
 
+                this.$swal("Info", "Task Successfully Deleted", "success");
+
                 break; // Exit the loop since the task has been deleted
               }
             }

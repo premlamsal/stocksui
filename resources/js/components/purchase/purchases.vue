@@ -386,7 +386,7 @@
                 <th>Date</th>
                 <th>Due Date</th>
                 <!-- <th>Status</th> -->
-                <th>Modify</th>
+                <th>Edit</th>
               </tr>
             </thead>
 

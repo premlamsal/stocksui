@@ -319,7 +319,7 @@
                 <th>Picked Date</th>
                 <!-- <th>Status</th> -->
                 <th>Date Request</th>
-                <th>Modify</th>
+                <th>Edit</th>
               </tr>
             </thead>
 

@@ -14,7 +14,7 @@ class CreateTaskBoardsTable extends Migration
     public function up()
     {
         Schema::create('task_boards', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->string('id');
             $table->longText('tasks');
             $table->timestamps();
         });

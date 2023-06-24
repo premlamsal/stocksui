@@ -812,7 +812,7 @@
                 <!-- <th>ID</th> -->
                 <th>Name</th>
                 <!-- <th>Permissions</th> -->
-                <th>Modify</th>
+                <th>Edit</th>
               </tr>
             </thead>
             <tbody>

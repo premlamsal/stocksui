@@ -14,7 +14,6 @@ class CategoryController extends Controller
     {
 
         $this->middleware('auth:api');
-
     }
 
     public function index()
@@ -53,11 +52,10 @@ class CategoryController extends Controller
         $category->store_id = $store_id;
 
         if ($category->save()) {
-            return response()->json(['msg' => 'You have successfully added the information.', 'status' => 'success']);
+            return response()->json(['msg' => 'Category Successfully Created!', 'status' => 'success']);
         } else {
-            return response()->json(['msg' => 'Opps! My Back got cracked while working in Database', 'status' => 'error']);
+            return response()->json(['msg' => 'Error Creating Category', 'status' => 'error']);
         }
-
     }
 
     public function show($id)
@@ -79,7 +77,6 @@ class CategoryController extends Controller
         } else {
             return response()->json(['msg' => 'Opps! My Back got cracked while working in Database', 'status' => 'error']);
         }
-
     }
 
     public function update(Request $request)
@@ -106,12 +103,12 @@ class CategoryController extends Controller
 
         if ($category->save()) {
             return response()->json([
-                'msg'    => "Record Updated successfully",
+                'msg'    => "Category Successfully Updated! ",
                 'status' => 'success',
             ]);
         } else {
             return response()->json([
-                'msg'    => 'Error Updating Data',
+                'msg'    => 'Error Updating Category',
                 'status' => 'error',
             ]);
         }
@@ -129,12 +126,12 @@ class CategoryController extends Controller
 
         if ($category->delete()) {
             return response()->json([
-                'msg'    => 'successfully Deleted',
+                'msg'    => 'Category Successfully Deleted!',
                 'status' => 'success',
             ]);
         } else {
             return response()->json([
-                'msg'    => 'Error while deleting data',
+                'msg'    => 'Error Deleting Category',
                 'status' => 'error',
             ]);
         }

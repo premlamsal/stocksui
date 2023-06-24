@@ -81,13 +81,13 @@ class EventController extends Controller
 
 
             return response()->json([
-                'msg' => 'Event Added Successfully',
+                'msg' => 'Event Successfully Created!',
                 'status' => 'success',
             ]);
         } else {
             return response()->json([
 
-                'msg'    => 'Error while adding event',
+                'msg'    => 'Error Creating event',
 
                 'status' => 'error',
             ]);
@@ -143,14 +143,14 @@ class EventController extends Controller
         if ($event->save()) {
 
             return response()->json([
-                'msg' => 'Event Updated Successfully!',
+                'msg' => 'Event Successfully Updated!',
                 'status' => 'success',
             ]);
         } else {
 
             return response()->json([
 
-                'msg'    => 'Error while updating event',
+                'msg'    => 'Error Updating Event',
                 'status' => 'error',
             ]);
         }
@@ -169,12 +169,12 @@ class EventController extends Controller
         $event = Event::where('id', $id)->where('store_id', $store_id)->first();
         if ($event->delete()) {
             return response()->json([
-                'msg' => 'successfully Deleted',
+                'msg' => 'Event Successfully Deleted!',
                 'status' => 'success',
             ]);
         } else {
             return response()->json([
-                'msg'    => 'Error while deleting data',
+                'msg'    => 'Failed Deleting Event!',
                 'status' => 'error',
             ]);
         }
@@ -198,7 +198,7 @@ class EventController extends Controller
             ]);
         } else {
             return response()->json([
-                'msg' => 'Error while retriving Event',
+                'msg' => 'Error retriving Event',
                 'status' => 'error',
             ]);
         }

@@ -28421,6 +28421,8 @@ __webpack_require__.r(__webpack_exports__);
                   // Remove the task from the priority array
                   priority.splice(taskIndex, 1); // Optionally, you can trigger any necessary updates or save the changes to a database
 
+                  _this2.$swal("Info", "Task Successfully Deleted", "success");
+
                   break; // Exit the loop since the task has been deleted
                 }
               }
@@ -98489,7 +98491,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* light stylings for the kanban columns */\n.kanban-column {\n  /* min-height: 60px; */\n}\n.status-head-container {\n  margin-top: 20px;\n    display: -webkit-box;\n    display: flex;\n    justify-content: space-around;\n    background: #163373;\n    color: #ffd602;\n}\n.custom-row {\n  display: -webkit-box;\n  display: flex;\n  justify-content: space-around;\n}\n.row-bar h5 {\n  text-align: center;\n  color: white;\n  padding-right: 67px;\n  font-size: 14px;\n  \n  /* letter-spacing: 10px; */\n}\n/* .status-head-container{\n  position: fixed;\n    z-index: 222222;\n    background: #00BCD4;\n    color: white;\n    top: 0;\n    right: 0;\n    left: 0;\n} */\n.task-tittle {\n  font-weight: bold;\n  font-size: 13px;\n}\n.alert-secondary {\n  color: #383d41 !important;\n  background-color: #e2e3e517 !important;\n  border: 0 !important;\n  box-shadow: 1px 1px 7px 1px #eee !important;\n}\n.list-group-item {\n  margin: 4px !important;\n    padding: 0.25rem 0.25rem !important;\n}\n.task-body {\n  font-size: 12px;\n}\n.task-body p {\n  margin: 0;\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* light stylings for the kanban columns */\n.kanban-column {\n  /* min-height: 60px; */\n}\n.status-head-container {\n  margin-top: 20px;\n    display: -webkit-box;\n    display: flex;\n    justify-content: space-around;\n    background: #163373;\n    color: #ffd602;\n}\n.custom-row {\n  display: -webkit-box;\n  display: flex;\n  justify-content: space-around;\n}\n.row-bar h5 {\n  text-align: center;\n  color: white;\n  padding-right: 67px;\n  font-size: 14px;\n  \n  /* letter-spacing: 10px; */\n}\n/* .status-head-container{\n  position: fixed;\n    z-index: 222222;\n    background: #00BCD4;\n    color: white;\n    top: 0;\n    right: 0;\n    left: 0;\n} */\n.task-tittle {\n  font-weight: bold;\n  font-size: 13px;\n}\n.alert-secondary {\n  color: #383d41 !important;\n  background-color: #e2e3e517 !important;\n  border: 0 !important;\n  box-shadow: 1px 1px 7px 1px #eee !important;\n}\n.list-group-item {\n  margin: 4px !important;\n    padding: 0.25rem 0.25rem !important;\n}\n.task-body {\n  font-size: 12px;\n}\n.task-body p {\n  margin: 0;\n}\n\n", ""]);
 
 // exports
 
@@ -183002,7 +183004,9 @@ var render = function() {
     "div",
     { ref: "document" },
     [
-      _c("h1", { staticClass: "h3 mb-2 text-gray-800" }, [_vm._v("Category")]),
+      _c("h1", { staticClass: "h3 mb-2 text-gray-800" }, [
+        _vm._v("Category List")
+      ]),
       _vm._v(" "),
       _vm.hasPermission("add_category")
         ? _c(
@@ -183586,7 +183590,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Description")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Modify")])
+        _c("th", [_vm._v("Edit")])
       ])
     ])
   }
@@ -184338,7 +184342,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Company")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Modify")])
+        _c("th", [_vm._v("Edit")])
       ])
     ])
   }
@@ -186015,7 +186019,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Due Date")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Modify")])
+        _c("th", [_vm._v("Edit")])
       ])
     ])
   }
@@ -186642,7 +186646,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Created At")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Modify")])
+        _c("th", [_vm._v("Edit")])
       ])
     ])
   }
@@ -190546,7 +190550,7 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Name")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Modify")])
+        _c("th", [_vm._v("Edit")])
       ])
     ])
   }
@@ -191510,7 +191514,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Date Request")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Modify")])
+        _c("th", [_vm._v("Edit")])
       ])
     ])
   }
@@ -192404,7 +192408,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Unit")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Actions")])
+        _c("th", [_vm._v("Edit")])
       ])
     ])
   }
@@ -193549,7 +193553,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Due Date")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Modify")])
+        _c("th", [_vm._v("Edit")])
       ])
     ])
   }
@@ -194106,7 +194110,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Permissions")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Modify")])
+        _c("th", [_vm._v("Edit")])
       ])
     ])
   }
@@ -196367,7 +196371,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Details")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Modify")])
+        _c("th", [_vm._v("Edit")])
       ])
     ])
   }
@@ -197825,7 +197829,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Verified at")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Action")])
+        _c("th", [_vm._v("Edit")])
       ])
     ])
   }
@@ -197855,7 +197859,7 @@ var render = function() {
     "div",
     [
       _c("h1", { staticClass: "h3 mb-2 text-gray-800" }, [
-        _vm._v("Weekly Orders")
+        _vm._v("Weekly Order List")
       ]),
       _vm._v(" "),
       _vm.hasPermission("add_weeklyorders")
@@ -197870,7 +197874,10 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("\n      Add Weekly Order\n    ")]
+              [
+                _c("span", { staticClass: "fa fa-plus-circle" }),
+                _vm._v(" Add Weekly Order\n    ")
+              ]
             )
           ])
         : _vm._e(),
@@ -198974,7 +198981,7 @@ var render = function() {
               staticClass: "m-0 font-weight-bold text-primary",
               staticStyle: { display: "inline-block" }
             },
-            [_vm._v("\n        WeeklyOrder\n      ")]
+            [_vm._v("\n        Weekly Orders\n      ")]
           ),
           _vm._v(" "),
           _vm.isLoading == "Loading all Data"
@@ -199453,7 +199460,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Delivery Date")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Modify")])
+        _c("th", [_vm._v("Edit")])
       ])
     ])
   }

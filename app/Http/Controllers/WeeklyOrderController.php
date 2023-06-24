@@ -72,7 +72,7 @@ class WeeklyOrderController extends Controller
 
 
 
-        return response()->json(['msg' => 'Successfully created weekly order', 'status' => 'success']);
+        return response()->json(['msg' => 'Weekly Order Successfully Created!', 'status' => 'success']);
     
     }
     public function update(Request $request)
@@ -122,7 +122,7 @@ class WeeklyOrderController extends Controller
         $weekly_order->WeeklyOrderDetailD()->saveMany($items_d);
 
 
-        return response()->json(['msg' => 'Successfully updated weekly order', 'status' => 'success']);
+        return response()->json(['msg' => 'Weekly Order Successfully Updated!', 'status' => 'success']);
 
     }
 
@@ -163,12 +163,12 @@ class WeeklyOrderController extends Controller
         if ($weekly_order->delete()) {
 
             return response()->json([
-                'msg' => 'successfully Deleted',
+                'msg' => 'Weekly Order Successfully Deleted!',
                 'status' => 'success',
             ]);
         } else {
             return response()->json([
-                'msg' => 'Delete Failed',
+                'msg' => 'Erro Deleting Weekly Order',
                 'status' => 'error',
             ]);
         }

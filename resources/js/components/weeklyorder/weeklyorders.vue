@@ -1,10 +1,10 @@
 <template>
   <div>
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Weekly Orders</h1>
+    <h1 class="h3 mb-2 text-gray-800">Weekly Order List</h1>
     <p class="mb-4" v-if="hasPermission('add_weeklyorders')">
       <button class="btn btn-primary" @click="showAddModal()">
-        Add Weekly Order
+        <span class="fa fa-plus-circle"></span> Add Weekly Order
       </button>
     </p>
 
@@ -499,7 +499,7 @@
           class="m-0 font-weight-bold text-primary"
           style="display: inline-block"
         >
-          WeeklyOrder
+          Weekly Orders
         </h6>
 
         <div class="text-center" v-if="isLoading == 'Loading all Data'">
@@ -602,7 +602,7 @@
                 <th>Date Order Requested</th>
                 <th>Delivery Date</th>
                 <!-- <th>Status</th> -->
-                <th>Modify</th>
+                <th>Edit</th>
               </tr>
             </thead>
 

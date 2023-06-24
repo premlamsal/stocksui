@@ -191,7 +191,7 @@
                 <th>Phone</th>
                 <th>Contact Person</th>
                 <th>Details</th>
-                <th>Modify</th>
+                <th>Edit</th>
               </tr>
             </thead>
             <tbody>

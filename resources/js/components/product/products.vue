@@ -251,7 +251,7 @@
 
                 <th>Unit</th>
 
-                <th>Actions</th>
+                <th>Edit</th>
               </tr>
             </thead>
             <tbody>

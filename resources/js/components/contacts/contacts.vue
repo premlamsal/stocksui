@@ -135,7 +135,7 @@
                 <th>Phone</th>
                 <th>Role</th>
                 <th>Company</th>
-                <th>Modify</th>
+                <th>Edit</th>
               </tr>
             </thead>
             <tbody>

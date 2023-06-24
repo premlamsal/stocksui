@@ -1,7 +1,7 @@
 <template>
   <div ref="document">
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Category</h1>
+    <h1 class="h3 mb-2 text-gray-800">Category List</h1>
     <p class="mb-4" v-if="hasPermission('add_category')">
       <b-button
         id="show-btn"
@@ -153,7 +153,7 @@
               <tr>
                 <th>Name</th>
                 <th>Description</th>
-                <th>Modify</th>
+                <th>Edit</th>
               </tr>
             </thead>
             <tbody>

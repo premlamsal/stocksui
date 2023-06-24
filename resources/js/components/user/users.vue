@@ -101,7 +101,7 @@
                 <th>Email</th>
                 <th>Role</th>
                 <th>Verified at</th>
-                <th>Action</th>
+                <th>Edit</th>
               </tr>
             </thead>
             <tbody>

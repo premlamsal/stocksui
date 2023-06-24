@@ -150,7 +150,7 @@
                 <th>Description</th>
                 <th>Created By</th>
                 <th>Created At</th>
-                <th>Modify</th>
+                <th>Edit</th>
               </tr>
             </thead>
             <tbody>
