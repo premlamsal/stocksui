@@ -11,7 +11,6 @@ class TaskBoardController extends Controller
     {
 
         $this->middleware('auth:api');
-
     }
 
     public function updateTasks(Request $request)
@@ -22,14 +21,32 @@ class TaskBoardController extends Controller
 
         // Perform the necessary database updates using the $updatedData
 
-        $TaskBoard = TaskBoard::findOrFail(1);
+        $TaskBoard = TaskBoard::where('id', 1)->first();
 
-        $TaskBoard->tasks = $updatedData;
+        $checkTaskAvailable = false;
 
-        if ($TaskBoard->save()) {
-            return response()->json(['message' => 'Tasks updated successfully']);
+        if ($TaskBoard) {
+            $checkTaskAvailable = true;
         } else {
-            return response()->json(['message' => 'failed updating tasks']);
+
+            $TaskBoard = new TaskBoard();
+            $TaskBoard->tasks = "";
+            if ($TaskBoard->save()) {
+                $checkTaskAvailable = true;
+            } else {
+                $checkTaskAvailable = false;
+            }
+        }
+        if ($checkTaskAvailable) {
+            $TaskBoard->tasks = $updatedData;
+
+            if ($TaskBoard->save()) {
+                return response()->json(['message' => 'Tasks updated successfully']);
+            } else {
+                return response()->json(['message' => 'failed updating tasks']);
+            }
+        } else {
+            return response()->json(['message' => 'failed updating tasks.Since no tasks available']);
         }
     }
     public function tasks()
