@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Product</h1>
+    <h1 class="h3 mb-2 text-gray-800">Product List</h1>
     <p class="mb-4" v-if="hasPermission('add_product')">
       <b-button
         id="show-btn"
@@ -9,10 +9,10 @@
         class="btn btn-success"
         style="margin-top: 8px"
       >
-        <span class="fa fa-plus-circle"></span> Add Product</b-button
+        <span class="fa fa-plus-circle"></span> Add New Product</b-button
       >
     </p>
-    <!-- add unit model start -->
+    <!-- add quantity model start -->
     <b-modal id="bv-modal-add-product" hide-footer>
       <template v-slot:modal-title>
         <span class="text-primary">{{ modalForName }}</span>
@@ -53,11 +53,11 @@
 
             <input
               type="text"
-              v-model="product.unit"
+              v-model="product.quantity"
               :class="['form-control']"
             />
-            <span v-if="errors.unit" :class="['errorText']">{{
-              errors.unit[0]
+            <span v-if="errors.quantity" :class="['errorText']">{{
+              errors.quantity[0]
             }}</span>
           </div>
 
@@ -133,7 +133,7 @@
         modalForName
       }}</b-button>
     </b-modal>
-    <!-- add unit modal end-->
+    <!-- add quantity modal end-->
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
       <div class="card-header py-3">
@@ -271,7 +271,7 @@
                 <td>{{ product.description }}</td>
                 <td>{{ product.low_stock_alert_quantity }}</td>
 
-                <td>{{ product.unit }}</td>
+                <td>{{ product.quantity }}</td>
                 <td>
                   <button
                     class="btn btn-success custom_btn_table"
@@ -379,11 +379,11 @@ export default {
           low_stock_alert_active: false,
           low_stock_alert_quantity: "",
           category: {},
-          unit: {},
+          quantity: {},
         },
-      ], //contains all the retrived units from the database
+      ], //contains all the retrived quantitys from the database
 
-      product: {}, //for form single unit data
+      product: {}, //for form single quantity data
 
       modalForName: "",
       modalForCode: 0,
@@ -394,7 +394,7 @@ export default {
 
       isLoading: "",
 
-      units: [], //contains all the retrived units from the database
+      quantitys: [], //contains all the retrived quantitys from the database
 
       categories: [],
 
@@ -413,7 +413,7 @@ export default {
         "custom_product_id",
         "product_name",
         // "low_stock_alert_quantity",
-        "unit",
+        "quantity",
         "category_name",
         "description",
       ],
@@ -423,7 +423,7 @@ export default {
         "custom_product_id",
         "product_name",
         // "low_stock_alert_quantity",
-        "unit",
+        "quantity",
         "category_name",
         "description",
       ],
@@ -607,13 +607,13 @@ export default {
       this.pagination = pagination;
     },
     showAddModal() {
-      this.modalForName = "Add Product";
+      this.modalForName = "Add New Product";
       // Vue.set(this.modalForName,"Add Unit");
       this.modalForCode = 0; //0 for add
 
       this.product.name = "";
       this.product.product_cat_id = "";
-      this.product.unit = "";
+      this.product.quantity = "";
       this.product.address = "";
       this.product.phone = "";
       this.product.description = "";
@@ -659,7 +659,7 @@ export default {
         this.product.low_stock_alert_quantity
       );
 
-      formData.append("unit", this.product.unit);
+      formData.append("quantity", this.product.quantity);
       formData.append("description", this.product.description);
 
       // posting data //using post and sending form data as PUT to match the api route name setting
@@ -677,7 +677,7 @@ export default {
           currObj.product.low_stock_alert_active = false;
 
           currObj.product.product_cat_id = "";
-          (currObj.product.unit = ""),
+          (currObj.product.quantity = ""),
             (currObj.product.address = ""),
             (currObj.product.low_stock_alert_quantity = ""),
             (currObj.product.phone = ""),
@@ -709,14 +709,14 @@ export default {
       axios
         .get("/api/product/" + id)
         .then((response) => {
-          // console.log(response.data.unit)
+          // console.log(response.data.quantity)
           Vue.set(this.product, "name", response.data.product.name);
           Vue.set(
             currObj.product,
             "description",
             response.data.product.description
           );
-          Vue.set(this.product, "unit", response.data.product.unit);
+          Vue.set(this.product, "quantity", response.data.product.quantity);
 
           Vue.set(
             this.product,
@@ -770,7 +770,7 @@ export default {
       );
 
       formData.append("product_cat_id", this.product.product_cat_id);
-      formData.append("unit", this.product.unit);
+      formData.append("quantity", this.product.quantity);
       // formData.append('opening_stock',this.product.opening_stock);
       formData.append("description", this.product.description);
       formData.append(
@@ -790,7 +790,7 @@ export default {
 
           currObj.product.name = "";
           currObj.product.product_cat_id = "";
-          currObj.product.unit = "";
+          currObj.product.quantity = "";
           currObj.product.low_stock_alert_active = "";
           currObj.product.low_stock_alert_quantity = "";
 

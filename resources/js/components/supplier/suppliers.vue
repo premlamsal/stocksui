@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Supplier</h1>
+    <h1 class="h3 mb-2 text-gray-800">Supplier List</h1>
     <p class="mb-4" v-if="hasPermission('add_supplier')">
       <b-button
         id="show-btn"
@@ -429,7 +429,7 @@ export default {
       this.pagination = pagination;
     },
     showAddModal() {
-      this.modalForName = "Add Supplier";
+      this.modalForName = "Add New Supplier";
       // Vue.set(this.modalForName,"Add Unit");
       this.modalForCode = 0; //0 for add
 

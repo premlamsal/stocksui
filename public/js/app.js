@@ -19508,7 +19508,7 @@ __webpack_require__.r(__webpack_exports__);
       this.pagination = pagination;
     },
     showAddModal: function showAddModal() {
-      this.modalForName = "Add Contact"; // Vue.set(this.modalForName,"Add Unit");
+      this.modalForName = "Add New Contact"; // Vue.set(this.modalForName,"Add Unit");
 
       this.modalForCode = 0; //0 for add 
 
@@ -24286,23 +24286,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         low_stock_alert_active: false,
         low_stock_alert_quantity: "",
         category: {},
-        unit: {}
+        quantity: {}
       }],
-      //contains all the retrived units from the database
+      //contains all the retrived quantitys from the database
       product: {},
-      //for form single unit data
+      //for form single quantity data
       modalForName: "",
       modalForCode: 0,
       searchTableKey: "",
       errors: [],
       pagination: {},
       isLoading: "",
-      units: [],
-      //contains all the retrived units from the database
+      quantitys: [],
+      //contains all the retrived quantitys from the database
       categories: []
     }, _defineProperty(_ref, "errors", []), _defineProperty(_ref, "pagination", {}), _defineProperty(_ref, "file", ""), _defineProperty(_ref, "selectedFile", ""), _defineProperty(_ref, "imagePreview", ""), _defineProperty(_ref, "showbowlpdf", true), _defineProperty(_ref, "arrayKeys", ["custom_product_id", "product_name", // "low_stock_alert_quantity",
-    "unit", "category_name", "description"]), _defineProperty(_ref, "currentDateTime", ""), _defineProperty(_ref, "products_export_fileds", ["custom_product_id", "product_name", // "low_stock_alert_quantity",
-    "unit", "category_name", "description"]), _ref;
+    "quantity", "category_name", "description"]), _defineProperty(_ref, "currentDateTime", ""), _defineProperty(_ref, "products_export_fileds", ["custom_product_id", "product_name", // "low_stock_alert_quantity",
+    "quantity", "category_name", "description"]), _ref;
   },
   created: function created() {
     //this block will execute when component created
@@ -24448,13 +24448,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.pagination = pagination;
     },
     showAddModal: function showAddModal() {
-      this.modalForName = "Add Product"; // Vue.set(this.modalForName,"Add Unit");
+      this.modalForName = "Add New Product"; // Vue.set(this.modalForName,"Add Unit");
 
       this.modalForCode = 0; //0 for add
 
       this.product.name = "";
       this.product.product_cat_id = "";
-      this.product.unit = "";
+      this.product.quantity = "";
       this.product.address = "";
       this.product.phone = "";
       this.product.description = "";
@@ -24490,7 +24490,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       formData.append("product_cat_id", this.product.product_cat_id);
       formData.append("low_stock_alert_active", this.product.low_stock_alert_active);
       formData.append("low_stock_alert_quantity", this.product.low_stock_alert_quantity);
-      formData.append("unit", this.product.unit);
+      formData.append("quantity", this.product.quantity);
       formData.append("description", this.product.description); // posting data //using post and sending form data as PUT to match the api route name setting
 
       axios.post("/api/product", formData, config).then(function (response) {
@@ -24501,7 +24501,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         currObj.product.name = "";
         currObj.product.low_stock_alert_active = false;
         currObj.product.product_cat_id = "";
-        currObj.product.unit = "", currObj.product.address = "", currObj.product.low_stock_alert_quantity = "", currObj.product.phone = "", currObj.product.description = "";
+        currObj.product.quantity = "", currObj.product.address = "", currObj.product.low_stock_alert_quantity = "", currObj.product.phone = "", currObj.product.description = "";
         currObj.setAvtarUploadImage();
         currObj.errors = ""; //clearing errors
 
@@ -24529,10 +24529,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       currObj.errors = ""; //clearing errors
 
       axios.get("/api/product/" + id).then(function (response) {
-        // console.log(response.data.unit)
+        // console.log(response.data.quantity)
         Vue.set(_this2.product, "name", response.data.product.name);
         Vue.set(currObj.product, "description", response.data.product.description);
-        Vue.set(_this2.product, "unit", response.data.product.unit);
+        Vue.set(_this2.product, "quantity", response.data.product.quantity);
         Vue.set(_this2.product, "low_stock_alert_active", JSON.parse(response.data.product.low_stock_alert_active));
         Vue.set(_this2.product, "low_stock_alert_quantity", response.data.product.low_stock_alert_quantity); // Vue.set(this.product, 'opening_stock', response.data.product.opening_stock);
 
@@ -24564,7 +24564,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       formData.append("name", this.product.name);
       formData.append("low_stock_alert_active", this.product.low_stock_alert_active);
       formData.append("product_cat_id", this.product.product_cat_id);
-      formData.append("unit", this.product.unit); // formData.append('opening_stock',this.product.opening_stock);
+      formData.append("quantity", this.product.quantity); // formData.append('opening_stock',this.product.opening_stock);
 
       formData.append("description", this.product.description);
       formData.append("low_stock_alert_quantity", this.product.low_stock_alert_quantity); // posting data //using post and sending form data as PUT to match the api route name setting
@@ -24576,7 +24576,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         currObj.$bvModal.hide("bv-modal-add-product");
         currObj.product.name = "";
         currObj.product.product_cat_id = "";
-        currObj.product.unit = "";
+        currObj.product.quantity = "";
         currObj.product.low_stock_alert_active = "";
         currObj.product.low_stock_alert_quantity = "";
         currObj.product.description = "";
@@ -27577,7 +27577,7 @@ __webpack_require__.r(__webpack_exports__);
       this.pagination = pagination;
     },
     showAddModal: function showAddModal() {
-      this.modalForName = "Add Supplier"; // Vue.set(this.modalForName,"Add Unit");
+      this.modalForName = "Add New Supplier"; // Vue.set(this.modalForName,"Add Unit");
 
       this.modalForCode = 0; //0 for add
 
@@ -28739,7 +28739,7 @@ __webpack_require__.r(__webpack_exports__);
       this.pagination = pagination;
     },
     showAddModal: function showAddModal() {
-      this.modalForName = "Add User"; // Vue.set(this.modalForName,"Add User");
+      this.modalForName = "Add New User"; // Vue.set(this.modalForName,"Add User");
 
       this.modalForCode = 0; //0 for add 
 
@@ -183648,7 +183648,9 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("h1", { staticClass: "h3 mb-2 text-gray-800" }, [_vm._v("Contact")]),
+      _c("h1", { staticClass: "h3 mb-2 text-gray-800" }, [
+        _vm._v("Contact List")
+      ]),
       _vm._v(" "),
       _vm.hasPermission("add_contact")
         ? _c(
@@ -191543,7 +191545,9 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("h1", { staticClass: "h3 mb-2 text-gray-800" }, [_vm._v("Product")]),
+      _c("h1", { staticClass: "h3 mb-2 text-gray-800" }, [
+        _vm._v("Product List")
+      ]),
       _vm._v(" "),
       _vm.hasPermission("add_product")
         ? _c(
@@ -191560,7 +191564,7 @@ var render = function() {
                 },
                 [
                   _c("span", { staticClass: "fa fa-plus-circle" }),
-                  _vm._v(" Add Product")
+                  _vm._v(" Add New Product")
                 ]
               )
             ],
@@ -191721,26 +191725,26 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.product.unit,
-                      expression: "product.unit"
+                      value: _vm.product.quantity,
+                      expression: "product.quantity"
                     }
                   ],
                   class: ["form-control"],
                   attrs: { type: "text" },
-                  domProps: { value: _vm.product.unit },
+                  domProps: { value: _vm.product.quantity },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.product, "unit", $event.target.value)
+                      _vm.$set(_vm.product, "quantity", $event.target.value)
                     }
                   }
                 }),
                 _vm._v(" "),
-                _vm.errors.unit
+                _vm.errors.quantity
                   ? _c("span", { class: ["errorText"] }, [
-                      _vm._v(_vm._s(_vm.errors.unit[0]))
+                      _vm._v(_vm._s(_vm.errors.quantity[0]))
                     ])
                   : _vm._e()
               ]),
@@ -192169,7 +192173,7 @@ var render = function() {
                                 _vm._v(_vm._s(product.low_stock_alert_quantity))
                               ]),
                               _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(product.unit))]),
+                              _c("td", [_vm._v(_vm._s(product.quantity))]),
                               _vm._v(" "),
                               _c("td", [
                                 _vm.hasPermission("edit_product")
@@ -195658,7 +195662,9 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("h1", { staticClass: "h3 mb-2 text-gray-800" }, [_vm._v("Supplier")]),
+      _c("h1", { staticClass: "h3 mb-2 text-gray-800" }, [
+        _vm._v("Supplier List")
+      ]),
       _vm._v(" "),
       _vm.hasPermission("add_supplier")
         ? _c(
@@ -197168,7 +197174,9 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("h1", { staticClass: "h3 mb-2 text-gray-800" }, [_vm._v("Users")]),
+      _c("h1", { staticClass: "h3 mb-2 text-gray-800" }, [
+        _vm._v("Users List")
+      ]),
       _vm._v(" "),
       _vm.hasPermission("add_user")
         ? _c(

@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Contact</h1>
+    <h1 class="h3 mb-2 text-gray-800">Contact List</h1>
     <p class="mb-4" v-if="hasPermission('add_contact')">
       <b-button id="show-btn" @click="showAddModal" class="btn btn-success" style="margin-top: 8px;">
         <span class="fa fa-plus-circle"></span> Add New Contact</b-button>
@@ -326,7 +326,7 @@ export default {
       this.pagination = pagination;
     },
     showAddModal() {
-      this.modalForName = "Add Contact";
+      this.modalForName = "Add New Contact";
       // Vue.set(this.modalForName,"Add Unit");
       this.modalForCode = 0; //0 for add 
 

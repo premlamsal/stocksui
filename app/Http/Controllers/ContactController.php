@@ -46,7 +46,7 @@ class ContactController extends Controller
 
             'email' => 'required|email|max:200',
 
-            'phone'   => 'required|numeric',
+            'phone'   => 'numeric',
 
             'role' => 'required|string|max:30',
 
@@ -75,7 +75,7 @@ class ContactController extends Controller
 
 
             return response()->json([
-                'msg' => 'Contact added successfully',
+                'msg' => 'Contact Successfully Created',
                 'status' => 'success',
             ]);
         } else {
@@ -103,7 +103,7 @@ class ContactController extends Controller
 
             'email' => 'required|email|max:200',
 
-            'phone'   => 'required|numeric',
+            'phone'   => 'numeric',
 
             'company' => 'required|string|max:50',
 
@@ -132,7 +132,7 @@ class ContactController extends Controller
         if ($contact->save()) {
 
             return response()->json([
-                'msg' => 'Contact updated successfully',
+                'msg' => 'Contact Successfully Updated ',
                 'status' => 'success',
             ]);
         } else {
@@ -158,7 +158,7 @@ class ContactController extends Controller
         $contact = Contact::where('id', $id)->where('store_id', $store_id)->first();
         if ($contact->delete()) {
             return response()->json([
-                'msg' => 'successfully Deleted',
+                'msg' => 'Contact Successfully Deleted',
                 'status' => 'success',
             ]);
         } else {

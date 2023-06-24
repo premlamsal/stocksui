@@ -45,7 +45,7 @@ class ProductController extends Controller
             'low_stock_alert_active' => 'required',
             'low_stock_alert_quantity' => 'required|string|max:1000',
             'product_cat_id' => 'required|numeric ',
-            'unit' => 'required|string|max:40 ',
+            'quantity' => 'required|numeric ',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4048',
 
         ]);
@@ -68,7 +68,7 @@ class ProductController extends Controller
         $product = new Product();
         $product->name = $request->input('name');
         $product->product_cat_id = $request->input('product_cat_id');
-        $product->unit = $request->input('unit');
+        $product->quantity = $request->input('quantity');
         $product->description = $request->input('description');
 
         if ($request->input('low_stock_alert_active') === 'true') {
@@ -94,7 +94,7 @@ class ProductController extends Controller
 
             $stock->quantity = 0.00;
             $stock->product_id = $product->id;
-            $stock->unit = $request->input('unit');
+            $stock->quantity = $request->input('quantity');
 
             $stock->store_id = $store_id;
 
@@ -107,7 +107,7 @@ class ProductController extends Controller
                 if ($store->save()) {
 
                     return response()->json([
-                        'msg' => 'You have successfully changed the information.',
+                        'msg' => 'Product Successfully Created',
                         'status' => 'success',
                     ]);
                 } else {
@@ -146,7 +146,7 @@ class ProductController extends Controller
             'low_stock_alert_active' => 'string',
             'low_stock_alert_quantity' => 'required|string|max:1000',
             'product_cat_id' => 'required|numeric ',
-            'unit' => 'required|string|max:40 ',
+            'quantity' => 'required|numeric',
             'id' => 'required|numeric ',
             // 'image'=> 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
 
@@ -156,7 +156,7 @@ class ProductController extends Controller
         $product = Product::where('id', $id)->where('store_id', $store_id)->first();
         $product->name = $request->input('name');
         $product->product_cat_id = $request->input('product_cat_id');
-        $product->unit = $request->input('unit');
+        $product->quantity = $request->input('quantity');
         if ($request->input('low_stock_alert_active') === 'true') {
             $product->low_stock_alert_active = true;
             $product->low_stock_alert_quantity = $request->input('low_stock_alert_quantity');
@@ -187,7 +187,7 @@ class ProductController extends Controller
         }
         if ($product->update()) {
             return response()->json([
-                'msg' => 'You have successfully changed the information.',
+                'msg' => 'Product Successfully Updated',
                 'status' => 'success',
             ]);
         } else {

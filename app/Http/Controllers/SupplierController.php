@@ -50,7 +50,7 @@ class SupplierController extends Controller
 
             'address' => 'required|string|max:200',
 
-            'phone'   =>  'required|unique:suppliers,phone|numeric',
+            'phone'   =>  'numeric',
 
             'contact_person' => 'required|string|max:400',
 
@@ -79,7 +79,7 @@ class SupplierController extends Controller
 
        
                 return response()->json([
-                    'msg' => 'Supplier added successfully',
+                    'msg' => 'Supplier Successfully Created',
                     'status' => 'success',
                 ]);
 
@@ -108,7 +108,7 @@ class SupplierController extends Controller
 
             'address' => 'required|string|max:200',
 
-            'phone'   => 'required|digits:10',
+            'phone'   => 'numeric',
 
             'details' => 'required|string|max:400',
 
@@ -137,7 +137,7 @@ class SupplierController extends Controller
         if ($supplier->save()) {
 
                 return response()->json([
-                    'msg' => 'Supplier updated successfully',
+                    'msg' => 'Supplier Successfully Updated',
                     'status' => 'success',
                 ]);
 
@@ -166,7 +166,7 @@ class SupplierController extends Controller
         $supplier = Supplier::where('id', $id)->where('store_id', $store_id)->first();
         if ($supplier->delete()) {
             return response()->json([
-                'msg' => 'successfully Deleted',
+                'msg' => 'Supplier Successfully Deleted',
                 'status' => 'success',
             ]);
            

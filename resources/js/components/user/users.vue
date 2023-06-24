@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Users</h1>
+    <h1 class="h3 mb-2 text-gray-800">Users List</h1>
     <p class="mb-4" v-if="hasPermission('add_user')">
       <b-button id="show-btn" @click="showAddModal" class="btn btn-success" style="margin-top: 8px;">
         <span class="fa fa-plus-circle"></span> Add User</b-button>
@@ -296,7 +296,7 @@ export default {
       this.pagination = pagination;
     },
     showAddModal() {
-      this.modalForName = "Add User";
+      this.modalForName = "Add New User";
       // Vue.set(this.modalForName,"Add User");
       this.modalForCode = 0; //0 for add 
       this.user.name = '';
