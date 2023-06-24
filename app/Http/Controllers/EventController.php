@@ -41,7 +41,7 @@ class EventController extends Controller
 
         $this->validate($request, [
 
-            'title'    => 'required|regex:/^[\pL\s\-]+$/u',
+            'title'    => 'required|alpha_num',
 
             'start' => 'required',
 
@@ -81,7 +81,7 @@ class EventController extends Controller
 
 
             return response()->json([
-                'msg' => 'Event added successfully',
+                'msg' => 'Event Added Successfully',
                 'status' => 'success',
             ]);
         } else {
@@ -105,7 +105,7 @@ class EventController extends Controller
 
         $this->validate($request, [
 
-            'title'    => 'required|regex:/^[\pL\s\-]+$/u',
+            'title'    => 'required|alpha_num',
 
             'start' => 'required',
 
@@ -143,7 +143,7 @@ class EventController extends Controller
         if ($event->save()) {
 
             return response()->json([
-                'msg' => 'Event updated successfully',
+                'msg' => 'Event Updated Successfully!',
                 'status' => 'success',
             ]);
         } else {
