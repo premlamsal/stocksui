@@ -647,7 +647,7 @@
                     <span class="fa fa-file-pdf-o custom_icon_table"></span>
                   </button>
                   <button
-                    class="btn btn-outline-success custom_btn_table"
+                    class="btn btn-success custom_btn_table"
                     v-if="hasPermission('edit_weeklyorder')"
                     @click="editWeeklyOrder(weeklyorder.id)"
                   >
@@ -655,7 +655,7 @@
                   </button>
 
                   <button
-                    class="btn btn-outline-danger custom_btn_table"
+                    class="btn btn-danger custom_btn_table"
                     v-if="hasPermission('delete_weeklyorder')"
                     @click="deleteWeeklyOrder(weeklyorder.id)"
                   >
@@ -1358,7 +1358,7 @@ export default {
   /*border-bottom: 1px solid #eee;*/
   background: var(--favblue);
   color: var(--favgold);
-  box-shadow: 1px 7px 17px -12px;
+  /* box-shadow: 1px 7px 17px -12px; */
 }
 
 .weeklyorder-foot {

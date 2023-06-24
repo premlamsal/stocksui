@@ -355,7 +355,7 @@
                     <span class="fa fa-align-justify custom_icon_table"></span>
                   </button>
                   <button
-                    class="btn btn-outline-success custom_btn_table"
+                    class="btn btn-success custom_btn_table"
                     v-if="hasPermission('edit_pick_list')"
                     @click="editPickList(picklist.id)"
                   >
@@ -363,7 +363,7 @@
                   </button>
 
                   <button
-                    class="btn btn-outline-danger custom_btn_table"
+                    class="btn btn-danger custom_btn_table"
                     v-if="hasPermission('delete_pick_list')"
                     @click="deletePickList(picklist.id)"
                   >

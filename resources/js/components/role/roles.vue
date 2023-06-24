@@ -85,8 +85,8 @@
                 <td>{{role.name}}</td>
                 <td>{{role.permissions[0].name}}</td>
                 <td>
-                  <button class="btn btn-outline-success custom_btn_table" @click=editRole(role.id) v-if="hasPermission('edit_role')"><span class="fa fa-edit custom_icon_table"></span></button>
-                  <button class="btn btn-outline-danger custom_btn_table" @click=deleteRole(role.id) v-if="hasPermission('delete_role')"><span class="fa fa-trash custom_icon_table"></span></button>
+                  <button class="btn btn-success custom_btn_table" @click=editRole(role.id) v-if="hasPermission('edit_role')"><span class="fa fa-edit custom_icon_table"></span></button>
+                  <button class="btn btn-danger custom_btn_table" @click=deleteRole(role.id) v-if="hasPermission('delete_role')"><span class="fa fa-trash custom_icon_table"></span></button>
                 </td>
               </tr>
             </tbody>

@@ -426,14 +426,14 @@
 
                 <td>
                   <button
-                    class="btn btn-outline-primary custom_btn_table"
+                    class="btn btn-primary custom_btn_table"
                     v-if="hasPermission('show_purchase')"
                     @click="downloadPurchasePDF(purchase.id)"
                   >
                     <span class="fa fa-align-justify custom_icon_table"></span>
                   </button>
                   <button
-                    class="btn btn-outline-success custom_btn_table"
+                    class="btn btn-success custom_btn_table"
                     v-if="hasPermission('edit_purchase')"
                     @click="editPurchase(purchase.id)"
                   >

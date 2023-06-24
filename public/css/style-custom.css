@@ -12,9 +12,7 @@
   border: 0;
 }
 .logo{display: flex;justify-content: center;margin-bottom: 30px;}
-.brand-logo{
-  
-}
+
 #app .card label{
   color: white  !important;
 }
@@ -22,8 +20,24 @@
   color: yellow;
 }
 
-#app .card button{
+#app .mero-card-login button{
   background: #163373;
   color: #FFD700 !important;
   border: 0;
 }
+#app .mero-card-login a.btn {
+  background: #163373;
+  color: #FFD700 !important;
+  border: 0;
+}
+#app .mero-card-login a.btn:hover{
+  background: #163373;
+  color: #FFD700 !important;
+  border: 0;
+}
+button.mero-btn{
+  background: #163373;
+  color: #FFD700 !important;
+  border: 0;
+}
+

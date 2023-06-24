@@ -98508,7 +98508,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.weeklyorder[data-v-1a0a9d5a] {\n  margin-top: 5em;\n}\n.weeklyorder-body[data-v-1a0a9d5a] {\n  margin-top: 2em;\n  padding: 8px;\n}\n.weeklyorder-head[data-v-1a0a9d5a] {\n  padding: 1em;\n  /*border-bottom: 1px solid #eee;*/\n  background: var(--favblue);\n  color: var(--favgold);\n  box-shadow: 1px 7px 17px -12px;\n}\n.weeklyorder-foot[data-v-1a0a9d5a] {\n  margin-top: 1em;\n  padding: 2em;\n  border-top: 1px solid #eee;\n}\n.datetime-picker[data-v-1a0a9d5a] {\n}\n.datetime-picker input[data-v-1a0a9d5a] {\n  display: block;\n  width: 100%;\n  height: calc(1.5em + 0.75rem + 2px);\n  padding: 0.375rem 0.75rem;\n  font-size: 1rem;\n  font-weight: 400;\n  line-height: 1.5;\n  color: #495057;\n  background-color: #fff;\n  background-clip: padding-box;\n  border: 1px solid #ced4da;\n  border-radius: 0.25rem;\n  -webkit-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n}\n.supplier-search-suggestion[data-v-1a0a9d5a] {\n  background: #fff;\n  position: absolute;\n  overflow-y: scroll;\n  height: auto;\n  max-height: 9em;\n  color: #000;\n  border: 1px solid #e2dfdf;\n  border-top: 0px;\n  width: 100%;\n  box-shadow: 1px 7px 17px -12px;\n  border-radius: 4px;\n}\n.supplier-search-suggestion-inner[data-v-1a0a9d5a] {\n  padding: 1px;\n  border-top: 1px solid #d6d6d6;\n}\n.supplier-search-suggestion-inner ul[data-v-1a0a9d5a] {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n.supplier-search-suggestion-inner li[data-v-1a0a9d5a] {\n  cursor: pointer;\n  padding: 10px;\n}\n.supplier-search-suggestion-inner li[data-v-1a0a9d5a]:hover {\n  background: #007bff;\n  color: #fff;\n}\n.supplier-search-suggestion[data-v-1a0a9d5a]::-webkit-scrollbar-track {\n  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);\n  background-color: #f5f5f5;\n}\n.supplier-search-suggestion[data-v-1a0a9d5a]::-webkit-scrollbar {\n  width: 6px;\n  background-color: #f5f5f5;\n}\n.supplier-search-suggestion[data-v-1a0a9d5a]::-webkit-scrollbar-thumb {\n  background-color: #000000;\n}\n.product-search-suggestion-weeklyorder[data-v-1a0a9d5a] {\n  position: absolute;\n  /* background: #f4f3ef; */\n  width: 100%;\n  color: #212120;\n  /* padding-right: 12px; */\n  overflow-y: scroll;\n  max-height: 9em;\n  z-index: 1;\n  box-shadow: 1px 7px 17px -12px;\n  border-radius: 4px;\n}\n.product-search-suggestion-weeklyorder ul[data-v-1a0a9d5a] {\n  list-style: none;\n  margin: 0px;\n  padding: 0px;\n}\n.product-search-suggestion-weeklyorder ul li[data-v-1a0a9d5a] {\n  padding: 10px;\n  cursor: pointer;\n  background: #f4f3ef;\n}\n.product-search-suggestion-weeklyorder ul li[data-v-1a0a9d5a]:hover {\n  background: #51cbce;\n  color: white;\n}\n.product-search-suggestion-weeklyorder[data-v-1a0a9d5a]::-webkit-scrollbar-track {\n  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);\n  background-color: #f5f5f5;\n}\n.product-search-suggestion-weeklyorder[data-v-1a0a9d5a]::-webkit-scrollbar {\n  width: 6px;\n  background-color: #f5f5f5;\n}\n.product-search-suggestion-weeklyorder[data-v-1a0a9d5a]::-webkit-scrollbar-thumb {\n  background-color: #000000;\n}\n.row.wk_order_row[data-v-1a0a9d5a] {\n  border: 1px solid #eee;\n  padding: 9px;\n  font-size: 16px;\n  margin: 12px;\n}\nh3.head-pip[data-v-1a0a9d5a] {\n  /* background: var(--favblue); */\n  /* color: var(--favgold); */\n  padding: 9px;\n  font-size: 15px;\n  text-align: center;\n}\ntextarea.form-control[data-v-1a0a9d5a] {\n  height: 106px;\n  max-height: none;\n}\n", ""]);
+exports.push([module.i, "\n.weeklyorder[data-v-1a0a9d5a] {\n  margin-top: 5em;\n}\n.weeklyorder-body[data-v-1a0a9d5a] {\n  margin-top: 2em;\n  padding: 8px;\n}\n.weeklyorder-head[data-v-1a0a9d5a] {\n  padding: 1em;\n  /*border-bottom: 1px solid #eee;*/\n  background: var(--favblue);\n  color: var(--favgold);\n  /* box-shadow: 1px 7px 17px -12px; */\n}\n.weeklyorder-foot[data-v-1a0a9d5a] {\n  margin-top: 1em;\n  padding: 2em;\n  border-top: 1px solid #eee;\n}\n.datetime-picker[data-v-1a0a9d5a] {\n}\n.datetime-picker input[data-v-1a0a9d5a] {\n  display: block;\n  width: 100%;\n  height: calc(1.5em + 0.75rem + 2px);\n  padding: 0.375rem 0.75rem;\n  font-size: 1rem;\n  font-weight: 400;\n  line-height: 1.5;\n  color: #495057;\n  background-color: #fff;\n  background-clip: padding-box;\n  border: 1px solid #ced4da;\n  border-radius: 0.25rem;\n  -webkit-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n}\n.supplier-search-suggestion[data-v-1a0a9d5a] {\n  background: #fff;\n  position: absolute;\n  overflow-y: scroll;\n  height: auto;\n  max-height: 9em;\n  color: #000;\n  border: 1px solid #e2dfdf;\n  border-top: 0px;\n  width: 100%;\n  box-shadow: 1px 7px 17px -12px;\n  border-radius: 4px;\n}\n.supplier-search-suggestion-inner[data-v-1a0a9d5a] {\n  padding: 1px;\n  border-top: 1px solid #d6d6d6;\n}\n.supplier-search-suggestion-inner ul[data-v-1a0a9d5a] {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n.supplier-search-suggestion-inner li[data-v-1a0a9d5a] {\n  cursor: pointer;\n  padding: 10px;\n}\n.supplier-search-suggestion-inner li[data-v-1a0a9d5a]:hover {\n  background: #007bff;\n  color: #fff;\n}\n.supplier-search-suggestion[data-v-1a0a9d5a]::-webkit-scrollbar-track {\n  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);\n  background-color: #f5f5f5;\n}\n.supplier-search-suggestion[data-v-1a0a9d5a]::-webkit-scrollbar {\n  width: 6px;\n  background-color: #f5f5f5;\n}\n.supplier-search-suggestion[data-v-1a0a9d5a]::-webkit-scrollbar-thumb {\n  background-color: #000000;\n}\n.product-search-suggestion-weeklyorder[data-v-1a0a9d5a] {\n  position: absolute;\n  /* background: #f4f3ef; */\n  width: 100%;\n  color: #212120;\n  /* padding-right: 12px; */\n  overflow-y: scroll;\n  max-height: 9em;\n  z-index: 1;\n  box-shadow: 1px 7px 17px -12px;\n  border-radius: 4px;\n}\n.product-search-suggestion-weeklyorder ul[data-v-1a0a9d5a] {\n  list-style: none;\n  margin: 0px;\n  padding: 0px;\n}\n.product-search-suggestion-weeklyorder ul li[data-v-1a0a9d5a] {\n  padding: 10px;\n  cursor: pointer;\n  background: #f4f3ef;\n}\n.product-search-suggestion-weeklyorder ul li[data-v-1a0a9d5a]:hover {\n  background: #51cbce;\n  color: white;\n}\n.product-search-suggestion-weeklyorder[data-v-1a0a9d5a]::-webkit-scrollbar-track {\n  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);\n  background-color: #f5f5f5;\n}\n.product-search-suggestion-weeklyorder[data-v-1a0a9d5a]::-webkit-scrollbar {\n  width: 6px;\n  background-color: #f5f5f5;\n}\n.product-search-suggestion-weeklyorder[data-v-1a0a9d5a]::-webkit-scrollbar-thumb {\n  background-color: #000000;\n}\n.row.wk_order_row[data-v-1a0a9d5a] {\n  border: 1px solid #eee;\n  padding: 9px;\n  font-size: 16px;\n  margin: 12px;\n}\nh3.head-pip[data-v-1a0a9d5a] {\n  /* background: var(--favblue); */\n  /* color: var(--favgold); */\n  padding: 9px;\n  font-size: 15px;\n  text-align: center;\n}\ntextarea.form-control[data-v-1a0a9d5a] {\n  height: 106px;\n  max-height: none;\n}\n", ""]);
 
 // exports
 
@@ -183365,7 +183365,7 @@ var render = function() {
                                   "button",
                                   {
                                     staticClass:
-                                      "btn btn-outline-success custom_btn_table",
+                                      "btn btn-success custom_btn_table",
                                     staticStyle: { "margin-right": "5px" },
                                     on: {
                                       click: function($event) {
@@ -183387,7 +183387,7 @@ var render = function() {
                                   "button",
                                   {
                                     staticClass:
-                                      "btn btn-outline-danger custom_btn_table",
+                                      "btn btn-danger custom_btn_table",
                                     on: {
                                       click: function($event) {
                                         return _vm.deleteCategory(category.id)
@@ -185762,7 +185762,7 @@ var render = function() {
                                   "button",
                                   {
                                     staticClass:
-                                      "btn btn-outline-primary custom_btn_table",
+                                      "btn btn-primary custom_btn_table",
                                     on: {
                                       click: function($event) {
                                         return _vm.downloadDeliveryNotePDF(
@@ -185785,7 +185785,7 @@ var render = function() {
                                   "button",
                                   {
                                     staticClass:
-                                      "btn btn-outline-success custom_btn_table",
+                                      "btn btn-success custom_btn_table",
                                     on: {
                                       click: function($event) {
                                         return _vm.editDeliveryNote(
@@ -185808,7 +185808,7 @@ var render = function() {
                                   "button",
                                   {
                                     staticClass:
-                                      "btn btn-outline-danger custom_btn_table",
+                                      "btn btn-danger custom_btn_table",
                                     on: {
                                       click: function($event) {
                                         return _vm.deleteDeliveryNote(
@@ -190326,7 +190326,7 @@ var render = function() {
                                   "button",
                                   {
                                     staticClass:
-                                      "btn btn-outline-success custom_btn_table",
+                                      "btn btn-success custom_btn_table",
                                     on: {
                                       click: function($event) {
                                         return _vm.editPermission(permission.id)
@@ -190347,7 +190347,7 @@ var render = function() {
                                   "button",
                                   {
                                     staticClass:
-                                      "btn btn-outline-danger custom_btn_table",
+                                      "btn btn-danger custom_btn_table",
                                     on: {
                                       click: function($event) {
                                         return _vm.deletePermission(
@@ -191284,7 +191284,7 @@ var render = function() {
                                   "button",
                                   {
                                     staticClass:
-                                      "btn btn-outline-success custom_btn_table",
+                                      "btn btn-success custom_btn_table",
                                     on: {
                                       click: function($event) {
                                         return _vm.editPickList(picklist.id)
@@ -191305,7 +191305,7 @@ var render = function() {
                                   "button",
                                   {
                                     staticClass:
-                                      "btn btn-outline-danger custom_btn_table",
+                                      "btn btn-danger custom_btn_table",
                                     on: {
                                       click: function($event) {
                                         return _vm.deletePickList(picklist.id)
@@ -192173,7 +192173,7 @@ var render = function() {
                                       "button",
                                       {
                                         staticClass:
-                                          "btn btn-outline-success custom_btn_table",
+                                          "btn btn-success custom_btn_table",
                                         on: {
                                           click: function($event) {
                                             return _vm.editProduct(product.id)
@@ -192194,7 +192194,7 @@ var render = function() {
                                       "button",
                                       {
                                         staticClass:
-                                          "btn btn-outline-danger custom_btn_table",
+                                          "btn btn-danger custom_btn_table",
                                         on: {
                                           click: function($event) {
                                             return _vm.deleteProduct(product.id)
@@ -193300,7 +193300,7 @@ var render = function() {
                                   "button",
                                   {
                                     staticClass:
-                                      "btn btn-outline-primary custom_btn_table",
+                                      "btn btn-primary custom_btn_table",
                                     on: {
                                       click: function($event) {
                                         return _vm.downloadPurchasePDF(
@@ -193323,7 +193323,7 @@ var render = function() {
                                   "button",
                                   {
                                     staticClass:
-                                      "btn btn-outline-success custom_btn_table",
+                                      "btn btn-success custom_btn_table",
                                     on: {
                                       click: function($event) {
                                         return _vm.editPurchase(purchase.id)
@@ -193896,7 +193896,7 @@ var render = function() {
                                   "button",
                                   {
                                     staticClass:
-                                      "btn btn-outline-success custom_btn_table",
+                                      "btn btn-success custom_btn_table",
                                     on: {
                                       click: function($event) {
                                         return _vm.editRole(role.id)
@@ -193917,7 +193917,7 @@ var render = function() {
                                   "button",
                                   {
                                     staticClass:
-                                      "btn btn-outline-danger custom_btn_table",
+                                      "btn btn-danger custom_btn_table",
                                     on: {
                                       click: function($event) {
                                         return _vm.deleteRole(role.id)
@@ -197609,7 +197609,7 @@ var render = function() {
                                   "button",
                                   {
                                     staticClass:
-                                      "btn btn-outline-success custom_btn_table",
+                                      "btn btn-success custom_btn_table",
                                     on: {
                                       click: function($event) {
                                         return _vm.editUser(user.id)
@@ -197630,7 +197630,7 @@ var render = function() {
                                   "button",
                                   {
                                     staticClass:
-                                      "btn btn-outline-danger custom_btn_table",
+                                      "btn btn-danger custom_btn_table",
                                     on: {
                                       click: function($event) {
                                         return _vm.deleteUser(user.id)
@@ -199225,7 +199225,7 @@ var render = function() {
                                   "button",
                                   {
                                     staticClass:
-                                      "btn btn-outline-success custom_btn_table",
+                                      "btn btn-success custom_btn_table",
                                     on: {
                                       click: function($event) {
                                         return _vm.editWeeklyOrder(
@@ -199248,7 +199248,7 @@ var render = function() {
                                   "button",
                                   {
                                     staticClass:
-                                      "btn btn-outline-danger custom_btn_table",
+                                      "btn btn-danger custom_btn_table",
                                     on: {
                                       click: function($event) {
                                         return _vm.deleteWeeklyOrder(

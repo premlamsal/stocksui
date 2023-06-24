@@ -409,14 +409,14 @@
 
                 <td>
                   <button
-                    class="btn btn-outline-primary custom_btn_table"
+                    class="btn btn-primary custom_btn_table"
                     v-if="hasPermission('show_delivery_note')"
                     @click="downloadDeliveryNotePDF(deliverynote.id)"
                   >
                     <span class="fa fa-align-justify custom_icon_table"></span>
                   </button>
                   <button
-                    class="btn btn-outline-success custom_btn_table"
+                    class="btn btn-success custom_btn_table"
                     v-if="hasPermission('edit_delivery_note')"
                     @click="editDeliveryNote(deliverynote.id)"
                   >
@@ -424,7 +424,7 @@
                   </button>
 
                   <button
-                    class="btn btn-outline-danger custom_btn_table"
+                    class="btn btn-danger custom_btn_table"
                     v-if="hasPermission('delete_delivery_note')"
                     @click="deleteDeliveryNote(deliverynote.id)"
                   >

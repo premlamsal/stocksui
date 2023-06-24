@@ -822,14 +822,14 @@
                 <!-- <td>{{permission.long_name}}</td> -->
                 <td>
                   <button
-                    class="btn btn-outline-success custom_btn_table"
+                    class="btn btn-success custom_btn_table"
                     @click="editPermission(permission.id)"
                     v-if="hasPermission('edit_permission')"
                   >
                     <span class="fa fa-edit custom_icon_table"></span>
                   </button>
                   <button
-                    class="btn btn-outline-danger custom_btn_table"
+                    class="btn btn-danger custom_btn_table"
                     @click="deletePermission(permission.id)"
                     v-if="hasPermission('delete_permission')"
                   >

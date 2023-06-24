@@ -115,11 +115,16 @@ img.product_logo_img {
     padding: 10px;
 }
 
-.page-item.active .page-link {
+.page-item.active .page-link{
     z-index: 3;
-    color: #fff;
-    background-color: #6bd098;
-    border-color: #10c15f;
+
+    background: var(--favblue) !important;
+    color: var(--favgold) !important;
+}
+.page-link {
+    /* color: var(--favgold) !important; */
+    color: #000 !important;
+
 }
 
 span.custom_icon_table {
@@ -217,6 +222,21 @@ body{
     color:var(--favgold) !important;
 
 }
+
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary:active:focus,
+.btn-primary:active:hover,
+.btn-primary.active:focus,
+.btn-primary.active:hover{
+    background: var(--favblue) !important;
+
+    color:var(--favgold) !important;
+
+}
 .btn-primary:hover{
     background: var(--favblue) !important;
 
@@ -225,18 +245,49 @@ body{
 }
 
 .btn-success{
-    background: var(--favblue);
-
-    color:var(--favgold) !important;
-
-}
-
-.btn-success:hover{
     background: var(--favblue) !important;
 
     color:var(--favgold) !important;
 
 }
+
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active,
+.btn-success.active,
+.btn-success:active:focus,
+.btn-success:active:hover,
+.btn-success.active:focus,
+.btn-success.active:hover{
+    background: var(--favblue) !important;
+
+    color:var(--favgold) !important;
+
+}
+
+.btn-danger {
+    background-color: red !important;
+    color: #FFFFFF  !important;
+    margin: 0px !important;
+}
+
+  
+  .btn-danger:hover,
+  .btn-danger:focus,
+  .btn-danger:active,
+  .btn-danger.active,
+  .btn-danger:active:focus,
+  .btn-danger:active:hover,
+  .btn-danger.active:focus,
+  .btn-danger.active:hover,
+  .show>.btn-danger.dropdown-toggle,
+  .show>.btn-danger.dropdown-toggle:focus,
+  .show>.btn-danger.dropdown-toggle:hover {
+    background-color: red !important;
+    color: #FFFFFF  !important;
+    margin: 0px !important;
+    box-shadow: none !important;
+  }
 
 input.checkbox {width: 25px;height: 20px;}
 .checkboxlabel{
@@ -271,14 +322,7 @@ a.fc-daygrid-dot-event .fc-daygrid-event-dot{
     color: var(--favgold) !important;
     text-transform: capitalize;
   }
-  .btn-danger {
-    background-color: red;
-    color: #FFFFFF;
-    margin: 0px;
-}
-.btn-danger:hover{
-    background-color: red;
-}
+ 
 .text-primary{
     color: #000!important;
 }
@@ -286,3 +330,9 @@ a.fc-daygrid-dot-event .fc-daygrid-event-dot{
     background: var(--favblue) !important;
     color: var(--favgold) !important;
 }
+/* #app .card button {
+    background: #163373;
+    color: #FFD700 !important;
+    border: 0;
+} */
+
