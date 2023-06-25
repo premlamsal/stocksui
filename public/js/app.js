@@ -24640,7 +24640,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.pagination = pagination;
     },
     showAddModal: function showAddModal() {
-      this.modalForName = "Add New Product"; // Vue.set(this.modalForName,"Add Unit");
+      this.modalForName = "Add New Product"; // Vue.set(this.modalForName,"Add Qunaity");
 
       this.modalForCode = 0; //0 for add
 
@@ -24660,9 +24660,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     callFunc: function callFunc() {
       if (this.modalForCode == 0) {
-        this.addProduct(); // console.log("Add Unit");
+        this.addProduct(); // console.log("Add Qunaity");
       } else if (this.modalForCode == 1) {
-        this.updateProduct(); // console.log("Edit Unit");
+        this.updateProduct(); // console.log("Edit Qunaity");
       }
     },
     addProduct: function addProduct() {
@@ -24818,7 +24818,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       });
     },
-    //end of deleteUnit()
+    //end of deleteQunaity()
     searchTableBtn: function searchTableBtn() {
       this.autoCompleteTable();
     },
@@ -192881,7 +192881,9 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
-                _c("label", { attrs: { for: "Unit" } }, [_vm._v("Unit:")]),
+                _c("label", { attrs: { for: "Qunaity" } }, [
+                  _vm._v("Qunaity:")
+                ]),
                 _vm._v(" "),
                 _c("input", {
                   directives: [
@@ -193319,7 +193321,7 @@ var render = function() {
                             _vm._v(" "),
                             _c("th", [_vm._v("Low Stock Alert Quantity")]),
                             _vm._v(" "),
-                            _c("th", [_vm._v("Unit")]),
+                            _c("th", [_vm._v("Qunaity")]),
                             _vm._v(" "),
                             _vm.hasPermission("edit_product") ||
                             _vm.hasPermission("delete_product")

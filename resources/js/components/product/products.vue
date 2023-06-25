@@ -49,7 +49,7 @@
             }}</span>
           </div>
           <div class="form-group">
-            <label for="Unit">Unit:</label>
+            <label for="Qunaity">Qunaity:</label>
 
             <input
               type="text"
@@ -249,7 +249,7 @@
                 <th>Description</th>
                 <th>Low Stock Alert Quantity</th>
 
-                <th>Unit</th>
+                <th>Qunaity</th>
 
                 <th  v-if="hasPermission('edit_product') || hasPermission('delete_product')">Edit</th>
               </tr>
@@ -608,7 +608,7 @@ export default {
     },
     showAddModal() {
       this.modalForName = "Add New Product";
-      // Vue.set(this.modalForName,"Add Unit");
+      // Vue.set(this.modalForName,"Add Qunaity");
       this.modalForCode = 0; //0 for add
 
       this.product.name = "";
@@ -630,10 +630,10 @@ export default {
     callFunc() {
       if (this.modalForCode == 0) {
         this.addProduct();
-        // console.log("Add Unit");
+        // console.log("Add Qunaity");
       } else if (this.modalForCode == 1) {
         this.updateProduct();
-        // console.log("Edit Unit");
+        // console.log("Edit Qunaity");
       }
     },
     addProduct() {
@@ -847,7 +847,7 @@ export default {
             });
         }
       });
-    }, //end of deleteUnit()
+    }, //end of deleteQunaity()
     searchTableBtn() {
       this.autoCompleteTable();
     },
