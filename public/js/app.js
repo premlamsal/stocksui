@@ -200365,7 +200365,8 @@ var render = function() {
                         _c("th", [_vm._v("Delivery Date")]),
                         _vm._v(" "),
                         _vm.hasPermission("edit_weekly_order") ||
-                        _vm.hasPermission("delete_weekly_order")
+                        _vm.hasPermission("delete_weekly_order") ||
+                        _vm.hasPermission("show_weekly_order")
                           ? _c("th", [_vm._v("Edit")])
                           : _vm._e()
                       ])
@@ -200396,7 +200397,8 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _vm.hasPermission("edit_weekly_order") ||
-                          _vm.hasPermission("delete_weekly_order")
+                          _vm.hasPermission("delete_weekly_order") ||
+                          _vm.hasPermission("show_weekly_order")
                             ? _c("td", [
                                 _vm.hasPermission("show_weekly_order")
                                   ? _c(

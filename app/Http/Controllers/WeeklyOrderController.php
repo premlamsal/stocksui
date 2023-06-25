@@ -177,7 +177,7 @@ class WeeklyOrderController extends Controller
     public function pdfdownload($id)
     {
 
-        $this->authorize('hasPermission', 'download_weeklyorder');
+        $this->authorize('hasPermission', 'show_weekly_order');
 
         $user = User::findOrFail(Auth::user()->id);
 
@@ -202,25 +202,25 @@ class WeeklyOrderController extends Controller
         $pdf->setPaper('a4', 'portrait');
         return $pdf->output();
     }
-    public function pdfdownload2($id)
-    {
+    // public function pdfdownload2($id)
+    // {
 
-        $this->authorize('hasPermission', 'download_weeklyorder');
+    //     $this->authorize('hasPermission', 'download_weeklyorder');
 
-        $user = User::findOrFail(Auth::user()->id);
+    //     $user = User::findOrFail(Auth::user()->id);
 
-        $store_id = $user->stores[0]->id;
-        // Get pick_list
+    //     $store_id = $user->stores[0]->id;
+    //     // Get pick_list
 
-        $weekly_order = WeeklyOrder::where('store_id', $store_id)->with('WeeklyOrderDetailC')->with('WeeklyOrderDetailM')->with('WeeklyOrderDetailD')->findOrFail($id);
-
-
-      $data=  Browsershot::url('https://google.com')->pdf();
+    //     $weekly_order = WeeklyOrder::where('store_id', $store_id)->with('WeeklyOrderDetailC')->with('WeeklyOrderDetailM')->with('WeeklyOrderDetailD')->findOrFail($id);
 
 
-        return response()->json([
-            'data' => $data,
-            'status' => 'error',
-        ], 200);
-    }
+    //   $data=  Browsershot::url('https://google.com')->pdf();
+
+
+    //     return response()->json([
+    //         'data' => $data,
+    //         'status' => 'error',
+    //     ], 200);
+    // }
 }
