@@ -84,14 +84,14 @@
                             </li>
                         @endcan
 
-                        @can('hasPermission', 'view_pick_lists')
+                        {{-- @can('hasPermission', 'view_pick_lists')
                             <li>
                                 <router-link to="/pick-lists" aria-expanded="false">
                                     <i class="nc-icon nc-tap-01"></i>
                                     <span>Pick List</span>
                                 </router-link>
                             </li>
-                        @endcan
+                        @endcan --}}
 
                         @can('hasPermission', 'view_taskboard')
                             <li>
@@ -166,7 +166,7 @@
                         @endcan
  --}}
 
-
+{{-- 
                         @can('hasPermission', 'view_users')
                             <li>
                                 <router-link to="/users" aria-expanded="false">
@@ -174,16 +174,16 @@
                                     <span>Users</span>
                                 </router-link>
                             </li>
-                        @endcan
+                        @endcan --}}
 
-                        @can('hasPermission', 'view_settings')
+                        {{-- @can('hasPermission', 'view_settings')
                             <li>
                                 <router-link to="/settings" aria-expanded="false">
                                     <i class="nc-icon nc-settings-gear-65"></i>
                                     <span>Settings</span>
                                 </router-link>
                             </li>
-                        @endcan
+                        @endcan --}}
                         <li>
 
                         </li>
@@ -197,12 +197,12 @@
                             <img src="{{ asset('img/logo1.png') }}">
                         </div>
                     </a>
-                    <a href="/" class="simple-text logo-normal">
-                        {{ config('app.name', 'Laravel') }}
+                    {{-- <a href="/" class="simple-text logo-normal"> --}}
+                        {{-- {{ config('app.name', 'Laravel') }} --}}
                         <!-- <div class="logo-image-big">
             <img src="../assets/img/logo-big.png">
           </div> -->
-                    </a>
+                    {{-- </a> --}}
                 </div>
             </div>
 
@@ -218,7 +218,9 @@
                                     <span class="navbar-toggler-bar bar3"></span>
                                 </button>
                             </div>
-                            <a class="navbar-brand" href="/">{{ Auth::user()->stores[0]->name }}</a>
+                            {{-- <a class="navbar-brand" href="/">{{ Auth::user()->stores[0]->name }}</a> --}}
+                            <a class="navbar-brand" href="/">Operations Management System</a>
+
 
 
                         </div>

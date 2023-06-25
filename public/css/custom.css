@@ -347,3 +347,16 @@ a.fc-daygrid-dot-event .fc-daygrid-event-dot{
     border-left-color: var(--favblue) !important;
     border-right-color: var(--favblue) !important;
 }
+
+.sidebar .logo a.logo-mini, .off-canvas-sidebar .logo a.logo-mini {
+  
+    width: 190px !important;
+   
+}
+.sidebar .logo,
+.off-canvas-sidebar .logo {
+    bottom: 230px !important;  
+}
+.sidebar .logo, .off-canvas-sidebar .logo {
+    padding: 7px 1.7rem;
+}
