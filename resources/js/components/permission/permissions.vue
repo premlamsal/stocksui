@@ -197,10 +197,10 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="add_notes"
+              value="add_note"
               v-model="checkedPermissions"
             />
-            <label class="form-check-label" for="add_notes"> Note </label>
+            <label class="form-check-label" for="add_note"> Note </label>
           </div>
           <div class="form-group">
             <input
@@ -345,10 +345,10 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="edit_notes"
+              value="edit_note"
               v-model="checkedPermissions"
             />
-            <label class="form-check-label" for="edit_notes"> Note </label>
+            <label class="form-check-label" for="edit_note"> Note </label>
           </div>
           <div class="form-group">
             <input
@@ -492,10 +492,10 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="delete_notes"
+              value="delete_note"
               v-model="checkedPermissions"
             />
-            <label class="form-check-label" for="delete_notes"> Note </label>
+            <label class="form-check-label" for="delete_note"> Note </label>
           </div>
           <div class="form-group">
             <input
@@ -643,10 +643,10 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="show_notes"
+              value="show_note"
               v-model="checkedPermissions"
             />
-            <label class="form-check-label" for="show_notes"> Note </label>
+            <label class="form-check-label" for="show_note"> Note </label>
           </div>
           <div class="form-group">
             <input
@@ -725,7 +725,7 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="show_contact_list"
+              value="show_stock_list"
               v-model="checkedPermissions"
             />
             <label class="form-check-label" for="show_stock_list">
@@ -790,10 +790,10 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="search_notes"
+              value="search_note"
               v-model="checkedPermissions"
             />
-            <label class="form-check-label" for="search_notes"> Note </label>
+            <label class="form-check-label" for="search_note"> Note </label>
           </div>
           <div class="form-group">
             <input

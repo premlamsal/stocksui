@@ -4,7 +4,7 @@
     <h1 class="h3 mb-2 text-gray-800">Pick Lists</h1>
     <p class="mb-4" v-if="hasPermission('add_pick_lists')">
       <button class="btn btn-primary" @click="showAddModal()">
-        New Pick List
+        <span class="fa fa-plus-circle"></span>  New Pick List
       </button>
     </p>
 

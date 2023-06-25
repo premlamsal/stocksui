@@ -187801,10 +187801,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "add_notes" },
+                  attrs: { type: "checkbox", value: "add_note" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "add_notes") > -1
+                      ? _vm._i(_vm.checkedPermissions, "add_note") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -187813,7 +187813,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "add_notes",
+                        var $$v = "add_note",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -187835,7 +187835,7 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "add_notes" }
+                    attrs: { for: "add_note" }
                   },
                   [_vm._v(" Note ")]
                 )
@@ -188528,10 +188528,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "edit_notes" },
+                  attrs: { type: "checkbox", value: "edit_note" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "edit_notes") > -1
+                      ? _vm._i(_vm.checkedPermissions, "edit_note") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -188540,7 +188540,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "edit_notes",
+                        var $$v = "edit_note",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -188562,7 +188562,7 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "edit_notes" }
+                    attrs: { for: "edit_note" }
                   },
                   [_vm._v(" Note ")]
                 )
@@ -189258,10 +189258,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "delete_notes" },
+                  attrs: { type: "checkbox", value: "delete_note" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "delete_notes") > -1
+                      ? _vm._i(_vm.checkedPermissions, "delete_note") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -189270,7 +189270,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "delete_notes",
+                        var $$v = "delete_note",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -189292,7 +189292,7 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "delete_notes" }
+                    attrs: { for: "delete_note" }
                   },
                   [_vm._v(" Note ")]
                 )
@@ -189987,10 +189987,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "show_notes" },
+                  attrs: { type: "checkbox", value: "show_note" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "show_notes") > -1
+                      ? _vm._i(_vm.checkedPermissions, "show_note") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -189999,7 +189999,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "show_notes",
+                        var $$v = "show_note",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -190021,7 +190021,7 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "show_notes" }
+                    attrs: { for: "show_note" }
                   },
                   [_vm._v(" Note ")]
                 )
@@ -190396,10 +190396,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "show_contact_list" },
+                  attrs: { type: "checkbox", value: "show_stock_list" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "show_contact_list") > -1
+                      ? _vm._i(_vm.checkedPermissions, "show_stock_list") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -190408,7 +190408,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "show_contact_list",
+                        var $$v = "show_stock_list",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -190717,10 +190717,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "search_notes" },
+                  attrs: { type: "checkbox", value: "search_note" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "search_notes") > -1
+                      ? _vm._i(_vm.checkedPermissions, "search_note") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -190729,7 +190729,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "search_notes",
+                        var $$v = "search_note",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -190751,7 +190751,7 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "search_notes" }
+                    attrs: { for: "search_note" }
                   },
                   [_vm._v(" Note ")]
                 )
@@ -191747,7 +191747,10 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("\n      New Pick List\n    ")]
+              [
+                _c("span", { staticClass: "fa fa-plus-circle" }),
+                _vm._v("  New Pick List\n    ")
+              ]
             )
           ])
         : _vm._e(),
@@ -224761,7 +224764,7 @@ var routes = [{
   beforeEnter: function beforeEnter(to, from, next) {
     var hasAccess = _store__WEBPACK_IMPORTED_MODULE_3__["default"].getters.permissions;
 
-    if (hasAccess.includes('view_contact') || hasAccess.includes('all')) {
+    if (hasAccess.includes('view_contacts') || hasAccess.includes('all')) {
       next();
     }
   }

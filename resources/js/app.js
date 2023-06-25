@@ -278,7 +278,7 @@ let routes = [
     
      beforeEnter(to, from, next) {
         let hasAccess = store.getters.permissions
-        if (hasAccess.includes('view_contact') || hasAccess.includes('all')) {
+        if (hasAccess.includes('view_contacts') || hasAccess.includes('all')) {
           next()
         }
       }
