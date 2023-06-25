@@ -38,7 +38,7 @@ class CategoryController extends Controller
         $store_id = $user->stores[0]->id;
 
         $this->validate($request, [
-            'name'        => 'required|string|max:10',
+            'name'        => 'required|string|max:40',
 
             'description' => 'required|string|max:100',
         ]);
@@ -89,7 +89,7 @@ class CategoryController extends Controller
         $store_id = $user->stores[0]->id;
 
         $this->validate($request, [
-            'name'        => 'required|string|max:10',
+            'name'        => 'required|string|max:40',
             'description' => 'required|string|max:100',
         ]);
 
