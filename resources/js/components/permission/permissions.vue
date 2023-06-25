@@ -24,6 +24,37 @@
             <input
               class="form-check-input"
               type="checkbox"
+              value="view_weeklyorders"
+              v-model="checkedPermissions"
+            />
+            <label class="form-check-label" for="view_weeklyorders">
+              Weekly Order
+            </label>
+          </div>
+          <div class="form-group">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="view_taskboard"
+              v-model="checkedPermissions"
+            />
+            <label class="form-check-label" for="view_taskboard">
+              Taskboard
+            </label>
+          </div>
+          <div class="form-group">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="view_notes"
+              v-model="checkedPermissions"
+            />
+            <label class="form-check-label" for="view_notes"> Note </label>
+          </div>
+          <div class="form-group">
+            <input
+              class="form-check-input"
+              type="checkbox"
               value="view_contacts"
               v-model="checkedPermissions"
             />
@@ -132,16 +163,45 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="view_event_list"
+              value="view_events"
               v-model="checkedPermissions"
             />
-            <label class="form-check-label" for="view_events">
-              Event
-            </label>
+            <label class="form-check-label" for="view_events"> Event </label>
           </div>
         </div>
         <div class="col-md-2">
           <span style="font-weight: bold; margin-bottom: 20px">Add</span>
+          <div class="form-group">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="add_weeklyorders"
+              v-model="checkedPermissions"
+            />
+            <label class="form-check-label" for="add_weeklyorders">
+              Weekly Order
+            </label>
+          </div>
+          <div class="form-group">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="add_taskboard"
+              v-model="checkedPermissions"
+            />
+            <label class="form-check-label" for="add_taskboard">
+              Taskboard
+            </label>
+          </div>
+          <div class="form-group">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="add_notes"
+              v-model="checkedPermissions"
+            />
+            <label class="form-check-label" for="add_notes"> Note </label>
+          </div>
           <div class="form-group">
             <input
               class="form-check-input"
@@ -250,17 +310,46 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="add_event_list"
+              value="add_event"
               v-model="checkedPermissions"
             />
-            <label class="form-check-label" for="add_event">
-              Event
-            </label>
+            <label class="form-check-label" for="add_event"> Event </label>
           </div>
         </div>
 
         <div class="col-md-2">
           <span style="font-weight: bold; margin-bottom: 20px">Edit</span>
+          <div class="form-group">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="edit_weeklyorders"
+              v-model="checkedPermissions"
+            />
+            <label class="form-check-label" for="edit_weeklyorders">
+              Weekly Order
+            </label>
+          </div>
+          <div class="form-group">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="edit_taskboard"
+              v-model="checkedPermissions"
+            />
+            <label class="form-check-label" for="edit_taskboard">
+              Taskboard
+            </label>
+          </div>
+          <div class="form-group">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="edit_notes"
+              v-model="checkedPermissions"
+            />
+            <label class="form-check-label" for="edit_notes"> Note </label>
+          </div>
           <div class="form-group">
             <input
               class="form-check-input"
@@ -369,16 +458,45 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="edit_event_list"
+              value="edit_event"
               v-model="checkedPermissions"
             />
-            <label class="form-check-label" for="edit_event">
-              Event
-            </label>
+            <label class="form-check-label" for="edit_event"> Event </label>
           </div>
         </div>
         <div class="col-md-2">
           <span style="font-weight: bold; margin-bottom: 20px">Delete</span>
+          <div class="form-group">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="delete_weeklyorders"
+              v-model="checkedPermissions"
+            />
+            <label class="form-check-label" for="delete_weeklyorders">
+              Weekly Order
+            </label>
+          </div>
+          <div class="form-group">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="delete_taskboard"
+              v-model="checkedPermissions"
+            />
+            <label class="form-check-label" for="delete_taskboard">
+              Taskboard
+            </label>
+          </div>
+          <div class="form-group">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="delete_notes"
+              v-model="checkedPermissions"
+            />
+            <label class="form-check-label" for="delete_notes"> Note </label>
+          </div>
           <div class="form-group">
             <input
               class="form-check-input"
@@ -491,16 +609,45 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="delete_event_list"
+              value="delete_event"
               v-model="checkedPermissions"
             />
-            <label class="form-check-label" for="delete_event">
-              Event
-            </label>
+            <label class="form-check-label" for="delete_event"> Event </label>
           </div>
         </div>
         <div class="col-md-2">
           <span style="font-weight: bold; margin-bottom: 20px">Show</span>
+          <div class="form-group">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="show_weeklyorders"
+              v-model="checkedPermissions"
+            />
+            <label class="form-check-label" for="show_weeklyorders">
+              Weekly Order
+            </label>
+          </div>
+          <div class="form-group">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="show_taskboard"
+              v-model="checkedPermissions"
+            />
+            <label class="form-check-label" for="show_taskboard">
+              Taskboard
+            </label>
+          </div>
+          <div class="form-group">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="show_notes"
+              v-model="checkedPermissions"
+            />
+            <label class="form-check-label" for="show_notes"> Note </label>
+          </div>
           <div class="form-group">
             <input
               class="form-check-input"
@@ -609,16 +756,45 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="show_event_list"
+              value="show_event"
               v-model="checkedPermissions"
             />
-            <label class="form-check-label" for="show_event">
-              Event
-            </label>
+            <label class="form-check-label" for="show_event"> Event </label>
           </div>
         </div>
         <div class="col-md-2">
           <span style="font-weight: bold; margin-bottom: 20px">Search</span>
+          <div class="form-group">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="search_weeklyorders"
+              v-model="checkedPermissions"
+            />
+            <label class="form-check-label" for="search_weeklyorders">
+              Weekly Order
+            </label>
+          </div>
+          <div class="form-group">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="search_taskboard"
+              v-model="checkedPermissions"
+            />
+            <label class="form-check-label" for="search_taskboard">
+              Taskboard
+            </label>
+          </div>
+          <div class="form-group">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="search_notes"
+              v-model="checkedPermissions"
+            />
+            <label class="form-check-label" for="search_notes"> Note </label>
+          </div>
           <div class="form-group">
             <input
               class="form-check-input"
@@ -731,7 +907,7 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="search_event_list"
+              value="search_event"
               v-model="checkedPermissions"
             />
             <label class="form-check-label" for="search_event"> Event</label>
@@ -801,7 +977,7 @@
         </div>
       </div>
       <div class="card-body" v-if="permissions.length > 0">
-        <div class="table">
+        <div class="table" style="overflow:scroll">
           <table
             class="table table-striped table-bordered"
             width="100%"

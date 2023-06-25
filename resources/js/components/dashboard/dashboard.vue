@@ -43,7 +43,7 @@
                 <div class="numbers">
                   <p class="card-category">Calendar Events</p>
                   <p class="card-title">
-                    {{ dash.events }}
+                    {{ dash.event }}
                   </p>
                 </div>
               </div>
@@ -73,7 +73,7 @@
                 <div class="numbers">
                   <p class="card-category">Categories</p>
                   <p class="card-title">
-                    {{ dash.contacts }}
+                    {{ dash.category }}
                   </p>
                 </div>
               </div>
@@ -132,7 +132,7 @@
                 <div class="numbers">
                   <p class="card-category">Notes</p>
                   <p class="card-title">
-                    {{ dash.notes }}
+                    {{ dash.note }}
                   </p>
                 </div>
               </div>
@@ -219,9 +219,9 @@
               </div>
               <div class="col-7 col-md-8">
                 <div class="numbers">
-                  <p class="card-category">Taskboard Tasks</p>
+                  <p class="card-category">Taskboard</p>
                   <p class="card-title">
-                    {{ dash.tasks }}
+                    {{ dash.task }}
                   </p>
                 </div>
               </div>
@@ -232,7 +232,7 @@
             <div class="stats">
               <router-link to="/taskboard" aria-expanded="false">
                 <i class="nc-icon nc-palette"></i>
-                <span>Taskboard Tasks</span>
+                <span>Taskboard</span>
               </router-link>
             </div>
           </div>
@@ -252,7 +252,7 @@
                 <div class="numbers">
                   <p class="card-category">Weekly Orders</p>
                   <p class="card-title">
-                    {{ dash.weekly_orders }}
+                    {{ dash.weekly_order }}
                   </p>
                 </div>
               </div>

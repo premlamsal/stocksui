@@ -3,12 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
+use App\Event;
 use App\Invoice;
+use App\Note;
 use App\Product;
+use App\ProductCategory;
 use App\Purchase;
 use App\Stock;
 use App\Supplier;
+use App\Task;
+use App\TaskBoard;
 use App\User;
+use App\WeeklyOrder;
 use Auth;
 use DB;
 
@@ -31,22 +37,70 @@ class DashboardController extends Controller
 
         $contact = Contact::where('store_id', $store_id)->count();
 
+        $category = ProductCategory::where('store_id', $store_id)->count();
+
+        $calendar_events = Event::where('store_id', $store_id)->count();
+
         $supplier = Supplier::where('store_id', $store_id)->count();
 
+        $note = Note::where('store_id', $store_id)->count();
+
+        $weekly_order = WeeklyOrder::where('store_id', $store_id)->count();
 
         $purchase = Purchase::where('store_id', $store_id)->sum('grand_total');
 
-        $stock = Stock::where('store_id', $store_id)->count();
+        $task = TaskBoard::where('id', 1)->first();
+
+        $task_json = $task->tasks;
+
+        //json parsing block to calculate no of tasks
+        // Assuming you have the JSON data stored in a variable called $json
+
+        // Step 1: Parse the JSON
+        $data = json_decode($task_json, true);
+
+        // Step 2: Count tasks in 'toDo' section
+        $todoCount = 0;
+        foreach ($data['toDo'] as $priority => $tasks) {
+            $todoCount += count($tasks);
+        }
+
+        // Step 3: Count tasks in 'arrInProgress' section
+        $inProgressCount = 0;
+        foreach ($data['arrInProgress'] as $priority => $tasks) {
+            $inProgressCount += count($tasks);
+        }
+
+        // Step 4: Count tasks in 'arrDone' section
+        $doneCount = 0;
+        foreach ($data['arrDone'] as $priority => $tasks) {
+            $doneCount += count($tasks);
+        }
+
+        // // Display the task counts
+        // echo "Number of tasks in 'toDo': " . $todoCount . "<br>";
+        // echo "Number of tasks in 'arrInProgress': " . $inProgressCount . "<br>";
+        // echo "Number of tasks in 'arrDone': " . $doneCount . "<br>";
+
+        $sum_of_total_tasks = $todoCount + $inProgressCount + $doneCount;
+
+
+
+        //end of json parsing block
 
         return response()->json([
             'product'  => $product,
             'supplier' => $supplier,
             'purchase' => $purchase,
             'contact' => $contact,
-            'stock'    => $stock,
+            'category' => $category,
+            'weekly_order' => $weekly_order,
+            'note' => $note,
+            'task' => $sum_of_total_tasks,
+            'event' => $calendar_events,
+
             'status'   => 'success',
         ]);
-
     }
 
     //supply before_moth and get records before that months
@@ -58,18 +112,19 @@ class DashboardController extends Controller
 
         $store_id = $user->stores[0]->id;
 
-        $invoice = Invoice::select('invoice_date',
+        $invoice = Invoice::select(
+            'invoice_date',
             DB::raw('YEAR(invoice_date) as year'),
             DB::raw('MONTH(invoice_date)as month'),
             DB::raw('Day(invoice_date) as day'),
             DB::raw('SUM(grand_total) as grand_total')
         )
             ->where('store_id', $store_id)
-        //select past months records
+            //select past months records
             ->where('invoice_date', '>', now()->subMonthNoOverflow($before_month)->format('Y-m-d'))
 
             // ->where('status', 'Paid') //only select paid invoice sales
-        // ->orderBy('year','desc')
+            // ->orderBy('year','desc')
             ->groupBy('year', 'month') //grouping by year and month
 
             ->get();
@@ -95,26 +150,24 @@ class DashboardController extends Controller
         }
 
         //finding all records and assigning 0 if no sales in that month
-        for ($i = $before_month; $i >0; $i--) {
-//decrement loop from 6 to 1 months
+        for ($i = $before_month; $i > 0; $i--) {
+            //decrement loop from 6 to 1 months
 
             //checks array has that key or not
-            if (array_key_exists(now()->subMonthNoOverflow($i-1)->format('Y-m'), $data)) {
+            if (array_key_exists(now()->subMonthNoOverflow($i - 1)->format('Y-m'), $data)) {
 
                 // echo now()->subMonthNoOverflow($i)->format('F');
 
                 //assinging data to new data array //eg.leaving as it is if month has sales
-                $newmonth[] = now()->subMonthNoOverflow($i-1)->format('Y-m');
-                $newdata[]  = $data[now()->subMonthNoOverflow($i-1)->format('Y-m')];
-
+                $newmonth[] = now()->subMonthNoOverflow($i - 1)->format('Y-m');
+                $newdata[]  = $data[now()->subMonthNoOverflow($i - 1)->format('Y-m')];
             } else {
                 // assging 0 to non-sales months
-                $newmonth[] = now()->subMonthNoOverflow($i-1)->format('Y-m');
+                $newmonth[] = now()->subMonthNoOverflow($i - 1)->format('Y-m');
                 $newdata[]  = "0.00";
 
                 // echo now()->subMonthNoOverflow($i)->format('F');
             }
-
         }
 
         return response()->json(['month' => $newmonth, 'data' => $newdata]);

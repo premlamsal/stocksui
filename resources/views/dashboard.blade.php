@@ -69,7 +69,7 @@
                     <li>
                         <router-link to="/contacts" aria-expanded="false">
                             <i class="nc-icon nc-badge"></i>
-                            <span>Contact List</span>
+                            <span>Contact</span>
                         </router-link>
                     </li>
                 @endcan
@@ -90,7 +90,7 @@
                             <li>
                                 <router-link to="/products" aria-expanded="false">
                                     <i class="nc-icon nc-tile-56"></i>
-                                    <span>Product List</span>
+                                    <span>Product</span>
                                 </router-link>
                             </li>
                         @endcan
@@ -134,7 +134,7 @@
 
                      
 
-                        @can('hasPermission', 'view_weekly_orders')
+                        @can('hasPermission', 'view_weeklyorders')
                         <li>
                             <router-link to="/weekly-orders" aria-expanded="false">
                                 <i class="nc-icon nc-cart-simple"></i>
