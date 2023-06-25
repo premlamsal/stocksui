@@ -602,7 +602,7 @@
                 <th>Date Order Requested</th>
                 <th>Delivery Date</th>
                 <!-- <th>Status</th> -->
-                <th>Edit</th>
+                <th v-if="hasPermission('edit_weekly_order') || hasPermission('delete_weekly_order')">Edit</th>
               </tr>
             </thead>
 
@@ -638,7 +638,7 @@
                   </td>
                   -->
 
-                <td>
+                <td v-if="hasPermission('edit_weekly_order') || hasPermission('delete_weekly_order')">
                   <button
                     class="btn btn-danger custom_btn_table"
                     v-if="hasPermission('show_weekly_order')"

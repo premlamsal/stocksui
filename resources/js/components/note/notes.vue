@@ -150,7 +150,7 @@
                 <th>Description</th>
                 <th>Created By</th>
                 <th>Created At</th>
-                <th>Edit</th>
+                <th  v-if="hasPermission('edit_note') || hasPermission('delete_note')">Edit</th>
               </tr>
             </thead>
             <tbody>
@@ -160,7 +160,7 @@
                 <td>{{ note.description }}</td>
                 <td>{{ note.user.name }}</td>
                 <td>{{ note.date }}</td>
-                <td>
+                <td  v-if="hasPermission('edit_note') || hasPermission('delete_note')">
                   <button
                     class="btn btn-success custom_btn_table"
                     @click="editNote(note.id)"

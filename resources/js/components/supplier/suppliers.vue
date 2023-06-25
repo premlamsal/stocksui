@@ -191,7 +191,7 @@
                 <th>Phone</th>
                 <th>Contact Person</th>
                 <th>Details</th>
-                <th>Edit</th>
+                <th  v-if="hasPermission('edit_supplier') || hasPermission('delete_supplier')">Edit</th>
               </tr>
             </thead>
             <tbody>
@@ -204,7 +204,7 @@
                 <td>{{ supplier.phone }}</td>
                 <td>{{ supplier.contact_person }}</td>
                 <td>{{ supplier.details }}</td>
-                <td>
+                <td v-if="hasPermission('edit_supplier') || hasPermission('delete_supplier')">
                   <button
                     class="btn btn-success custom_btn_table"
                     @click="editSupplier(supplier.id)"

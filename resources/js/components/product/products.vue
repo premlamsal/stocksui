@@ -251,7 +251,7 @@
 
                 <th>Unit</th>
 
-                <th>Edit</th>
+                <th  v-if="hasPermission('edit_product') || hasPermission('delete_product')">Edit</th>
               </tr>
             </thead>
             <tbody>
@@ -272,7 +272,7 @@
                 <td>{{ product.low_stock_alert_quantity }}</td>
 
                 <td>{{ product.quantity }}</td>
-                <td>
+                <td  v-if="hasPermission('edit_product') || hasPermission('delete_product')">
                   <button
                     class="btn btn-success custom_btn_table"
                     @click="editProduct(product.id)"

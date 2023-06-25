@@ -134,7 +134,7 @@
 
                      
 
-                        @can('hasPermission', 'view_weeklyorders')
+                        @can('hasPermission', 'view_weekly_orders')
                         <li>
                             <router-link to="/weekly-orders" aria-expanded="false">
                                 <i class="nc-icon nc-cart-simple"></i>

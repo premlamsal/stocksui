@@ -179,18 +179,17 @@ export default {
         showClose: true,
       },
       calendarOptions: {
-        titleFormat: { year: 'numeric', month: 'long' } ,
+        titleFormat: { year: "numeric", month: "long" },
         eventTimeFormat: {
-
-          hour: 'numeric',
+          hour: "numeric",
           // minute: '2-digit',
           omitZeroMinute: true,
-          meridiem: 'short'
+          meridiem: "short",
           // hour: 'numeric',
           // minute: "2-digit",
           // second: "2-digit",
           // hour12: true, //this also enables am or pm if true
-          // meridiem: false   this enables am or pm 
+          // meridiem: false   this enables am or pm
         },
 
         headerToolbar: {
@@ -214,17 +213,19 @@ export default {
 
   methods: {
     fetchEvents() {
-      this.$Progress.start();
-      axios
-        .get("/api/events")
-        .then((response) => {
-          this.calendarOptions.events = response.data.data;
-          this.$Progress.finish();
-        })
-        .catch((error) => {
-          console.log(error);
-          this.$Progress.fail();
-        });
+      if (this.hasPermission("view_events")) {
+        this.$Progress.start();
+        axios
+          .get("/api/events")
+          .then((response) => {
+            this.calendarOptions.events = response.data.data;
+            this.$Progress.finish();
+          })
+          .catch((error) => {
+            console.log(error);
+            this.$Progress.fail();
+          });
+      }
     },
     removeEventColor() {
       this.event.type = "";
@@ -262,26 +263,28 @@ export default {
     //   }
     // },
     showAddModal(date) {
-      this.removeEventColor();
-      this.modalForName = "Add Event";
-      // Vue.set(this.modalForName,"Add Unit");
-      this.modalForCode = 0; //0 for add
+      if (this.hasPermission("add_event")) {
+        this.removeEventColor();
+        this.modalForName = "Add Event";
+        // Vue.set(this.modalForName,"Add Unit");
+        this.modalForCode = 0; //0 for add
 
-      this.event.title = "";
-      if (date) {
-        this.event.start = date;
-      } else {
-        this.event.start = "";
+        this.event.title = "";
+        if (date) {
+          this.event.start = date;
+        } else {
+          this.event.start = "";
+        }
+        this.event.end = "";
+        this.event.description = "";
+        this.event.back_color = "";
+        this.event.text_color = "";
+
+        this.errors = ""; //clearing errors
+
+        // Vue.set(this.modalForCode,0);
+        this.$bvModal.show("bv-modal-add-event");
       }
-      this.event.end = "";
-      this.event.description = "";
-      this.event.back_color = "";
-      this.event.text_color = "";
-
-      this.errors = ""; //clearing errors
-
-      // Vue.set(this.modalForCode,0);
-      this.$bvModal.show("bv-modal-add-event");
     },
     callFunc() {
       if (this.modalForCode == 0) {
@@ -293,181 +296,189 @@ export default {
     },
 
     addEvent() {
-      // this.event.start = moment(this.event.start).format();
-      // this.event.end = moment(this.event.end).format();
+      if (this.hasPermission("add_event")) {
+        // this.event.start = moment(this.event.start).format();
+        // this.event.end = moment(this.event.end).format();
 
-      // console.log(moment(date).format());
+        // console.log(moment(date).format());
 
-      this.$Progress.start();
-      let currObj = this;
-      axios
-        .post("/api/event", this.event)
-        .then(function (response) {
-          currObj.output = response.data.msg;
-          currObj.status = response.data.status;
-          currObj.$swal("Info", currObj.output, currObj.status);
+        this.$Progress.start();
+        let currObj = this;
+        axios
+          .post("/api/event", this.event)
+          .then(function (response) {
+            currObj.output = response.data.msg;
+            currObj.status = response.data.status;
+            currObj.$swal("Info", currObj.output, currObj.status);
 
-          currObj.$bvModal.hide("bv-modal-add-event");
+            currObj.$bvModal.hide("bv-modal-add-event");
 
-          currObj.event.title = "";
-          currObj.event.start = "";
-          currObj.event.end = "";
-          currObj.event.back_color = "";
-          currObj.event.text_color = "";
+            currObj.event.title = "";
+            currObj.event.start = "";
+            currObj.event.end = "";
+            currObj.event.back_color = "";
+            currObj.event.text_color = "";
 
-          currObj.event.description = "";
+            currObj.event.description = "";
 
-          currObj.errors = ""; //clearing errors
-          currObj.$Progress.finish();
+            currObj.errors = ""; //clearing errors
+            currObj.$Progress.finish();
 
-          currObj.fetchEvents();
-        })
-        .catch(function (error) {
-          currObj.$Progress.fail();
-          if (error.response.status == 422) {
-            currObj.validationErrors = error.response.data.errors;
-            currObj.errors = currObj.validationErrors;
-            // console.log(currObj.errors);
-          }
-        });
+            currObj.fetchEvents();
+          })
+          .catch(function (error) {
+            currObj.$Progress.fail();
+            if (error.response.status == 422) {
+              currObj.validationErrors = error.response.data.errors;
+              currObj.errors = currObj.validationErrors;
+              // console.log(currObj.errors);
+            }
+          });
+      }
     },
     editEvent(id) {
-      this.$Progress.start();
-      this.removeEventColor();
+      if (this.hasPermission("edit_event")) {
+        this.$Progress.start();
+        this.removeEventColor();
 
-      let currObj = this;
-      this.modalForName = "Edit Event";
-      this.modalForCode = 1; // 1 for Edit
-      this.$bvModal.show("bv-modal-add-event");
-      currObj.errors = ""; //clearing errors
-      axios
-        .get("/api/event/" + id)
-        .then((response) => {
-          // console.log(response.data.unit)
-          Vue.set(this.event, "title", response.data.event.title);
-          Vue.set(this.event, "start", response.data.event.start);
-          // Vue.set(this.event, "cssClass", response.data.event.back_color);
+        let currObj = this;
+        this.modalForName = "Edit Event";
+        this.modalForCode = 1; // 1 for Edit
+        this.$bvModal.show("bv-modal-add-event");
+        currObj.errors = ""; //clearing errors
+        axios
+          .get("/api/event/" + id)
+          .then((response) => {
+            // console.log(response.data.unit)
+            Vue.set(this.event, "title", response.data.event.title);
+            Vue.set(this.event, "start", response.data.event.start);
+            // Vue.set(this.event, "cssClass", response.data.event.back_color);
 
-          let temp = response.data.event.back_color;
-          if (temp === "#F44336") {
-            Vue.set(this.event, "type", "holiday");
-            Vue.set(this.event, "back_color", "#F44336");
-          } else if (temp === "#2196F3") {
-            Vue.set(this.event, "type", "interview");
-            Vue.set(this.event, "back_color", "#2196F3");
-          } else if (temp === "#4CAF50") {
-            Vue.set(this.event, "type", "meeting");
-            Vue.set(this.event, "back_color", "#4CAF50");
-          } else if (temp === "#ff9800") {
-            Vue.set(this.event, "type", "other");
-            Vue.set(this.event, "back_color", "#ff9800");
-          } else {
-            Vue.set(this.event, "type", "nothing");
-            Vue.set(this.event, "back_color", "#eee");
-          }
+            let temp = response.data.event.back_color;
+            if (temp === "#F44336") {
+              Vue.set(this.event, "type", "holiday");
+              Vue.set(this.event, "back_color", "#F44336");
+            } else if (temp === "#2196F3") {
+              Vue.set(this.event, "type", "interview");
+              Vue.set(this.event, "back_color", "#2196F3");
+            } else if (temp === "#4CAF50") {
+              Vue.set(this.event, "type", "meeting");
+              Vue.set(this.event, "back_color", "#4CAF50");
+            } else if (temp === "#ff9800") {
+              Vue.set(this.event, "type", "other");
+              Vue.set(this.event, "back_color", "#ff9800");
+            } else {
+              Vue.set(this.event, "type", "nothing");
+              Vue.set(this.event, "back_color", "#eee");
+            }
 
-          // Vue.set(this.event, "back_color", response.data.event.back_color);
-          // Vue.set(this.event, "text_color", response.data.event.text_color);
-          Vue.set(this.event, "end", response.data.event.end);
-          Vue.set(this.event, "description", response.data.event.description);
+            // Vue.set(this.event, "back_color", response.data.event.back_color);
+            // Vue.set(this.event, "text_color", response.data.event.text_color);
+            Vue.set(this.event, "end", response.data.event.end);
+            Vue.set(this.event, "description", response.data.event.description);
 
-          Vue.set(this.event, "id", id); //to send id to the update controller
-          this.$Progress.finish();
-        })
-        .catch((error) => {
-          // console.log(error)
-          this.$Progress.fail();
-        });
+            Vue.set(this.event, "id", id); //to send id to the update controller
+            this.$Progress.finish();
+          })
+          .catch((error) => {
+            // console.log(error)
+            this.$Progress.fail();
+          });
+      }
     },
     updateEvent() {
-      this.$Progress.start();
-      // this.event.start = moment(this.event.start).format();
-      // this.event.end = moment(this.event.end).format();
+      if (this.hasPermission("edit_event")) {
+        this.$Progress.start();
+        // this.event.start = moment(this.event.start).format();
+        // this.event.end = moment(this.event.end).format();
 
-      let currObj = this;
-      let formData = new FormData();
-      formData.append("_method", "PUT"); //add this otherwise data won't pass to backend
-      formData.append("title", this.event.title);
-      formData.append("start", this.event.start);
-      formData.append("back_color", this.event.back_color);
-      formData.append("text_color", this.event.text_color);
-      formData.append("end", this.event.end);
-      formData.append("description", this.event.description);
-      formData.append("id", this.event.id);
+        let currObj = this;
+        let formData = new FormData();
+        formData.append("_method", "PUT"); //add this otherwise data won't pass to backend
+        formData.append("title", this.event.title);
+        formData.append("start", this.event.start);
+        formData.append("back_color", this.event.back_color);
+        formData.append("text_color", this.event.text_color);
+        formData.append("end", this.event.end);
+        formData.append("description", this.event.description);
+        formData.append("id", this.event.id);
 
-      axios
-        .post("/api/event", formData)
-        .then(function (response) {
-          currObj.output = response.data.msg;
-          currObj.status = response.data.status;
-          // alert(currObj.status);
+        axios
+          .post("/api/event", formData)
+          .then(function (response) {
+            currObj.output = response.data.msg;
+            currObj.status = response.data.status;
+            // alert(currObj.status);
 
-          currObj.$swal("Info", currObj.output, currObj.status);
-          currObj.$bvModal.hide("bv-modal-add-event");
+            currObj.$swal("Info", currObj.output, currObj.status);
+            currObj.$bvModal.hide("bv-modal-add-event");
 
-          currObj.event.title = "";
-          currObj.event.start = "";
-          currObj.event.end = "";
-          currObj.event.back_color = "";
-          currObj.event.text_color = "";
-          currObj.event.description = "";
-          currObj.event.id = "";
-          currObj.$Progress.finish();
-          currObj.removeEventColor();
+            currObj.event.title = "";
+            currObj.event.start = "";
+            currObj.event.end = "";
+            currObj.event.back_color = "";
+            currObj.event.text_color = "";
+            currObj.event.description = "";
+            currObj.event.id = "";
+            currObj.$Progress.finish();
+            currObj.removeEventColor();
 
-          currObj.fetchEvents();
-        })
-        .catch(function (error) {
-          currObj.$Progress.fail();
-          if (error.response.status == 422) {
-            currObj.validationErrors = error.response.data.errors;
-            currObj.errors = currObj.validationErrors;
-            // console.log(currObj.errors);
-          }
-        });
+            currObj.fetchEvents();
+          })
+          .catch(function (error) {
+            currObj.$Progress.fail();
+            if (error.response.status == 422) {
+              currObj.validationErrors = error.response.data.errors;
+              currObj.errors = currObj.validationErrors;
+              // console.log(currObj.errors);
+            }
+          });
+      }
     },
     deleteEvent(id) {
-      this.$Progress.start();
-      let currObj = this;
-      this.$swal({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
-      }).then((result) => {
-        if (result.value) {
-          axios
-            .delete("/api/event/" + id)
-            .then(function (response) {
-              currObj.output = response.data.msg;
-              currObj.status = response.data.status;
-              currObj.$Progress.finish();
-              currObj.$swal("Info", currObj.output, currObj.status);
-              currObj.$bvModal.hide("bv-modal-add-event");
+      if (this.hasPermission("delete_event")) {
+        this.$Progress.start();
+        let currObj = this;
+        this.$swal({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+          if (result.value) {
+            axios
+              .delete("/api/event/" + id)
+              .then(function (response) {
+                currObj.output = response.data.msg;
+                currObj.status = response.data.status;
+                currObj.$Progress.finish();
+                currObj.$swal("Info", currObj.output, currObj.status);
+                currObj.$bvModal.hide("bv-modal-add-event");
 
-              currObj.event.title = "";
-              currObj.event.start = "";
-              currObj.event.end = "";
-              currObj.event.back_color = "";
-              currObj.event.text_color = "";
-              currObj.event.description = "";
-              currObj.event.id = "";
-              currObj.removeEventColor();
+                currObj.event.title = "";
+                currObj.event.start = "";
+                currObj.event.end = "";
+                currObj.event.back_color = "";
+                currObj.event.text_color = "";
+                currObj.event.description = "";
+                currObj.event.id = "";
+                currObj.removeEventColor();
 
-              currObj.fetchEvents();
-            })
-            .catch(function (error) {
-              currObj.$Progress.fail();
-            });
-        }
-      });
+                currObj.fetchEvents();
+              })
+              .catch(function (error) {
+                currObj.$Progress.fail();
+              });
+          }
+        });
+      }
     }, //end of deleteUnit()
     handleDateClick: function (arg) {
       // alert("date click! " + arg.dateStr);
-      const date= moment(arg.dateStr).format("DD-MM-YYYY");;
+      const date = moment(arg.dateStr).format("DD-MM-YYYY");
       this.showAddModal(date);
     },
     handleEventClick(clickInfo) {
@@ -562,5 +573,4 @@ export default {
 table.fc-col-header a {
   color: #000 !important;
 }
-
 </style>

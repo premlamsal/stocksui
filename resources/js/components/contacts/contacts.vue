@@ -135,7 +135,7 @@
                 <th>Phone</th>
                 <th>Role</th>
                 <th>Company</th>
-                <th>Edit</th>
+                <th  v-if="hasPermission('edit_contact') || hasPermission('delete_contact')">Edit</th>
               </tr>
             </thead>
             <tbody>
@@ -146,7 +146,7 @@
                 <td>{{contact.phone}}</td>
                 <td>{{contact.role}}</td>
                 <td>{{contact.company}}</td>
-                <td>
+                <td  v-if="hasPermission('edit_contact') || hasPermission('delete_contact')">
                   <button class="btn btn-success custom_btn_table" @click=editContact(contact.id) v-if="hasPermission('edit_contact')"><span class="fa fa-edit custom_icon_table"></span></button>
                   <button class="btn btn-danger custom_btn_table" @click=deleteContact(contact.id) v-if="hasPermission('delete_contact')"><span class="fa fa-trash custom_icon_table"></span></button>
                 </td>

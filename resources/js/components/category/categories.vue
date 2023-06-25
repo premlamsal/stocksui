@@ -153,7 +153,7 @@
               <tr>
                 <th>Name</th>
                 <th>Description</th>
-                <th>Edit</th>
+                <th  v-if="hasPermission('edit_category') || hasPermission('delete_category')">Edit</th>
               </tr>
             </thead>
             <tbody>
@@ -161,7 +161,7 @@
                 <td>{{ category.name }}</td>
                 <td>{{ category.description }}</td>
                 <!-- <td>{{ category.updated_at | moment("from", "now") }}</td> -->
-                <td>
+                <td  v-if="hasPermission('edit_category') || hasPermission('delete_category')">
                   <button
                     class="btn btn-success custom_btn_table"
                     style="margin-right: 5px"

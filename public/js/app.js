@@ -18238,18 +18238,18 @@ __webpack_require__.r(__webpack_exports__);
       },
       calendarOptions: {
         titleFormat: {
-          year: 'numeric',
-          month: 'long'
+          year: "numeric",
+          month: "long"
         },
         eventTimeFormat: {
-          hour: 'numeric',
+          hour: "numeric",
           // minute: '2-digit',
           omitZeroMinute: true,
-          meridiem: 'short' // hour: 'numeric',
+          meridiem: "short" // hour: 'numeric',
           // minute: "2-digit",
           // second: "2-digit",
           // hour12: true, //this also enables am or pm if true
-          // meridiem: false   this enables am or pm 
+          // meridiem: false   this enables am or pm
 
         },
         headerToolbar: {
@@ -18274,16 +18274,18 @@ __webpack_require__.r(__webpack_exports__);
     fetchEvents: function fetchEvents() {
       var _this = this;
 
-      this.$Progress.start();
-      axios.get("/api/events").then(function (response) {
-        _this.calendarOptions.events = response.data.data;
+      if (this.hasPermission("view_events")) {
+        this.$Progress.start();
+        axios.get("/api/events").then(function (response) {
+          _this.calendarOptions.events = response.data.data;
 
-        _this.$Progress.finish();
-      })["catch"](function (error) {
-        console.log(error);
+          _this.$Progress.finish();
+        })["catch"](function (error) {
+          console.log(error);
 
-        _this.$Progress.fail();
-      });
+          _this.$Progress.fail();
+        });
+      }
     },
     removeEventColor: function removeEventColor() {
       this.event.type = "";
@@ -18322,27 +18324,29 @@ __webpack_require__.r(__webpack_exports__);
     //   }
     // },
     showAddModal: function showAddModal(date) {
-      this.removeEventColor();
-      this.modalForName = "Add Event"; // Vue.set(this.modalForName,"Add Unit");
+      if (this.hasPermission("add_event")) {
+        this.removeEventColor();
+        this.modalForName = "Add Event"; // Vue.set(this.modalForName,"Add Unit");
 
-      this.modalForCode = 0; //0 for add
+        this.modalForCode = 0; //0 for add
 
-      this.event.title = "";
+        this.event.title = "";
 
-      if (date) {
-        this.event.start = date;
-      } else {
-        this.event.start = "";
+        if (date) {
+          this.event.start = date;
+        } else {
+          this.event.start = "";
+        }
+
+        this.event.end = "";
+        this.event.description = "";
+        this.event.back_color = "";
+        this.event.text_color = "";
+        this.errors = ""; //clearing errors
+        // Vue.set(this.modalForCode,0);
+
+        this.$bvModal.show("bv-modal-add-event");
       }
-
-      this.event.end = "";
-      this.event.description = "";
-      this.event.back_color = "";
-      this.event.text_color = "";
-      this.errors = ""; //clearing errors
-      // Vue.set(this.modalForCode,0);
-
-      this.$bvModal.show("bv-modal-add-event");
     },
     callFunc: function callFunc() {
       if (this.modalForCode == 0) {
@@ -18352,162 +18356,169 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     addEvent: function addEvent() {
-      // this.event.start = moment(this.event.start).format();
-      // this.event.end = moment(this.event.end).format();
-      // console.log(moment(date).format());
-      this.$Progress.start();
-      var currObj = this;
-      axios.post("/api/event", this.event).then(function (response) {
-        currObj.output = response.data.msg;
-        currObj.status = response.data.status;
-        currObj.$swal("Info", currObj.output, currObj.status);
-        currObj.$bvModal.hide("bv-modal-add-event");
-        currObj.event.title = "";
-        currObj.event.start = "";
-        currObj.event.end = "";
-        currObj.event.back_color = "";
-        currObj.event.text_color = "";
-        currObj.event.description = "";
-        currObj.errors = ""; //clearing errors
+      if (this.hasPermission("add_event")) {
+        // this.event.start = moment(this.event.start).format();
+        // this.event.end = moment(this.event.end).format();
+        // console.log(moment(date).format());
+        this.$Progress.start();
+        var currObj = this;
+        axios.post("/api/event", this.event).then(function (response) {
+          currObj.output = response.data.msg;
+          currObj.status = response.data.status;
+          currObj.$swal("Info", currObj.output, currObj.status);
+          currObj.$bvModal.hide("bv-modal-add-event");
+          currObj.event.title = "";
+          currObj.event.start = "";
+          currObj.event.end = "";
+          currObj.event.back_color = "";
+          currObj.event.text_color = "";
+          currObj.event.description = "";
+          currObj.errors = ""; //clearing errors
 
-        currObj.$Progress.finish();
-        currObj.fetchEvents();
-      })["catch"](function (error) {
-        currObj.$Progress.fail();
+          currObj.$Progress.finish();
+          currObj.fetchEvents();
+        })["catch"](function (error) {
+          currObj.$Progress.fail();
 
-        if (error.response.status == 422) {
-          currObj.validationErrors = error.response.data.errors;
-          currObj.errors = currObj.validationErrors; // console.log(currObj.errors);
-        }
-      });
+          if (error.response.status == 422) {
+            currObj.validationErrors = error.response.data.errors;
+            currObj.errors = currObj.validationErrors; // console.log(currObj.errors);
+          }
+        });
+      }
     },
     editEvent: function editEvent(id) {
       var _this2 = this;
 
-      this.$Progress.start();
-      this.removeEventColor();
-      var currObj = this;
-      this.modalForName = "Edit Event";
-      this.modalForCode = 1; // 1 for Edit
+      if (this.hasPermission("edit_event")) {
+        this.$Progress.start();
+        this.removeEventColor();
+        var currObj = this;
+        this.modalForName = "Edit Event";
+        this.modalForCode = 1; // 1 for Edit
 
-      this.$bvModal.show("bv-modal-add-event");
-      currObj.errors = ""; //clearing errors
+        this.$bvModal.show("bv-modal-add-event");
+        currObj.errors = ""; //clearing errors
 
-      axios.get("/api/event/" + id).then(function (response) {
-        // console.log(response.data.unit)
-        Vue.set(_this2.event, "title", response.data.event.title);
-        Vue.set(_this2.event, "start", response.data.event.start); // Vue.set(this.event, "cssClass", response.data.event.back_color);
+        axios.get("/api/event/" + id).then(function (response) {
+          // console.log(response.data.unit)
+          Vue.set(_this2.event, "title", response.data.event.title);
+          Vue.set(_this2.event, "start", response.data.event.start); // Vue.set(this.event, "cssClass", response.data.event.back_color);
 
-        var temp = response.data.event.back_color;
+          var temp = response.data.event.back_color;
 
-        if (temp === "#F44336") {
-          Vue.set(_this2.event, "type", "holiday");
-          Vue.set(_this2.event, "back_color", "#F44336");
-        } else if (temp === "#2196F3") {
-          Vue.set(_this2.event, "type", "interview");
-          Vue.set(_this2.event, "back_color", "#2196F3");
-        } else if (temp === "#4CAF50") {
-          Vue.set(_this2.event, "type", "meeting");
-          Vue.set(_this2.event, "back_color", "#4CAF50");
-        } else if (temp === "#ff9800") {
-          Vue.set(_this2.event, "type", "other");
-          Vue.set(_this2.event, "back_color", "#ff9800");
-        } else {
-          Vue.set(_this2.event, "type", "nothing");
-          Vue.set(_this2.event, "back_color", "#eee");
-        } // Vue.set(this.event, "back_color", response.data.event.back_color);
-        // Vue.set(this.event, "text_color", response.data.event.text_color);
+          if (temp === "#F44336") {
+            Vue.set(_this2.event, "type", "holiday");
+            Vue.set(_this2.event, "back_color", "#F44336");
+          } else if (temp === "#2196F3") {
+            Vue.set(_this2.event, "type", "interview");
+            Vue.set(_this2.event, "back_color", "#2196F3");
+          } else if (temp === "#4CAF50") {
+            Vue.set(_this2.event, "type", "meeting");
+            Vue.set(_this2.event, "back_color", "#4CAF50");
+          } else if (temp === "#ff9800") {
+            Vue.set(_this2.event, "type", "other");
+            Vue.set(_this2.event, "back_color", "#ff9800");
+          } else {
+            Vue.set(_this2.event, "type", "nothing");
+            Vue.set(_this2.event, "back_color", "#eee");
+          } // Vue.set(this.event, "back_color", response.data.event.back_color);
+          // Vue.set(this.event, "text_color", response.data.event.text_color);
 
 
-        Vue.set(_this2.event, "end", response.data.event.end);
-        Vue.set(_this2.event, "description", response.data.event.description);
-        Vue.set(_this2.event, "id", id); //to send id to the update controller
+          Vue.set(_this2.event, "end", response.data.event.end);
+          Vue.set(_this2.event, "description", response.data.event.description);
+          Vue.set(_this2.event, "id", id); //to send id to the update controller
 
-        _this2.$Progress.finish();
-      })["catch"](function (error) {
-        // console.log(error)
-        _this2.$Progress.fail();
-      });
+          _this2.$Progress.finish();
+        })["catch"](function (error) {
+          // console.log(error)
+          _this2.$Progress.fail();
+        });
+      }
     },
     updateEvent: function updateEvent() {
-      this.$Progress.start(); // this.event.start = moment(this.event.start).format();
-      // this.event.end = moment(this.event.end).format();
+      if (this.hasPermission("edit_event")) {
+        this.$Progress.start(); // this.event.start = moment(this.event.start).format();
+        // this.event.end = moment(this.event.end).format();
 
-      var currObj = this;
-      var formData = new FormData();
-      formData.append("_method", "PUT"); //add this otherwise data won't pass to backend
+        var currObj = this;
+        var formData = new FormData();
+        formData.append("_method", "PUT"); //add this otherwise data won't pass to backend
 
-      formData.append("title", this.event.title);
-      formData.append("start", this.event.start);
-      formData.append("back_color", this.event.back_color);
-      formData.append("text_color", this.event.text_color);
-      formData.append("end", this.event.end);
-      formData.append("description", this.event.description);
-      formData.append("id", this.event.id);
-      axios.post("/api/event", formData).then(function (response) {
-        currObj.output = response.data.msg;
-        currObj.status = response.data.status; // alert(currObj.status);
+        formData.append("title", this.event.title);
+        formData.append("start", this.event.start);
+        formData.append("back_color", this.event.back_color);
+        formData.append("text_color", this.event.text_color);
+        formData.append("end", this.event.end);
+        formData.append("description", this.event.description);
+        formData.append("id", this.event.id);
+        axios.post("/api/event", formData).then(function (response) {
+          currObj.output = response.data.msg;
+          currObj.status = response.data.status; // alert(currObj.status);
 
-        currObj.$swal("Info", currObj.output, currObj.status);
-        currObj.$bvModal.hide("bv-modal-add-event");
-        currObj.event.title = "";
-        currObj.event.start = "";
-        currObj.event.end = "";
-        currObj.event.back_color = "";
-        currObj.event.text_color = "";
-        currObj.event.description = "";
-        currObj.event.id = "";
-        currObj.$Progress.finish();
-        currObj.removeEventColor();
-        currObj.fetchEvents();
-      })["catch"](function (error) {
-        currObj.$Progress.fail();
+          currObj.$swal("Info", currObj.output, currObj.status);
+          currObj.$bvModal.hide("bv-modal-add-event");
+          currObj.event.title = "";
+          currObj.event.start = "";
+          currObj.event.end = "";
+          currObj.event.back_color = "";
+          currObj.event.text_color = "";
+          currObj.event.description = "";
+          currObj.event.id = "";
+          currObj.$Progress.finish();
+          currObj.removeEventColor();
+          currObj.fetchEvents();
+        })["catch"](function (error) {
+          currObj.$Progress.fail();
 
-        if (error.response.status == 422) {
-          currObj.validationErrors = error.response.data.errors;
-          currObj.errors = currObj.validationErrors; // console.log(currObj.errors);
-        }
-      });
+          if (error.response.status == 422) {
+            currObj.validationErrors = error.response.data.errors;
+            currObj.errors = currObj.validationErrors; // console.log(currObj.errors);
+          }
+        });
+      }
     },
     deleteEvent: function deleteEvent(id) {
-      this.$Progress.start();
-      var currObj = this;
-      this.$swal({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!"
-      }).then(function (result) {
-        if (result.value) {
-          axios["delete"]("/api/event/" + id).then(function (response) {
-            currObj.output = response.data.msg;
-            currObj.status = response.data.status;
-            currObj.$Progress.finish();
-            currObj.$swal("Info", currObj.output, currObj.status);
-            currObj.$bvModal.hide("bv-modal-add-event");
-            currObj.event.title = "";
-            currObj.event.start = "";
-            currObj.event.end = "";
-            currObj.event.back_color = "";
-            currObj.event.text_color = "";
-            currObj.event.description = "";
-            currObj.event.id = "";
-            currObj.removeEventColor();
-            currObj.fetchEvents();
-          })["catch"](function (error) {
-            currObj.$Progress.fail();
-          });
-        }
-      });
+      if (this.hasPermission("delete_event")) {
+        this.$Progress.start();
+        var currObj = this;
+        this.$swal({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!"
+        }).then(function (result) {
+          if (result.value) {
+            axios["delete"]("/api/event/" + id).then(function (response) {
+              currObj.output = response.data.msg;
+              currObj.status = response.data.status;
+              currObj.$Progress.finish();
+              currObj.$swal("Info", currObj.output, currObj.status);
+              currObj.$bvModal.hide("bv-modal-add-event");
+              currObj.event.title = "";
+              currObj.event.start = "";
+              currObj.event.end = "";
+              currObj.event.back_color = "";
+              currObj.event.text_color = "";
+              currObj.event.description = "";
+              currObj.event.id = "";
+              currObj.removeEventColor();
+              currObj.fetchEvents();
+            })["catch"](function (error) {
+              currObj.$Progress.fail();
+            });
+          }
+        });
+      }
     },
     //end of deleteUnit()
     handleDateClick: function handleDateClick(arg) {
       // alert("date click! " + arg.dateStr);
       var date = moment__WEBPACK_IMPORTED_MODULE_5___default()(arg.dateStr).format("DD-MM-YYYY");
-      ;
       this.showAddModal(date);
     },
     handleEventClick: function handleEventClick(clickInfo) {
@@ -98579,7 +98590,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.verte[data-v-f116d698] {\n  border: 2px solid #9e9e9e;\n  border-radius: 15px;\n}\n.red[data-v-f116d698] {\n  background: #f44336 !important;\n  color: whitesmoke !important;\n}\n.blue[data-v-f116d698] {\n  background: #2196f3 !important;\n  color: whitesmoke !important;\n}\n.orange[data-v-f116d698] {\n  background: #ff9800 !important;\n  color: whitesmoke !important;\n}\n.green[data-v-f116d698] {\n  background: #4caf50 !important;\n  color: white !important;\n}\n.blue[data-v-f116d698],\n.orange[data-v-f116d698],\n.red[data-v-f116d698],\n.green[data-v-f116d698] {\n  font-size: 13px;\n  font-weight: 500;\n  text-transform: capitalize;\n}\n.event-item[data-v-f116d698] {\n  padding: 2px 0 2px 4px !important;\n}\n.event-color[data-v-f116d698] {\n  padding: 20px;\n  /* border-radius: 30px; */\n  cursor: pointer;\n  /* padding-right: 35px; */\n  /* padding-left: 35px; */\n  font-weight: bold;\n  border: 1px solid #040f15;\n  /* transition: all 0.2s ease-out; */\n}\n.event-color-container[data-v-f116d698] {\n  margin-top: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n}\n.color-clicked[data-v-f116d698] {\n  color: red;\n\n  border: 1px solid #040f15;\n  box-shadow: 2px 6px 0px -2px #000;\n}\n.event-color[data-v-f116d698]:hover {\n}\n.event-color[data-v-f116d698]:active {\n  -webkit-transform: translateY(4px);\n          transform: translateY(4px);\n}\ntable.fc-col-header a[data-v-f116d698] {\n  color: #000 !important;\n}\n\n", ""]);
+exports.push([module.i, "\n.verte[data-v-f116d698] {\n  border: 2px solid #9e9e9e;\n  border-radius: 15px;\n}\n.red[data-v-f116d698] {\n  background: #f44336 !important;\n  color: whitesmoke !important;\n}\n.blue[data-v-f116d698] {\n  background: #2196f3 !important;\n  color: whitesmoke !important;\n}\n.orange[data-v-f116d698] {\n  background: #ff9800 !important;\n  color: whitesmoke !important;\n}\n.green[data-v-f116d698] {\n  background: #4caf50 !important;\n  color: white !important;\n}\n.blue[data-v-f116d698],\n.orange[data-v-f116d698],\n.red[data-v-f116d698],\n.green[data-v-f116d698] {\n  font-size: 13px;\n  font-weight: 500;\n  text-transform: capitalize;\n}\n.event-item[data-v-f116d698] {\n  padding: 2px 0 2px 4px !important;\n}\n.event-color[data-v-f116d698] {\n  padding: 20px;\n  /* border-radius: 30px; */\n  cursor: pointer;\n  /* padding-right: 35px; */\n  /* padding-left: 35px; */\n  font-weight: bold;\n  border: 1px solid #040f15;\n  /* transition: all 0.2s ease-out; */\n}\n.event-color-container[data-v-f116d698] {\n  margin-top: 10px;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n}\n.color-clicked[data-v-f116d698] {\n  color: red;\n\n  border: 1px solid #040f15;\n  box-shadow: 2px 6px 0px -2px #000;\n}\n.event-color[data-v-f116d698]:hover {\n}\n.event-color[data-v-f116d698]:active {\n  -webkit-transform: translateY(4px);\n          transform: translateY(4px);\n}\ntable.fc-col-header a[data-v-f116d698] {\n  color: #000 !important;\n}\n", ""]);
 
 // exports
 
@@ -183574,7 +183585,18 @@ var render = function() {
                     attrs: { width: "100%", cellspacing: "0" }
                   },
                   [
-                    _vm._m(0),
+                    _c("thead", [
+                      _c("tr", [
+                        _c("th", [_vm._v("Name")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Description")]),
+                        _vm._v(" "),
+                        _vm.hasPermission("edit_category") ||
+                        _vm.hasPermission("delete_category")
+                          ? _c("th", [_vm._v("Edit")])
+                          : _vm._e()
+                      ])
+                    ]),
                     _vm._v(" "),
                     _c(
                       "tbody",
@@ -183584,50 +183606,55 @@ var render = function() {
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(category.description))]),
                           _vm._v(" "),
-                          _c("td", [
-                            _vm.hasPermission("edit_category")
-                              ? _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "btn btn-success custom_btn_table",
-                                    staticStyle: { "margin-right": "5px" },
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.editCategory(category.id)
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("span", {
-                                      staticClass:
-                                        "fa fa-edit custom_icon_table"
-                                    })
-                                  ]
-                                )
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.hasPermission("delete_category")
-                              ? _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "btn btn-danger custom_btn_table",
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.deleteCategory(category.id)
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("span", {
-                                      staticClass:
-                                        "fa fa-trash custom_icon_table"
-                                    })
-                                  ]
-                                )
-                              : _vm._e()
-                          ])
+                          _vm.hasPermission("edit_category") ||
+                          _vm.hasPermission("delete_category")
+                            ? _c("td", [
+                                _vm.hasPermission("edit_category")
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "btn btn-success custom_btn_table",
+                                        staticStyle: { "margin-right": "5px" },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.editCategory(category.id)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("span", {
+                                          staticClass:
+                                            "fa fa-edit custom_icon_table"
+                                        })
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.hasPermission("delete_category")
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "btn btn-danger custom_btn_table",
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.deleteCategory(
+                                              category.id
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("span", {
+                                          staticClass:
+                                            "fa fa-trash custom_icon_table"
+                                        })
+                                      ]
+                                    )
+                                  : _vm._e()
+                              ])
+                            : _vm._e()
                         ])
                       }),
                       0
@@ -183800,22 +183827,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("Name")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Description")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Edit")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -184316,7 +184328,24 @@ var render = function() {
                     attrs: { width: "100%", cellspacing: "0" }
                   },
                   [
-                    _vm._m(0),
+                    _c("thead", [
+                      _c("tr", [
+                        _c("th", [_vm._v("Name")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Email")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Phone")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Role")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Company")]),
+                        _vm._v(" "),
+                        _vm.hasPermission("edit_contact") ||
+                        _vm.hasPermission("delete_contact")
+                          ? _c("th", [_vm._v("Edit")])
+                          : _vm._e()
+                      ])
+                    ]),
                     _vm._v(" "),
                     _c(
                       "tbody",
@@ -184343,49 +184372,52 @@ var render = function() {
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(contact.company))]),
                           _vm._v(" "),
-                          _c("td", [
-                            _vm.hasPermission("edit_contact")
-                              ? _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "btn btn-success custom_btn_table",
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.editContact(contact.id)
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("span", {
-                                      staticClass:
-                                        "fa fa-edit custom_icon_table"
-                                    })
-                                  ]
-                                )
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.hasPermission("delete_contact")
-                              ? _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "btn btn-danger custom_btn_table",
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.deleteContact(contact.id)
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("span", {
-                                      staticClass:
-                                        "fa fa-trash custom_icon_table"
-                                    })
-                                  ]
-                                )
-                              : _vm._e()
-                          ])
+                          _vm.hasPermission("edit_contact") ||
+                          _vm.hasPermission("delete_contact")
+                            ? _c("td", [
+                                _vm.hasPermission("edit_contact")
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "btn btn-success custom_btn_table",
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.editContact(contact.id)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("span", {
+                                          staticClass:
+                                            "fa fa-edit custom_icon_table"
+                                        })
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.hasPermission("delete_contact")
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "btn btn-danger custom_btn_table",
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.deleteContact(contact.id)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("span", {
+                                          staticClass:
+                                            "fa fa-trash custom_icon_table"
+                                        })
+                                      ]
+                                    )
+                                  : _vm._e()
+                              ])
+                            : _vm._e()
                         ])
                       }),
                       0
@@ -184548,28 +184580,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("Name")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Email")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Phone")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Role")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Company")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Edit")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -186625,7 +186636,22 @@ var render = function() {
                     attrs: { width: "100%", cellspacing: "0" }
                   },
                   [
-                    _vm._m(0),
+                    _c("thead", [
+                      _c("tr", [
+                        _c("th", [_vm._v("Title")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Description")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Created By")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Created At")]),
+                        _vm._v(" "),
+                        _vm.hasPermission("edit_note") ||
+                        _vm.hasPermission("delete_note")
+                          ? _c("th", [_vm._v("Edit")])
+                          : _vm._e()
+                      ])
+                    ]),
                     _vm._v(" "),
                     _c(
                       "tbody",
@@ -186641,49 +186667,52 @@ var render = function() {
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(note.date))]),
                           _vm._v(" "),
-                          _c("td", [
-                            _vm.hasPermission("edit_note")
-                              ? _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "btn btn-success custom_btn_table",
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.editNote(note.id)
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("span", {
-                                      staticClass:
-                                        "fa fa-edit custom_icon_table"
-                                    })
-                                  ]
-                                )
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.hasPermission("delete_note")
-                              ? _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "btn btn-danger custom_btn_table",
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.deleteNote(note.id)
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("span", {
-                                      staticClass:
-                                        "fa fa-trash custom_icon_table"
-                                    })
-                                  ]
-                                )
-                              : _vm._e()
-                          ])
+                          _vm.hasPermission("edit_note") ||
+                          _vm.hasPermission("delete_note")
+                            ? _c("td", [
+                                _vm.hasPermission("edit_note")
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "btn btn-success custom_btn_table",
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.editNote(note.id)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("span", {
+                                          staticClass:
+                                            "fa fa-edit custom_icon_table"
+                                        })
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.hasPermission("delete_note")
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "btn btn-danger custom_btn_table",
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.deleteNote(note.id)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("span", {
+                                          staticClass:
+                                            "fa fa-trash custom_icon_table"
+                                        })
+                                      ]
+                                    )
+                                  : _vm._e()
+                              ])
+                            : _vm._e()
                         ])
                       }),
                       0
@@ -186856,26 +186885,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("Title")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Description")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Created By")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Created At")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Edit")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -193295,7 +193305,28 @@ var render = function() {
                         attrs: { width: "100%", cellspacing: "0" }
                       },
                       [
-                        _vm._m(0),
+                        _c("thead", [
+                          _c("tr", [
+                            _c("th", [_vm._v("ID")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("Category")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("Image")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("Product Name")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("Description")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("Low Stock Alert Quantity")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("Unit")]),
+                            _vm._v(" "),
+                            _vm.hasPermission("edit_product") ||
+                            _vm.hasPermission("delete_product")
+                              ? _c("th", [_vm._v("Edit")])
+                              : _vm._e()
+                          ])
+                        ]),
                         _vm._v(" "),
                         _c(
                           "tbody",
@@ -193328,49 +193359,56 @@ var render = function() {
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(product.quantity))]),
                               _vm._v(" "),
-                              _c("td", [
-                                _vm.hasPermission("edit_product")
-                                  ? _c(
-                                      "button",
-                                      {
-                                        staticClass:
-                                          "btn btn-success custom_btn_table",
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.editProduct(product.id)
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _c("span", {
-                                          staticClass:
-                                            "fa fa-edit custom_icon_table"
-                                        })
-                                      ]
-                                    )
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                _vm.hasPermission("delete_product")
-                                  ? _c(
-                                      "button",
-                                      {
-                                        staticClass:
-                                          "btn btn-danger custom_btn_table",
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.deleteProduct(product.id)
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _c("span", {
-                                          staticClass:
-                                            "fa fa-trash custom_icon_table"
-                                        })
-                                      ]
-                                    )
-                                  : _vm._e()
-                              ])
+                              _vm.hasPermission("edit_product") ||
+                              _vm.hasPermission("delete_product")
+                                ? _c("td", [
+                                    _vm.hasPermission("edit_product")
+                                      ? _c(
+                                          "button",
+                                          {
+                                            staticClass:
+                                              "btn btn-success custom_btn_table",
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.editProduct(
+                                                  product.id
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("span", {
+                                              staticClass:
+                                                "fa fa-edit custom_icon_table"
+                                            })
+                                          ]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _vm.hasPermission("delete_product")
+                                      ? _c(
+                                          "button",
+                                          {
+                                            staticClass:
+                                              "btn btn-danger custom_btn_table",
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.deleteProduct(
+                                                  product.id
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("span", {
+                                              staticClass:
+                                                "fa fa-trash custom_icon_table"
+                                            })
+                                          ]
+                                        )
+                                      : _vm._e()
+                                  ])
+                                : _vm._e()
                             ])
                           }),
                           0
@@ -193544,32 +193582,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("ID")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Category")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Image")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Product Name")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Description")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Low Stock Alert Quantity")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Unit")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Edit")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -197265,7 +197278,24 @@ var render = function() {
                     attrs: { width: "100%", cellspacing: "0" }
                   },
                   [
-                    _vm._m(0),
+                    _c("thead", [
+                      _c("tr", [
+                        _c("th", [_vm._v("Name")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Address")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Phone")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Contact Person")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Details")]),
+                        _vm._v(" "),
+                        _vm.hasPermission("edit_supplier") ||
+                        _vm.hasPermission("delete_supplier")
+                          ? _c("th", [_vm._v("Edit")])
+                          : _vm._e()
+                      ])
+                    ]),
                     _vm._v(" "),
                     _c(
                       "tbody",
@@ -197298,49 +197328,54 @@ var render = function() {
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(supplier.details))]),
                           _vm._v(" "),
-                          _c("td", [
-                            _vm.hasPermission("edit_supplier")
-                              ? _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "btn btn-success custom_btn_table",
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.editSupplier(supplier.id)
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("span", {
-                                      staticClass:
-                                        "fa fa-edit custom_icon_table"
-                                    })
-                                  ]
-                                )
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.hasPermission("delete_supplier")
-                              ? _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "btn btn-danger custom_btn_table",
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.deleteSupplier(supplier.id)
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("span", {
-                                      staticClass:
-                                        "fa fa-trash custom_icon_table"
-                                    })
-                                  ]
-                                )
-                              : _vm._e()
-                          ])
+                          _vm.hasPermission("edit_supplier") ||
+                          _vm.hasPermission("delete_supplier")
+                            ? _c("td", [
+                                _vm.hasPermission("edit_supplier")
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "btn btn-success custom_btn_table",
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.editSupplier(supplier.id)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("span", {
+                                          staticClass:
+                                            "fa fa-edit custom_icon_table"
+                                        })
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.hasPermission("delete_supplier")
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "btn btn-danger custom_btn_table",
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.deleteSupplier(
+                                              supplier.id
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("span", {
+                                          staticClass:
+                                            "fa fa-trash custom_icon_table"
+                                        })
+                                      ]
+                                    )
+                                  : _vm._e()
+                              ])
+                            : _vm._e()
                         ])
                       }),
                       0
@@ -197513,28 +197548,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("Name")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Address")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Phone")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Contact Person")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Details")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Edit")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -200338,7 +200352,22 @@ var render = function() {
                     attrs: { width: "100%", cellspacing: "0" }
                   },
                   [
-                    _vm._m(0),
+                    _c("thead", [
+                      _c("tr", [
+                        _c("th", [_vm._v("WeeklyOrder No.")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Boat Name")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Date Order Requested")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Delivery Date")]),
+                        _vm._v(" "),
+                        _vm.hasPermission("edit_weekly_order") ||
+                        _vm.hasPermission("delete_weekly_order")
+                          ? _c("th", [_vm._v("Edit")])
+                          : _vm._e()
+                      ])
+                    ]),
                     _vm._v(" "),
                     _c(
                       "tbody",
@@ -200364,76 +200393,79 @@ var render = function() {
                             )
                           ]),
                           _vm._v(" "),
-                          _c("td", [
-                            _vm.hasPermission("show_weekly_order")
-                              ? _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "btn btn-danger custom_btn_table",
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.downloadWeeklyOrderPDF(
-                                          weeklyorder.id
-                                        )
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("span", {
-                                      staticClass:
-                                        "fa fa-file-pdf-o custom_icon_table"
-                                    })
-                                  ]
-                                )
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.hasPermission("edit_weekly_order")
-                              ? _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "btn btn-success custom_btn_table",
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.editWeeklyOrder(
-                                          weeklyorder.id
-                                        )
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("span", {
-                                      staticClass:
-                                        "fa fa-edit custom_icon_table"
-                                    })
-                                  ]
-                                )
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.hasPermission("delete_weekly_order")
-                              ? _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "btn btn-danger custom_btn_table",
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.deleteWeeklyOrder(
-                                          weeklyorder.id
-                                        )
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("span", {
-                                      staticClass:
-                                        "fa fa-trash custom_icon_table"
-                                    })
-                                  ]
-                                )
-                              : _vm._e()
-                          ])
+                          _vm.hasPermission("edit_weekly_order") ||
+                          _vm.hasPermission("delete_weekly_order")
+                            ? _c("td", [
+                                _vm.hasPermission("show_weekly_order")
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "btn btn-danger custom_btn_table",
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.downloadWeeklyOrderPDF(
+                                              weeklyorder.id
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("span", {
+                                          staticClass:
+                                            "fa fa-file-pdf-o custom_icon_table"
+                                        })
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.hasPermission("edit_weekly_order")
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "btn btn-success custom_btn_table",
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.editWeeklyOrder(
+                                              weeklyorder.id
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("span", {
+                                          staticClass:
+                                            "fa fa-edit custom_icon_table"
+                                        })
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.hasPermission("delete_weekly_order")
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "btn btn-danger custom_btn_table",
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.deleteWeeklyOrder(
+                                              weeklyorder.id
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("span", {
+                                          staticClass:
+                                            "fa fa-trash custom_icon_table"
+                                        })
+                                      ]
+                                    )
+                                  : _vm._e()
+                              ])
+                            : _vm._e()
                         ])
                       }),
                       0
@@ -200606,26 +200638,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("WeeklyOrder No.")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Boat Name")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Date Order Requested")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Delivery Date")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Edit")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
