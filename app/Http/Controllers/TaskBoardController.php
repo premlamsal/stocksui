@@ -15,7 +15,7 @@ class TaskBoardController extends Controller
 
     public function updateTasks(Request $request)
     {
-        $this->authorize('hasPermission', 'update_task');
+        $this->authorize('hasPermission', 'edit_taskboard');
 
         $updatedData = $request->input('data');
 
@@ -53,7 +53,7 @@ class TaskBoardController extends Controller
     public function tasks()
     {
 
-        $this->authorize('hasPermission', 'view_tasks');
+        $this->authorize('hasPermission', 'view_taskboard');
 
         $TaskBoard = TaskBoard::where('id',1)->first();
 

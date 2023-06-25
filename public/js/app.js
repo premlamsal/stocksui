@@ -28333,6 +28333,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //import draggable
 
 
@@ -28513,110 +28534,129 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     addTask: function addTask() {
-      this.$Progress.start();
-      var pushTask = {
-        id: Date.now(),
-        title: this.task.title,
-        description: this.task.description
-      };
-      this.meroTasks.toDo.priorityLOW.push(pushTask);
-      this.$bvModal.hide("bv-modal-add-task");
-      this.updateDataInBackend();
-      this.$Progress.finish();
+      if (this.hasPermission("add_taskboard")) {
+        this.$Progress.start();
+        var pushTask = {
+          id: Date.now(),
+          title: this.task.title,
+          description: this.task.description
+        };
+        this.meroTasks.toDo.priorityLOW.push(pushTask);
+        this.$bvModal.hide("bv-modal-add-task");
+        this.updateDataInBackend();
+        this.$Progress.finish();
+      }
     },
     editTask: function editTask(id, title, description) {
-      this.$Progress.start();
-      this.modalForName = "Edit Task";
-      this.modalForCode = 1; // 1 for Edit
+      if (this.hasPermission("edit_taskboard")) {
+        this.$Progress.start();
+        this.modalForName = "Edit Task";
+        this.modalForCode = 1; // 1 for Edit
 
-      this.$bvModal.show("bv-modal-add-task");
-      this.errors = ""; //clearing errors
+        this.$bvModal.show("bv-modal-add-task");
+        this.errors = ""; //clearing errors
 
-      Vue.set(this.task, "id", id);
-      Vue.set(this.task, "title", title);
-      Vue.set(this.task, "description", description);
-      this.$Progress.finish();
+        Vue.set(this.task, "id", id);
+        Vue.set(this.task, "title", title);
+        Vue.set(this.task, "description", description);
+        this.$Progress.finish();
+      }
     },
     updateTask: function updateTask() {
-      this.$Progress.start(); // Assuming you have the ID of the task you want to edit and the updated data
-
-      var taskId = this.task.id;
-      var updatedTaskData = {
-        // Updated properties of the task
-        title: this.task.title,
-        description: this.task.description
-      }; // Find the task in the 'meroTasks' data structure
-
-      for (var categoryKey in this.meroTasks) {
-        var category = this.meroTasks[categoryKey];
-
-        for (var priorityKey in category) {
-          var priority = category[priorityKey];
-          var foundTask = priority.find(function (task) {
-            return task.id === taskId;
-          });
-
-          if (foundTask) {
-            // Update the data within the found task object
-            Object.assign(foundTask, updatedTaskData); // Optionally, you can trigger any necessary updates or save the changes to a database
-
-            console.log(this.meroTasks);
-            break; // Exit the loop since the task has been found
-          }
-        }
-      }
-
-      this.updateDataInBackend();
-      this.$bvModal.hide("bv-modal-add-task");
-      this.$Progress.finish();
-    },
-    deleteTask: function deleteTask(id) {
       var _this2 = this;
 
-      this.$Progress.start();
-      var currObj = this;
-      this.$swal({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!"
-      }).then(function (result) {
-        if (result.value) {
-          (function () {
-            // Assuming you have the ID of the task you want to delete
-            var taskId = id; // Find and delete the task from the 'meroTasks' data structure
+      if (this.hasPermission("edit_taskboard")) {
+        (function () {
+          _this2.$Progress.start(); // Assuming you have the ID of the task you want to edit and the updated data
 
-            for (var categoryKey in _this2.meroTasks) {
-              var category = _this2.meroTasks[categoryKey];
 
-              for (var priorityKey in category) {
-                var priority = category[priorityKey];
-                var taskIndex = priority.findIndex(function (task) {
-                  return task.id === taskId;
-                });
+          var taskId = _this2.task.id;
+          var updatedTaskData = {
+            // Updated properties of the task
+            title: _this2.task.title,
+            description: _this2.task.description
+          }; // Find the task in the 'meroTasks' data structure
 
-                if (taskIndex !== -1) {
-                  // Remove the task from the priority array
-                  priority.splice(taskIndex, 1); // Optionally, you can trigger any necessary updates or save the changes to a database
+          for (var categoryKey in _this2.meroTasks) {
+            var category = _this2.meroTasks[categoryKey];
 
-                  _this2.$swal("Info", "Task Successfully Deleted", "success");
+            for (var priorityKey in category) {
+              var priority = category[priorityKey];
+              var foundTask = priority.find(function (task) {
+                return task.id === taskId;
+              });
 
-                  break; // Exit the loop since the task has been deleted
-                }
+              if (foundTask) {
+                // Update the data within the found task object
+                Object.assign(foundTask, updatedTaskData); // Optionally, you can trigger any necessary updates or save the changes to a database
+
+                console.log(_this2.meroTasks);
+                break; // Exit the loop since the task has been found
               }
             }
+          }
 
-            _this2.updateDataInBackend();
+          _this2.updateDataInBackend();
 
-            _this2.$bvModal.hide("bv-modal-add-task");
+          _this2.$bvModal.hide("bv-modal-add-task");
 
-            _this2.$Progress.finish();
-          })();
-        }
-      });
+          _this2.$Progress.finish();
+        })();
+      } else {
+        console.log("permission denied to perform some tasks");
+      }
+    },
+    deleteTask: function deleteTask(id) {
+      var _this3 = this;
+
+      if (this.hasPermission("delete_taskboard")) {
+        this.$Progress.start();
+        var currObj = this;
+        this.$swal({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!"
+        }).then(function (result) {
+          if (result.value) {
+            (function () {
+              // Assuming you have the ID of the task you want to delete
+              var taskId = id; // Find and delete the task from the 'meroTasks' data structure
+
+              for (var categoryKey in _this3.meroTasks) {
+                var category = _this3.meroTasks[categoryKey];
+
+                for (var priorityKey in category) {
+                  var priority = category[priorityKey];
+                  var taskIndex = priority.findIndex(function (task) {
+                    return task.id === taskId;
+                  });
+
+                  if (taskIndex !== -1) {
+                    // Remove the task from the priority array
+                    priority.splice(taskIndex, 1); // Optionally, you can trigger any necessary updates or save the changes to a database
+
+                    _this3.$swal("Info", "Task Successfully Deleted", "success");
+
+                    break; // Exit the loop since the task has been deleted
+                  }
+                }
+              }
+
+              _this3.updateDataInBackend();
+
+              _this3.$bvModal.hide("bv-modal-add-task");
+
+              _this3.$Progress.finish();
+            })();
+          }
+        });
+      } else {
+        console.log("Error while deleting Takboard Task");
+      }
     },
     //end of deleteUnit()
     hasPermission: function hasPermission(action) {
@@ -98672,7 +98712,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* light stylings for the kanban columns */\n.kanban-column {\n  /* min-height: 60px; */\n}\n.status-head-container {\n  margin-top: 20px;\n    display: -webkit-box;\n    display: flex;\n    justify-content: space-around;\n    background: #163373;\n    color: #ffd602;\n}\n.custom-row {\n  display: -webkit-box;\n  display: flex;\n  justify-content: space-around;\n}\n.row-bar h5 {\n  text-align: center;\n  color: white;\n  padding-right: 67px;\n  font-size: 14px;\n  \n  /* letter-spacing: 10px; */\n}\n/* .status-head-container{\n  position: fixed;\n    z-index: 222222;\n    background: #00BCD4;\n    color: white;\n    top: 0;\n    right: 0;\n    left: 0;\n} */\n.task-tittle {\n  font-weight: bold;\n  font-size: 13px;\n}\n.alert-secondary {\n  color: #383d41 !important;\n  background-color: #e2e3e517 !important;\n  border: 0 !important;\n  box-shadow: 1px 1px 7px 1px #eee !important;\n}\n.list-group-item {\n  margin: 4px !important;\n    padding: 0.25rem 0.25rem !important;\n}\n.task-body {\n  font-size: 12px;\n}\n.task-body p {\n  margin: 0;\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* light stylings for the kanban columns */\n.kanban-column {\n  /* min-height: 60px; */\n}\n.status-head-container {\n  margin-top: 20px;\n  display: -webkit-box;\n  display: flex;\n  justify-content: space-around;\n  background: #163373;\n  color: #ffd602;\n}\n.custom-row {\n  display: -webkit-box;\n  display: flex;\n  justify-content: space-around;\n}\n.row-bar h5 {\n  text-align: center;\n  color: white;\n  padding-right: 67px;\n  font-size: 14px;\n\n  /* letter-spacing: 10px; */\n}\n/* .status-head-container{\n  position: fixed;\n    z-index: 222222;\n    background: #00BCD4;\n    color: white;\n    top: 0;\n    right: 0;\n    left: 0;\n} */\n.task-tittle {\n  font-weight: bold;\n  font-size: 13px;\n}\n.alert-secondary {\n  color: #383d41 !important;\n  background-color: #e2e3e517 !important;\n  border: 0 !important;\n  box-shadow: 1px 1px 7px 1px #eee !important;\n}\n.list-group-item {\n  margin: 4px !important;\n  padding: 0.25rem 0.25rem !important;\n}\n.task-body {\n  font-size: 12px;\n}\n.task-body p {\n  margin: 0;\n}\n", ""]);
 
 // exports
 
@@ -186929,10 +186969,11 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "view_weeklyorders" },
+                  attrs: { type: "checkbox", value: "view_weekly_orders" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "view_weeklyorders") > -1
+                      ? _vm._i(_vm.checkedPermissions, "view_weekly_orders") >
+                        -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -186941,7 +186982,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "view_weeklyorders",
+                        var $$v = "view_weekly_orders",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -186963,7 +187004,7 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "view_weeklyorders" }
+                    attrs: { for: "view_weekly_orders" }
                   },
                   [_vm._v("\n            Weekly Order\n          ")]
                 )
@@ -187658,10 +187699,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "add_weeklyorders" },
+                  attrs: { type: "checkbox", value: "add_weekly_orders" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "add_weeklyorders") > -1
+                      ? _vm._i(_vm.checkedPermissions, "add_weekly_orders") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -187670,7 +187711,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "add_weeklyorders",
+                        var $$v = "add_weekly_orders",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -187692,7 +187733,7 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "add_weeklyorders" }
+                    attrs: { for: "add_weekl_yorders" }
                   },
                   [_vm._v("\n            Weekly Order\n          ")]
                 )
@@ -188385,10 +188426,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "edit_weeklyorders" },
+                  attrs: { type: "checkbox", value: "edit_weekly_order" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "edit_weeklyorders") > -1
+                      ? _vm._i(_vm.checkedPermissions, "edit_weekly_order") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -188397,7 +188438,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "edit_weeklyorders",
+                        var $$v = "edit_weekly_order",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -188419,7 +188460,7 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "edit_weeklyorders" }
+                    attrs: { for: "edit_weekly_order" }
                   },
                   [_vm._v("\n            Weekly Order\n          ")]
                 )
@@ -189114,10 +189155,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "delete_weeklyorders" },
+                  attrs: { type: "checkbox", value: "delete_weekly_order" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "delete_weeklyorders") >
+                      ? _vm._i(_vm.checkedPermissions, "delete_weekly_order") >
                         -1
                       : _vm.checkedPermissions
                   },
@@ -189127,7 +189168,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "delete_weeklyorders",
+                        var $$v = "delete_weekly_order",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -189149,7 +189190,7 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "delete_weeklyorders" }
+                    attrs: { for: "delete_weekly_order" }
                   },
                   [_vm._v("\n            Weekly Order\n          ")]
                 )
@@ -189844,10 +189885,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "show_weeklyorders" },
+                  attrs: { type: "checkbox", value: "show_weekly_order" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "show_weeklyorders") > -1
+                      ? _vm._i(_vm.checkedPermissions, "show_weekly_order") > -1
                       : _vm.checkedPermissions
                   },
                   on: {
@@ -189856,7 +189897,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "show_weeklyorders",
+                        var $$v = "show_weekly_order",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -189878,7 +189919,7 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "show_weeklyorders" }
+                    attrs: { for: "show_weekly_order" }
                   },
                   [_vm._v("\n            Weekly Order\n          ")]
                 )
@@ -190573,10 +190614,10 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", value: "search_weeklyorders" },
+                  attrs: { type: "checkbox", value: "search_weekly_order" },
                   domProps: {
                     checked: Array.isArray(_vm.checkedPermissions)
-                      ? _vm._i(_vm.checkedPermissions, "search_weeklyorders") >
+                      ? _vm._i(_vm.checkedPermissions, "search_weekly_order") >
                         -1
                       : _vm.checkedPermissions
                   },
@@ -190586,7 +190627,7 @@ var render = function() {
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
-                        var $$v = "search_weeklyorders",
+                        var $$v = "search_weekly_order",
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
@@ -190608,7 +190649,7 @@ var render = function() {
                   "label",
                   {
                     staticClass: "form-check-label",
-                    attrs: { for: "search_weeklyorders" }
+                    attrs: { for: "search_weekly_order" }
                   },
                   [_vm._v("\n            Weekly Order\n          ")]
                 )
@@ -197517,7 +197558,7 @@ var render = function() {
     [
       _c("h1", { staticClass: "h3 mb-2 text-gray-800" }, [_vm._v("Taskboard")]),
       _vm._v(" "),
-      _vm.hasPermission("add_task")
+      _vm.hasPermission("add_taskboard")
         ? _c(
             "p",
             { staticClass: "mb-4" },
@@ -200321,7 +200362,7 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("td", [
-                            _vm.hasPermission("show_weeklyorder")
+                            _vm.hasPermission("show_weekly_order")
                               ? _c(
                                   "button",
                                   {
@@ -200344,7 +200385,7 @@ var render = function() {
                                 )
                               : _vm._e(),
                             _vm._v(" "),
-                            _vm.hasPermission("edit_weeklyorder")
+                            _vm.hasPermission("edit_weekly_order")
                               ? _c(
                                   "button",
                                   {
@@ -200367,7 +200408,7 @@ var render = function() {
                                 )
                               : _vm._e(),
                             _vm._v(" "),
-                            _vm.hasPermission("delete_weeklyorder")
+                            _vm.hasPermission("delete_weekly_order")
                               ? _c(
                                   "button",
                                   {
@@ -224625,7 +224666,14 @@ var routes = [{
 }, {
   path: '/calendar',
   name: 'calendar',
-  component: __webpack_require__(/*! ./components/calendar/calendar.vue */ "./resources/js/components/calendar/calendar.vue")["default"]
+  component: __webpack_require__(/*! ./components/calendar/calendar.vue */ "./resources/js/components/calendar/calendar.vue")["default"],
+  beforeEnter: function beforeEnter(to, from, next) {
+    var hasAccess = _store__WEBPACK_IMPORTED_MODULE_3__["default"].getters.permissions;
+
+    if (hasAccess.includes('view_events') || hasAccess.includes('all')) {
+      next();
+    }
+  }
 }, {
   path: '/delivery-notes',
   name: 'delivery-notes',

@@ -641,14 +641,14 @@
                 <td>
                   <button
                     class="btn btn-danger custom_btn_table"
-                    v-if="hasPermission('show_weeklyorder')"
+                    v-if="hasPermission('show_weekly_order')"
                     @click="downloadWeeklyOrderPDF(weeklyorder.id)"
                   >
                     <span class="fa fa-file-pdf-o custom_icon_table"></span>
                   </button>
                   <button
                     class="btn btn-success custom_btn_table"
-                    v-if="hasPermission('edit_weeklyorder')"
+                    v-if="hasPermission('edit_weekly_order')"
                     @click="editWeeklyOrder(weeklyorder.id)"
                   >
                     <span class="fa fa-edit custom_icon_table"></span>
@@ -656,7 +656,7 @@
 
                   <button
                     class="btn btn-danger custom_btn_table"
-                    v-if="hasPermission('delete_weeklyorder')"
+                    v-if="hasPermission('delete_weekly_order')"
                     @click="deleteWeeklyOrder(weeklyorder.id)"
                   >
                     <span class="fa fa-trash custom_icon_table"></span>

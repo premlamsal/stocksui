@@ -1,8 +1,8 @@
 <template>
   <div>
-      <!-- Page Heading -->
-      <h1 class="h3 mb-2 text-gray-800">Taskboard</h1>
-    <p class="mb-4" v-if="hasPermission('add_task')">
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Taskboard</h1>
+    <p class="mb-4" v-if="hasPermission('add_taskboard')">
       <b-button
         id="show-btn"
         @click="showAddModal()"
@@ -29,7 +29,10 @@
 
         <div class="form-group">
           <label for="Phone">Description:</label>
-          <textarea v-model="task.description" :class="['form-control']"></textarea>
+          <textarea
+            v-model="task.description"
+            :class="['form-control']"
+          ></textarea>
           <span v-if="errors.description" :class="['errorText']">{{
             errors.description[0]
           }}</span>
@@ -63,7 +66,7 @@
         </div>
       </div>
       <div class="row-bar-contianer">
-        <div class="row-bar"> 
+        <div class="row-bar">
           <h5 style="background: #f44336">HIGH PRIORITY</h5>
         </div>
       </div>
@@ -84,7 +87,9 @@
               >
                 <div
                   class="list-group-item"
-                  @click="editTask(element.id, element.title, element.description)"
+                  @click="
+                    editTask(element.id, element.title, element.description)
+                  "
                 >
                   <!-- <h4>HIGH</h4> -->
                   <div class="task-tittle">
@@ -115,7 +120,9 @@
               >
                 <div
                   class="list-group-item"
-                  @click="editTask(element.id, element.title, element.description)"
+                  @click="
+                    editTask(element.id, element.title, element.description)
+                  "
                 >
                   <!-- <h4>HIGH</h4> -->
                   <div class="task-tittle">
@@ -145,7 +152,9 @@
               >
                 <div
                   class="list-group-item"
-                  @click="editTask(element.id, element.title, element.description)"
+                  @click="
+                    editTask(element.id, element.title, element.description)
+                  "
                 >
                   <!-- <h4>HIGH</h4> -->
                   <div class="task-tittle">
@@ -181,7 +190,9 @@
               >
                 <div
                   class="list-group-item"
-                  @click="editTask(element.id, element.title, element.description)"
+                  @click="
+                    editTask(element.id, element.title, element.description)
+                  "
                 >
                   <!-- <h4>MED</h4> -->
 
@@ -213,7 +224,9 @@
               >
                 <div
                   class="list-group-item"
-                  @click="editTask(element.id, element.title, element.description)"
+                  @click="
+                    editTask(element.id, element.title, element.description)
+                  "
                 >
                   <!-- <h4>MED</h4> -->
 
@@ -244,7 +257,9 @@
               >
                 <div
                   class="list-group-item"
-                  @click="editTask(element.id, element.title, element.description)"
+                  @click="
+                    editTask(element.id, element.title, element.description)
+                  "
                 >
                   <!-- <h4>MED</h4> -->
                   <div class="task-tittle">
@@ -281,7 +296,9 @@
               >
                 <div
                   class="list-group-item"
-                  @click="editTask(element.id, element.title, element.description)"
+                  @click="
+                    editTask(element.id, element.title, element.description)
+                  "
                 >
                   <!-- <h4>LOW</h4> -->
 
@@ -313,7 +330,9 @@
               >
                 <div
                   class="list-group-item"
-                  @click="editTask(element.id, element.title, element.description)"
+                  @click="
+                    editTask(element.id, element.title, element.description)
+                  "
                 >
                   <!-- <h4>LOW</h4> -->
 
@@ -344,7 +363,9 @@
               >
                 <div
                   class="list-group-item"
-                  @click="editTask(element.id, element.title, element.description)"
+                  @click="
+                    editTask(element.id, element.title, element.description)
+                  "
                 >
                   <!-- <h4>LOW</h4> -->
                   <div class="task-tittle">
@@ -515,10 +536,8 @@ export default {
         })
         .catch((error) => {
           console.log(error);
-      this.$Progress.fail();
-
+          this.$Progress.fail();
         });
-
     },
     updateDataInBackend: _.debounce(function () {
       this.$Progress.start();
@@ -527,15 +546,13 @@ export default {
         axios.post("/api/update-tasks", {
           data: this.meroTasks,
         });
-      this.$Progress.finish();
+        this.$Progress.finish();
 
         console.log("Data updated in the backend successfully!");
       } catch (error) {
         console.error("Failed to update data in the backend:", error);
-      this.$Progress.fail();
-
+        this.$Progress.fail();
       }
-
     }, 900),
     showAddModal() {
       this.modalForName = "Add Task";
@@ -560,115 +577,122 @@ export default {
       }
     },
     addTask() {
-      this.$Progress.start();
+      if (this.hasPermission("add_taskboard")) {
+        this.$Progress.start();
 
-      const pushTask = {
-        id: Date.now(),
-        title: this.task.title,
-        description: this.task.description,
-      };
+        const pushTask = {
+          id: Date.now(),
+          title: this.task.title,
+          description: this.task.description,
+        };
 
-      this.meroTasks.toDo.priorityLOW.push(pushTask);
-      this.$bvModal.hide("bv-modal-add-task");
-      this.updateDataInBackend();
-      this.$Progress.finish();
-
-   
+        this.meroTasks.toDo.priorityLOW.push(pushTask);
+        this.$bvModal.hide("bv-modal-add-task");
+        this.updateDataInBackend();
+        this.$Progress.finish();
+      }
     },
     editTask(id, title, description) {
-      this.$Progress.start();
-      this.modalForName = "Edit Task";
-      this.modalForCode = 1; // 1 for Edit
-      this.$bvModal.show("bv-modal-add-task");
-      this.errors = ""; //clearing errors
+      if (this.hasPermission("edit_taskboard")) {
+        this.$Progress.start();
+        this.modalForName = "Edit Task";
+        this.modalForCode = 1; // 1 for Edit
+        this.$bvModal.show("bv-modal-add-task");
+        this.errors = ""; //clearing errors
 
-      Vue.set(this.task, "id", id);
-      Vue.set(this.task, "title", title);
-      Vue.set(this.task, "description", description);
-      this.$Progress.finish();
-
+        Vue.set(this.task, "id", id);
+        Vue.set(this.task, "title", title);
+        Vue.set(this.task, "description", description);
+        this.$Progress.finish();
+      }
     },
 
     updateTask() {
-      this.$Progress.start();
+      if (this.hasPermission("edit_taskboard")) {
+        this.$Progress.start();
 
-      // Assuming you have the ID of the task you want to edit and the updated data
-      const taskId = this.task.id;
-      const updatedTaskData = {
-        // Updated properties of the task
-        title: this.task.title,
-        description: this.task.description,
-      };
+        // Assuming you have the ID of the task you want to edit and the updated data
+        const taskId = this.task.id;
+        const updatedTaskData = {
+          // Updated properties of the task
+          title: this.task.title,
+          description: this.task.description,
+        };
 
-      // Find the task in the 'meroTasks' data structure
-      for (const categoryKey in this.meroTasks) {
-        const category = this.meroTasks[categoryKey];
+        // Find the task in the 'meroTasks' data structure
+        for (const categoryKey in this.meroTasks) {
+          const category = this.meroTasks[categoryKey];
 
-        for (const priorityKey in category) {
-          const priority = category[priorityKey];
+          for (const priorityKey in category) {
+            const priority = category[priorityKey];
 
-          const foundTask = priority.find((task) => task.id === taskId);
+            const foundTask = priority.find((task) => task.id === taskId);
 
-          if (foundTask) {
-            // Update the data within the found task object
-            Object.assign(foundTask, updatedTaskData);
-            // Optionally, you can trigger any necessary updates or save the changes to a database
-            console.log(this.meroTasks);
-            break; // Exit the loop since the task has been found
+            if (foundTask) {
+              // Update the data within the found task object
+              Object.assign(foundTask, updatedTaskData);
+              // Optionally, you can trigger any necessary updates or save the changes to a database
+              console.log(this.meroTasks);
+              break; // Exit the loop since the task has been found
+            }
           }
         }
+
+        this.updateDataInBackend();
+        this.$bvModal.hide("bv-modal-add-task");
+        this.$Progress.finish();
+      } else {
+        console.log("permission denied to perform some tasks");
       }
-
-      this.updateDataInBackend();
-      this.$bvModal.hide("bv-modal-add-task");
-      this.$Progress.finish();
-
     },
 
     deleteTask(id) {
-      this.$Progress.start();
-      let currObj = this;
-      this.$swal({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
-      }).then((result) => {
-        if (result.value) {
-          // Assuming you have the ID of the task you want to delete
-          const taskId = id;
+      if (this.hasPermission("delete_taskboard")) {
+        this.$Progress.start();
+        let currObj = this;
+        this.$swal({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+          if (result.value) {
+            // Assuming you have the ID of the task you want to delete
+            const taskId = id;
 
-          // Find and delete the task from the 'meroTasks' data structure
-          for (const categoryKey in this.meroTasks) {
-            const category = this.meroTasks[categoryKey];
+            // Find and delete the task from the 'meroTasks' data structure
+            for (const categoryKey in this.meroTasks) {
+              const category = this.meroTasks[categoryKey];
 
-            for (const priorityKey in category) {
-              const priority = category[priorityKey];
+              for (const priorityKey in category) {
+                const priority = category[priorityKey];
 
-              const taskIndex = priority.findIndex(
-                (task) => task.id === taskId
-              );
+                const taskIndex = priority.findIndex(
+                  (task) => task.id === taskId
+                );
 
-              if (taskIndex !== -1) {
-                // Remove the task from the priority array
-                priority.splice(taskIndex, 1);
-                // Optionally, you can trigger any necessary updates or save the changes to a database
+                if (taskIndex !== -1) {
+                  // Remove the task from the priority array
+                  priority.splice(taskIndex, 1);
+                  // Optionally, you can trigger any necessary updates or save the changes to a database
 
-                this.$swal("Info", "Task Successfully Deleted", "success");
+                  this.$swal("Info", "Task Successfully Deleted", "success");
 
-                break; // Exit the loop since the task has been deleted
+                  break; // Exit the loop since the task has been deleted
+                }
               }
             }
+            this.updateDataInBackend();
+            this.$bvModal.hide("bv-modal-add-task");
+            this.$Progress.finish();
           }
-          this.updateDataInBackend();
-         this.$bvModal.hide("bv-modal-add-task");
-         this.$Progress.finish();
-
-        }
-      });
+        });
+      } else {
+        console.log("Error while deleting Takboard Task");
+      }
     }, //end of deleteUnit()
     hasPermission(action) {
       let permissions_from_store = this.$store.getters.permissions;
@@ -715,11 +739,11 @@ export default {
 }
 .status-head-container {
   margin-top: 20px;
-    display: -webkit-box;
-    display: flex;
-    justify-content: space-around;
-    background: #163373;
-    color: #ffd602;
+  display: -webkit-box;
+  display: flex;
+  justify-content: space-around;
+  background: #163373;
+  color: #ffd602;
 }
 .custom-row {
   display: flex;
@@ -730,7 +754,7 @@ export default {
   color: white;
   padding-right: 67px;
   font-size: 14px;
-  
+
   /* letter-spacing: 10px; */
 }
 /* .status-head-container{
@@ -754,7 +778,7 @@ export default {
 }
 .list-group-item {
   margin: 4px !important;
-    padding: 0.25rem 0.25rem !important;
+  padding: 0.25rem 0.25rem !important;
 }
 .task-body {
   font-size: 12px;
@@ -762,5 +786,4 @@ export default {
 .task-body p {
   margin: 0;
 }
-
 </style>

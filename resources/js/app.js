@@ -156,6 +156,12 @@ let routes = [
     path: '/calendar',
     name:'calendar',
     component: require('./components/calendar/calendar.vue').default,
+    beforeEnter(to, from, next) {
+      let hasAccess = store.getters.permissions
+      if (hasAccess.includes('view_events') || hasAccess.includes('all')) {
+        next()
+      }
+    }
 
   },
   

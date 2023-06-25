@@ -24,10 +24,10 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="view_weeklyorders"
+              value="view_weekly_orders"
               v-model="checkedPermissions"
             />
-            <label class="form-check-label" for="view_weeklyorders">
+            <label class="form-check-label" for="view_weekly_orders">
               Weekly Order
             </label>
           </div>
@@ -175,10 +175,10 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="add_weeklyorders"
+              value="add_weekly_orders"
               v-model="checkedPermissions"
             />
-            <label class="form-check-label" for="add_weeklyorders">
+            <label class="form-check-label" for="add_weekl_yorders">
               Weekly Order
             </label>
           </div>
@@ -323,10 +323,10 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="edit_weeklyorders"
+              value="edit_weekly_order"
               v-model="checkedPermissions"
             />
-            <label class="form-check-label" for="edit_weeklyorders">
+            <label class="form-check-label" for="edit_weekly_order">
               Weekly Order
             </label>
           </div>
@@ -470,10 +470,10 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="delete_weeklyorders"
+              value="delete_weekly_order"
               v-model="checkedPermissions"
             />
-            <label class="form-check-label" for="delete_weeklyorders">
+            <label class="form-check-label" for="delete_weekly_order">
               Weekly Order
             </label>
           </div>
@@ -621,10 +621,10 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="show_weeklyorders"
+              value="show_weekly_order"
               v-model="checkedPermissions"
             />
-            <label class="form-check-label" for="show_weeklyorders">
+            <label class="form-check-label" for="show_weekly_order">
               Weekly Order
             </label>
           </div>
@@ -768,10 +768,10 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value="search_weeklyorders"
+              value="search_weekly_order"
               v-model="checkedPermissions"
             />
-            <label class="form-check-label" for="search_weeklyorders">
+            <label class="form-check-label" for="search_weekly_order">
               Weekly Order
             </label>
           </div>
