@@ -36,6 +36,66 @@
             <div class="row">
               <div class="col-5 col-md-4">
                 <div class="icon-big text-center icon-warning">
+                  <i class="nc-icon nc-map-big text-warning"></i>
+                </div>
+              </div>
+              <div class="col-7 col-md-8">
+                <div class="numbers">
+                  <p class="card-category">Calendar Events</p>
+                  <p class="card-title">
+                    {{ dash.events }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <hr />
+            <div class="stats">
+              <router-link to="/calendar" aria-expanded="false">
+                <i class="nc-icon nc-map-big"></i>
+                <span>Calendar Events</span>
+              </router-link>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-5 col-md-4">
+                <div class="icon-big text-center icon-warning">
+                  <i class="nc-icon nc-bullet-list-67 text-warning"></i>
+                </div>
+              </div>
+              <div class="col-7 col-md-8">
+                <div class="numbers">
+                  <p class="card-category">Categories</p>
+                  <p class="card-title">
+                    {{ dash.contacts }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <hr />
+            <div class="stats">
+              <router-link to="/users" aria-expanded="false">
+                <i class="nc-icon nc-bullet-list-67"></i>
+                <span>Categories</span>
+              </router-link>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-5 col-md-4">
+                <div class="icon-big text-center icon-warning">
                   <i class="nc-icon nc-badge text-success"></i>
                 </div>
               </div>
@@ -58,19 +118,22 @@
           </div>
         </div>
       </div>
+     
       <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
           <div class="card-body">
             <div class="row">
               <div class="col-5 col-md-4">
                 <div class="icon-big text-center icon-warning">
-                  <i class="nc-icon nc-delivery-fast text-danger"></i>
+                  <i class="nc-icon nc-ruler-pencil text-danger"></i>
                 </div>
               </div>
               <div class="col-7 col-md-8">
                 <div class="numbers">
-                  <p class="card-category">Suppliers</p>
-                  <p class="card-title">{{ dash.supplier }}</p>
+                  <p class="card-category">Notes</p>
+                  <p class="card-title">
+                    {{ dash.notes }}
+                  </p>
                 </div>
               </div>
             </div>
@@ -78,9 +141,9 @@
           <div class="card-footer">
             <hr />
             <div class="stats">
-              <router-link to="/suppliers" aria-expanded="false">
-                <i class="nc-icon nc-delivery-fast"></i>
-                <span>Suppliers</span>
+              <router-link to="/notes" aria-expanded="false">
+                <i class="nc-icon nc-ruler-pencil"></i>
+                <span>Notes</span>
               </router-link>
             </div>
           </div>
@@ -123,15 +186,13 @@
             <div class="row">
               <div class="col-5 col-md-4">
                 <div class="icon-big text-center icon-warning">
-                  <i class="nc-icon nc-cart-simple text-info"></i>
+                  <i class="nc-icon nc-delivery-fast text-danger"></i>
                 </div>
               </div>
               <div class="col-7 col-md-8">
                 <div class="numbers">
-                  <p class="card-category">Weekly Orders</p>
-                  <p class="card-title">
-                    {{ dash.weekly_orders }}
-                  </p>
+                  <p class="card-category">Suppliers</p>
+                  <p class="card-title">{{ dash.supplier }}</p>
                 </div>
               </div>
             </div>
@@ -139,69 +200,9 @@
           <div class="card-footer">
             <hr />
             <div class="stats">
-              <router-link to="/weekly-orders" aria-expanded="false">
-                <i class="nc-icon nc-cart-simple"></i>
-                <span>Weekly Orders</span>
-              </router-link>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="card card-stats">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-5 col-md-4">
-                <div class="icon-big text-center icon-warning">
-                  <i class="nc-icon nc-ruler-pencil text-danger"></i>
-                </div>
-              </div>
-              <div class="col-7 col-md-8">
-                <div class="numbers">
-                  <p class="card-category">Notes</p>
-                  <p class="card-title">
-                    {{ dash.notes }}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <hr />
-            <div class="stats">
-              <router-link to="/notes" aria-expanded="false">
-                <i class="nc-icon nc-ruler-pencil"></i>
-                <span>Notes</span>
-              </router-link>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="card card-stats">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-5 col-md-4">
-                <div class="icon-big text-center icon-warning">
-                  <i class="nc-icon nc-single-02 text-warning"></i>
-                </div>
-              </div>
-              <div class="col-7 col-md-8">
-                <div class="numbers">
-                  <p class="card-category">Users</p>
-                  <p class="card-title">
-                    {{ dash.users }}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <hr />
-            <div class="stats">
-              <router-link to="/users" aria-expanded="false">
-                <i class="nc-icon nc-single-02"></i>
-                <span>Users</span>
+              <router-link to="/suppliers" aria-expanded="false">
+                <i class="nc-icon nc-delivery-fast"></i>
+                <span>Suppliers</span>
               </router-link>
             </div>
           </div>
@@ -237,20 +238,21 @@
           </div>
         </div>
       </div>
+     
       <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
           <div class="card-body">
             <div class="row">
               <div class="col-5 col-md-4">
                 <div class="icon-big text-center icon-warning">
-                  <i class="nc-icon nc-map-big text-warning"></i>
+                  <i class="nc-icon nc-cart-simple text-info"></i>
                 </div>
               </div>
               <div class="col-7 col-md-8">
                 <div class="numbers">
-                  <p class="card-category">Calendar Events</p>
+                  <p class="card-category">Weekly Orders</p>
                   <p class="card-title">
-                    {{ dash.events }}
+                    {{ dash.weekly_orders }}
                   </p>
                 </div>
               </div>
@@ -259,14 +261,17 @@
           <div class="card-footer">
             <hr />
             <div class="stats">
-              <router-link to="/calendar" aria-expanded="false">
-                <i class="nc-icon nc-map-big"></i>
-                <span>Calendar Events</span>
+              <router-link to="/weekly-orders" aria-expanded="false">
+                <i class="nc-icon nc-cart-simple"></i>
+                <span>Weekly Orders</span>
               </router-link>
             </div>
           </div>
         </div>
       </div>
+     
+     
+      
     </div>
 
     <!--  <div class="row">

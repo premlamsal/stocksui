@@ -57,24 +57,25 @@
                                 </router-link>
                             </li>
                         @endcan
-
-                        @can('hasPermission', 'view_weekly_orders')
-                            <li>
-                                <router-link to="/weekly-orders" aria-expanded="false">
-                                    <i class="nc-icon nc-cart-simple"></i>
-                                    <span>Weekly Orders</span>
-                                </router-link>
-                            </li>
-                        @endcan
-
                         @can('hasPermission', 'view_categories')
-                            <li>
-                                <router-link to="/categories" aria-expanded="false">
-                                    <i class="nc-icon nc-bullet-list-67"></i>
-                                    <span>Categories</span>
-                                </router-link>
-                            </li>
-                        @endcan
+                        <li>
+                            <router-link to="/categories" aria-expanded="false">
+                                <i class="nc-icon nc-bullet-list-67"></i>
+                                <span>Categories</span>
+                            </router-link>
+                        </li>
+                    @endcan
+                    @can('hasPermission', 'view_contacts')
+                    <li>
+                        <router-link to="/contacts" aria-expanded="false">
+                            <i class="nc-icon nc-badge"></i>
+                            <span>Contact List</span>
+                        </router-link>
+                    </li>
+                @endcan
+                       
+
+                      
                         @can('hasPermission', 'view_notes')
                             <li>
                                 <router-link to="/notes" aria-expanded="false">
@@ -83,7 +84,26 @@
                                 </router-link>
                             </li>
                         @endcan
+                    
 
+                        @can('hasPermission', 'view_products')
+                            <li>
+                                <router-link to="/products" aria-expanded="false">
+                                    <i class="nc-icon nc-tile-56"></i>
+                                    <span>Product List</span>
+                                </router-link>
+                            </li>
+                        @endcan
+
+
+                        @can('hasPermission', 'view_suppliers')
+                            <li>
+                                <router-link to="/suppliers" aria-expanded="false">
+                                    <i class="nc-icon nc-delivery-fast"></i>
+                                    <span>Suppliers</span>
+                                </router-link>
+                            </li>
+                        @endcan
                         {{-- @can('hasPermission', 'view_pick_lists')
                             <li>
                                 <router-link to="/pick-lists" aria-expanded="false">
@@ -112,32 +132,16 @@
                         @endcan --}}
 
 
-                        @can('hasPermission', 'view_products')
-                            <li>
-                                <router-link to="/products" aria-expanded="false">
-                                    <i class="nc-icon nc-tile-56"></i>
-                                    <span>Product List</span>
-                                </router-link>
-                            </li>
-                        @endcan
-                        @can('hasPermission', 'view_contacts')
-                            <li>
-                                <router-link to="/contacts" aria-expanded="false">
-                                    <i class="nc-icon nc-badge"></i>
-                                    <span>Contact List</span>
-                                </router-link>
-                            </li>
-                        @endcan
+                     
 
-                        @can('hasPermission', 'view_suppliers')
-                            <li>
-                                <router-link to="/suppliers" aria-expanded="false">
-                                    <i class="nc-icon nc-delivery-fast"></i>
-                                    <span>Suppliers</span>
-                                </router-link>
-                            </li>
-                        @endcan
-
+                        @can('hasPermission', 'view_weekly_orders')
+                        <li>
+                            <router-link to="/weekly-orders" aria-expanded="false">
+                                <i class="nc-icon nc-cart-simple"></i>
+                                <span>Weekly Orders</span>
+                            </router-link>
+                        </li>
+                    @endcan
                         {{-- @can('hasPermission', 'view_delivery_notes')
                             <li>
                                 <router-link to="/delivery-notes" aria-expanded="false">
