@@ -21349,8 +21349,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var html2pdf_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! html2pdf.js */ "./node_modules/html2pdf.js/dist/html2pdf.js");
 /* harmony import */ var html2pdf_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(html2pdf_js__WEBPACK_IMPORTED_MODULE_0__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -21677,9 +21675,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    var _ref;
-
-    return _ref = {
+    return {
       files: [],
       //contains all the retrived files from the database
       file: {},
@@ -21690,8 +21686,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       showbowlpdf: true,
       arrayKeys: ["id", "name", "description"],
       currentDateTime: "",
-      folders: []
-    }, _defineProperty(_ref, "file", {}), _defineProperty(_ref, "selectedFile", ""), _defineProperty(_ref, "imagePreview", ""), _defineProperty(_ref, "errors", []), _defineProperty(_ref, "pagination", {}), _defineProperty(_ref, "isLoading", ""), _defineProperty(_ref, "files_export_fileds", ["name", "description"]), _ref;
+      folders: [],
+      uploadFile: "",
+      selectedFile: "",
+      imagePreview: "",
+      errors: [],
+      pagination: {},
+      isLoading: "",
+      files_export_fileds: ["name", "description"]
+    };
   },
   created: function created() {
     //this block will execute when component created
@@ -21773,7 +21776,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$Progress.start(); // alert("File Selected");
 
       this.imagePreview = "/img/Rolling-1s-200px.svg";
-      this.file = e.target.files[0]; // this.file=e.target.files[0];
+      this.uploadFile = e.target.files[0]; // this.file=e.target.files[0];
 
       var currObj = this; // this.product.image=this.image;
 
@@ -21799,13 +21802,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         /*
           Ensure the file is an image file.
         */
-        if (/\.(jpe?g|png|gif)$/i.test(this.file.name)) {
+        if (/\.(jpe?g|png|gif)$/i.test(this.uploadFile.name)) {
           /*
             Fire the readAsDataURL method which will read the file in and
             upon completion fire a 'load' event which we will listen to and
             display the image in the preview.
           */
-          reader.readAsDataURL(this.file);
+          reader.readAsDataURL(this.uploadFile);
         }
       }
 
@@ -21856,13 +21859,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       };
       var formData = new FormData();
-      formData.append("file", this.file);
+      formData.append("upload_file", this.uploadFile);
       formData.append("_method", "POST"); //add this otherwise data won't pass to backend
       // formData.append('id',this.product.id);
 
       formData.append("name", this.file.name);
       formData.append("description", this.file.description);
-      formData.append("folder_id", this.product.folder_id);
+      formData.append("folder_id", this.file.folder_id);
       axios.post("/api/file", formData, config).then(function (response) {
         currObj.output = response.data.msg;
         currObj.status = response.data.status;
@@ -21901,8 +21904,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         Vue.set(_this2.file, "name", response.data.file.name);
         Vue.set(_this2.file, "description", response.data.file.description);
         Vue.set(_this2.file, "folder_id", response.data.file.folder_id);
-        _this2.imagePreview = response.data.product.image;
-        _this2.file = response.data.product.image;
+        _this2.imagePreview = response.data.file.image;
+        _this2.uploadFile = response.data.file.uploadFile;
         Vue.set(_this2.file, "id", id); //to send id to the update controller
 
         _this2.$Progress.finish();
@@ -21922,7 +21925,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var formData = new FormData();
       formData.append("_method", "PUT"); //add this otherwise data won't pass to backend
 
-      formData.append("file", this.file);
+      formData.append("upload_file", this.uploadFile);
       formData.append("name", this.file.name);
       formData.append("description", this.file.description);
       formData.append("folder_id", this.file.folder_id);

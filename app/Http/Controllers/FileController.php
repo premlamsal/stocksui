@@ -26,7 +26,7 @@ class FileController extends Controller
 
         $store_id = $user->stores[0]->id;
 
-        return FileResource::collection(File::paginate(8));
+        return FileResource::collection(File::with('user')->paginate(8));
     }
 
     public function store(Request $request)
@@ -44,9 +44,9 @@ class FileController extends Controller
 
             'description' => 'required',
 
-            'folder_id' =>'required',
+            'folder_id' => 'required',
 
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4048',
+            'upload_file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4048',
 
 
         ]);
@@ -63,16 +63,18 @@ class FileController extends Controller
         // $file->file_location = $request->input('file_location');
 
 
-        if ($request->hasFile('file')) {
-            $fileName = '/merofiles/' . time() . '.' . $request->file->getClientOriginalExtension();
-            $request->file->move(public_path('merofiles'), $fileName);
+
+        if ($request->hasFile('upload_file')) {
+            $fileName = '/merofiles/' . time() . '.' . $request->upload_file->getClientOriginalExtension();
+            $request->upload_file->move(public_path('merofiles'), $fileName);
             $file->file_location = $fileName;
+            $file->original_file_name = $request->upload_file->getClientOriginalName();
         }
 
 
         $file->user_id = Auth::user()->id;
 
-        $file->status ='active';
+        $file->status = 'active';
 
         if ($file->save()) {
 
@@ -101,7 +103,7 @@ class FileController extends Controller
 
         $this->validate($request, [
 
-          
+
             'name'    => 'required',
 
             'description' => 'required',
@@ -114,7 +116,7 @@ class FileController extends Controller
         $id = $request->input('id'); //get id from edit modal
 
         $file = File::where('id', $id)->first();
-        
+
         $file->name = $request->input('name');
 
         $file->description = $request->input('description');
@@ -124,18 +126,20 @@ class FileController extends Controller
         //file 
         // $file->file_location = $request->input('file_location');
 
-        
-        if ($request->hasFile('file')) {
 
-            $img_ext = $request->file->getClientOriginalExtension();
+        if ($request->hasFile('uploadFile')) {
+
+            $file_ext = $request->uploadFile->getClientOriginalExtension();
 
             $checkExt = array("jpg", "png", "jpeg");
 
-            if (in_array($img_ext, $checkExt)) {
+            if (in_array($file_ext, $checkExt)) {
 
-                $fileName = '/merofiles/' . time() . '.' . $request->file->getClientOriginalExtension();
-                $request->file->move(public_path('merofiles'), $fileName);
+                $fileName = '/merofiles/' . time() . '.' . $request->uploadFile->getClientOriginalExtension();
+                $request->uploadFile->move(public_path('merofiles'), $fileName);
                 $file->file_location = $fileName;
+                $file->original_file_name = $request->upload_file->getClientOriginalName();
+
             } else {
                 return response()->json([
                     'msg' => 'Opps! My Back got cracked while working in Database',
@@ -147,7 +151,7 @@ class FileController extends Controller
 
         $file->user_id = Auth::user()->id;
 
-        $file->status ='active';
+        $file->status = 'active';
 
         if ($file->save()) {
 
