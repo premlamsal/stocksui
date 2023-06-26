@@ -41,7 +41,7 @@ class EventController extends Controller
 
         $this->validate($request, [
 
-            'title'    => 'required|text',
+            'title'    => 'required',
 
             'start' => 'required',
 
@@ -105,7 +105,7 @@ class EventController extends Controller
 
         $this->validate($request, [
 
-            'title'    => 'required|text',
+            'title'    => 'required',
 
             'start' => 'required',
 

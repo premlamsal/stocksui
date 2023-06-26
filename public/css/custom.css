@@ -158,16 +158,16 @@ button.btn.custom_btn_table {
 
 .sidebar .logo,
 .off-canvas-sidebar .logo {
-    bottom: 80px !important; 
+    /* bottom: 80px !important;  */
     background: var(--favblue);
 
-    height: 100%;
+    /* height: 100%; */
 }
 
 .sidebar .sidebar-wrapper,
 .off-canvas-sidebar .sidebar-wrapper {
-    background: var(--favblue);
-    height: calc(100vh - 32%) !important;
+    /* background: var(--favblue); */
+    /* height: calc(100vh - 32%) !important; */
 }
 
 .sidebar li a {
@@ -360,3 +360,27 @@ a.fc-daygrid-dot-event .fc-daygrid-event-dot{
 .sidebar .logo, .off-canvas-sidebar .logo {
     padding: 7px 1.7rem;
 }
+.table{
+    overflow: scroll !important;
+}
+.logo-image-small {
+    width: 70%;
+    margin: 0 auto;
+}
+.fc-daygrid-event{
+    display: block!important;
+    padding-left: 15px!important;
+  }
+  .fc-daygrid-event {
+    white-space: normal !important;
+    align-items: normal !important;
+  }
+  .fc-daygrid-event-dot{
+    display: inline-flex;
+    position: absolute;
+    left: 0px;
+    top: 6px;
+  }
+  .fc-event-time,.fc-event-title{
+    display: inline;
+  }

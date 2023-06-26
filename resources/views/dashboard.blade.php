@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('img/logo1.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('img/logo1.png') }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
@@ -37,8 +37,21 @@
         <div class="wrapper ">
             <div class="sidebar" data-color="black" data-active-color="danger">
 
-
+                <div class="logo">
+                    <a href="#" class="simple-text logo-mini">
+                        <div class="logo-image-small">
+                            <img src="{{ asset('img/logo1.png') }}">
+                        </div>
+                    </a>
+                    {{-- <a href="/" class="simple-text logo-normal"> --}}
+                        {{-- {{ config('app.name', 'Laravel') }} --}}
+                        <!-- <div class="logo-image-big">
+            <img src="../assets/img/logo-big.png">
+          </div> -->
+                    {{-- </a> --}}
+                </div>
                 <div class="sidebar-wrapper">
+                    
                     <ul class="nav">
 
                         <li>
@@ -195,19 +208,7 @@
                     </ul>
 
                 </div>
-                <div class="logo">
-                    <a href="#" class="simple-text logo-mini">
-                        <div class="logo-image-small">
-                            <img src="{{ asset('img/logo1.png') }}">
-                        </div>
-                    </a>
-                    {{-- <a href="/" class="simple-text logo-normal"> --}}
-                        {{-- {{ config('app.name', 'Laravel') }} --}}
-                        <!-- <div class="logo-image-big">
-            <img src="../assets/img/logo-big.png">
-          </div> -->
-                    {{-- </a> --}}
-                </div>
+                
             </div>
 
             <div class="main-panel">
