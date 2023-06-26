@@ -23,7 +23,16 @@
           <input type="hidden" v-model="event.id" />
           <label for="Title">Title:</label>
           <!--  <input type="text"  v-model="event.title" :class="['form-control', errors.title ? 'is-invalid' : '']"> -->
-          <input type="text" v-model="event.title" :class="['form-control']" :disabled="!hasPermission('add_event') || !hasPermission('edit_event') || !hasPermission('show_event')" />
+          <input
+            type="text"
+            v-model="event.title"
+            :class="['form-control']"
+            :disabled="
+              !hasPermission('add_event') ||
+              !hasPermission('edit_event') ||
+              !hasPermission('show_event')
+            "
+          />
           <span v-if="errors.title" :class="['errorText']">{{
             errors.title[0]
           }}</span>
@@ -36,7 +45,11 @@
             v-model="event.start"
             :config="options"
             :class="['form-control']"
-            :disabled="!hasPermission('add_event') || !hasPermission('edit_event') || !hasPermission('show_event')" 
+            :disabled="
+              !hasPermission('add_event') ||
+              !hasPermission('edit_event') ||
+              !hasPermission('show_event')
+            "
           ></date-picker>
 
           <span v-if="errors.start" :class="['errorText']">{{
@@ -51,7 +64,11 @@
             v-model="event.end"
             :config="options"
             :class="['form-control']"
-            :disabled="!hasPermission('add_event') || !hasPermission('edit_event') || !hasPermission('show_event')" 
+            :disabled="
+              !hasPermission('add_event') ||
+              !hasPermission('edit_event') ||
+              !hasPermission('show_event')
+            "
           ></date-picker>
 
           <span v-if="errors.end" :class="['errorText']">{{
@@ -64,15 +81,23 @@
           <textarea
             v-model="event.description"
             :class="['form-control']"
-            :disabled="!hasPermission('add_event') || !hasPermission('edit_event') || !hasPermission('show_event')" 
+            :disabled="
+              !hasPermission('add_event') ||
+              !hasPermission('edit_event') ||
+              !hasPermission('show_event')
+            "
           ></textarea>
           <span v-if="errors.description" :class="['errorText']">{{
             errors.description[0]
           }}</span>
         </div>
 
-        <div class="form-group" >
-          <label for="color-picker" v-if="hasPermission('add_event') || hasPermission('edit_event')" >Pick a color for event:</label>
+        <div class="form-group">
+          <label
+            for="color-picker"
+            v-if="hasPermission('add_event') || hasPermission('edit_event')"
+            >Pick a color for event:</label
+          >
           <!-- Red - Holiday- F44336
 Blue - Interview-#2196F3
 Green - Meeting#4CAF50
@@ -110,18 +135,22 @@ Yellow - Other #ff9800-->
         </div>
       </div>
 
-      <b-button class="btn-primary mt-3" block @click="callFunc" v-if="hasPermission('add_event') || hasPermission('edit_event')">{{
-        modalForName
-      }}</b-button>
-      <div  v-if="hasPermission('delete_event')">
       <b-button
-        class="btn-danger mt-3"
+        class="btn-primary mt-3"
         block
-        @click="deleteEvent(event.id)"
-        v-if="modalForCode"
-        >Delete this event</b-button
+        @click="callFunc"
+        v-if="hasPermission('add_event') || hasPermission('edit_event')"
+        >{{ modalForName }}</b-button
       >
-    </div>
+      <div v-if="hasPermission('delete_event')">
+        <b-button
+          class="btn-danger mt-3"
+          block
+          @click="deleteEvent(event.id)"
+          v-if="modalForCode"
+          >Delete this event</b-button
+        >
+      </div>
     </b-modal>
     <!-- add event modal end-->
 
@@ -238,31 +267,31 @@ export default {
       this.event.back_color = "";
     },
     setEventColor(temp) {
-      if(this.hasPermission('add_event')|| this.hasPermission('edit_event')){
-      // Red - Holiday #F44336
-      // Blue - Interview #2196F3
-      // Green - Meeting #4CAF50
-      // Yellow - Other #ff9800
-      if (temp === "holiday") {
-        this.event.type = "holiday";
-        this.event.back_color = "#F44336";
-      } else if (temp === "interview") {
-        this.event.back_color = "#2196F3";
-        this.event.type = "interview";
-      } else if (temp === "meeting") {
-        this.event.back_color = "#4CAF50";
-        this.event.type = "meeting";
-      } else if (temp === "other") {
-        this.event.back_color = "#ff9800";
-        this.event.type = "other";
-      } else {
-        this.event.back_color = "#eee";
-        this.event.type = "nothing";
+      if (this.hasPermission("add_event") || this.hasPermission("edit_event")) {
+        // Red - Holiday #F44336
+        // Blue - Interview #2196F3
+        // Green - Meeting #4CAF50
+        // Yellow - Other #ff9800
+        if (temp === "holiday") {
+          this.event.type = "holiday";
+          this.event.back_color = "#F44336";
+        } else if (temp === "interview") {
+          this.event.back_color = "#2196F3";
+          this.event.type = "interview";
+        } else if (temp === "meeting") {
+          this.event.back_color = "#4CAF50";
+          this.event.type = "meeting";
+        } else if (temp === "other") {
+          this.event.back_color = "#ff9800";
+          this.event.type = "other";
+        } else {
+          this.event.back_color = "#eee";
+          this.event.type = "nothing";
+        }
+        console.log(this.event.back_color);
+        console.log(this.event.type);
       }
-      console.log(this.event.back_color);
-      console.log(this.event.type);
-    }
-  },
+    },
     // selectColor(color){
     //   this.event = {
     //     ...this.event,
@@ -345,60 +374,57 @@ export default {
       }
     },
     editEvent(id) {
-      
+      this.$Progress.start();
+      this.removeEventColor();
 
-        this.$Progress.start();
-        this.removeEventColor();
-
-        let currObj = this;
-        if(this.hasPermission('edit_event')){
-          this.modalForName = "Edit Event";
+      let currObj = this;
+      if (this.hasPermission("edit_event")) {
+        this.modalForName = "Edit Event";
         this.modalForCode = 1; // 1 for Edit
-        }else{
-          this.modalForName = "View Event";
-        }
-      
-        this.$bvModal.show("bv-modal-add-event");
-        currObj.errors = ""; //clearing errors
-        axios
-          .get("/api/event/" + id)
-          .then((response) => {
-            // console.log(response.data.unit)
-            Vue.set(this.event, "title", response.data.event.title);
-            Vue.set(this.event, "start", response.data.event.start);
-            // Vue.set(this.event, "cssClass", response.data.event.back_color);
+      } else {
+        this.modalForName = "View Event";
+      }
 
-            let temp = response.data.event.back_color;
-            if (temp === "#F44336") {
-              Vue.set(this.event, "type", "holiday");
-              Vue.set(this.event, "back_color", "#F44336");
-            } else if (temp === "#2196F3") {
-              Vue.set(this.event, "type", "interview");
-              Vue.set(this.event, "back_color", "#2196F3");
-            } else if (temp === "#4CAF50") {
-              Vue.set(this.event, "type", "meeting");
-              Vue.set(this.event, "back_color", "#4CAF50");
-            } else if (temp === "#ff9800") {
-              Vue.set(this.event, "type", "other");
-              Vue.set(this.event, "back_color", "#ff9800");
-            } else {
-              Vue.set(this.event, "type", "nothing");
-              Vue.set(this.event, "back_color", "#eee");
-            }
+      this.$bvModal.show("bv-modal-add-event");
+      currObj.errors = ""; //clearing errors
+      axios
+        .get("/api/event/" + id)
+        .then((response) => {
+          // console.log(response.data.unit)
+          Vue.set(this.event, "title", response.data.event.title);
+          Vue.set(this.event, "start", response.data.event.start);
+          // Vue.set(this.event, "cssClass", response.data.event.back_color);
 
-            // Vue.set(this.event, "back_color", response.data.event.back_color);
-            // Vue.set(this.event, "text_color", response.data.event.text_color);
-            Vue.set(this.event, "end", response.data.event.end);
-            Vue.set(this.event, "description", response.data.event.description);
+          let temp = response.data.event.back_color;
+          if (temp === "#F44336") {
+            Vue.set(this.event, "type", "holiday");
+            Vue.set(this.event, "back_color", "#F44336");
+          } else if (temp === "#2196F3") {
+            Vue.set(this.event, "type", "interview");
+            Vue.set(this.event, "back_color", "#2196F3");
+          } else if (temp === "#4CAF50") {
+            Vue.set(this.event, "type", "meeting");
+            Vue.set(this.event, "back_color", "#4CAF50");
+          } else if (temp === "#ff9800") {
+            Vue.set(this.event, "type", "other");
+            Vue.set(this.event, "back_color", "#ff9800");
+          } else {
+            Vue.set(this.event, "type", "nothing");
+            Vue.set(this.event, "back_color", "#eee");
+          }
 
-            Vue.set(this.event, "id", id); //to send id to the update controller
-            this.$Progress.finish();
-          })
-          .catch((error) => {
-            // console.log(error)
-            this.$Progress.fail();
-          });
-      
+          // Vue.set(this.event, "back_color", response.data.event.back_color);
+          // Vue.set(this.event, "text_color", response.data.event.text_color);
+          Vue.set(this.event, "end", response.data.event.end);
+          Vue.set(this.event, "description", response.data.event.description);
+
+          Vue.set(this.event, "id", id); //to send id to the update controller
+          this.$Progress.finish();
+        })
+        .catch((error) => {
+          // console.log(error)
+          this.$Progress.fail();
+        });
     },
     updateEvent() {
       if (this.hasPermission("edit_event")) {

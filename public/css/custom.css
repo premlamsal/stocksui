@@ -167,7 +167,7 @@ button.btn.custom_btn_table {
 .sidebar .sidebar-wrapper,
 .off-canvas-sidebar .sidebar-wrapper {
     background: var(--favblue);
-
+    height: calc(100vh - 32%) !important;
 }
 
 .sidebar li a {
@@ -355,7 +355,7 @@ a.fc-daygrid-dot-event .fc-daygrid-event-dot{
 }
 .sidebar .logo,
 .off-canvas-sidebar .logo {
-    bottom: 230px !important;  
+    /* bottom: 230px !important;   */
 }
 .sidebar .logo, .off-canvas-sidebar .logo {
     padding: 7px 1.7rem;

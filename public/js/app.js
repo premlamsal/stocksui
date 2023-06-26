@@ -18207,6 +18207,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -18298,7 +18327,7 @@ __webpack_require__.r(__webpack_exports__);
       this.event.back_color = "";
     },
     setEventColor: function setEventColor(temp) {
-      if (this.hasPermission('add_event') || this.hasPermission('edit_event')) {
+      if (this.hasPermission("add_event") || this.hasPermission("edit_event")) {
         // Red - Holiday #F44336
         // Blue - Interview #2196F3
         // Green - Meeting #4CAF50
@@ -18402,7 +18431,7 @@ __webpack_require__.r(__webpack_exports__);
       this.removeEventColor();
       var currObj = this;
 
-      if (this.hasPermission('edit_event')) {
+      if (this.hasPermission("edit_event")) {
         this.modalForName = "Edit Event";
         this.modalForCode = 1; // 1 for Edit
       } else {
