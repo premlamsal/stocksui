@@ -46,6 +46,9 @@ class FileController extends Controller
 
             'folder_id' =>'required',
 
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4048',
+
+
         ]);
 
         $file = new File();
@@ -58,6 +61,13 @@ class FileController extends Controller
 
         //file 
         // $file->file_location = $request->input('file_location');
+
+
+        if ($request->hasFile('file')) {
+            $fileName = '/merofiles/' . time() . '.' . $request->file->getClientOriginalExtension();
+            $request->file->move(public_path('merofiles'), $fileName);
+            $file->file_location = $fileName;
+        }
 
 
         $file->user_id = Auth::user()->id;
@@ -96,7 +106,7 @@ class FileController extends Controller
 
             'description' => 'required',
 
-
+            'folder_id' => 'required',
 
 
         ]);
@@ -113,6 +123,26 @@ class FileController extends Controller
 
         //file 
         // $file->file_location = $request->input('file_location');
+
+        
+        if ($request->hasFile('file')) {
+
+            $img_ext = $request->file->getClientOriginalExtension();
+
+            $checkExt = array("jpg", "png", "jpeg");
+
+            if (in_array($img_ext, $checkExt)) {
+
+                $fileName = '/merofiles/' . time() . '.' . $request->file->getClientOriginalExtension();
+                $request->file->move(public_path('merofiles'), $fileName);
+                $file->file_location = $fileName;
+            } else {
+                return response()->json([
+                    'msg' => 'Opps! My Back got cracked while working in Database',
+                    'status' => 'error',
+                ]);
+            }
+        }
 
 
         $file->user_id = Auth::user()->id;

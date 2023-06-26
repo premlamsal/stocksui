@@ -26,7 +26,7 @@ class FolderController extends Controller
 
         $store_id = $user->stores[0]->id;
 
-        return FolderResource::collection(Folder::paginate(8));
+        return FolderResource::collection(Folder::with('user')->paginate(8));
     }
 
     public function store(Request $request)

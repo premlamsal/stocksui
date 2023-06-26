@@ -27,6 +27,7 @@
                   selected=""
                   v-for="category in categories"
                   :value="category.id"
+                  v-bind:key="category.id"
                 >
                   {{ category.name }}
                 </option>

@@ -208,6 +208,21 @@ let routes = [
       }
   },
 
+
+  //files routes
+  {
+    path: '/files',
+    name: 'files',
+    component: require('./components/file/files.vue').default,
+   
+     beforeEnter(to, from, next) {
+        let hasAccess = store.getters.permissions
+        if (hasAccess.includes('view_files') || hasAccess.includes('all')) {
+          next()
+        }
+      }
+  },
+
   
 
   //purchase routes
