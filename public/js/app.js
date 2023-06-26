@@ -18057,6 +18057,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ColorPicker__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ColorPicker */ "./resources/js/components/calendar/ColorPicker.vue");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_5__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -18252,6 +18254,8 @@ __webpack_require__.r(__webpack_exports__);
 
   },
   data: function data() {
+    var _eventTimeFormat;
+
     return {
       event: {
         type: "",
@@ -18276,17 +18280,12 @@ __webpack_require__.r(__webpack_exports__);
           year: "numeric",
           month: "long"
         },
-        eventTimeFormat: {
+        eventTimeFormat: (_eventTimeFormat = {
           hour: "numeric",
           // minute: '2-digit',
           omitZeroMinute: true,
-          meridiem: "short" // hour: 'numeric',
-          // minute: "2-digit",
-          // second: "2-digit",
-          // hour12: true, //this also enables am or pm if true
-          // meridiem: false   this enables am or pm
-
-        },
+          meridiem: "short"
+        }, _defineProperty(_eventTimeFormat, "hour", 'numeric'), _defineProperty(_eventTimeFormat, "minute", "2-digit"), _eventTimeFormat),
         headerToolbar: {
           left: "prev,next today",
           center: "title",
@@ -18375,6 +18374,7 @@ __webpack_require__.r(__webpack_exports__);
           this.event.start = "";
         }
 
+        console.log(this.event.start);
         this.event.end = "";
         this.event.description = "";
         this.event.back_color = "";
@@ -18558,7 +18558,7 @@ __webpack_require__.r(__webpack_exports__);
     //end of deleteUnit()
     handleDateClick: function handleDateClick(arg) {
       // alert("date click! " + arg.dateStr);
-      var date = moment__WEBPACK_IMPORTED_MODULE_5___default()(arg.dateStr).format("DD-MM-YYYY");
+      var date = moment__WEBPACK_IMPORTED_MODULE_5___default()(arg.dateStr).format("DD-MM-YYYY hh:mm:ss a");
       this.showAddModal(date);
     },
     handleEventClick: function handleEventClick(clickInfo) {
