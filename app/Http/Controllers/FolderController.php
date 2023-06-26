@@ -40,15 +40,9 @@ class FolderController extends Controller
 
         $this->validate($request, [
 
-            'name'    => 'required|regex:/^[\pL\s\-]+$/u',
+            'name'    => 'required',
 
-            'email' => 'required|email|max:200',
-
-            'phone'   => 'numeric',
-
-            'role' => 'required|string|max:30',
-
-            'company' => 'required|string|max:50',
+            'description' => 'required',
 
 
         ]);
@@ -57,20 +51,13 @@ class FolderController extends Controller
 
         $folder->name = $request->input('name');
 
-        $folder->email = $request->input('email');
+        $folder->description = $request->input('description');
 
-        $folder->phone = $request->input('phone');
+        $folder->user_id = Auth::user()->id;
 
-        $folder->role = $request->input('role');
-
-
-        $folder->company = $request->input('company');
-
-
-        $folder->store_id = $store_id;
+        $folder->status ='active';
 
         if ($folder->save()) {
-
 
             return response()->json([
                 'msg' => 'Folder Successfully Created',
@@ -97,15 +84,10 @@ class FolderController extends Controller
 
         $this->validate($request, [
 
-            'name'    => 'required|regex:/^[\pL\s\-]+$/u',
+          
+            'name'    => 'required',
 
-            'email' => 'required|email|max:200',
-
-            'phone'   => 'numeric',
-
-            'company' => 'required|string|max:50',
-
-            'role' => 'required|string|max:30',
+            'description' => 'required',
 
 
 
@@ -114,18 +96,11 @@ class FolderController extends Controller
 
         $id = $request->input('id'); //get id from edit modal
 
-        $folder = Folder::where('id', $id)->where('store_id', $store_id)->first();
-
+        $folder = Folder::where('id', $id)->first();
+        
         $folder->name = $request->input('name');
 
-        $folder->email = $request->input('email');
-
-        $folder->role = $request->input('role');
-
-        $folder->phone = $request->input('phone');
-
-
-        $folder->store_id = $store_id;
+        $folder->description = $request->input('description');
 
         if ($folder->save()) {
 
@@ -153,7 +128,7 @@ class FolderController extends Controller
 
         $store_id = $user->stores[0]->id;
 
-        $folder = Folder::where('id', $id)->where('store_id', $store_id)->first();
+        $folder = Folder::where('id', $id)->first();
         if ($folder->delete()) {
             return response()->json([
                 'msg' => 'Folder Successfully Deleted',
@@ -176,7 +151,7 @@ class FolderController extends Controller
 
         $store_id = $user->stores[0]->id;
 
-        $folder = Folder::where('id', $id)->where('store_id', $store_id)->first();
+        $folder = Folder::where('id', $id)->first();
 
         if ($folder->save()) {
             return response()->json([
