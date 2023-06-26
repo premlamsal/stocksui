@@ -18201,6 +18201,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -18292,29 +18298,31 @@ __webpack_require__.r(__webpack_exports__);
       this.event.back_color = "";
     },
     setEventColor: function setEventColor(temp) {
-      // Red - Holiday #F44336
-      // Blue - Interview #2196F3
-      // Green - Meeting #4CAF50
-      // Yellow - Other #ff9800
-      if (temp === "holiday") {
-        this.event.type = "holiday";
-        this.event.back_color = "#F44336";
-      } else if (temp === "interview") {
-        this.event.back_color = "#2196F3";
-        this.event.type = "interview";
-      } else if (temp === "meeting") {
-        this.event.back_color = "#4CAF50";
-        this.event.type = "meeting";
-      } else if (temp === "other") {
-        this.event.back_color = "#ff9800";
-        this.event.type = "other";
-      } else {
-        this.event.back_color = "#eee";
-        this.event.type = "nothing";
-      }
+      if (this.hasPermission('add_event') || this.hasPermission('edit_event')) {
+        // Red - Holiday #F44336
+        // Blue - Interview #2196F3
+        // Green - Meeting #4CAF50
+        // Yellow - Other #ff9800
+        if (temp === "holiday") {
+          this.event.type = "holiday";
+          this.event.back_color = "#F44336";
+        } else if (temp === "interview") {
+          this.event.back_color = "#2196F3";
+          this.event.type = "interview";
+        } else if (temp === "meeting") {
+          this.event.back_color = "#4CAF50";
+          this.event.type = "meeting";
+        } else if (temp === "other") {
+          this.event.back_color = "#ff9800";
+          this.event.type = "other";
+        } else {
+          this.event.back_color = "#eee";
+          this.event.type = "nothing";
+        }
 
-      console.log(this.event.back_color);
-      console.log(this.event.type);
+        console.log(this.event.back_color);
+        console.log(this.event.type);
+      }
     },
     // selectColor(color){
     //   this.event = {
@@ -18390,52 +18398,55 @@ __webpack_require__.r(__webpack_exports__);
     editEvent: function editEvent(id) {
       var _this2 = this;
 
-      if (this.hasPermission("edit_event")) {
-        this.$Progress.start();
-        this.removeEventColor();
-        var currObj = this;
+      this.$Progress.start();
+      this.removeEventColor();
+      var currObj = this;
+
+      if (this.hasPermission('edit_event')) {
         this.modalForName = "Edit Event";
         this.modalForCode = 1; // 1 for Edit
-
-        this.$bvModal.show("bv-modal-add-event");
-        currObj.errors = ""; //clearing errors
-
-        axios.get("/api/event/" + id).then(function (response) {
-          // console.log(response.data.unit)
-          Vue.set(_this2.event, "title", response.data.event.title);
-          Vue.set(_this2.event, "start", response.data.event.start); // Vue.set(this.event, "cssClass", response.data.event.back_color);
-
-          var temp = response.data.event.back_color;
-
-          if (temp === "#F44336") {
-            Vue.set(_this2.event, "type", "holiday");
-            Vue.set(_this2.event, "back_color", "#F44336");
-          } else if (temp === "#2196F3") {
-            Vue.set(_this2.event, "type", "interview");
-            Vue.set(_this2.event, "back_color", "#2196F3");
-          } else if (temp === "#4CAF50") {
-            Vue.set(_this2.event, "type", "meeting");
-            Vue.set(_this2.event, "back_color", "#4CAF50");
-          } else if (temp === "#ff9800") {
-            Vue.set(_this2.event, "type", "other");
-            Vue.set(_this2.event, "back_color", "#ff9800");
-          } else {
-            Vue.set(_this2.event, "type", "nothing");
-            Vue.set(_this2.event, "back_color", "#eee");
-          } // Vue.set(this.event, "back_color", response.data.event.back_color);
-          // Vue.set(this.event, "text_color", response.data.event.text_color);
-
-
-          Vue.set(_this2.event, "end", response.data.event.end);
-          Vue.set(_this2.event, "description", response.data.event.description);
-          Vue.set(_this2.event, "id", id); //to send id to the update controller
-
-          _this2.$Progress.finish();
-        })["catch"](function (error) {
-          // console.log(error)
-          _this2.$Progress.fail();
-        });
+      } else {
+        this.modalForName = "View Event";
       }
+
+      this.$bvModal.show("bv-modal-add-event");
+      currObj.errors = ""; //clearing errors
+
+      axios.get("/api/event/" + id).then(function (response) {
+        // console.log(response.data.unit)
+        Vue.set(_this2.event, "title", response.data.event.title);
+        Vue.set(_this2.event, "start", response.data.event.start); // Vue.set(this.event, "cssClass", response.data.event.back_color);
+
+        var temp = response.data.event.back_color;
+
+        if (temp === "#F44336") {
+          Vue.set(_this2.event, "type", "holiday");
+          Vue.set(_this2.event, "back_color", "#F44336");
+        } else if (temp === "#2196F3") {
+          Vue.set(_this2.event, "type", "interview");
+          Vue.set(_this2.event, "back_color", "#2196F3");
+        } else if (temp === "#4CAF50") {
+          Vue.set(_this2.event, "type", "meeting");
+          Vue.set(_this2.event, "back_color", "#4CAF50");
+        } else if (temp === "#ff9800") {
+          Vue.set(_this2.event, "type", "other");
+          Vue.set(_this2.event, "back_color", "#ff9800");
+        } else {
+          Vue.set(_this2.event, "type", "nothing");
+          Vue.set(_this2.event, "back_color", "#eee");
+        } // Vue.set(this.event, "back_color", response.data.event.back_color);
+        // Vue.set(this.event, "text_color", response.data.event.text_color);
+
+
+        Vue.set(_this2.event, "end", response.data.event.end);
+        Vue.set(_this2.event, "description", response.data.event.description);
+        Vue.set(_this2.event, "id", id); //to send id to the update controller
+
+        _this2.$Progress.finish();
+      })["catch"](function (error) {
+        // console.log(error)
+        _this2.$Progress.fail();
+      });
     },
     updateEvent: function updateEvent() {
       if (this.hasPermission("edit_event")) {
@@ -182985,7 +182996,13 @@ var render = function() {
                   }
                 ],
                 class: ["form-control"],
-                attrs: { type: "text" },
+                attrs: {
+                  type: "text",
+                  disabled:
+                    !_vm.hasPermission("add_event") ||
+                    !_vm.hasPermission("edit_event") ||
+                    !_vm.hasPermission("show_event")
+                },
                 domProps: { value: _vm.event.title },
                 on: {
                   input: function($event) {
@@ -183014,7 +183031,13 @@ var render = function() {
                 _vm._v(" "),
                 _c("date-picker", {
                   class: ["form-control"],
-                  attrs: { config: _vm.options },
+                  attrs: {
+                    config: _vm.options,
+                    disabled:
+                      !_vm.hasPermission("add_event") ||
+                      !_vm.hasPermission("edit_event") ||
+                      !_vm.hasPermission("show_event")
+                  },
                   model: {
                     value: _vm.event.start,
                     callback: function($$v) {
@@ -183041,7 +183064,13 @@ var render = function() {
                 _vm._v(" "),
                 _c("date-picker", {
                   class: ["form-control"],
-                  attrs: { config: _vm.options },
+                  attrs: {
+                    config: _vm.options,
+                    disabled:
+                      !_vm.hasPermission("add_event") ||
+                      !_vm.hasPermission("edit_event") ||
+                      !_vm.hasPermission("show_event")
+                  },
                   model: {
                     value: _vm.event.end,
                     callback: function($$v) {
@@ -183075,6 +183104,12 @@ var render = function() {
                   }
                 ],
                 class: ["form-control"],
+                attrs: {
+                  disabled:
+                    !_vm.hasPermission("add_event") ||
+                    !_vm.hasPermission("edit_event") ||
+                    !_vm.hasPermission("show_event")
+                },
                 domProps: { value: _vm.event.description },
                 on: {
                   input: function($event) {
@@ -183094,9 +183129,11 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "color-picker" } }, [
-                _vm._v("Pick a color for event:")
-              ]),
+              _vm.hasPermission("add_event") || _vm.hasPermission("edit_event")
+                ? _c("label", { attrs: { for: "color-picker" } }, [
+                    _vm._v("Pick a color for event:")
+                  ])
+                : _vm._e(),
               _vm._v(" "),
               _c("div", { staticClass: "event-color-container" }, [
                 _c(
@@ -183158,29 +183195,39 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c(
-            "b-button",
-            {
-              staticClass: "btn-primary mt-3",
-              attrs: { block: "" },
-              on: { click: _vm.callFunc }
-            },
-            [_vm._v(_vm._s(_vm.modalForName))]
-          ),
-          _vm._v(" "),
-          _vm.modalForCode
+          _vm.hasPermission("add_event") || _vm.hasPermission("edit_event")
             ? _c(
                 "b-button",
                 {
-                  staticClass: "btn-danger mt-3",
+                  staticClass: "btn-primary mt-3",
                   attrs: { block: "" },
-                  on: {
-                    click: function($event) {
-                      return _vm.deleteEvent(_vm.event.id)
-                    }
-                  }
+                  on: { click: _vm.callFunc }
                 },
-                [_vm._v("Delete this event")]
+                [_vm._v(_vm._s(_vm.modalForName))]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.hasPermission("delete_event")
+            ? _c(
+                "div",
+                [
+                  _vm.modalForCode
+                    ? _c(
+                        "b-button",
+                        {
+                          staticClass: "btn-danger mt-3",
+                          attrs: { block: "" },
+                          on: {
+                            click: function($event) {
+                              return _vm.deleteEvent(_vm.event.id)
+                            }
+                          }
+                        },
+                        [_vm._v("Delete this event")]
+                      )
+                    : _vm._e()
+                ],
+                1
               )
             : _vm._e()
         ],

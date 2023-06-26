@@ -23,7 +23,7 @@
           <input type="hidden" v-model="event.id" />
           <label for="Title">Title:</label>
           <!--  <input type="text"  v-model="event.title" :class="['form-control', errors.title ? 'is-invalid' : '']"> -->
-          <input type="text" v-model="event.title" :class="['form-control']" />
+          <input type="text" v-model="event.title" :class="['form-control']" :disabled="!hasPermission('add_event') || !hasPermission('edit_event') || !hasPermission('show_event')" />
           <span v-if="errors.title" :class="['errorText']">{{
             errors.title[0]
           }}</span>
@@ -36,6 +36,7 @@
             v-model="event.start"
             :config="options"
             :class="['form-control']"
+            :disabled="!hasPermission('add_event') || !hasPermission('edit_event') || !hasPermission('show_event')" 
           ></date-picker>
 
           <span v-if="errors.start" :class="['errorText']">{{
@@ -50,6 +51,7 @@
             v-model="event.end"
             :config="options"
             :class="['form-control']"
+            :disabled="!hasPermission('add_event') || !hasPermission('edit_event') || !hasPermission('show_event')" 
           ></date-picker>
 
           <span v-if="errors.end" :class="['errorText']">{{
@@ -62,14 +64,15 @@
           <textarea
             v-model="event.description"
             :class="['form-control']"
+            :disabled="!hasPermission('add_event') || !hasPermission('edit_event') || !hasPermission('show_event')" 
           ></textarea>
           <span v-if="errors.description" :class="['errorText']">{{
             errors.description[0]
           }}</span>
         </div>
 
-        <div class="form-group">
-          <label for="color-picker">Pick a color for event:</label>
+        <div class="form-group" >
+          <label for="color-picker" v-if="hasPermission('add_event') || hasPermission('edit_event')" >Pick a color for event:</label>
           <!-- Red - Holiday- F44336
 Blue - Interview-#2196F3
 Green - Meeting#4CAF50
@@ -106,9 +109,11 @@ Yellow - Other #ff9800-->
           </div>
         </div>
       </div>
-      <b-button class="btn-primary mt-3" block @click="callFunc">{{
+
+      <b-button class="btn-primary mt-3" block @click="callFunc" v-if="hasPermission('add_event') || hasPermission('edit_event')">{{
         modalForName
       }}</b-button>
+      <div  v-if="hasPermission('delete_event')">
       <b-button
         class="btn-danger mt-3"
         block
@@ -116,6 +121,7 @@ Yellow - Other #ff9800-->
         v-if="modalForCode"
         >Delete this event</b-button
       >
+    </div>
     </b-modal>
     <!-- add event modal end-->
 
@@ -232,6 +238,7 @@ export default {
       this.event.back_color = "";
     },
     setEventColor(temp) {
+      if(this.hasPermission('add_event')|| this.hasPermission('edit_event')){
       // Red - Holiday #F44336
       // Blue - Interview #2196F3
       // Green - Meeting #4CAF50
@@ -254,7 +261,8 @@ export default {
       }
       console.log(this.event.back_color);
       console.log(this.event.type);
-    },
+    }
+  },
     // selectColor(color){
     //   this.event = {
     //     ...this.event,
@@ -337,13 +345,19 @@ export default {
       }
     },
     editEvent(id) {
-      if (this.hasPermission("edit_event")) {
+      
+
         this.$Progress.start();
         this.removeEventColor();
 
         let currObj = this;
-        this.modalForName = "Edit Event";
+        if(this.hasPermission('edit_event')){
+          this.modalForName = "Edit Event";
         this.modalForCode = 1; // 1 for Edit
+        }else{
+          this.modalForName = "View Event";
+        }
+      
         this.$bvModal.show("bv-modal-add-event");
         currObj.errors = ""; //clearing errors
         axios
@@ -384,7 +398,7 @@ export default {
             // console.log(error)
             this.$Progress.fail();
           });
-      }
+      
     },
     updateEvent() {
       if (this.hasPermission("edit_event")) {
