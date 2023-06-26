@@ -184612,9 +184612,7 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "col-7 col-md-8" }, [
                 _c("div", { staticClass: "numbers" }, [
-                  _c("p", { staticClass: "card-category" }, [
-                    _vm._v("Calendar Events")
-                  ]),
+                  _c("p", { staticClass: "card-category" }, [_vm._v("Events")]),
                   _vm._v(" "),
                   _c("p", { staticClass: "card-title" }, [
                     _vm._v(
@@ -184641,7 +184639,7 @@ var render = function() {
                   [
                     _c("i", { staticClass: "nc-icon nc-map-big" }),
                     _vm._v(" "),
-                    _c("span", [_vm._v("Calendar Events")])
+                    _c("span", [_vm._v("Events")])
                   ]
                 )
               ],
@@ -184931,9 +184929,7 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "col-7 col-md-8" }, [
                 _c("div", { staticClass: "numbers" }, [
-                  _c("p", { staticClass: "card-category" }, [
-                    _vm._v("Weekly Orders")
-                  ]),
+                  _c("p", { staticClass: "card-category" }, [_vm._v("Orders")]),
                   _vm._v(" "),
                   _c("p", { staticClass: "card-title" }, [
                     _vm._v(
@@ -184960,7 +184956,7 @@ var render = function() {
                   [
                     _c("i", { staticClass: "nc-icon nc-cart-simple" }),
                     _vm._v(" "),
-                    _c("span", [_vm._v("Weekly Orders")])
+                    _c("span", [_vm._v("Orders")])
                   ]
                 )
               ],

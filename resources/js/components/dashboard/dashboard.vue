@@ -41,7 +41,7 @@
               </div>
               <div class="col-7 col-md-8">
                 <div class="numbers">
-                  <p class="card-category">Calendar Events</p>
+                  <p class="card-category">Events</p>
                   <p class="card-title">
                     {{ dash.event }}
                   </p>
@@ -54,7 +54,7 @@
             <div class="stats">
               <router-link to="/calendar" aria-expanded="false">
                 <i class="nc-icon nc-map-big"></i>
-                <span>Calendar Events</span>
+                <span>Events</span>
               </router-link>
             </div>
           </div>
@@ -250,7 +250,7 @@
               </div>
               <div class="col-7 col-md-8">
                 <div class="numbers">
-                  <p class="card-category">Weekly Orders</p>
+                  <p class="card-category">Orders</p>
                   <p class="card-title">
                     {{ dash.weekly_order }}
                   </p>
@@ -263,7 +263,7 @@
             <div class="stats">
               <router-link to="/weekly-orders" aria-expanded="false">
                 <i class="nc-icon nc-cart-simple"></i>
-                <span>Weekly Orders</span>
+                <span>Orders</span>
               </router-link>
             </div>
           </div>
