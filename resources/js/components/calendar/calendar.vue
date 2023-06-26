@@ -220,8 +220,8 @@ export default {
           // minute: '2-digit',
           omitZeroMinute: true,
           meridiem: "short",
-          // hour: 'numeric',
-          // minute: "2-digit",
+          hour: 'numeric',
+          minute: "2-digit",
           // second: "2-digit",
           // hour12: true, //this also enables am or pm if true
           // meridiem: false   this enables am or pm
@@ -312,6 +312,7 @@ export default {
         } else {
           this.event.start = "";
         }
+        console.log(this.event.start);
         this.event.end = "";
         this.event.description = "";
         this.event.back_color = "";
@@ -518,7 +519,7 @@ export default {
     }, //end of deleteUnit()
     handleDateClick: function (arg) {
       // alert("date click! " + arg.dateStr);
-      const date = moment(arg.dateStr).format("DD-MM-YYYY");
+      const date = moment(arg.dateStr).format("DD-MM-YYYY hh:mm:ss a");
       this.showAddModal(date);
     },
     handleEventClick(clickInfo) {
