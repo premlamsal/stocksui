@@ -26,7 +26,7 @@ class FileController extends Controller
 
         $store_id = $user->stores[0]->id;
 
-        return FileResource::collection(File::with('user')->paginate(8));
+        return FileResource::collection(File::with('user')->with('folder')->paginate(8));
     }
 
     public function store(Request $request)

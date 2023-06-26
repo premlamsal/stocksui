@@ -21672,6 +21672,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -21904,8 +21908,8 @@ __webpack_require__.r(__webpack_exports__);
         Vue.set(_this2.file, "name", response.data.file.name);
         Vue.set(_this2.file, "description", response.data.file.description);
         Vue.set(_this2.file, "folder_id", response.data.file.folder_id);
-        _this2.imagePreview = response.data.file.image;
-        _this2.uploadFile = response.data.file.uploadFile;
+        _this2.imagePreview = response.data.file.file_location;
+        _this2.uploadFile = response.data.file.file_location;
         Vue.set(_this2.file, "id", id); //to send id to the update controller
 
         _this2.$Progress.finish();
@@ -188157,13 +188161,17 @@ var render = function() {
                   [
                     _c("thead", [
                       _c("tr", [
+                        _c("th", [_vm._v("Folder")]),
+                        _vm._v(" "),
                         _c("th", [_vm._v("Name")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Original File Name")]),
                         _vm._v(" "),
                         _c("th", [_vm._v("Description")]),
                         _vm._v(" "),
-                        _c("th", [_vm._v("Created By")]),
+                        _c("th", [_vm._v("Uploaded By")]),
                         _vm._v(" "),
-                        _c("th", [_vm._v("Created At")]),
+                        _c("th", [_vm._v("Uploaded At")]),
                         _vm._v(" "),
                         _vm.hasPermission("edit_file") ||
                         _vm.hasPermission("delete_file")
@@ -188178,7 +188186,22 @@ var render = function() {
                       "tbody",
                       _vm._l(_vm.files, function(file) {
                         return _c("tr", { key: file.id }, [
+                          _c("td", [
+                            _c("div", { staticClass: "folder-icon-holder" }, [
+                              _c("img", {
+                                staticClass: "icon-for-folder",
+                                attrs: { src: "/assets/img/folder.svg" }
+                              }),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "folder-text" }, [
+                                _vm._v("../" + _vm._s(file.folder.name) + " ")
+                              ])
+                            ])
+                          ]),
+                          _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(file.name))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(file.original_file_name))]),
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(file.description))]),
                           _vm._v(" "),

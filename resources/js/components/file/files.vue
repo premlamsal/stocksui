@@ -183,10 +183,12 @@
           >
             <thead>
               <tr>
+                <th>Folder</th>
                 <th>Name</th>
+                <th>Original File Name</th>
                 <th>Description</th>
-                <th>Created By</th>
-                <th>Created At</th>
+                <th>Uploaded By</th>
+                <th>Uploaded At</th>
                 <th
                   v-if="
                     hasPermission('edit_file') || hasPermission('delete_file')
@@ -198,7 +200,9 @@
             </thead>
             <tbody>
               <tr v-for="file in files" v-bind:key="file.id">
+                <td><div class="folder-icon-holder"><img src="/assets/img/folder.svg" class="icon-for-folder" /> <div class="folder-text">../{{ file.folder.name }} </div></div></td>
                 <td>{{ file.name }}</td>
+                <td>{{ file.original_file_name }}</td>
                 <td>{{ file.description }}</td>
                 <td>{{ file.user.name }}</td>
                 <td>{{ file.created_at }}</td>
@@ -593,8 +597,8 @@ export default {
           Vue.set(this.file, "name", response.data.file.name);
           Vue.set(this.file, "description", response.data.file.description);
           Vue.set(this.file, "folder_id", response.data.file.folder_id);
-          this.imagePreview = response.data.file.image;
-          this.uploadFile = response.data.file.uploadFile;
+          this.imagePreview = response.data.file.file_location;
+          this.uploadFile = response.data.file.file_location;
           Vue.set(this.file, "id", id); //to send id to the update controller
           this.$Progress.finish();
         })
