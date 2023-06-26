@@ -21771,7 +21771,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$bvModal.show("bv-modal-add-folder");
       this.errors = ""; //clearing errors
 
-      axios.get("/api/folders/" + id).then(function (response) {
+      axios.get("/api/folder/" + id).then(function (response) {
         // console.log(response.data.folder)
         Vue.set(_this2.folder, "name", response.data.folder.name);
         Vue.set(_this2.folder, "description", response.data.folder.description);
@@ -21855,7 +21855,7 @@ __webpack_require__.r(__webpack_exports__);
       if (this.searchTableKey != "") {
         this.isLoading = "Loading Data...";
         var currObj = this;
-        axios.post("/api/folders/search", {
+        axios.post("/api/folder/search", {
           searchQuery: this.searchTableKey
         }).then(function (response) {
           currObj.isLoading = "";

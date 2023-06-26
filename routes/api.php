@@ -472,3 +472,33 @@ Route::get('weeklyorderpdf/{id}', 'WeeklyOrderController@pdfdownload');
 
 
 
+
+
+
+
+//folders
+
+Route::get('folders', 'FolderController@index');
+
+Route::post('folder', 'FolderController@store');
+
+Route::put('folder', 'FolderController@update');
+
+Route::get('folder/{id}', 'FolderController@show');
+
+Route::delete('folder/{id}', 'FolderController@destroy');
+
+
+
+
+//files
+
+Route::get('files', 'FileController@index');
+
+Route::post('file', 'FileController@store');
+
+Route::put('file', 'FileController@update');
+
+Route::get('file/{id}', 'FileController@show');
+
+Route::delete('file/{id}', 'FileController@destroy');

@@ -445,7 +445,7 @@
         this.$bvModal.show("bv-modal-add-folder");
         this.errors = ""; //clearing errors
         axios
-          .get("/api/folders/" + id)
+          .get("/api/folder/" + id)
           .then((response) => {
             // console.log(response.data.folder)
             Vue.set(this.folder, "name", response.data.folder.name);
@@ -543,7 +543,7 @@
           this.isLoading = "Loading Data...";
           let currObj = this;
           axios
-            .post("/api/folders/search", { searchQuery: this.searchTableKey })
+            .post("/api/folder/search", { searchQuery: this.searchTableKey })
             .then(function (response) {
               currObj.isLoading = "";
   
