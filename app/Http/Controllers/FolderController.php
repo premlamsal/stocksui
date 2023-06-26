@@ -26,7 +26,7 @@ class FolderController extends Controller
 
         $store_id = $user->stores[0]->id;
 
-        return FolderResource::collection(Folder::where('store_id', $store_id)->paginate(8));
+        return FolderResource::collection(Folder::paginate(8));
     }
 
     public function store(Request $request)
@@ -177,7 +177,7 @@ class FolderController extends Controller
 
         $searchKey = $request->input('searchQuery');
         if ($searchKey != '') {
-            return FolderResource::collection(Folder::where('store_id', $store_id)->where('name', 'like', '%' . $searchKey . '%')->paginate(8));
+            return FolderResource::collection(Folder::where('name', 'like', '%' . $searchKey . '%')->paginate(8));
         } else {
             return response()->json([
                 'msg'    => 'Error while retriving Folders. No Data Supplied as key.',

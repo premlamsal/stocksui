@@ -26,7 +26,7 @@ class FileController extends Controller
 
         $store_id = $user->stores[0]->id;
 
-        return FileResource::collection(File::where('store_id', $store_id)->paginate(8));
+        return FileResource::collection(File::paginate(8));
     }
 
     public function store(Request $request)
@@ -194,7 +194,7 @@ class FileController extends Controller
 
         $searchKey = $request->input('searchQuery');
         if ($searchKey != '') {
-            return FileResource::collection(File::where('store_id', $store_id)->where('name', 'like', '%' . $searchKey . '%')->paginate(8));
+            return FileResource::collection(File::where('name', 'like', '%' . $searchKey . '%')->paginate(8));
         } else {
             return response()->json([
                 'msg'    => 'Error while retriving Files. No Data Supplied as key.',
