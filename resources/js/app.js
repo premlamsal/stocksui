@@ -194,6 +194,19 @@ let routes = [
 
   },
 
+  //folders routes
+  {
+    path: '/folders',
+    name: 'folders',
+    component: require('./components/file/folders.vue').default,
+   
+     beforeEnter(to, from, next) {
+        let hasAccess = store.getters.permissions
+        if (hasAccess.includes('view_folders') || hasAccess.includes('all')) {
+          next()
+        }
+      }
+  },
 
   
 

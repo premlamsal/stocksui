@@ -86,7 +86,24 @@
                         </router-link>
                     </li>
                 @endcan
+                @can('hasPermission', 'view_folders')
+                <li>
+                    <router-link to="/folders" aria-expanded="false">
+                        <i class="nc-icon nc-app"></i>
+                        <span>Folders</span>
+                    </router-link>
+                </li>
+            @endcan
                        
+            @can('hasPermission', 'view_files')
+            <li>
+                <router-link to="/files" aria-expanded="false">
+                    <i class="nc-icon nc-app"></i>
+                    <span>Folders</span>
+                </router-link>
+            </li>
+        @endcan
+                   
 
                       
                         @can('hasPermission', 'view_notes')
