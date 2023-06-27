@@ -160,7 +160,15 @@
               </thead>
               <tbody>
                 <tr v-for="folder in folders" v-bind:key="folder.id">
-                  <td>{{ folder.name }}</td>
+                  <td> <div class="folder-icon-holder">
+                    <img
+                      src="/assets/img/folder2.svg"
+                      class="icon-for-folder"
+                    />
+                    <div class="folder-text">../{{folder.name }}</div>
+                  </div></td>
+                  
+
                   <td>{{ folder.description }}</td>
                   <td>{{ folder.user.name }}</td>
                   <td>{{ folder.created_at }}</td>

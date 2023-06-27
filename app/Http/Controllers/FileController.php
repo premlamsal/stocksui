@@ -46,7 +46,7 @@ class FileController extends Controller
 
             'folder_id' => 'required',
 
-            'upload_file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4048',
+            'upload_file' => 'required|max:4048',
 
 
         ]);
@@ -65,7 +65,7 @@ class FileController extends Controller
 
 
         if ($request->hasFile('upload_file')) {
-            $fileName = '/merofiles/' . time() . '.' . $request->upload_file->getClientOriginalExtension();
+            $fileName = './merofiles/' . time() . '.' . $request->upload_file->getClientOriginalExtension();
             $request->upload_file->move(public_path('merofiles'), $fileName);
             $file->file_location = $fileName;
             $file->original_file_name = $request->upload_file->getClientOriginalName();
@@ -135,7 +135,7 @@ class FileController extends Controller
 
             if (in_array($file_ext, $checkExt)) {
 
-                $fileName = '/merofiles/' . time() . '.' . $request->uploadFile->getClientOriginalExtension();
+                $fileName = './merofiles/' . time() . '.' . $request->uploadFile->getClientOriginalExtension();
                 $request->uploadFile->move(public_path('merofiles'), $fileName);
                 $file->file_location = $fileName;
                 $file->original_file_name = $request->upload_file->getClientOriginalName();
@@ -235,5 +235,23 @@ class FileController extends Controller
                 'status' => 'error',
             ]);
         }
+    }
+
+    public function filedownload($file_id){
+
+        $this->authorize('hasPermission', 'download_file');
+
+        $user = User::findOrFail(Auth::user()->id);
+
+        $file=File::where('id',$file_id)->first();
+        $file_location=$file->file_location;
+
+        $path= $file_location;
+        // $type = pathinfo($path, PATHINFO_EXTENSION);
+        // $data = file_get_contents($path);
+        // // $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+
+        // return base64_encode($data);
+        return response()->download($path);
     }
 }

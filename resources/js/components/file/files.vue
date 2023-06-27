@@ -183,9 +183,9 @@
           >
             <thead>
               <tr>
-                <th>Folder</th>
+                <th>File</th>
                 <th>Name</th>
-                <th>Original File Name</th>
+                <!-- <th>Original File Name</th> -->
                 <th>Description</th>
                 <th>Uploaded By</th>
                 <th>Uploaded At</th>
@@ -200,9 +200,20 @@
             </thead>
             <tbody>
               <tr v-for="file in files" v-bind:key="file.id">
-                <td><div class="folder-icon-holder"><img src="/assets/img/folder.svg" class="icon-for-folder" /> <div class="folder-text">../{{ file.folder.name }} </div></div></td>
+                <td>
+                  <div class="folder-icon-holder">
+                    <img
+                      src="/assets/img/folder2.svg"
+                      class="icon-for-folder"
+                    />
+                    <div class="folder-text">../{{ file.folder.name }}</div>
+                    <div class="file-name-holder">
+                      /{{ file.original_file_name }}
+                    </div>
+                  </div>
+                </td>
                 <td>{{ file.name }}</td>
-                <td>{{ file.original_file_name }}</td>
+                <!-- <td>{{ file.original_file_name }}</td> -->
                 <td>{{ file.description }}</td>
                 <td>{{ file.user.name }}</td>
                 <td>{{ file.created_at }}</td>
@@ -213,6 +224,14 @@
                     hasPermission('edit_file') || hasPermission('delete_file')
                   "
                 >
+                  <button
+                    class="btn btn-danger custom_btn_table"
+                    style="margin-right: 5px"
+                    @click="downloadFile(file.id,file.original_file_name)"
+                    v-if="hasPermission('download_file')"
+                  >
+                    <span class="fa fa-download custom_icon_table"></span>
+                  </button>
                   <button
                     class="btn btn-success custom_btn_table"
                     style="margin-right: 5px"
@@ -346,7 +365,7 @@ export default {
 
       folders: [],
 
-      uploadFile:"",
+      uploadFile: "",
 
       selectedFile: "",
 
@@ -501,6 +520,31 @@ export default {
 
       this.$Progress.finish();
     }, //end of fileSelected
+    downloadFile(file_id,original_file_name) {
+
+      axios
+        .get(`api/filedownload/${file_id}`, {
+          responseType: "blob",
+        })
+        .then((response) => {
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+
+          const file_type=response.data.type.split("/");
+         
+          const file_extion=file_type[1];
+          
+          console.log(file_extion);
+
+          const link = document.createElement("a");
+          link.href =  url;
+          link.setAttribute("download",original_file_name+"."+file_extion); //or any other extension
+          document.body.appendChild(link);
+          link.click();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
     makePagination(meta, links) {
       let pagination = {
         current_page: meta.current_page,
