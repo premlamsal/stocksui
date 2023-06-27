@@ -160,12 +160,13 @@
               </thead>
               <tbody>
                 <tr v-for="folder in folders" v-bind:key="folder.id">
-                  <td> <div class="folder-icon-holder" @click="viewFolder(folder.id)">
+                  <td> <div class="folder-icon-holder" >
                     <img
                       src="/assets/img/folder2.svg"
                       class="icon-for-folder"
+                      @click="viewFolder(folder.id)" style="cursor:pointer"
                     />
-                    <div class="folder-text">../{{folder.name }}</div>
+                    <div class="folder-text" @click="viewFolder(folder.id)" style="cursor:pointer">../{{folder.name }}</div>
                   </div></td>
                   
 

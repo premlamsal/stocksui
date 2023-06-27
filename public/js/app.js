@@ -22393,6 +22393,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -188924,27 +188925,32 @@ var render = function() {
                       _vm._l(_vm.folders, function(folder) {
                         return _c("tr", { key: folder.id }, [
                           _c("td", [
-                            _c(
-                              "div",
-                              {
-                                staticClass: "folder-icon-holder",
+                            _c("div", { staticClass: "folder-icon-holder" }, [
+                              _c("img", {
+                                staticClass: "icon-for-folder",
+                                staticStyle: { cursor: "pointer" },
+                                attrs: { src: "/assets/img/folder2.svg" },
                                 on: {
                                   click: function($event) {
                                     return _vm.viewFolder(folder.id)
                                   }
                                 }
-                              },
-                              [
-                                _c("img", {
-                                  staticClass: "icon-for-folder",
-                                  attrs: { src: "/assets/img/folder2.svg" }
-                                }),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "folder-text" }, [
-                                  _vm._v("../" + _vm._s(folder.name))
-                                ])
-                              ]
-                            )
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "folder-text",
+                                  staticStyle: { cursor: "pointer" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.viewFolder(folder.id)
+                                    }
+                                  }
+                                },
+                                [_vm._v("../" + _vm._s(folder.name))]
+                              )
+                            ])
                           ]),
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(folder.description))]),
