@@ -127,16 +127,16 @@ class FileController extends Controller
         // $file->file_location = $request->input('file_location');
 
 
-        if ($request->hasFile('uploadFile')) {
+        if ($request->hasFile('upload_file')) {
 
-            $file_ext = $request->uploadFile->getClientOriginalExtension();
+            $file_ext = $request->upload_file->getClientOriginalExtension();
 
-            $checkExt = array("jpg", "png", "jpeg");
+            $checkExt = array("jpg", "png", "jpeg","pdf", "txt","csv");
 
             if (in_array($file_ext, $checkExt)) {
 
-                $fileName = './merofiles/' . time() . '.' . $request->uploadFile->getClientOriginalExtension();
-                $request->uploadFile->move(public_path('merofiles'), $fileName);
+                $fileName = './merofiles/' . time() . '.' . $request->upload_file->getClientOriginalExtension();
+                $request->upload_file->move(public_path('merofiles'), $fileName);
                 $file->file_location = $fileName;
                 $file->original_file_name = $request->upload_file->getClientOriginalName();
 
@@ -247,6 +247,8 @@ class FileController extends Controller
         $file_location=$file->file_location;
 
         $path= $file_location;
+
+        // $path= $file_location.'?' . time();
         // $type = pathinfo($path, PATHINFO_EXTENSION);
         // $data = file_get_contents($path);
         // // $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
