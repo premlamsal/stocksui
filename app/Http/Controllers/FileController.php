@@ -248,12 +248,13 @@ class FileController extends Controller
 
         $path= $file_location;
 
+
         // $path= $file_location.'?' . time();
-        // $type = pathinfo($path, PATHINFO_EXTENSION);
+        $type = pathinfo($path, PATHINFO_EXTENSION);
         // $data = file_get_contents($path);
         // // $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
         // return base64_encode($data);
-        return response()->download($path);
+        return response()->download($path,$file->name.time().".".$type);
     }
 }
