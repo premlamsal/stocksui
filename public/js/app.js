@@ -21713,6 +21713,7 @@ __webpack_require__.r(__webpack_exports__);
       uploadFile: "",
       selectedFile: "",
       imagePreview: "",
+      rotueQuery: {},
       errors: [],
       pagination: {},
       isLoading: "",
@@ -21720,12 +21721,16 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    //this block will execute when component created
+    this.getRouteQuery(); //this block will execute when component created
+
     this.fetchFiles();
     this.fetchFolders();
     this.setAvtarUploadImage();
   },
   methods: {
+    getRouteQuery: function getRouteQuery() {
+      this.rotueQuery = this.$route.query; // console.log(this.rotueQuery.folder)
+    },
     //methods codes here
     handleSuccessExportCSV: function handleSuccessExportCSV() {
       console.log("success Export");
@@ -21756,7 +21761,13 @@ __webpack_require__.r(__webpack_exports__);
     fetchFiles: function fetchFiles(page_url) {
       this.$Progress.start();
       this.isLoading = "Loading all Data";
-      page_url = page_url || "api/files";
+
+      if (this.rotueQuery.folder) {
+        page_url = page_url || "api/getfilesfolder/" + this.rotueQuery.folder;
+      } else {
+        page_url = page_url || "api/files";
+      }
+
       var vm = this; // current pointer instance while going inside the another functional instance
 
       axios.get(page_url).then(function (response) {
@@ -21878,7 +21889,12 @@ __webpack_require__.r(__webpack_exports__);
 
       this.file.name = "";
       this.file.description = "";
-      this.file.folder_id = "";
+      this.file.folder_id = ""; //if already we are navigating thorough folder we are fixed we gonna add new file to navigated folder so assigning folder id previously and also gonna disable the option to select the folder
+
+      if (this.rotueQuery.folder) {
+        this.file.folder_id = this.rotueQuery.folder;
+      }
+
       this.errors = ""; //clearing errors
       // Vue.set(this.modalForCode,0);
 
@@ -22402,6 +22418,14 @@ __webpack_require__.r(__webpack_exports__);
     this.fetchFolders();
   },
   methods: {
+    viewFolder: function viewFolder(folder_id) {
+      this.$router.push({
+        path: 'files',
+        query: {
+          folder: folder_id
+        }
+      });
+    },
     //methods codes here
     handleSuccessExportCSV: function handleSuccessExportCSV() {
       console.log("success Export");
@@ -187827,6 +187851,7 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control",
+                        attrs: { disabled: _vm.rotueQuery.folder },
                         on: {
                           change: function($event) {
                             var $$selectedVal = Array.prototype.filter
@@ -188899,16 +188924,27 @@ var render = function() {
                       _vm._l(_vm.folders, function(folder) {
                         return _c("tr", { key: folder.id }, [
                           _c("td", [
-                            _c("div", { staticClass: "folder-icon-holder" }, [
-                              _c("img", {
-                                staticClass: "icon-for-folder",
-                                attrs: { src: "/assets/img/folder2.svg" }
-                              }),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "folder-text" }, [
-                                _vm._v("../" + _vm._s(folder.name))
-                              ])
-                            ])
+                            _c(
+                              "div",
+                              {
+                                staticClass: "folder-icon-holder",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.viewFolder(folder.id)
+                                  }
+                                }
+                              },
+                              [
+                                _c("img", {
+                                  staticClass: "icon-for-folder",
+                                  attrs: { src: "/assets/img/folder2.svg" }
+                                }),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "folder-text" }, [
+                                  _vm._v("../" + _vm._s(folder.name))
+                                ])
+                              ]
+                            )
                           ]),
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(folder.description))]),
