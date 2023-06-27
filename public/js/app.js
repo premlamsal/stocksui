@@ -21676,6 +21676,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -21819,6 +21838,24 @@ __webpack_require__.r(__webpack_exports__);
       this.$Progress.finish();
     },
     //end of fileSelected
+    downloadFile: function downloadFile(file_id, original_file_name) {
+      axios.get("api/filedownload/".concat(file_id), {
+        responseType: "blob"
+      }).then(function (response) {
+        var url = window.URL.createObjectURL(new Blob([response.data]));
+        var file_type = response.data.type.split("/");
+        var file_extion = file_type[1];
+        console.log(file_extion);
+        var link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", original_file_name + "." + file_extion); //or any other extension
+
+        document.body.appendChild(link);
+        link.click();
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
     makePagination: function makePagination(meta, links) {
       var pagination = {
         current_page: meta.current_page,
@@ -22051,6 +22088,14 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var html2pdf_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! html2pdf.js */ "./node_modules/html2pdf.js/dist/html2pdf.js");
 /* harmony import */ var html2pdf_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(html2pdf_js__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -188161,11 +188206,9 @@ var render = function() {
                   [
                     _c("thead", [
                       _c("tr", [
-                        _c("th", [_vm._v("Folder")]),
+                        _c("th", [_vm._v("File")]),
                         _vm._v(" "),
                         _c("th", [_vm._v("Name")]),
-                        _vm._v(" "),
-                        _c("th", [_vm._v("Original File Name")]),
                         _vm._v(" "),
                         _c("th", [_vm._v("Description")]),
                         _vm._v(" "),
@@ -188190,18 +188233,24 @@ var render = function() {
                             _c("div", { staticClass: "folder-icon-holder" }, [
                               _c("img", {
                                 staticClass: "icon-for-folder",
-                                attrs: { src: "/assets/img/folder.svg" }
+                                attrs: { src: "/assets/img/folder2.svg" }
                               }),
                               _vm._v(" "),
                               _c("div", { staticClass: "folder-text" }, [
-                                _vm._v("../" + _vm._s(file.folder.name) + " ")
+                                _vm._v("../" + _vm._s(file.folder.name))
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "file-name-holder" }, [
+                                _vm._v(
+                                  "\n                    /" +
+                                    _vm._s(file.original_file_name) +
+                                    "\n                  "
+                                )
                               ])
                             ])
                           ]),
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(file.name))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(file.original_file_name))]),
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(file.description))]),
                           _vm._v(" "),
@@ -188212,6 +188261,31 @@ var render = function() {
                           _vm.hasPermission("edit_file") ||
                           _vm.hasPermission("delete_file")
                             ? _c("td", [
+                                _vm.hasPermission("download_file")
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "btn btn-danger custom_btn_table",
+                                        staticStyle: { "margin-right": "5px" },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.downloadFile(
+                                              file.id,
+                                              file.original_file_name
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("span", {
+                                          staticClass:
+                                            "fa fa-download custom_icon_table"
+                                        })
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
                                 _vm.hasPermission("edit_file")
                                   ? _c(
                                       "button",
@@ -188824,7 +188898,18 @@ var render = function() {
                       "tbody",
                       _vm._l(_vm.folders, function(folder) {
                         return _c("tr", { key: folder.id }, [
-                          _c("td", [_vm._v(_vm._s(folder.name))]),
+                          _c("td", [
+                            _c("div", { staticClass: "folder-icon-holder" }, [
+                              _c("img", {
+                                staticClass: "icon-for-folder",
+                                attrs: { src: "/assets/img/folder2.svg" }
+                              }),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "folder-text" }, [
+                                _vm._v("../" + _vm._s(folder.name))
+                              ])
+                            ])
+                          ]),
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(folder.description))]),
                           _vm._v(" "),

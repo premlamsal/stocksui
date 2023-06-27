@@ -495,10 +495,14 @@ Route::delete('folder/{id}', 'FolderController@destroy');
 
 Route::get('files', 'FileController@index');
 
+
+
 Route::post('file', 'FileController@store');
 
 Route::put('file', 'FileController@update');
 
 Route::get('file/{id}', 'FileController@show');
+
+Route::get('filedownload/{id}', 'FileController@filedownload');
 
 Route::delete('file/{id}', 'FileController@destroy');
