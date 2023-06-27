@@ -503,6 +503,8 @@ Route::put('file', 'FileController@update');
 
 Route::get('file/{id}', 'FileController@show');
 
+Route::get('getfilesfolder/{id}', 'FileController@getFilesByFolder');
+
 Route::get('filedownload/{id}', 'FileController@filedownload');
 
 Route::delete('file/{id}', 'FileController@destroy');
