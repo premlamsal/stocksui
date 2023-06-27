@@ -160,7 +160,7 @@
               </thead>
               <tbody>
                 <tr v-for="folder in folders" v-bind:key="folder.id">
-                  <td> <div class="folder-icon-holder">
+                  <td> <div class="folder-icon-holder" @click="viewFolder(folder.id)">
                     <img
                       src="/assets/img/folder2.svg"
                       class="icon-for-folder"
@@ -319,6 +319,9 @@
     },
   
     methods: {
+      viewFolder(folder_id){
+        this.$router.push({ path: 'files', query: { folder: folder_id }})
+      },
       //methods codes here
       handleSuccessExportCSV() {
         console.log("success Export");

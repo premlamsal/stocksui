@@ -151,7 +151,7 @@ class FolderController extends Controller
 
         $store_id = $user->stores[0]->id;
 
-        $folder = Folder::where('id', $id)->first();
+        $folder = Folder::where('id', $id)->with('files')->first();
 
         if ($folder->save()) {
             return response()->json([

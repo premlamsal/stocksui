@@ -22,7 +22,7 @@
           <div class="form-group">
             <label for="Category">Folder:</label>
             <template>
-              <select class="form-control" v-model="file.folder_id">
+              <select class="form-control" v-model="file.folder_id" :disabled="rotueQuery.folder">
                 <option
                   selected=""
                   v-for="folder in folders"
@@ -227,7 +227,7 @@
                   <button
                     class="btn btn-danger custom_btn_table"
                     style="margin-right: 5px"
-                    @click="downloadFile(file.id,file.original_file_name)"
+                    @click="downloadFile(file.id, file.original_file_name)"
                     v-if="hasPermission('download_file')"
                   >
                     <span class="fa fa-download custom_icon_table"></span>
@@ -371,6 +371,8 @@ export default {
 
       imagePreview: "",
 
+      rotueQuery: {},
+
       errors: [],
       pagination: {},
       isLoading: "",
@@ -378,6 +380,7 @@ export default {
     };
   },
   created() {
+    this.getRouteQuery();
     //this block will execute when component created
     this.fetchFiles();
     this.fetchFolders();
@@ -385,6 +388,10 @@ export default {
   },
 
   methods: {
+    getRouteQuery() {
+      this.rotueQuery = this.$route.query;
+      // console.log(this.rotueQuery.folder)
+    },
     //methods codes here
     handleSuccessExportCSV() {
       console.log("success Export");
@@ -427,7 +434,11 @@ export default {
     fetchFiles(page_url) {
       this.$Progress.start();
       this.isLoading = "Loading all Data";
-      page_url = page_url || "api/files";
+      if (this.rotueQuery.folder) {
+        page_url = page_url || "api/getfilesfolder/" + this.rotueQuery.folder;
+      } else {
+        page_url = page_url || "api/files";
+      }
 
       let vm = this; // current pointer instance while going inside the another functional instance
       axios
@@ -520,8 +531,7 @@ export default {
 
       this.$Progress.finish();
     }, //end of fileSelected
-    downloadFile(file_id,original_file_name) {
-
+    downloadFile(file_id, original_file_name) {
       axios
         .get(`api/filedownload/${file_id}`, {
           responseType: "blob",
@@ -529,15 +539,18 @@ export default {
         .then((response) => {
           const url = window.URL.createObjectURL(new Blob([response.data]));
 
-          const file_type=response.data.type.split("/");
-         
-          const file_extion=file_type[1];
-          
+          const file_type = response.data.type.split("/");
+
+          const file_extion = file_type[1];
+
           console.log(file_extion);
 
           const link = document.createElement("a");
-          link.href =  url;
-          link.setAttribute("download",original_file_name+new Date()+"."+file_extion); //or any other extension
+          link.href = url;
+          link.setAttribute(
+            "download",
+            original_file_name + new Date() + "." + file_extion
+          ); //or any other extension
           document.body.appendChild(link);
           link.click();
         })
@@ -563,11 +576,15 @@ export default {
     showAddModal() {
       this.modalForName = "Add File";
       // Vue.set(this.modalForName,"Add File");
+
       this.modalForCode = 0; //0 for add
       this.file.name = "";
       this.file.description = "";
       this.file.folder_id = "";
-
+      //if already we are navigating thorough folder we are fixed we gonna add new file to navigated folder so assigning folder id previously and also gonna disable the option to select the folder
+      if (this.rotueQuery.folder) {
+        this.file.folder_id = this.rotueQuery.folder;
+      }
       this.errors = ""; //clearing errors
       // Vue.set(this.modalForCode,0);
       this.$bvModal.show("bv-modal-add-file");

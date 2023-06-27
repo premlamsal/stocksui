@@ -27,6 +27,18 @@ class FileController extends Controller
         $store_id = $user->stores[0]->id;
 
         return FileResource::collection(File::with('user')->with('folder')->paginate(8));
+
+    }
+    public function getFilesByFolder($id){
+
+        // $this->authorize('hasPermission', 'view_files_by_folder');
+        
+        $user = User::findOrFail(Auth::user()->id);
+
+        $store_id = $user->stores[0]->id;
+
+        return FileResource::collection(File::where('folder_id',$id)->with('user')->with('folder')->paginate(8));
+
     }
 
     public function store(Request $request)
@@ -236,6 +248,8 @@ class FileController extends Controller
             ]);
         }
     }
+
+    
 
     public function filedownload($file_id){
 
