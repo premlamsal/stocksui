@@ -117,7 +117,6 @@ Vue.filter('remove_underscore', function (value) {
 
 
 
-
 //notification block ends//
 
 

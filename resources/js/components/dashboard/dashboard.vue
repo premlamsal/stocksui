@@ -118,7 +118,7 @@
           </div>
         </div>
       </div>
-     
+
       <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
           <div class="card-body">
@@ -238,7 +238,7 @@
           </div>
         </div>
       </div>
-     
+
       <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
           <div class="card-body">
@@ -269,57 +269,99 @@
           </div>
         </div>
       </div>
-     
-     
-      
     </div>
 
-    <!--  <div class="row">
-          <div class="col-md-6">
-            <div class="card ">
-              <div class="card-header ">
-                <h5 class="card-title">Email Statistics</h5>
-                <p class="card-category">Last Campaign Performance</p>
-              </div>
-              <div class="card-body ">
-                
-              </div>
-              <div class="card-footer ">
-                <div class="legend">
-                  <i class="fa fa-circle text-primary"></i> Opened
-                  <i class="fa fa-circle text-warning"></i> Read
-                  <i class="fa fa-circle text-danger"></i> Deleted
-                  <i class="fa fa-circle text-gray"></i> Unopened
-                </div>
-                <hr>
-                <div class="stats">
-                  <i class="fa fa-calendar"></i> Number of emails sent
-                </div>
-              </div>
+    <div class="row">
+      <div class="col-md-12">
+        
+        <div class="weather-card" v-if="!isWeatherLoading">
+          <div class="weather-location-holder">
+         
+            <label for="weather-location">Weather Location</label>
+            <div class="location-input">
+            <input type="text" class="form-control" placeholder="Enter the location" v-model="inputLocation"/>
+            <button class="btn btn-primary" @click="getWeatherByLocation()">Go</button>
+           </div>
+        </div>
+          <div class="today-weather-card">
+            <img
+              class="weather-logo"
+              :src="currentWeatherData.icon"
+              alt="Weather Logo"
+            />
+            <div class="weather-info">
+              <h2>Today's Weather</h2>
+              <p style="font-size: 20px; text-transform: capitalize">
+                Condition: {{ currentWeatherData.description }}
+              </p>
+              <p style="font-size: 24px">
+                {{ getDayOfWeek(currentWeatherData.dt_txt) }}
+              </p>
+              <p style="font-size: 22px">
+                Temperature: {{ currentWeatherData.temp }}°C
+              </p>
+              <p style="font-size: 22px">
+                Feels Like: {{ currentWeatherData.feels_like }}°C
+              </p>
+            
+              <p style="font-size: 22px">
+                Humidity: {{ currentWeatherData.humidity }}
+              </p>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="card card-chart">
-              <div class="card-header">
-                <h5 class="card-title">NASDAQ: AAPL</h5>
-                <p class="card-category">Line Chart with Points</p>
+          <div class="forecast">
+            <div
+              class="forecast-day"
+              v-for="forecast in filteredForecastList"
+              v-bind:key="forecast.dt"
+            >
+              <div class="forecast-list-image-holder">
+                <img
+                  class="forecast-list-weather-logo"
+                  :src="getIconWithUrl(forecast.weather[0].icon)"
+                  alt="Weather Logo"
+                />
               </div>
-              <div class="card-body">
-               
-              </div>
-              <div class="card-footer">
-                <div class="chart-legend">
-                  <i class="fa fa-circle text-info"></i> Tesla Model S
-                  <i class="fa fa-circle text-warning"></i> BMW 5 Series
-                </div>
-                <hr/>
-                <div class="card-stats">
-                  <i class="fa fa-check"></i> Data information certified
-                </div>
-              </div>
+              <h4>{{ getDayOfWeek(forecast.dt_txt) }}</h4>
+              <p style="font-size: 20px">
+                {{ Math.round(forecast.main.temp) }}°C
+              </p>
+              <p style="font-size: 18px; text-transform: capitalize">
+                {{ forecast.weather[0].description }}
+              </p>
             </div>
           </div>
-        </div> -->
+        </div>
+        <div class="" v-else>
+          <!-- Loading Weather Data... -->
+          <div class="text-center">
+            <b-spinner variant="success" label="Spinning"></b-spinner>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- <div class="col-md-6">
+        <div v-if="currentWeatherData">
+          <h2>Current Weather</h2>
+          <p>Date/Time: {{ currentWeatherData.dt_txt }}</p>
+          <p>Temperature: {{ currentWeatherData.main.temp }}°C</p>
+          <p>Weather: {{ currentWeatherData.weather[0].description }}</p>
+          ...and so on -->
+      <!-- </div>
+      </div> -->
+      <!-- <div class="col-md-6">
+        <div class="weather-list">
+          <div v-for="forecast in forecastList" :key="forecast.dt">
+            <p>Date/Time: {{ forecast.dt_txt }}</p>
+            <p>Day: {{ getDayOfWeek(forecast.dt_txt) }}</p>
+            <p>Temperature: {{ forecast.main.temp }}°C</p>
+            <p>Weather: {{ forecast.weather[0].description }}</p>
+          </div>
+        </div>
+      </div> -->
+    </div>
   </div>
 </template>
 
@@ -341,6 +383,9 @@ export default {
       showLine: true,
 
       loaded: false,
+      inputLocation:"London",
+      weatherData: {},
+      isWeatherLoading: null,
 
       chartdata: {
         labels: "",
@@ -380,6 +425,10 @@ export default {
 
       dash: [],
 
+      forecastList: [],
+      currentWeatherData: {},
+      filteredForecastList: [],
+
       type: "line",
 
       before_month: "6", //default sales chart will show 6 months records
@@ -387,6 +436,10 @@ export default {
   }, //end of data
 
   created() {
+    if(localStorage.getItem("weather_location")){
+      this.inputLocation = localStorage.getItem("weather_location");
+    }
+  
     this.store_id = this.$cookie.get("store_id");
 
     // if(!this.store_id==null){
@@ -401,9 +454,102 @@ export default {
 
   mounted() {
     // this.getSalesChart();
+    this.getWeatherData();
   },
 
   methods: {
+    async getWeatherData() {
+      this.isWeatherLoading = true;
+
+      const url = `/api/weather`;
+      
+      let formData=new FormData();
+      formData.append('_method','POST');
+      formData.append('location',this.inputLocation);
+
+      await axios
+        .post(url,formData)
+        .then((response) => {
+          const forecastData = response.data;
+          // const forecastList=forecastData.list;
+          // this.weatherData = response.data;
+          // this.forecastList = response.data.list;
+          // console.log(this.weatherData);
+
+          const filteredData = [];
+          let previousDate = "";
+
+          for (const forecast of forecastData.list) {
+            const forecastDate = forecast.dt_txt.split(" ")[0];
+            if (forecastDate !== previousDate) {
+              filteredData.push(forecast);
+              previousDate = forecastDate;
+            }
+          }
+          this.forecastList = filteredData;
+          console.log(this.forecastList);
+
+          // //get current weather data
+          // const currentDate = new Date();
+          // const currentWeather = forecastData.list.filter((forecast) => {
+          //   const forecastDate = new Date(forecast.dt_txt.split(" ")[0]);
+          //   return forecastDate.toDateString() === currentDate.toDateString();
+          // });
+
+          // or this
+
+          this.currentWeatherData.temp = Math.round(
+            this.forecastList[0].main.temp
+          );
+
+          this.currentWeatherData.feels_like = Math.round(
+            this.forecastList[0].main.feels_like
+          );
+          this.currentWeatherData.humidity = this.forecastList[0].main.humidity;
+
+          this.currentWeatherData.description =
+            this.forecastList[0].weather[0].description;
+
+          this.currentWeatherData.dt_txt = this.forecastList[0].dt_txt;
+
+          const open_weather_icon_url = "https://openweathermap.org/img/wn/";
+          const open_weather_icon_url_last = "@2x.png";
+
+          this.currentWeatherData.icon =
+            open_weather_icon_url +
+            this.forecastList[0].weather[0].icon +
+            open_weather_icon_url_last;
+
+          console.log(this.forecastList);
+
+          const currentDateToday = new Date().toISOString().split("T")[0];
+
+          const filteredForecastList = this.forecastList.filter((forecast) => {
+            const forecastDate = forecast.dt_txt.split(" ")[0];
+            return forecastDate !== currentDateToday;
+          });
+
+          this.filteredForecastList = filteredForecastList;
+          console.log(this.filteredForecastList);
+          this.isWeatherLoading = false;
+        })
+        .catch((error) => {
+          console.error("Error fetching weather data:", error);
+        });
+    },
+    getIconWithUrl(icon_code) {
+      const open_weather_icon_url = "https://openweathermap.org/img/wn/";
+      const open_weather_icon_url_last = "@2x.png";
+
+      const custom_icon_url =
+        open_weather_icon_url + icon_code + open_weather_icon_url_last;
+
+      return custom_icon_url;
+    },
+    getDayOfWeek(dateString) {
+      const forecastDate = new Date(dateString);
+      return forecastDate.toLocaleDateString("en-US", { weekday: "long" });
+    },
     changeSalesChartType() {
       if (this.type === "line") {
         this.showBar = false;
@@ -440,6 +586,12 @@ export default {
         });
       }
     },
+    getWeatherByLocation(){
+
+      localStorage.setItem("weather_location",this.inputLocation);
+      this.getWeatherData();
+
+    },
     fetchDash() {
       let currObj = this;
 
@@ -462,3 +614,73 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.weather-card {
+  /* max-width: 300px; */
+  border-radius: 8px;
+  background-image: url("https://images.unsplash.com/photo-1561470872-2e4b48435150?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1748&q=80");
+  /* https://images.unsplash.com/photo-1580193483760-d0ef2abaa348?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1548&q=80 */
+  padding: 20px;
+  margin: 20px auto;
+  background-position: right;
+  background-size: cover;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.weather-info h2,
+.weather-info p,
+.forecast-day h4,
+.forecast-day p {
+  color: #fff;
+}
+.weather-logo {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  display: block;
+}
+
+.weather-info {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.forecast {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.forecast-day {
+  width: 19%;
+  padding: 10px;
+  text-align: center;
+  /* background-color: #e0e0e0; */
+  background-color: rgb(33 28 25 / 59%);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ffffff94;
+}
+.today-weather-card {
+  background: #21212a73;
+  padding: 13px;
+  border: 1px solid #ffffff63;
+  border-radius: 10px;
+}
+.weather-gear-holder {
+    /* display: flex; */
+    /* justify-content: right; */
+    margin: 0 auto;
+}
+.weather-location-holder {
+    margin-bottom: 20px;
+    color: white;
+}
+.location-input {
+        display: flex;
+    justify-content: right;
+    align-items: center;
+}
+</style>

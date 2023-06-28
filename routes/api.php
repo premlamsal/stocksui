@@ -2,6 +2,7 @@
 
 
 use Illuminate\Http\Request;
+use Zttp\Zttp;
 
 /*
 |--------------------------------------------------------------------------
@@ -508,3 +509,7 @@ Route::get('getfilesfolder/{id}', 'FileController@getFilesByFolder');
 Route::get('filedownload/{id}', 'FileController@filedownload');
 
 Route::delete('file/{id}', 'FileController@destroy');
+
+//weather
+
+Route::post('/weather', 'WeatherController@getWeather');
