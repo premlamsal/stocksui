@@ -20141,6 +20141,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -20284,6 +20287,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.filteredForecastList = filteredForecastList;
                   console.log(_this.filteredForecastList);
                   _this.isWeatherLoading = false;
+                  localStorage.setItem("weather_location", _this.inputLocation);
                 })["catch"](function (error) {
                   console.error("Error fetching weather data:", error);
                 });
@@ -20375,7 +20379,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return getSalesChart;
     }(),
     getWeatherByLocation: function getWeatherByLocation() {
-      localStorage.setItem("weather_location", this.inputLocation);
       this.getWeatherData();
     },
     fetchDash: function fetchDash() {
@@ -100169,7 +100172,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.weather-card[data-v-96ac3b44] {\n  /* max-width: 300px; */\n  border-radius: 8px;\n  background-image: url(\"https://images.unsplash.com/photo-1561470872-2e4b48435150?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1748&q=80\");\n  /* https://images.unsplash.com/photo-1580193483760-d0ef2abaa348?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1548&q=80 */\n  padding: 20px;\n  margin: 20px auto;\n  background-position: right;\n  background-size: cover;\n  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);\n}\n.weather-info h2[data-v-96ac3b44],\n.weather-info p[data-v-96ac3b44],\n.forecast-day h4[data-v-96ac3b44],\n.forecast-day p[data-v-96ac3b44] {\n  color: #fff;\n}\n.weather-logo[data-v-96ac3b44] {\n  width: 100px;\n  height: 100px;\n  margin: 0 auto;\n  display: block;\n}\n.weather-info[data-v-96ac3b44] {\n  text-align: center;\n  margin-top: 20px;\n}\n.forecast[data-v-96ac3b44] {\n  margin-top: 30px;\n  display: -webkit-box;\n  display: flex;\n  flex-wrap: wrap;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n}\n.forecast-day[data-v-96ac3b44] {\n  width: 19%;\n  padding: 10px;\n  text-align: center;\n  /* background-color: #e0e0e0; */\n  background-color: rgb(33 28 25 / 59%);\n  border-radius: 8px;\n  margin-bottom: 10px;\n  border: 1px solid #ffffff94;\n}\n.today-weather-card[data-v-96ac3b44] {\n  background: #21212a73;\n  padding: 13px;\n  border: 1px solid #ffffff63;\n  border-radius: 10px;\n}\n.weather-gear-holder[data-v-96ac3b44] {\n    /* display: flex; */\n    /* justify-content: right; */\n    margin: 0 auto;\n}\n.weather-location-holder[data-v-96ac3b44] {\n    margin-bottom: 20px;\n    color: white;\n}\n.location-input[data-v-96ac3b44] {\n        display: -webkit-box;\n        display: flex;\n    -webkit-box-pack: right;\n            justify-content: right;\n    -webkit-box-align: center;\n            align-items: center;\n}\n", ""]);
+exports.push([module.i, "\n.weather-card[data-v-96ac3b44] {\n  /* max-width: 300px; */\n  border-radius: 8px;\n  background-image: url(\"https://images.unsplash.com/photo-1580193483760-d0ef2abaa348?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1548&q=80\");\n  padding: 20px;\n  margin: 20px auto;\n  background-position: right;\n  background-size: cover;\n  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);\n}\n.weather-info h2[data-v-96ac3b44],\n.weather-info p[data-v-96ac3b44],\n.forecast-day h4[data-v-96ac3b44],\n.forecast-day p[data-v-96ac3b44] {\n  /* color: #fff; */\n}\n.weather-logo[data-v-96ac3b44] {\n  width: 100px;\n  height: 100px;\n  margin: 0 auto;\n  display: block;\n}\n.weather-info[data-v-96ac3b44] {\n  text-align: center;\n  margin-top: 20px;\n}\n.forecast[data-v-96ac3b44] {\n  margin-top: 30px;\n  display: -webkit-box;\n  display: flex;\n  flex-wrap: wrap;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n}\n.forecast-day[data-v-96ac3b44] {\n  width: 19%;\n  padding: 10px;\n  text-align: center;\n  background-color: #e0e0e0a6;\n  /* background-color: rgb(33 28 25 / 59%); */\n  border-radius: 8px;\n  margin-bottom: 10px;\n  border: 1px solid #ffffff94;\n}\n.forecast-day[data-v-96ac3b44]:hover{\n  background: #ffd700a3;\n}\n.today-weather-card[data-v-96ac3b44] {\n  background: #21212a73;\n  padding: 13px;\n  color: #fff;\n  border: 1px solid #ffffff63;\n  border-radius: 10px;\n}\n.weather-gear-holder[data-v-96ac3b44] {\n    /* display: flex; */\n    /* justify-content: right; */\n    margin: 0 auto;\n}\n.weather-location-holder[data-v-96ac3b44] {\n    margin-bottom: 20px;\n    color: white;\n}\n.location-input[data-v-96ac3b44] {\n        display: -webkit-box;\n        display: flex;\n        width:350px;\n    -webkit-box-pack: right;\n            justify-content: right;\n    -webkit-box-align: center;\n            align-items: center;\n}\n", ""]);
 
 // exports
 
@@ -186693,180 +186696,202 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-12" }, [
-        !_vm.isWeatherLoading
-          ? _c("div", { staticClass: "weather-card" }, [
-              _c("div", { staticClass: "weather-location-holder" }, [
-                _c("label", { attrs: { for: "weather-location" } }, [
-                  _vm._v("Weather Location")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "location-input" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.inputLocation,
-                        expression: "inputLocation"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: { type: "text", placeholder: "Enter the location" },
-                    domProps: { value: _vm.inputLocation },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.inputLocation = $event.target.value
-                      }
+        _c("div", { staticClass: "weather-card" }, [
+          _c("div", { staticClass: "weather-location-holder" }, [
+            _c(
+              "label",
+              {
+                staticStyle: { color: "black" },
+                attrs: { for: "weather-location" }
+              },
+              [_vm._v("Weather Location")]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "location-input" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.inputLocation,
+                    expression: "inputLocation"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", placeholder: "Enter the location" },
+                domProps: { value: _vm.inputLocation },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.inputLocation = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  on: {
+                    click: function($event) {
+                      return _vm.getWeatherByLocation()
+                    }
+                  }
+                },
+                [_vm._v("Go")]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          !_vm.isWeatherLoading
+            ? _c("div", { staticClass: "super-weather-holder" }, [
+                _c("div", { staticClass: "today-weather-card" }, [
+                  _c("img", {
+                    staticClass: "weather-logo",
+                    attrs: {
+                      src: _vm.currentWeatherData.icon,
+                      alt: "Weather Logo"
                     }
                   }),
                   _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary",
-                      on: {
-                        click: function($event) {
-                          return _vm.getWeatherByLocation()
+                  _c("div", { staticClass: "weather-info" }, [
+                    _c("h2", [_vm._v("Today's Weather")]),
+                    _vm._v(" "),
+                    _c(
+                      "p",
+                      {
+                        staticStyle: {
+                          "font-size": "20px",
+                          "text-transform": "capitalize"
                         }
-                      }
-                    },
-                    [_vm._v("Go")]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "today-weather-card" }, [
-                _c("img", {
-                  staticClass: "weather-logo",
-                  attrs: {
-                    src: _vm.currentWeatherData.icon,
-                    alt: "Weather Logo"
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "weather-info" }, [
-                  _c("h2", [_vm._v("Today's Weather")]),
-                  _vm._v(" "),
-                  _c(
-                    "p",
-                    {
-                      staticStyle: {
-                        "font-size": "20px",
-                        "text-transform": "capitalize"
-                      }
-                    },
-                    [
-                      _vm._v(
-                        "\n              Condition: " +
-                          _vm._s(_vm.currentWeatherData.description) +
-                          "\n            "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("p", { staticStyle: { "font-size": "24px" } }, [
-                    _vm._v(
-                      "\n              " +
-                        _vm._s(
-                          _vm.getDayOfWeek(_vm.currentWeatherData.dt_txt)
-                        ) +
-                        "\n            "
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticStyle: { "font-size": "22px" } }, [
-                    _vm._v(
-                      "\n              Temperature: " +
-                        _vm._s(_vm.currentWeatherData.temp) +
-                        "°C\n            "
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticStyle: { "font-size": "22px" } }, [
-                    _vm._v(
-                      "\n              Feels Like: " +
-                        _vm._s(_vm.currentWeatherData.feels_like) +
-                        "°C\n            "
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticStyle: { "font-size": "22px" } }, [
-                    _vm._v(
-                      "\n              Humidity: " +
-                        _vm._s(_vm.currentWeatherData.humidity) +
-                        "\n            "
-                    )
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "forecast" },
-                _vm._l(_vm.filteredForecastList, function(forecast) {
-                  return _c(
-                    "div",
-                    { key: forecast.dt, staticClass: "forecast-day" },
-                    [
-                      _c("div", { staticClass: "forecast-list-image-holder" }, [
-                        _c("img", {
-                          staticClass: "forecast-list-weather-logo",
-                          attrs: {
-                            src: _vm.getIconWithUrl(forecast.weather[0].icon),
-                            alt: "Weather Logo"
-                          }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("h4", [
-                        _vm._v(_vm._s(_vm.getDayOfWeek(forecast.dt_txt)))
-                      ]),
-                      _vm._v(" "),
-                      _c("p", { staticStyle: { "font-size": "20px" } }, [
+                      },
+                      [
+                        _vm._v(
+                          "\n              Condition: " +
+                            _vm._s(_vm.currentWeatherData.description) +
+                            "\n            "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "p",
+                      {
+                        staticStyle: {
+                          "font-size": "24px",
+                          color: "var(--favgold)"
+                        }
+                      },
+                      [
                         _vm._v(
                           "\n              " +
-                            _vm._s(Math.round(forecast.main.temp)) +
-                            "°C\n            "
+                            _vm._s(
+                              _vm.getDayOfWeek(_vm.currentWeatherData.dt_txt)
+                            ) +
+                            "\n            "
                         )
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "p",
-                        {
-                          staticStyle: {
-                            "font-size": "18px",
-                            "text-transform": "capitalize"
-                          }
-                        },
-                        [
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("p", { staticStyle: { "font-size": "22px" } }, [
+                      _vm._v(
+                        "\n              Temperature: " +
+                          _vm._s(_vm.currentWeatherData.temp) +
+                          "°C\n            "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticStyle: { "font-size": "22px" } }, [
+                      _vm._v(
+                        "\n              Feels Like: " +
+                          _vm._s(_vm.currentWeatherData.feels_like) +
+                          "°C\n            "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticStyle: { "font-size": "22px" } }, [
+                      _vm._v(
+                        "\n              Humidity: " +
+                          _vm._s(_vm.currentWeatherData.humidity) +
+                          "\n            "
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "forecast" },
+                  _vm._l(_vm.filteredForecastList, function(forecast) {
+                    return _c(
+                      "div",
+                      { key: forecast.dt, staticClass: "forecast-day" },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "forecast-list-image-holder" },
+                          [
+                            _c("img", {
+                              staticClass: "forecast-list-weather-logo",
+                              attrs: {
+                                src: _vm.getIconWithUrl(
+                                  forecast.weather[0].icon
+                                ),
+                                alt: "Weather Logo"
+                              }
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("h4", [
+                          _vm._v(_vm._s(_vm.getDayOfWeek(forecast.dt_txt)))
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticStyle: { "font-size": "20px" } }, [
                           _vm._v(
                             "\n              " +
-                              _vm._s(forecast.weather[0].description) +
-                              "\n            "
+                              _vm._s(Math.round(forecast.main.temp)) +
+                              "°C\n            "
                           )
-                        ]
-                      )
-                    ]
-                  )
-                }),
-                0
-              )
-            ])
-          : _c("div", {}, [
-              _c(
-                "div",
-                { staticClass: "text-center" },
-                [
-                  _c("b-spinner", {
-                    attrs: { variant: "success", label: "Spinning" }
-                  })
-                ],
-                1
-              )
-            ])
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "p",
+                          {
+                            staticStyle: {
+                              "font-size": "18px",
+                              "text-transform": "capitalize"
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n              " +
+                                _vm._s(forecast.weather[0].description) +
+                                "\n            "
+                            )
+                          ]
+                        )
+                      ]
+                    )
+                  }),
+                  0
+                )
+              ])
+            : _c("div", {}, [
+                _c(
+                  "div",
+                  { staticClass: "text-center" },
+                  [
+                    _c("b-spinner", {
+                      attrs: { variant: "success", label: "Spinning" }
+                    })
+                  ],
+                  1
+                )
+              ])
+        ])
       ])
     ]),
     _vm._v(" "),

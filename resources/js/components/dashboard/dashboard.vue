@@ -274,15 +274,16 @@
     <div class="row">
       <div class="col-md-12">
         
-        <div class="weather-card" v-if="!isWeatherLoading">
+        <div class="weather-card" >
           <div class="weather-location-holder">
          
-            <label for="weather-location">Weather Location</label>
+            <label for="weather-location" style="color:black">Weather Location</label>
             <div class="location-input">
             <input type="text" class="form-control" placeholder="Enter the location" v-model="inputLocation"/>
             <button class="btn btn-primary" @click="getWeatherByLocation()">Go</button>
            </div>
         </div>
+        <div class="super-weather-holder" v-if="!isWeatherLoading">
           <div class="today-weather-card">
             <img
               class="weather-logo"
@@ -294,7 +295,7 @@
               <p style="font-size: 20px; text-transform: capitalize">
                 Condition: {{ currentWeatherData.description }}
               </p>
-              <p style="font-size: 24px">
+              <p style="font-size: 24px;color:var(--favgold)">
                 {{ getDayOfWeek(currentWeatherData.dt_txt) }}
               </p>
               <p style="font-size: 22px">
@@ -338,6 +339,8 @@
             <b-spinner variant="success" label="Spinning"></b-spinner>
           </div>
         </div>
+        </div>
+      
       </div>
     </div>
 
@@ -532,6 +535,9 @@ export default {
           this.filteredForecastList = filteredForecastList;
           console.log(this.filteredForecastList);
           this.isWeatherLoading = false;
+
+      localStorage.setItem("weather_location",this.inputLocation);
+
         })
         .catch((error) => {
           console.error("Error fetching weather data:", error);
@@ -588,7 +594,6 @@ export default {
     },
     getWeatherByLocation(){
 
-      localStorage.setItem("weather_location",this.inputLocation);
       this.getWeatherData();
 
     },
@@ -619,8 +624,7 @@ export default {
 .weather-card {
   /* max-width: 300px; */
   border-radius: 8px;
-  background-image: url("https://images.unsplash.com/photo-1561470872-2e4b48435150?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1748&q=80");
-  /* https://images.unsplash.com/photo-1580193483760-d0ef2abaa348?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1548&q=80 */
+  background-image: url("https://images.unsplash.com/photo-1580193483760-d0ef2abaa348?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1548&q=80");
   padding: 20px;
   margin: 20px auto;
   background-position: right;
@@ -632,7 +636,7 @@ export default {
 .weather-info p,
 .forecast-day h4,
 .forecast-day p {
-  color: #fff;
+  /* color: #fff; */
 }
 .weather-logo {
   width: 100px;
@@ -657,15 +661,19 @@ export default {
   width: 19%;
   padding: 10px;
   text-align: center;
-  /* background-color: #e0e0e0; */
-  background-color: rgb(33 28 25 / 59%);
+  background-color: #e0e0e0a6;
+  /* background-color: rgb(33 28 25 / 59%); */
   border-radius: 8px;
   margin-bottom: 10px;
   border: 1px solid #ffffff94;
 }
+.forecast-day:hover{
+  background: #ffd700a3;
+}
 .today-weather-card {
   background: #21212a73;
   padding: 13px;
+  color: #fff;
   border: 1px solid #ffffff63;
   border-radius: 10px;
 }
@@ -680,6 +688,7 @@ export default {
 }
 .location-input {
         display: flex;
+        width:350px;
     justify-content: right;
     align-items: center;
 }
