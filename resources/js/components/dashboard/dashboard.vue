@@ -277,7 +277,7 @@
         <div class="weather-card" >
           <div class="weather-location-holder">
          
-            <label for="weather-location" style="color:black">Weather Location</label>
+            <label for="weather-location" style="color:#fff">Weather Location</label>
             <div class="location-input">
             <input type="text" class="form-control" placeholder="Enter the location" v-model="inputLocation"/>
             <button class="btn btn-primary" @click="getWeatherByLocation()">Go</button>
@@ -624,7 +624,7 @@ export default {
 .weather-card {
   /* max-width: 300px; */
   border-radius: 8px;
-  background-image: url("https://images.unsplash.com/photo-1580193483760-d0ef2abaa348?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1548&q=80");
+  background-image: url("/assets/img/weather.jpg");
   padding: 20px;
   margin: 20px auto;
   background-position: right;
@@ -661,21 +661,23 @@ export default {
   width: 19%;
   padding: 10px;
   text-align: center;
-  background-color: #e0e0e0a6;
+  background-color: #e0e0e0e0;
   /* background-color: rgb(33 28 25 / 59%); */
   border-radius: 8px;
   margin-bottom: 10px;
   border: 1px solid #ffffff94;
 }
 .forecast-day:hover{
-  background: #ffd700a3;
+  background: #ffd700e0;
 }
 .today-weather-card {
-  background: #21212a73;
-  padding: 13px;
-  color: #fff;
-  border: 1px solid #ffffff63;
-  border-radius: 10px;
+  background: #000000b5;
+    padding: 13px;
+    color: #fff;
+    border: 1px solid #ffffff63;
+    border-radius: 10px;
+    margin: 0 auto;
+    /* width: 500px; */
 }
 .weather-gear-holder {
     /* display: flex; */
