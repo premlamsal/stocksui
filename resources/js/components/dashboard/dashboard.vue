@@ -677,7 +677,8 @@ export default {
     border: 1px solid #ffffff63;
     border-radius: 10px;
     margin: 0 auto;
-    /* width: 500px; */
+    width: 500px;
+
 }
 .weather-gear-holder {
     /* display: flex; */
@@ -685,8 +686,10 @@ export default {
     margin: 0 auto;
 }
 .weather-location-holder {
-    margin-bottom: 20px;
     color: white;
+    margin: 0 auto;
+    width: 380px;
+    margin-bottom: 20px;
 }
 .location-input {
         display: flex;
