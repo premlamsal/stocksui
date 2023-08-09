@@ -230715,8 +230715,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_3__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /opt/homebrew/var/www/awesome-invoice-multi/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /opt/homebrew/var/www/awesome-invoice-multi/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /opt/homebrew/var/www/stocksui/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /opt/homebrew/var/www/stocksui/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

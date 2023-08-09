@@ -1,47 +1,33 @@
-<h1>awesome-invoice-multi</h1>
-<h2>Inventory & Sales Application</h2>
+<h1>StocksUI</h1>
+<h2>Operation Mangement System</h2>
 <p>Developed by Prem Lamsal</p>
 <p>Laravel 6.10.1 and VueJs 2</p>
-<p>Multi User Registration</p>
-<p>Note: Please use composer 1.10.25. If you are using new composer please downgrade using 'composer self-update --1' command. </p>
 
-<h3>Updated Modules</h3>
+<h3>Modules</h3>
 <ul>
-<li>Payments Statement</li>
-<li>Accounts Ledger</li>
-<li>Income / Expense </li>
-<li>Customer / Supplier Ledger</li>
-<li>Transaction Management</li>
+<li>Live Weather Updates on Dashboard</li>
+<li>Calandar-Events</li>
+<li>Categories</li>
+<li>Contacts </li>
+<li>File & Folder Mangement</li>
+<li>Notes</li>
+<li>Products</li>
+<li>Suppliers</li>
+<li>Taskboard-Kanban Board</li>
+<li>Weekly Orders</li>
 </ul>
-
-<h4>used npm packages</h4>
-<ul>
-	<li>vue-router</li>
-	<li>bootstrap-vue</li>
-	<li>vue-sweetalert2</li>
-	<li>vue-blob-json-csv</li>
-	<li>vue-bootstrap-datetimepicker</li>
-</ul>
-
-<h4>MODULES INCLUDED</h4>
-<ul>
-	<li>CATEGORIES</li>
-	<li>CUSTOMERS</li>
-	<li>PURCHASES</li>
-	<li>PRODUCTS</li>
-	<li>INVOICES</li>
-	<li>STOCKS</li>
-	<li>USERS</li>
-	<li>STORE</li>
-	<li>UNITS</li>
 </ul>
 <h4>Demo</h4>
-<h5>Dashboard</h5>
+<h5>Login</h5>
 <img src="https://premlamsal.github.io/projects/awesome-invoice/images/demos/one.png">
-<h5>Invoice</h5>
-<img src="https://premlamsal.github.io/projects/awesome-invoice/images/demos/two.PNG">
-<h5>Purchase</h5>
+<h5>Dashboard</h5>
+<img src="https://premlamsal.github.io/projects/awesome-invoice/images/demos/two.png">
 <img src="https://premlamsal.github.io/projects/awesome-invoice/images/demos/three.PNG">
+<img src="https://premlamsal.github.io/projects/awesome-invoice/images/demos/four.PNG">
+<img src="https://premlamsal.github.io/projects/awesome-invoice/images/demos/five.PNG">
+<img src="https://premlamsal.github.io/projects/awesome-invoice/images/demos/six.PNG">
+<img src="https://premlamsal.github.io/projects/awesome-invoice/images/demos/seven.PNG">
+<img src="https://premlamsal.github.io/projects/awesome-invoice/images/demos/eight.PNG">
 
 <h2>DOCUMENTATION</h2>
 <h5>Installation</h5>
