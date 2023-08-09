@@ -3,6 +3,9 @@
 <p>Developed by Prem Lamsal</p>
 <p>Laravel 6.10.1 and VueJs 2</p>
 
+<h4>NOTE: THIS PROJECT CLIENT DID NOT PAY ME. SO I MAKE THIS PROJECT PUBLIC<h4>
+
+
 <h3>Modules</h3>
 <ul>
 <li>Live Weather Updates on Dashboard</li>
