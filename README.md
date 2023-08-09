@@ -22,11 +22,13 @@
 <img src="https://premlamsal.github.io/projects/stocksui/images/demos/one.png">
 <h5>Dashboard</h5>
 <img src="https://premlamsal.github.io/projects/stocksui/images/demos/two.png">
-<h5>Dashboard</h5>
-<img src="https://premlamsal.github.io/projects/stocksui/images/demos/two.png">
-<img src="https://premlamsal.github.io/projects/stocksui/images/demos/two.png">
-<img src="https://premlamsal.github.io/projects/stocksui/images/demos/two.png">
-<img src="https://premlamsal.github.io/projects/stocksui/images/demos/two.png">
+<img src="https://premlamsal.github.io/projects/stocksui/images/demos/three.png">
+<img src="https://premlamsal.github.io/projects/stocksui/images/demos/four.png">
+<img src="https://premlamsal.github.io/projects/stocksui/images/demos/five.png">
+<img src="https://premlamsal.github.io/projects/stocksui/images/demos/six.png">
+<img src="https://premlamsal.github.io/projects/stocksui/images/demos/seven.png">
+<img src="https://premlamsal.github.io/projects/stocksui/images/demos/eight.png">
+
 
 
 <h2>DOCUMENTATION</h2>
