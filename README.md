@@ -22,7 +22,7 @@
 </ul>
 <h4>Demo</h4>
 <h5>Login</h5>
-<img src="https://premlamsal.github.io/projects/stocksui/images/demos/one.png">
+<img src="https://premlamsal.github.io/projects/stocksui/images/demos/login.png">
 <h5>Dashboard</h5>
 <img src="https://premlamsal.github.io/projects/stocksui/images/demos/two.png">
 <img src="https://premlamsal.github.io/projects/stocksui/images/demos/three.png">
