@@ -27,7 +27,7 @@ class EventController extends Controller
 
         $store_id = $user->stores[0]->id;
 
-        return EventResource::collection(Event::where('store_id', $store_id)->paginate(8));
+        return EventResource::collection(Event::where('store_id', $store_id)->get());
     }
 
     public function store(Request $request)
@@ -41,7 +41,7 @@ class EventController extends Controller
 
         $this->validate($request, [
 
-            'title'    => 'required',
+            'title' => 'required',
 
             'start' => 'required',
 
@@ -87,7 +87,7 @@ class EventController extends Controller
         } else {
             return response()->json([
 
-                'msg'    => 'Error Creating event',
+                'msg' => 'Error Creating event',
 
                 'status' => 'error',
             ]);
@@ -105,7 +105,7 @@ class EventController extends Controller
 
         $this->validate($request, [
 
-            'title'    => 'required',
+            'title' => 'required',
 
             'start' => 'required',
 
@@ -150,7 +150,7 @@ class EventController extends Controller
 
             return response()->json([
 
-                'msg'    => 'Error Updating Event',
+                'msg' => 'Error Updating Event',
                 'status' => 'error',
             ]);
         }
@@ -174,7 +174,7 @@ class EventController extends Controller
             ]);
         } else {
             return response()->json([
-                'msg'    => 'Failed Deleting Event!',
+                'msg' => 'Failed Deleting Event!',
                 'status' => 'error',
             ]);
         }
@@ -218,7 +218,7 @@ class EventController extends Controller
             return EventResource::collection(Event::where('store_id', $store_id)->where('name', 'like', '%' . $searchKey . '%')->paginate(8));
         } else {
             return response()->json([
-                'msg'    => 'Error while retriving Events. No Data Supplied as key.',
+                'msg' => 'Error while retriving Events. No Data Supplied as key.',
                 'status' => 'error',
             ]);
         }
