@@ -87,7 +87,7 @@
                             </li>
                         @endcan
 
-                        @can('hasPermission', 'view_files')
+                        {{-- @can('hasPermission', 'view_files')
                             <li>
                                 <router-link to="/files" aria-expanded="false">
                                     <i class="nc-icon nc-single-copy-04"></i>
@@ -103,7 +103,7 @@
                                     <span>Folders</span>
                                 </router-link>
                             </li>
-                        @endcan
+                        @endcan --}}
 
 
 
@@ -287,9 +287,8 @@
                 </div>
               </li> -->
                                 <li class="nav-item btn-rotate dropdown">
-                                    <a class="nav-link dropdown-toggle" href="http://example.com"
-                                        id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
+                                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="nc-icon nc-single-02"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right"
