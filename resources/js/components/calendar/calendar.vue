@@ -220,7 +220,7 @@ export default {
           // minute: '2-digit',
           omitZeroMinute: true,
           meridiem: "short",
-          hour: 'numeric',
+          hour: "numeric",
           minute: "2-digit",
           // second: "2-digit",
           // hour12: true, //this also enables am or pm if true
@@ -238,7 +238,24 @@ export default {
         eventClick: this.handleEventClick,
         // dayMaxEvents: true,
         weekends: true,
-        events: [],
+        events: [
+          {
+            id: 1,
+            title: "pop",
+            start: "2024-03-26 19:11:45",
+            end: "2023-06-27 19:11:50",
+            description: "k",
+            backgroundColor: "#4CAF50",
+          },
+          {
+            id: 1,
+            title: "pop",
+            start: "2024-03-26 19:11:45",
+            end: "2023-06-27 19:11:50",
+            description: "k",
+            backgroundColor: "#4CAF50",
+          },
+        ],
       },
     };
   },
@@ -254,6 +271,7 @@ export default {
           .get("/api/events")
           .then((response) => {
             this.calendarOptions.events = response.data.data;
+            console.log(this.calendarOptions.events);
             this.$Progress.finish();
           })
           .catch((error) => {

@@ -17992,6 +17992,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
@@ -18285,7 +18289,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           // minute: '2-digit',
           omitZeroMinute: true,
           meridiem: "short"
-        }, _defineProperty(_eventTimeFormat, "hour", 'numeric'), _defineProperty(_eventTimeFormat, "minute", "2-digit"), _eventTimeFormat),
+        }, _defineProperty(_eventTimeFormat, "hour", "numeric"), _defineProperty(_eventTimeFormat, "minute", "2-digit"), _eventTimeFormat),
         headerToolbar: {
           left: "prev,next today",
           center: "title",
@@ -18297,7 +18301,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         eventClick: this.handleEventClick,
         // dayMaxEvents: true,
         weekends: true,
-        events: []
+        events: [{
+          id: 1,
+          title: "pop",
+          start: "2024-03-26 19:11:45",
+          end: "2023-06-27 19:11:50",
+          description: "k",
+          backgroundColor: "#4CAF50"
+        }, {
+          id: 1,
+          title: "pop",
+          start: "2024-03-26 19:11:45",
+          end: "2023-06-27 19:11:50",
+          description: "k",
+          backgroundColor: "#4CAF50"
+        }]
       }
     };
   },
@@ -18312,6 +18330,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.$Progress.start();
         axios.get("/api/events").then(function (response) {
           _this.calendarOptions.events = response.data.data;
+          console.log(_this.calendarOptions.events);
 
           _this.$Progress.finish();
         })["catch"](function (error) {
@@ -184510,7 +184529,7 @@ var staticRenderFns = [
       _c("div", { staticClass: "card shadow mb-4" }, [
         _c("div", { staticClass: "card-body" }, [
           _vm._v(
-            "\n      Aweseome Invoice software solves the problem of traditional way of Billing and managing stock. This application is developed by BatikLeaf. This application is curretly on beta testing mode. You can always report the bugs and problems to developer or company site.\n      "
+            "\n      This software is developed by PremLamsal. Contact email:\n      premlamsal2@gmail.com. You can whatsapp me +9779868616747 Aweseome\n      software solves the problem of traditional way of Billing and managing\n      stock. This application is developed by BatikLeaf. This application is\n      curretly on beta testing mode. You can always report the bugs and\n      problems to developer or company site.\n      "
           ),
           _c("h6", { staticClass: "m-0 mt-2 font-weight-bold text-primary" }, [
             _vm._v("Licence")

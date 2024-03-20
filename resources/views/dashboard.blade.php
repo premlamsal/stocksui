@@ -44,14 +44,14 @@
                         </div>
                     </a>
                     {{-- <a href="/" class="simple-text logo-normal"> --}}
-                        {{-- {{ config('app.name', 'Laravel') }} --}}
-                        <!-- <div class="logo-image-big">
+                    {{-- {{ config('app.name', 'Laravel') }} --}}
+                    <!-- <div class="logo-image-big">
             <img src="../assets/img/logo-big.png">
           </div> -->
                     {{-- </a> --}}
                 </div>
                 <div class="sidebar-wrapper">
-                    
+
                     <ul class="nav">
 
                         <li>
@@ -71,43 +71,43 @@
                             </li>
                         @endcan
                         @can('hasPermission', 'view_categories')
-                        <li>
-                            <router-link to="/categories" aria-expanded="false">
-                                <i class="nc-icon nc-bullet-list-67"></i>
-                                <span>Categories</span>
-                            </router-link>
-                        </li>
-                    @endcan
-                    @can('hasPermission', 'view_contacts')
-                    <li>
-                        <router-link to="/contacts" aria-expanded="false">
-                            <i class="nc-icon nc-badge"></i>
-                            <span>Contact</span>
-                        </router-link>
-                    </li>
-                @endcan
-                              
-            @can('hasPermission', 'view_files')
-            <li>
-                <router-link to="/files" aria-expanded="false">
-                    <i class="nc-icon nc-single-copy-04"></i>
-                    <span>Files</span>
-                </router-link>
-            </li>
-        @endcan
+                            <li>
+                                <router-link to="/categories" aria-expanded="false">
+                                    <i class="nc-icon nc-bullet-list-67"></i>
+                                    <span>Categories</span>
+                                </router-link>
+                            </li>
+                        @endcan
+                        @can('hasPermission', 'view_contacts')
+                            <li>
+                                <router-link to="/contacts" aria-expanded="false">
+                                    <i class="nc-icon nc-badge"></i>
+                                    <span>Contact</span>
+                                </router-link>
+                            </li>
+                        @endcan
 
-                @can('hasPermission', 'view_folders')
-                <li>
-                    <router-link to="/folders" aria-expanded="false">
-                        <i class="nc-icon nc-app"></i>
-                        <span>Folders</span>
-                    </router-link>
-                </li>
-            @endcan
-         
-                   
+                        @can('hasPermission', 'view_files')
+                            <li>
+                                <router-link to="/files" aria-expanded="false">
+                                    <i class="nc-icon nc-single-copy-04"></i>
+                                    <span>Files</span>
+                                </router-link>
+                            </li>
+                        @endcan
 
-                      
+                        @can('hasPermission', 'view_folders')
+                            <li>
+                                <router-link to="/folders" aria-expanded="false">
+                                    <i class="nc-icon nc-app"></i>
+                                    <span>Folders</span>
+                                </router-link>
+                            </li>
+                        @endcan
+
+
+
+
                         @can('hasPermission', 'view_notes')
                             <li>
                                 <router-link to="/notes" aria-expanded="false">
@@ -116,7 +116,7 @@
                                 </router-link>
                             </li>
                         @endcan
-                    
+
 
                         @can('hasPermission', 'view_products')
                             <li>
@@ -164,16 +164,16 @@
                         @endcan --}}
 
 
-                     
+
 
                         @can('hasPermission', 'view_weekly_orders')
-                        <li>
-                            <router-link to="/weekly-orders" aria-expanded="false">
-                                <i class="nc-icon nc-cart-simple"></i>
-                                <span>Weekly Orders</span>
-                            </router-link>
-                        </li>
-                    @endcan
+                            <li>
+                                <router-link to="/weekly-orders" aria-expanded="false">
+                                    <i class="nc-icon nc-cart-simple"></i>
+                                    <span>Weekly Orders</span>
+                                </router-link>
+                            </li>
+                        @endcan
                         {{-- @can('hasPermission', 'view_delivery_notes')
                             <li>
                                 <router-link to="/delivery-notes" aria-expanded="false">
@@ -202,7 +202,7 @@
                         @endcan
  --}}
 
-{{-- 
+                        {{-- 
                         @can('hasPermission', 'view_users')
                             <li>
                                 <router-link to="/users" aria-expanded="false">
@@ -227,7 +227,7 @@
                     </ul>
 
                 </div>
-                
+
             </div>
 
             <div class="main-panel">
@@ -345,7 +345,8 @@
                             </nav>
                             <div class="credits ml-auto">
                                 <span class="copyright">
-                                    {{-- ©Made with <i class="fa fa-heart heart"></i> by Prem Lamsal --}}
+                                    ©Made with <i class="fa fa-heart heart"></i> <a href="http://premlamsal.com.np">by
+                                        Prem Lamsal</a>
                                 </span>
                             </div>
                         </div>
